@@ -1,21 +1,21 @@
 (load-shared-object "libvulkan.so")
 (library (vulkan)
-  (export integer-128 unsigned-128 enum __int128_t __uint128_t
-   __builtin_ms_va_list ptrdiff_t size_t wchar_t int8_t int16_t
-   int32_t int64_t uint8_t uint16_t uint32_t uint64_t
-   int_least8_t int_least16_t int_least32_t int_least64_t
-   uint_least8_t uint_least16_t uint_least32_t uint_least64_t
-   int_fast8_t int_fast16_t int_fast32_t int_fast64_t
-   uint_fast8_t uint_fast16_t uint_fast32_t uint_fast64_t
-   intptr_t uintptr_t intmax_t uintmax_t vk:flags vk:bool32
-   vk:device-size vk:sample-mask vk:instance vk:physical-device
-   vk:device vk:queue vk:semaphore vk:command-buffer vk:fence
-   vk:device-memory vk:buffer vk:image vk:event vk:query-pool
-   vk:buffer-view vk:image-view vk:shader-module
-   vk:pipeline-cache vk:pipeline-layout vk:render-pass
-   vk:pipeline vk:descriptor-set-layout vk:sampler
-   vk:descriptor-pool vk:descriptor-set vk:framebuffer
-   vk:command-pool vk:pipeline-cache-header-version
+  (export int128-t uint128-t builtin-ms-va-list ptrdiff-t
+   size-t wchar-t int8-t int16-t int32-t int64-t uint8-t
+   uint16-t uint32-t uint64-t int-least8-t int-least16-t
+   int-least32-t int-least64-t uint-least8-t uint-least16-t
+   uint-least32-t uint-least64-t int-fast8-t int-fast16-t
+   int-fast32-t int-fast64-t uint-fast8-t uint-fast16-t
+   uint-fast32-t uint-fast64-t intptr-t uintptr-t intmax-t
+   uintmax-t vk:flags vk:bool32 vk:device-size vk:sample-mask
+   vk:instance vk:physical-device vk:device vk:queue
+   vk:semaphore vk:command-buffer vk:fence vk:device-memory
+   vk:buffer vk:image vk:event vk:query-pool vk:buffer-view
+   vk:image-view vk:shader-module vk:pipeline-cache
+   vk:pipeline-layout vk:render-pass vk:pipeline
+   vk:descriptor-set-layout vk:sampler vk:descriptor-pool
+   vk:descriptor-set vk:framebuffer vk:command-pool
+   vk:pipeline-cache-header-version
    vk:pipeline-cache-header-version-one
    vk:pipeline-cache-header-version-begin-range
    vk:pipeline-cache-header-version-end-range
@@ -647,10 +647,10 @@
    vk:command-buffer-reset-flags vk:stencil-face-flag-bits
    vk:stencil-face-front-bit vk:stencil-face-back-bit
    vk:stencil-front-and-back vk:stencil-face-flag-bits-max-enum
-   vk:stencil-face-flags p-f-n_vk-allocation-function
-   p-f-n_vk-reallocation-function p-f-n_vk-free-function
-   p-f-n_vk-internal-allocation-notification
-   p-f-n_vk-internal-free-notification p-f-n_vk-void-function
+   vk:stencil-face-flags pfn-vk-allocation-function
+   pfn-vk-reallocation-function pfn-vk-free-function
+   pfn-vk-internal-allocation-notification
+   pfn-vk-internal-free-notification pfn-vk-void-function
    vk:application-info vk:instance-create-info
    vk:allocation-callbacks vk:physical-device-features
    vk:format-properties vk:extent3-d vk:image-format-properties
@@ -713,109 +713,98 @@
    vk:image-memory-barrier vk:render-pass-begin-info
    vk:dispatch-indirect-command
    vk:draw-indexed-indirect-command vk:draw-indirect-command
-   p-f-n_vk-create-instance p-f-n_vk-destroy-instance
-   p-f-n_vk-enumerate-physical-devices
-   p-f-n_vk-get-physical-device-features
-   p-f-n_vk-get-physical-device-format-properties
-   p-f-n_vk-get-physical-device-image-format-properties
-   p-f-n_vk-get-physical-device-properties
-   p-f-n_vk-get-physical-device-queue-family-properties
-   p-f-n_vk-get-physical-device-memory-properties
-   p-f-n_vk-get-instance-proc-addr
-   p-f-n_vk-get-device-proc-addr p-f-n_vk-create-device
-   p-f-n_vk-destroy-device
-   p-f-n_vk-enumerate-instance-extension-properties
-   p-f-n_vk-enumerate-device-extension-properties
-   p-f-n_vk-enumerate-instance-layer-properties
-   p-f-n_vk-enumerate-device-layer-properties
-   p-f-n_vk-get-device-queue p-f-n_vk-queue-submit
-   p-f-n_vk-queue-wait-idle p-f-n_vk-device-wait-idle
-   p-f-n_vk-allocate-memory p-f-n_vk-free-memory
-   p-f-n_vk-map-memory p-f-n_vk-unmap-memory
-   p-f-n_vk-flush-mapped-memory-ranges
-   p-f-n_vk-invalidate-mapped-memory-ranges
-   p-f-n_vk-get-device-memory-commitment
-   p-f-n_vk-bind-buffer-memory p-f-n_vk-bind-image-memory
-   p-f-n_vk-get-buffer-memory-requirements
-   p-f-n_vk-get-image-memory-requirements
-   p-f-n_vk-get-image-sparse-memory-requirements
-   p-f-n_vk-get-physical-device-sparse-image-format-properties
-   p-f-n_vk-queue-bind-sparse p-f-n_vk-create-fence
-   p-f-n_vk-destroy-fence p-f-n_vk-reset-fences
-   p-f-n_vk-get-fence-status p-f-n_vk-wait-for-fences
-   p-f-n_vk-create-semaphore p-f-n_vk-destroy-semaphore
-   p-f-n_vk-create-event p-f-n_vk-destroy-event
-   p-f-n_vk-get-event-status p-f-n_vk-set-event
-   p-f-n_vk-reset-event p-f-n_vk-create-query-pool
-   p-f-n_vk-destroy-query-pool p-f-n_vk-get-query-pool-results
-   p-f-n_vk-create-buffer p-f-n_vk-destroy-buffer
-   p-f-n_vk-create-buffer-view p-f-n_vk-destroy-buffer-view
-   p-f-n_vk-create-image p-f-n_vk-destroy-image
-   p-f-n_vk-get-image-subresource-layout
-   p-f-n_vk-create-image-view p-f-n_vk-destroy-image-view
-   p-f-n_vk-create-shader-module p-f-n_vk-destroy-shader-module
-   p-f-n_vk-create-pipeline-cache
-   p-f-n_vk-destroy-pipeline-cache
-   p-f-n_vk-get-pipeline-cache-data
-   p-f-n_vk-merge-pipeline-caches
-   p-f-n_vk-create-graphics-pipelines
-   p-f-n_vk-create-compute-pipelines p-f-n_vk-destroy-pipeline
-   p-f-n_vk-create-pipeline-layout
-   p-f-n_vk-destroy-pipeline-layout p-f-n_vk-create-sampler
-   p-f-n_vk-destroy-sampler
-   p-f-n_vk-create-descriptor-set-layout
-   p-f-n_vk-destroy-descriptor-set-layout
-   p-f-n_vk-create-descriptor-pool
-   p-f-n_vk-destroy-descriptor-pool
-   p-f-n_vk-reset-descriptor-pool
-   p-f-n_vk-allocate-descriptor-sets
-   p-f-n_vk-free-descriptor-sets
-   p-f-n_vk-update-descriptor-sets p-f-n_vk-create-framebuffer
-   p-f-n_vk-destroy-framebuffer p-f-n_vk-create-render-pass
-   p-f-n_vk-destroy-render-pass
-   p-f-n_vk-get-render-area-granularity
-   p-f-n_vk-create-command-pool p-f-n_vk-destroy-command-pool
-   p-f-n_vk-reset-command-pool
-   p-f-n_vk-allocate-command-buffers
-   p-f-n_vk-free-command-buffers p-f-n_vk-begin-command-buffer
-   p-f-n_vk-end-command-buffer p-f-n_vk-reset-command-buffer
-   p-f-n_vk-cmd-bind-pipeline p-f-n_vk-cmd-set-viewport
-   p-f-n_vk-cmd-set-scissor p-f-n_vk-cmd-set-line-width
-   p-f-n_vk-cmd-set-depth-bias p-f-n_vk-cmd-set-blend-constants
-   p-f-n_vk-cmd-set-depth-bounds
-   p-f-n_vk-cmd-set-stencil-compare-mask
-   p-f-n_vk-cmd-set-stencil-write-mask
-   p-f-n_vk-cmd-set-stencil-reference
-   p-f-n_vk-cmd-bind-descriptor-sets
-   p-f-n_vk-cmd-bind-index-buffer
-   p-f-n_vk-cmd-bind-vertex-buffers p-f-n_vk-cmd-draw
-   p-f-n_vk-cmd-draw-indexed p-f-n_vk-cmd-draw-indirect
-   p-f-n_vk-cmd-draw-indexed-indirect p-f-n_vk-cmd-dispatch
-   p-f-n_vk-cmd-dispatch-indirect p-f-n_vk-cmd-copy-buffer
-   p-f-n_vk-cmd-copy-image p-f-n_vk-cmd-blit-image
-   p-f-n_vk-cmd-copy-buffer-to-image
-   p-f-n_vk-cmd-copy-image-to-buffer p-f-n_vk-cmd-update-buffer
-   p-f-n_vk-cmd-fill-buffer p-f-n_vk-cmd-clear-color-image
-   p-f-n_vk-cmd-clear-depth-stencil-image
-   p-f-n_vk-cmd-clear-attachments p-f-n_vk-cmd-resolve-image
-   p-f-n_vk-cmd-set-event p-f-n_vk-cmd-reset-event
-   p-f-n_vk-cmd-wait-events p-f-n_vk-cmd-pipeline-barrier
-   p-f-n_vk-cmd-begin-query p-f-n_vk-cmd-end-query
-   p-f-n_vk-cmd-reset-query-pool p-f-n_vk-cmd-write-timestamp
-   p-f-n_vk-cmd-copy-query-pool-results
-   p-f-n_vk-cmd-push-constants p-f-n_vk-cmd-begin-render-pass
-   p-f-n_vk-cmd-next-subpass p-f-n_vk-cmd-end-render-pass
-   p-f-n_vk-cmd-execute-commands vk:surface-k-h-r
-   vk:color-space-k-h-r vk:color-space-srgb-nonlinear-khr
+   pfn-vk-create-instance pfn-vk-destroy-instance
+   pfn-vk-enumerate-physical-devices
+   pfn-vk-get-physical-device-features
+   pfn-vk-get-physical-device-format-properties
+   pfn-vk-get-physical-device-image-format-properties
+   pfn-vk-get-physical-device-properties
+   pfn-vk-get-physical-device-queue-family-properties
+   pfn-vk-get-physical-device-memory-properties
+   pfn-vk-get-instance-proc-addr pfn-vk-get-device-proc-addr
+   pfn-vk-create-device pfn-vk-destroy-device
+   pfn-vk-enumerate-instance-extension-properties
+   pfn-vk-enumerate-device-extension-properties
+   pfn-vk-enumerate-instance-layer-properties
+   pfn-vk-enumerate-device-layer-properties
+   pfn-vk-get-device-queue pfn-vk-queue-submit
+   pfn-vk-queue-wait-idle pfn-vk-device-wait-idle
+   pfn-vk-allocate-memory pfn-vk-free-memory pfn-vk-map-memory
+   pfn-vk-unmap-memory pfn-vk-flush-mapped-memory-ranges
+   pfn-vk-invalidate-mapped-memory-ranges
+   pfn-vk-get-device-memory-commitment
+   pfn-vk-bind-buffer-memory pfn-vk-bind-image-memory
+   pfn-vk-get-buffer-memory-requirements
+   pfn-vk-get-image-memory-requirements
+   pfn-vk-get-image-sparse-memory-requirements
+   pfn-vk-get-physical-device-sparse-image-format-properties
+   pfn-vk-queue-bind-sparse pfn-vk-create-fence
+   pfn-vk-destroy-fence pfn-vk-reset-fences
+   pfn-vk-get-fence-status pfn-vk-wait-for-fences
+   pfn-vk-create-semaphore pfn-vk-destroy-semaphore
+   pfn-vk-create-event pfn-vk-destroy-event
+   pfn-vk-get-event-status pfn-vk-set-event pfn-vk-reset-event
+   pfn-vk-create-query-pool pfn-vk-destroy-query-pool
+   pfn-vk-get-query-pool-results pfn-vk-create-buffer
+   pfn-vk-destroy-buffer pfn-vk-create-buffer-view
+   pfn-vk-destroy-buffer-view pfn-vk-create-image
+   pfn-vk-destroy-image pfn-vk-get-image-subresource-layout
+   pfn-vk-create-image-view pfn-vk-destroy-image-view
+   pfn-vk-create-shader-module pfn-vk-destroy-shader-module
+   pfn-vk-create-pipeline-cache pfn-vk-destroy-pipeline-cache
+   pfn-vk-get-pipeline-cache-data pfn-vk-merge-pipeline-caches
+   pfn-vk-create-graphics-pipelines
+   pfn-vk-create-compute-pipelines pfn-vk-destroy-pipeline
+   pfn-vk-create-pipeline-layout pfn-vk-destroy-pipeline-layout
+   pfn-vk-create-sampler pfn-vk-destroy-sampler
+   pfn-vk-create-descriptor-set-layout
+   pfn-vk-destroy-descriptor-set-layout
+   pfn-vk-create-descriptor-pool pfn-vk-destroy-descriptor-pool
+   pfn-vk-reset-descriptor-pool pfn-vk-allocate-descriptor-sets
+   pfn-vk-free-descriptor-sets pfn-vk-update-descriptor-sets
+   pfn-vk-create-framebuffer pfn-vk-destroy-framebuffer
+   pfn-vk-create-render-pass pfn-vk-destroy-render-pass
+   pfn-vk-get-render-area-granularity
+   pfn-vk-create-command-pool pfn-vk-destroy-command-pool
+   pfn-vk-reset-command-pool pfn-vk-allocate-command-buffers
+   pfn-vk-free-command-buffers pfn-vk-begin-command-buffer
+   pfn-vk-end-command-buffer pfn-vk-reset-command-buffer
+   pfn-vk-cmd-bind-pipeline pfn-vk-cmd-set-viewport
+   pfn-vk-cmd-set-scissor pfn-vk-cmd-set-line-width
+   pfn-vk-cmd-set-depth-bias pfn-vk-cmd-set-blend-constants
+   pfn-vk-cmd-set-depth-bounds
+   pfn-vk-cmd-set-stencil-compare-mask
+   pfn-vk-cmd-set-stencil-write-mask
+   pfn-vk-cmd-set-stencil-reference
+   pfn-vk-cmd-bind-descriptor-sets pfn-vk-cmd-bind-index-buffer
+   pfn-vk-cmd-bind-vertex-buffers pfn-vk-cmd-draw
+   pfn-vk-cmd-draw-indexed pfn-vk-cmd-draw-indirect
+   pfn-vk-cmd-draw-indexed-indirect pfn-vk-cmd-dispatch
+   pfn-vk-cmd-dispatch-indirect pfn-vk-cmd-copy-buffer
+   pfn-vk-cmd-copy-image pfn-vk-cmd-blit-image
+   pfn-vk-cmd-copy-buffer-to-image
+   pfn-vk-cmd-copy-image-to-buffer pfn-vk-cmd-update-buffer
+   pfn-vk-cmd-fill-buffer pfn-vk-cmd-clear-color-image
+   pfn-vk-cmd-clear-depth-stencil-image
+   pfn-vk-cmd-clear-attachments pfn-vk-cmd-resolve-image
+   pfn-vk-cmd-set-event pfn-vk-cmd-reset-event
+   pfn-vk-cmd-wait-events pfn-vk-cmd-pipeline-barrier
+   pfn-vk-cmd-begin-query pfn-vk-cmd-end-query
+   pfn-vk-cmd-reset-query-pool pfn-vk-cmd-write-timestamp
+   pfn-vk-cmd-copy-query-pool-results pfn-vk-cmd-push-constants
+   pfn-vk-cmd-begin-render-pass pfn-vk-cmd-next-subpass
+   pfn-vk-cmd-end-render-pass pfn-vk-cmd-execute-commands
+   vk:surface-khr vk:color-space-khr
+   vk:color-space-srgb-nonlinear-khr
    vk:color-space-begin-range-khr vk:color-space-end-range-khr
    vk:color-space-range-size-khr vk:color-space-max-enum-khr
-   vk:present-mode-k-h-r vk:present-mode-immediate-khr
+   vk:present-mode-khr vk:present-mode-immediate-khr
    vk:present-mode-mailbox-khr vk:present-mode-fifo-khr
    vk:present-mode-fifo-relaxed-khr
    vk:present-mode-begin-range-khr
    vk:present-mode-end-range-khr vk:present-mode-range-size-khr
    vk:present-mode-max-enum-khr
-   vk:surface-transform-flag-bits-k-h-r
+   vk:surface-transform-flag-bits-khr
    vk:surface-transform-identity-bit-khr
    vk:surface-transform-rotate-90-bit-khr
    vk:surface-transform-rotate-180-bit-khr
@@ -826,52 +815,50 @@
    vk:surface-transform-horizontal-mirror-rotate-270-bit-khr
    vk:surface-transform-inherit-bit-khr
    vk:surface-transform-flag-bits-max-enum-khr
-   vk:surface-transform-flags-k-h-r
-   vk:composite-alpha-flag-bits-k-h-r
+   vk:surface-transform-flags-khr
+   vk:composite-alpha-flag-bits-khr
    vk:composite-alpha-opaque-bit-khr
    vk:composite-alpha-pre-multiplied-bit-khr
    vk:composite-alpha-post-multiplied-bit-khr
    vk:composite-alpha-inherit-bit-khr
    vk:composite-alpha-flag-bits-max-enum-khr
-   vk:composite-alpha-flags-k-h-r vk:surface-capabilities-k-h-r
-   vk:surface-format-k-h-r p-f-n_vk-destroy-surface-k-h-r
-   p-f-n_vk-get-physical-device-surface-support-k-h-r
-   p-f-n_vk-get-physical-device-surface-capabilities-k-h-r
-   p-f-n_vk-get-physical-device-surface-formats-k-h-r
-   p-f-n_vk-get-physical-device-surface-present-modes-k-h-r
-   vk:swapchain-k-h-r vk:swapchain-create-flags-k-h-r
-   vk:swapchain-create-info-k-h-r vk:present-info-k-h-r
-   p-f-n_vk-create-swapchain-k-h-r
-   p-f-n_vk-destroy-swapchain-k-h-r
-   p-f-n_vk-get-swapchain-images-k-h-r
-   p-f-n_vk-acquire-next-image-k-h-r
-   p-f-n_vk-queue-present-k-h-r vk:display-k-h-r
-   vk:display-mode-k-h-r vk:display-plane-alpha-flag-bits-k-h-r
+   vk:composite-alpha-flags-khr vk:surface-capabilities-khr
+   vk:surface-format-khr pfn-vk-destroy-surface-khr
+   pfn-vk-get-physical-device-surface-support-khr
+   pfn-vk-get-physical-device-surface-capabilities-khr
+   pfn-vk-get-physical-device-surface-formats-khr
+   pfn-vk-get-physical-device-surface-present-modes-khr
+   vk:swapchain-khr vk:swapchain-create-flags-khr
+   vk:swapchain-create-info-khr vk:present-info-khr
+   pfn-vk-create-swapchain-khr pfn-vk-destroy-swapchain-khr
+   pfn-vk-get-swapchain-images-khr
+   pfn-vk-acquire-next-image-khr pfn-vk-queue-present-khr
+   vk:display-khr vk:display-mode-khr
+   vk:display-plane-alpha-flag-bits-khr
    vk:display-plane-alpha-opaque-bit-khr
    vk:display-plane-alpha-global-bit-khr
    vk:display-plane-alpha-per-pixel-bit-khr
    vk:display-plane-alpha-per-pixel-premultiplied-bit-khr
    vk:display-plane-alpha-flag-bits-max-enum-khr
-   vk:display-plane-alpha-flags-k-h-r
-   vk:display-mode-create-flags-k-h-r
-   vk:display-surface-create-flags-k-h-r
-   vk:display-properties-k-h-r vk:display-mode-parameters-k-h-r
-   vk:display-mode-properties-k-h-r
-   vk:display-mode-create-info-k-h-r
-   vk:display-plane-capabilities-k-h-r
-   vk:display-plane-properties-k-h-r
-   vk:display-surface-create-info-k-h-r
-   p-f-n_vk-get-physical-device-display-properties-k-h-r
-   p-f-n_vk-get-physical-device-display-plane-properties-k-h-r
-   p-f-n_vk-get-display-plane-supported-displays-k-h-r
-   p-f-n_vk-get-display-mode-properties-k-h-r
-   p-f-n_vk-create-display-mode-k-h-r
-   p-f-n_vk-get-display-plane-capabilities-k-h-r
-   p-f-n_vk-create-display-plane-surface-k-h-r
-   vk:display-present-info-k-h-r
-   p-f-n_vk-create-shared-swapchains-k-h-r
-   vk:debug-report-callback-e-x-t
-   vk:debug-report-object-type-e-x-t
+   vk:display-plane-alpha-flags-khr
+   vk:display-mode-create-flags-khr
+   vk:display-surface-create-flags-khr
+   vk:display-properties-khr vk:display-mode-parameters-khr
+   vk:display-mode-properties-khr
+   vk:display-mode-create-info-khr
+   vk:display-plane-capabilities-khr
+   vk:display-plane-properties-khr
+   vk:display-surface-create-info-khr
+   pfn-vk-get-physical-device-display-properties-khr
+   pfn-vk-get-physical-device-display-plane-properties-khr
+   pfn-vk-get-display-plane-supported-displays-khr
+   pfn-vk-get-display-mode-properties-khr
+   pfn-vk-create-display-mode-khr
+   pfn-vk-get-display-plane-capabilities-khr
+   pfn-vk-create-display-plane-surface-khr
+   vk:display-present-info-khr
+   pfn-vk-create-shared-swapchains-khr
+   vk:debug-report-callback-ext vk:debug-report-object-type-ext
    vk:debug-report-object-type-unknown-ext
    vk:debug-report-object-type-instance-ext
    vk:debug-report-object-type-physical-device-ext
@@ -905,67 +892,65 @@
    vk:debug-report-object-type-end-range-ext
    vk:debug-report-object-type-range-size-ext
    vk:debug-report-object-type-max-enum-ext
-   vk:debug-report-error-e-x-t vk:debug-report-error-none-ext
+   vk:debug-report-error-ext vk:debug-report-error-none-ext
    vk:debug-report-error-callback-ref-ext
    vk:debug-report-error-begin-range-ext
    vk:debug-report-error-end-range-ext
    vk:debug-report-error-range-size-ext
    vk:debug-report-error-max-enum-ext
-   vk:debug-report-flag-bits-e-x-t
+   vk:debug-report-flag-bits-ext
    vk:debug-report-information-bit-ext
    vk:debug-report-warning-bit-ext
    vk:debug-report-performance-warning-bit-ext
    vk:debug-report-error-bit-ext vk:debug-report-debug-bit-ext
    vk:debug-report-flag-bits-max-enum-ext
-   vk:debug-report-flags-e-x-t
-   p-f-n_vk-debug-report-callback-e-x-t
-   vk:debug-report-callback-create-info-e-x-t
-   p-f-n_vk-create-debug-report-callback-e-x-t
-   p-f-n_vk-destroy-debug-report-callback-e-x-t
-   p-f-n_vk-debug-report-message-e-x-t
-   vk:rasterization-order-a-m-d
+   vk:debug-report-flags-ext pfn-vk-debug-report-callback-ext
+   vk:debug-report-callback-create-info-ext
+   pfn-vk-create-debug-report-callback-ext
+   pfn-vk-destroy-debug-report-callback-ext
+   pfn-vk-debug-report-message-ext vk:rasterization-order-amd
    vk:rasterization-order-strict-amd
    vk:rasterization-order-relaxed-amd
    vk:rasterization-order-begin-range-amd
    vk:rasterization-order-end-range-amd
    vk:rasterization-order-range-size-amd
    vk:rasterization-order-max-enum-amd
-   vk:pipeline-rasterization-state-rasterization-order-a-m-d
-   vk:debug-marker-object-name-info-e-x-t
-   vk:debug-marker-object-tag-info-e-x-t
-   vk:debug-marker-marker-info-e-x-t
-   p-f-n_vk-debug-marker-set-object-tag-e-x-t
-   p-f-n_vk-debug-marker-set-object-name-e-x-t
-   p-f-n_vk-cmd-debug-marker-begin-e-x-t
-   p-f-n_vk-cmd-debug-marker-end-e-x-t
-   p-f-n_vk-cmd-debug-marker-insert-e-x-t
-   vk:dedicated-allocation-image-create-info-n-v
-   vk:dedicated-allocation-buffer-create-info-n-v
-   vk:dedicated-allocation-memory-allocate-info-n-v
-   p-f-n_vk-cmd-draw-indirect-count-a-m-d
-   p-f-n_vk-cmd-draw-indexed-indirect-count-a-m-d
-   vk:external-memory-handle-type-flag-bits-n-v
+   vk:pipeline-rasterization-state-rasterization-order-amd
+   vk:debug-marker-object-name-info-ext
+   vk:debug-marker-object-tag-info-ext
+   vk:debug-marker-marker-info-ext
+   pfn-vk-debug-marker-set-object-tag-ext
+   pfn-vk-debug-marker-set-object-name-ext
+   pfn-vk-cmd-debug-marker-begin-ext
+   pfn-vk-cmd-debug-marker-end-ext
+   pfn-vk-cmd-debug-marker-insert-ext
+   vk:dedicated-allocation-image-create-info-nv
+   vk:dedicated-allocation-buffer-create-info-nv
+   vk:dedicated-allocation-memory-allocate-info-nv
+   pfn-vk-cmd-draw-indirect-count-amd
+   pfn-vk-cmd-draw-indexed-indirect-count-amd
+   vk:external-memory-handle-type-flag-bits-nv
    vk:external-memory-handle-type-opaque-win32-bit-nv
    vk:external-memory-handle-type-opaque-win32-kmt-bit-nv
    vk:external-memory-handle-type-d3d11-image-bit-nv
    vk:external-memory-handle-type-d3d11-image-kmt-bit-nv
    vk:external-memory-handle-type-flag-bits-max-enum-nv
-   vk:external-memory-handle-type-flags-n-v
-   vk:external-memory-feature-flag-bits-n-v
+   vk:external-memory-handle-type-flags-nv
+   vk:external-memory-feature-flag-bits-nv
    vk:external-memory-feature-dedicated-only-bit-nv
    vk:external-memory-feature-exportable-bit-nv
    vk:external-memory-feature-importable-bit-nv
    vk:external-memory-feature-flag-bits-max-enum-nv
-   vk:external-memory-feature-flags-n-v
-   vk:external-image-format-properties-n-v
-   p-f-n_vk-get-physical-device-external-image-format-properties-n-v
-   vk:external-memory-image-create-info-n-v
-   vk:export-memory-allocate-info-n-v vk:validation-check-e-x-t
+   vk:external-memory-feature-flags-nv
+   vk:external-image-format-properties-nv
+   pfn-vk-get-physical-device-external-image-format-properties-nv
+   vk:external-memory-image-create-info-nv
+   vk:export-memory-allocate-info-nv vk:validation-check-ext
    vk:validation-check-all-ext
    vk:validation-check-begin-range-ext
    vk:validation-check-end-range-ext
    vk:validation-check-range-size-ext
-   vk:validation-check-max-enum-ext vk:validation-flags-e-x-t
+   vk:validation-check-max-enum-ext vk:validation-flags-ext
    vk:create-instance vk:destroy-instance
    vk:enumerate-physical-devices
    vk:get-physical-device-features
@@ -1035,67 +1020,67 @@
    vk:cmd-copy-query-pool-results vk:cmd-push-constants
    vk:cmd-begin-render-pass vk:cmd-next-subpass
    vk:cmd-end-render-pass vk:cmd-execute-commands
-   vk:destroy-surface-k-h-r
-   vk:get-physical-device-surface-support-k-h-r
-   vk:get-physical-device-surface-capabilities-k-h-r
-   vk:get-physical-device-surface-formats-k-h-r
-   vk:get-physical-device-surface-present-modes-k-h-r
-   vk:create-swapchain-k-h-r vk:destroy-swapchain-k-h-r
-   vk:get-swapchain-images-k-h-r vk:acquire-next-image-k-h-r
-   vk:queue-present-k-h-r
-   vk:get-physical-device-display-properties-k-h-r
-   vk:get-physical-device-display-plane-properties-k-h-r
-   vk:get-display-plane-supported-displays-k-h-r
-   vk:get-display-mode-properties-k-h-r
-   vk:create-display-mode-k-h-r
-   vk:get-display-plane-capabilities-k-h-r
-   vk:create-display-plane-surface-k-h-r
-   vk:create-shared-swapchains-k-h-r
-   vk:get-physical-device-external-image-format-properties-n-v)
+   vk:destroy-surface-khr
+   vk:get-physical-device-surface-support-khr
+   vk:get-physical-device-surface-capabilities-khr
+   vk:get-physical-device-surface-formats-khr
+   vk:get-physical-device-surface-present-modes-khr
+   vk:create-swapchain-khr vk:destroy-swapchain-khr
+   vk:get-swapchain-images-khr vk:acquire-next-image-khr
+   vk:queue-present-khr
+   vk:get-physical-device-display-properties-khr
+   vk:get-physical-device-display-plane-properties-khr
+   vk:get-display-plane-supported-displays-khr
+   vk:get-display-mode-properties-khr
+   vk:create-display-mode-khr
+   vk:get-display-plane-capabilities-khr
+   vk:create-display-plane-surface-khr
+   vk:create-shared-swapchains-khr
+   vk:get-physical-device-external-image-format-properties-nv)
   (import (scheme))
   (define-ftype integer-128
     (struct [lo unsigned-64] [hi integer-64]))
   (define-ftype unsigned-128
     (struct [lo unsigned-64] [hi unsigned-64]))
   (define-ftype enum int)
-  (define-ftype __int128_t integer-128)
-  (define-ftype __uint128_t unsigned-128)
-  (define-ftype __builtin_ms_va_list uptr)
-  (define-ftype ptrdiff_t integer-64)
-  (define-ftype size_t unsigned-64)
-  (define-ftype wchar_t integer-32)
-  (define-ftype int8_t integer-8)
-  (define-ftype int16_t integer-16)
-  (define-ftype int32_t integer-32)
-  (define-ftype int64_t integer-64)
-  (define-ftype uint8_t unsigned-8)
-  (define-ftype uint16_t unsigned-16)
-  (define-ftype uint32_t unsigned-32)
-  (define-ftype uint64_t unsigned-64)
-  (define-ftype int_least8_t integer-8)
-  (define-ftype int_least16_t integer-16)
-  (define-ftype int_least32_t integer-32)
-  (define-ftype int_least64_t integer-64)
-  (define-ftype uint_least8_t unsigned-8)
-  (define-ftype uint_least16_t unsigned-16)
-  (define-ftype uint_least32_t unsigned-32)
-  (define-ftype uint_least64_t unsigned-64)
-  (define-ftype int_fast8_t integer-8)
-  (define-ftype int_fast16_t integer-64)
-  (define-ftype int_fast32_t integer-64)
-  (define-ftype int_fast64_t integer-64)
-  (define-ftype uint_fast8_t unsigned-8)
-  (define-ftype uint_fast16_t unsigned-64)
-  (define-ftype uint_fast32_t unsigned-64)
-  (define-ftype uint_fast64_t unsigned-64)
-  (define-ftype intptr_t integer-64)
-  (define-ftype uintptr_t unsigned-64)
-  (define-ftype intmax_t integer-64)
-  (define-ftype uintmax_t unsigned-64)
-  (define-ftype vk:flags uint32_t)
-  (define-ftype vk:bool32 uint32_t)
-  (define-ftype vk:device-size uint64_t)
-  (define-ftype vk:sample-mask uint32_t)
+  (define-ftype int128-t integer-128)
+  (define-ftype uint128-t unsigned-128)
+  (define-ftype builtin-ms-va-list uptr)
+  (define-ftype ptrdiff-t integer-64)
+  (define-ftype size-t unsigned-64)
+  (define-ftype wchar-t integer-32)
+  (define-ftype int8-t integer-8)
+  (define-ftype int16-t integer-16)
+  (define-ftype int32-t integer-32)
+  (define-ftype int64-t integer-64)
+  (define-ftype uint8-t unsigned-8)
+  (define-ftype uint16-t unsigned-16)
+  (define-ftype uint32-t unsigned-32)
+  (define-ftype uint64-t unsigned-64)
+  (define-ftype int-least8-t integer-8)
+  (define-ftype int-least16-t integer-16)
+  (define-ftype int-least32-t integer-32)
+  (define-ftype int-least64-t integer-64)
+  (define-ftype uint-least8-t unsigned-8)
+  (define-ftype uint-least16-t unsigned-16)
+  (define-ftype uint-least32-t unsigned-32)
+  (define-ftype uint-least64-t unsigned-64)
+  (define-ftype int-fast8-t integer-8)
+  (define-ftype int-fast16-t integer-64)
+  (define-ftype int-fast32-t integer-64)
+  (define-ftype int-fast64-t integer-64)
+  (define-ftype uint-fast8-t unsigned-8)
+  (define-ftype uint-fast16-t unsigned-64)
+  (define-ftype uint-fast32-t unsigned-64)
+  (define-ftype uint-fast64-t unsigned-64)
+  (define-ftype intptr-t integer-64)
+  (define-ftype uintptr-t unsigned-64)
+  (define-ftype intmax-t integer-64)
+  (define-ftype uintmax-t unsigned-64)
+  (define-ftype vk:flags uint32-t)
+  (define-ftype vk:bool32 uint32-t)
+  (define-ftype vk:device-size uint64-t)
+  (define-ftype vk:sample-mask uint32-t)
   (define-ftype vk:instance uptr)
   (define-ftype vk:physical-device uptr)
   (define-ftype vk:device uptr)
@@ -2094,40 +2079,39 @@
   (define vk:stencil-front-and-back 3)
   (define vk:stencil-face-flag-bits-max-enum 2147483647)
   (define-ftype vk:stencil-face-flags vk:flags)
-  (define-ftype p-f-n_vk-allocation-function uptr)
-  (define-ftype p-f-n_vk-reallocation-function uptr)
-  (define-ftype p-f-n_vk-free-function uptr)
-  (define-ftype p-f-n_vk-internal-allocation-notification
-    uptr)
-  (define-ftype p-f-n_vk-internal-free-notification uptr)
-  (define-ftype p-f-n_vk-void-function uptr)
+  (define-ftype pfn-vk-allocation-function uptr)
+  (define-ftype pfn-vk-reallocation-function uptr)
+  (define-ftype pfn-vk-free-function uptr)
+  (define-ftype pfn-vk-internal-allocation-notification uptr)
+  (define-ftype pfn-vk-internal-free-notification uptr)
+  (define-ftype pfn-vk-void-function uptr)
   (define-ftype vk:application-info
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
       [p-application-name uptr]
-      [application-version uint32_t]
+      [application-version uint32-t]
       [p-engine-name uptr]
-      [engine-version uint32_t]
-      [api-version uint32_t]))
+      [engine-version uint32-t]
+      [api-version uint32-t]))
   (define-ftype vk:instance-create-info
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
       [flags vk:instance-create-flags]
       [p-application-info uptr]
-      [enabled-layer-count uint32_t]
+      [enabled-layer-count uint32-t]
       [pp-enabled-layer-names uptr]
-      [enabled-extension-count uint32_t]
+      [enabled-extension-count uint32-t]
       [pp-enabled-extension-names uptr]))
   (define-ftype vk:allocation-callbacks
     (struct
       [p-user-data uptr]
-      [pfn-allocation p-f-n_vk-allocation-function]
-      [pfn-reallocation p-f-n_vk-reallocation-function]
-      [pfn-free p-f-n_vk-free-function]
-      [pfn-internal-allocation p-f-n_vk-internal-allocation-notification]
-      [pfn-internal-free p-f-n_vk-internal-free-notification]))
+      [pfn-allocation pfn-vk-allocation-function]
+      [pfn-reallocation pfn-vk-reallocation-function]
+      [pfn-free pfn-vk-free-function]
+      [pfn-internal-allocation pfn-vk-internal-allocation-notification]
+      [pfn-internal-free pfn-vk-internal-free-notification]))
   (define-ftype vk:physical-device-features
     (struct
       [robust-buffer-access vk:bool32]
@@ -2150,9 +2134,9 @@
       [alpha-to-one vk:bool32]
       [multi-viewport vk:bool32]
       [sampler-anisotropy vk:bool32]
-      [texture-compression-e-t-c2 vk:bool32]
-      [texture-compression-a-s-t-c_-l-d-r vk:bool32]
-      [texture-compression-b-c vk:bool32]
+      [texture-compression-etc2 vk:bool32]
+      [texture-compression-astc-ldr vk:bool32]
+      [texture-compression-bc vk:bool32]
       [occlusion-query-precise vk:bool32]
       [pipeline-statistics-query vk:bool32]
       [vertex-pipeline-stores-and-atomics vk:bool32]
@@ -2192,115 +2176,115 @@
       [buffer-features vk:format-feature-flags]))
   (define-ftype vk:extent3-d
     (struct
-      [width uint32_t]
-      [height uint32_t]
-      [depth uint32_t]))
+      [width uint32-t]
+      [height uint32-t]
+      [depth uint32-t]))
   (define-ftype vk:image-format-properties
     (struct
       [max-extent vk:extent3-d]
-      [max-mip-levels uint32_t]
-      [max-array-layers uint32_t]
+      [max-mip-levels uint32-t]
+      [max-array-layers uint32-t]
       [sample-counts vk:sample-count-flags]
       [max-resource-size vk:device-size]))
   (define-ftype vk:physical-device-limits
     (struct
-      [max-image-dimension1-d uint32_t]
-      [max-image-dimension2-d uint32_t]
-      [max-image-dimension3-d uint32_t]
-      [max-image-dimension-cube uint32_t]
-      [max-image-array-layers uint32_t]
-      [max-texel-buffer-elements uint32_t]
-      [max-uniform-buffer-range uint32_t]
-      [max-storage-buffer-range uint32_t]
-      [max-push-constants-size uint32_t]
-      [max-memory-allocation-count uint32_t]
-      [max-sampler-allocation-count uint32_t]
+      [max-image-dimension1-d uint32-t]
+      [max-image-dimension2-d uint32-t]
+      [max-image-dimension3-d uint32-t]
+      [max-image-dimension-cube uint32-t]
+      [max-image-array-layers uint32-t]
+      [max-texel-buffer-elements uint32-t]
+      [max-uniform-buffer-range uint32-t]
+      [max-storage-buffer-range uint32-t]
+      [max-push-constants-size uint32-t]
+      [max-memory-allocation-count uint32-t]
+      [max-sampler-allocation-count uint32-t]
       [buffer-image-granularity vk:device-size]
       [sparse-address-space-size vk:device-size]
-      [max-bound-descriptor-sets uint32_t]
-      [max-per-stage-descriptor-samplers uint32_t]
-      [max-per-stage-descriptor-uniform-buffers uint32_t]
-      [max-per-stage-descriptor-storage-buffers uint32_t]
-      [max-per-stage-descriptor-sampled-images uint32_t]
-      [max-per-stage-descriptor-storage-images uint32_t]
-      [max-per-stage-descriptor-input-attachments uint32_t]
-      [max-per-stage-resources uint32_t]
-      [max-descriptor-set-samplers uint32_t]
-      [max-descriptor-set-uniform-buffers uint32_t]
-      [max-descriptor-set-uniform-buffers-dynamic uint32_t]
-      [max-descriptor-set-storage-buffers uint32_t]
-      [max-descriptor-set-storage-buffers-dynamic uint32_t]
-      [max-descriptor-set-sampled-images uint32_t]
-      [max-descriptor-set-storage-images uint32_t]
-      [max-descriptor-set-input-attachments uint32_t]
-      [max-vertex-input-attributes uint32_t]
-      [max-vertex-input-bindings uint32_t]
-      [max-vertex-input-attribute-offset uint32_t]
-      [max-vertex-input-binding-stride uint32_t]
-      [max-vertex-output-components uint32_t]
-      [max-tessellation-generation-level uint32_t]
-      [max-tessellation-patch-size uint32_t]
-      [max-tessellation-control-per-vertex-input-components uint32_t]
-      [max-tessellation-control-per-vertex-output-components uint32_t]
-      [max-tessellation-control-per-patch-output-components uint32_t]
-      [max-tessellation-control-total-output-components uint32_t]
-      [max-tessellation-evaluation-input-components uint32_t]
-      [max-tessellation-evaluation-output-components uint32_t]
-      [max-geometry-shader-invocations uint32_t]
-      [max-geometry-input-components uint32_t]
-      [max-geometry-output-components uint32_t]
-      [max-geometry-output-vertices uint32_t]
-      [max-geometry-total-output-components uint32_t]
-      [max-fragment-input-components uint32_t]
-      [max-fragment-output-attachments uint32_t]
-      [max-fragment-dual-src-attachments uint32_t]
-      [max-fragment-combined-output-resources uint32_t]
-      [max-compute-shared-memory-size uint32_t]
-      [max-compute-work-group-count (array 3 uint32_t)]
-      [max-compute-work-group-invocations uint32_t]
-      [max-compute-work-group-size (array 3 uint32_t)]
-      [sub-pixel-precision-bits uint32_t]
-      [sub-texel-precision-bits uint32_t]
-      [mipmap-precision-bits uint32_t]
-      [max-draw-indexed-index-value uint32_t]
-      [max-draw-indirect-count uint32_t]
+      [max-bound-descriptor-sets uint32-t]
+      [max-per-stage-descriptor-samplers uint32-t]
+      [max-per-stage-descriptor-uniform-buffers uint32-t]
+      [max-per-stage-descriptor-storage-buffers uint32-t]
+      [max-per-stage-descriptor-sampled-images uint32-t]
+      [max-per-stage-descriptor-storage-images uint32-t]
+      [max-per-stage-descriptor-input-attachments uint32-t]
+      [max-per-stage-resources uint32-t]
+      [max-descriptor-set-samplers uint32-t]
+      [max-descriptor-set-uniform-buffers uint32-t]
+      [max-descriptor-set-uniform-buffers-dynamic uint32-t]
+      [max-descriptor-set-storage-buffers uint32-t]
+      [max-descriptor-set-storage-buffers-dynamic uint32-t]
+      [max-descriptor-set-sampled-images uint32-t]
+      [max-descriptor-set-storage-images uint32-t]
+      [max-descriptor-set-input-attachments uint32-t]
+      [max-vertex-input-attributes uint32-t]
+      [max-vertex-input-bindings uint32-t]
+      [max-vertex-input-attribute-offset uint32-t]
+      [max-vertex-input-binding-stride uint32-t]
+      [max-vertex-output-components uint32-t]
+      [max-tessellation-generation-level uint32-t]
+      [max-tessellation-patch-size uint32-t]
+      [max-tessellation-control-per-vertex-input-components uint32-t]
+      [max-tessellation-control-per-vertex-output-components uint32-t]
+      [max-tessellation-control-per-patch-output-components uint32-t]
+      [max-tessellation-control-total-output-components uint32-t]
+      [max-tessellation-evaluation-input-components uint32-t]
+      [max-tessellation-evaluation-output-components uint32-t]
+      [max-geometry-shader-invocations uint32-t]
+      [max-geometry-input-components uint32-t]
+      [max-geometry-output-components uint32-t]
+      [max-geometry-output-vertices uint32-t]
+      [max-geometry-total-output-components uint32-t]
+      [max-fragment-input-components uint32-t]
+      [max-fragment-output-attachments uint32-t]
+      [max-fragment-dual-src-attachments uint32-t]
+      [max-fragment-combined-output-resources uint32-t]
+      [max-compute-shared-memory-size uint32-t]
+      [max-compute-work-group-count (array 3 uint32-t)]
+      [max-compute-work-group-invocations uint32-t]
+      [max-compute-work-group-size (array 3 uint32-t)]
+      [sub-pixel-precision-bits uint32-t]
+      [sub-texel-precision-bits uint32-t]
+      [mipmap-precision-bits uint32-t]
+      [max-draw-indexed-index-value uint32-t]
+      [max-draw-indirect-count uint32-t]
       [max-sampler-lod-bias float]
       [max-sampler-anisotropy float]
-      [max-viewports uint32_t]
-      [max-viewport-dimensions (array 2 uint32_t)]
+      [max-viewports uint32-t]
+      [max-viewport-dimensions (array 2 uint32-t)]
       [viewport-bounds-range (array 2 float)]
-      [viewport-sub-pixel-bits uint32_t]
-      [min-memory-map-alignment size_t]
+      [viewport-sub-pixel-bits uint32-t]
+      [min-memory-map-alignment size-t]
       [min-texel-buffer-offset-alignment vk:device-size]
       [min-uniform-buffer-offset-alignment vk:device-size]
       [min-storage-buffer-offset-alignment vk:device-size]
-      [min-texel-offset int32_t]
-      [max-texel-offset uint32_t]
-      [min-texel-gather-offset int32_t]
-      [max-texel-gather-offset uint32_t]
+      [min-texel-offset int32-t]
+      [max-texel-offset uint32-t]
+      [min-texel-gather-offset int32-t]
+      [max-texel-gather-offset uint32-t]
       [min-interpolation-offset float]
       [max-interpolation-offset float]
-      [sub-pixel-interpolation-offset-bits uint32_t]
-      [max-framebuffer-width uint32_t]
-      [max-framebuffer-height uint32_t]
-      [max-framebuffer-layers uint32_t]
+      [sub-pixel-interpolation-offset-bits uint32-t]
+      [max-framebuffer-width uint32-t]
+      [max-framebuffer-height uint32-t]
+      [max-framebuffer-layers uint32-t]
       [framebuffer-color-sample-counts vk:sample-count-flags]
       [framebuffer-depth-sample-counts vk:sample-count-flags]
       [framebuffer-stencil-sample-counts vk:sample-count-flags]
       [framebuffer-no-attachments-sample-counts vk:sample-count-flags]
-      [max-color-attachments uint32_t]
+      [max-color-attachments uint32-t]
       [sampled-image-color-sample-counts vk:sample-count-flags]
       [sampled-image-integer-sample-counts vk:sample-count-flags]
       [sampled-image-depth-sample-counts vk:sample-count-flags]
       [sampled-image-stencil-sample-counts vk:sample-count-flags]
       [storage-image-sample-counts vk:sample-count-flags]
-      [max-sample-mask-words uint32_t]
+      [max-sample-mask-words uint32-t]
       [timestamp-compute-and-graphics vk:bool32]
       [timestamp-period float]
-      [max-clip-distances uint32_t]
-      [max-cull-distances uint32_t]
-      [max-combined-clip-and-cull-distances uint32_t]
-      [discrete-queue-priorities uint32_t]
+      [max-clip-distances uint32-t]
+      [max-cull-distances uint32-t]
+      [max-combined-clip-and-cull-distances uint32-t]
+      [discrete-queue-priorities uint32-t]
       [point-size-range (array 2 float)]
       [line-width-range (array 2 float)]
       [point-size-granularity float]
@@ -2312,87 +2296,87 @@
       [non-coherent-atom-size vk:device-size]))
   (define-ftype vk:physical-device-sparse-properties
     (struct
-      [residency-standard2-d-block-shape vk:bool32]
-      [residency-standard2-d-multisample-block-shape vk:bool32]
-      [residency-standard3-d-block-shape vk:bool32]
+      [residency-standard2-dblock-shape vk:bool32]
+      [residency-standard2-dmultisample-block-shape vk:bool32]
+      [residency-standard3-dblock-shape vk:bool32]
       [residency-aligned-mip-size vk:bool32]
       [residency-non-resident-strict vk:bool32]))
   (define-ftype vk:physical-device-properties
     (struct
-      [api-version uint32_t]
-      [driver-version uint32_t]
-      [vendor-i-d uint32_t]
-      [device-i-d uint32_t]
+      [api-version uint32-t]
+      [driver-version uint32-t]
+      [vendor-id uint32-t]
+      [device-id uint32-t]
       [device-type vk:physical-device-type]
       [device-name (array 256 char)]
-      [pipeline-cache-u-u-i-d (array 16 uint8_t)]
+      [pipeline-cache-uuid (array 16 uint8-t)]
       [limits vk:physical-device-limits]
       [sparse-properties vk:physical-device-sparse-properties]))
   (define-ftype vk:queue-family-properties
     (struct
       [queue-flags vk:queue-flags]
-      [queue-count uint32_t]
-      [timestamp-valid-bits uint32_t]
+      [queue-count uint32-t]
+      [timestamp-valid-bits uint32-t]
       [min-image-transfer-granularity vk:extent3-d]))
   (define-ftype vk:memory-type
     (struct
       [property-flags vk:memory-property-flags]
-      [heap-index uint32_t]))
+      [heap-index uint32-t]))
   (define-ftype vk:memory-heap
     (struct [size vk:device-size] [flags vk:memory-heap-flags]))
   (define-ftype vk:physical-device-memory-properties
     (struct
-      [memory-type-count uint32_t]
+      [memory-type-count uint32-t]
       [memory-types (array 32 vk:memory-type)]
-      [memory-heap-count uint32_t]
+      [memory-heap-count uint32-t]
       [memory-heaps (array 16 vk:memory-heap)]))
   (define-ftype vk:device-queue-create-info
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
       [flags vk:device-queue-create-flags]
-      [queue-family-index uint32_t]
-      [queue-count uint32_t]
+      [queue-family-index uint32-t]
+      [queue-count uint32-t]
       [p-queue-priorities uptr]))
   (define-ftype vk:device-create-info
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
       [flags vk:device-create-flags]
-      [queue-create-info-count uint32_t]
+      [queue-create-info-count uint32-t]
       [p-queue-create-infos uptr]
-      [enabled-layer-count uint32_t]
+      [enabled-layer-count uint32-t]
       [pp-enabled-layer-names uptr]
-      [enabled-extension-count uint32_t]
+      [enabled-extension-count uint32-t]
       [pp-enabled-extension-names uptr]
       [p-enabled-features uptr]))
   (define-ftype vk:extension-properties
     (struct
       [extension-name (array 256 char)]
-      [spec-version uint32_t]))
+      [spec-version uint32-t]))
   (define-ftype vk:layer-properties
     (struct
       [layer-name (array 256 char)]
-      [spec-version uint32_t]
-      [implementation-version uint32_t]
+      [spec-version uint32-t]
+      [implementation-version uint32-t]
       [description (array 256 char)]))
   (define-ftype vk:submit-info
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
-      [wait-semaphore-count uint32_t]
+      [wait-semaphore-count uint32-t]
       [p-wait-semaphores uptr]
       [p-wait-dst-stage-mask uptr]
-      [command-buffer-count uint32_t]
+      [command-buffer-count uint32-t]
       [p-command-buffers uptr]
-      [signal-semaphore-count uint32_t]
+      [signal-semaphore-count uint32-t]
       [p-signal-semaphores uptr]))
   (define-ftype vk:memory-allocate-info
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
       [allocation-size vk:device-size]
-      [memory-type-index uint32_t]))
+      [memory-type-index uint32-t]))
   (define-ftype vk:mapped-memory-range
     (struct
       [s-type vk:structure-type]
@@ -2404,7 +2388,7 @@
     (struct
       [size vk:device-size]
       [alignment vk:device-size]
-      [memory-type-bits uint32_t]))
+      [memory-type-bits uint32-t]))
   (define-ftype vk:sparse-image-format-properties
     (struct
       [aspect-mask vk:image-aspect-flags]
@@ -2413,7 +2397,7 @@
   (define-ftype vk:sparse-image-memory-requirements
     (struct
       [format-properties vk:sparse-image-format-properties]
-      [image-mip-tail-first-lod uint32_t]
+      [image-mip-tail-first-lod uint32-t]
       [image-mip-tail-size vk:device-size]
       [image-mip-tail-offset vk:device-size]
       [image-mip-tail-stride vk:device-size]))
@@ -2427,20 +2411,20 @@
   (define-ftype vk:sparse-buffer-memory-bind-info
     (struct
       [buffer vk:buffer]
-      [bind-count uint32_t]
+      [bind-count uint32-t]
       [p-binds uptr]))
   (define-ftype vk:sparse-image-opaque-memory-bind-info
     (struct
       [image vk:image]
-      [bind-count uint32_t]
+      [bind-count uint32-t]
       [p-binds uptr]))
   (define-ftype vk:image-subresource
     (struct
       [aspect-mask vk:image-aspect-flags]
-      [mip-level uint32_t]
-      [array-layer uint32_t]))
+      [mip-level uint32-t]
+      [array-layer uint32-t]))
   (define-ftype vk:offset3-d
-    (struct [x int32_t] [y int32_t] [z int32_t]))
+    (struct [x int32-t] [y int32-t] [z int32-t]))
   (define-ftype vk:sparse-image-memory-bind
     (struct
       [subresource vk:image-subresource]
@@ -2452,21 +2436,21 @@
   (define-ftype vk:sparse-image-memory-bind-info
     (struct
       [image vk:image]
-      [bind-count uint32_t]
+      [bind-count uint32-t]
       [p-binds uptr]))
   (define-ftype vk:bind-sparse-info
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
-      [wait-semaphore-count uint32_t]
+      [wait-semaphore-count uint32-t]
       [p-wait-semaphores uptr]
-      [buffer-bind-count uint32_t]
+      [buffer-bind-count uint32-t]
       [p-buffer-binds uptr]
-      [image-opaque-bind-count uint32_t]
+      [image-opaque-bind-count uint32-t]
       [p-image-opaque-binds uptr]
-      [image-bind-count uint32_t]
+      [image-bind-count uint32-t]
       [p-image-binds uptr]
-      [signal-semaphore-count uint32_t]
+      [signal-semaphore-count uint32-t]
       [p-signal-semaphores uptr]))
   (define-ftype vk:fence-create-info
     (struct
@@ -2489,7 +2473,7 @@
       [p-next uptr]
       [flags vk:query-pool-create-flags]
       [query-type vk:query-type]
-      [query-count uint32_t]
+      [query-count uint32-t]
       [pipeline-statistics vk:query-pipeline-statistic-flags]))
   (define-ftype vk:buffer-create-info
     (struct
@@ -2499,7 +2483,7 @@
       [size vk:device-size]
       [usage vk:buffer-usage-flags]
       [sharing-mode vk:sharing-mode]
-      [queue-family-index-count uint32_t]
+      [queue-family-index-count uint32-t]
       [p-queue-family-indices uptr]))
   (define-ftype vk:buffer-view-create-info
     (struct
@@ -2518,13 +2502,13 @@
       [image-type vk:image-type]
       [format vk:format]
       [extent vk:extent3-d]
-      [mip-levels uint32_t]
-      [array-layers uint32_t]
+      [mip-levels uint32-t]
+      [array-layers uint32-t]
       [samples vk:sample-count-flag-bits]
       [tiling vk:image-tiling]
       [usage vk:image-usage-flags]
       [sharing-mode vk:sharing-mode]
-      [queue-family-index-count uint32_t]
+      [queue-family-index-count uint32-t]
       [p-queue-family-indices uptr]
       [initial-layout vk:image-layout]))
   (define-ftype vk:subresource-layout
@@ -2543,10 +2527,10 @@
   (define-ftype vk:image-subresource-range
     (struct
       [aspect-mask vk:image-aspect-flags]
-      [base-mip-level uint32_t]
-      [level-count uint32_t]
-      [base-array-layer uint32_t]
-      [layer-count uint32_t]))
+      [base-mip-level uint32-t]
+      [level-count uint32-t]
+      [base-array-layer uint32-t]
+      [layer-count uint32-t]))
   (define-ftype vk:image-view-create-info
     (struct
       [s-type vk:structure-type]
@@ -2562,25 +2546,25 @@
       [s-type vk:structure-type]
       [p-next uptr]
       [flags vk:shader-module-create-flags]
-      [code-size size_t]
+      [code-size size-t]
       [p-code uptr]))
   (define-ftype vk:pipeline-cache-create-info
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
       [flags vk:pipeline-cache-create-flags]
-      [initial-data-size size_t]
+      [initial-data-size size-t]
       [p-initial-data uptr]))
   (define-ftype vk:specialization-map-entry
     (struct
-      [constant-i-d uint32_t]
-      [offset uint32_t]
-      [size size_t]))
+      [constant-id uint32-t]
+      [offset uint32-t]
+      [size size-t]))
   (define-ftype vk:specialization-info
     (struct
-      [map-entry-count uint32_t]
+      [map-entry-count uint32-t]
       [p-map-entries uptr]
-      [data-size size_t]
+      [data-size size-t]
       [p-data uptr]))
   (define-ftype vk:pipeline-shader-stage-create-info
     (struct
@@ -2593,23 +2577,23 @@
       [p-specialization-info uptr]))
   (define-ftype vk:vertex-input-binding-description
     (struct
-      [binding uint32_t]
-      [stride uint32_t]
+      [binding uint32-t]
+      [stride uint32-t]
       [input-rate vk:vertex-input-rate]))
   (define-ftype vk:vertex-input-attribute-description
     (struct
-      [location uint32_t]
-      [binding uint32_t]
+      [location uint32-t]
+      [binding uint32-t]
       [format vk:format]
-      [offset uint32_t]))
+      [offset uint32-t]))
   (define-ftype vk:pipeline-vertex-input-state-create-info
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
       [flags vk:pipeline-vertex-input-state-create-flags]
-      [vertex-binding-description-count uint32_t]
+      [vertex-binding-description-count uint32-t]
       [p-vertex-binding-descriptions uptr]
-      [vertex-attribute-description-count uint32_t]
+      [vertex-attribute-description-count uint32-t]
       [p-vertex-attribute-descriptions uptr]))
   (define-ftype vk:pipeline-input-assembly-state-create-info
     (struct
@@ -2623,7 +2607,7 @@
       [s-type vk:structure-type]
       [p-next uptr]
       [flags vk:pipeline-tessellation-state-create-flags]
-      [patch-control-points uint32_t]))
+      [patch-control-points uint32-t]))
   (define-ftype vk:viewport
     (struct
       [x float]
@@ -2632,9 +2616,9 @@
       [height float]
       [min-depth float]
       [max-depth float]))
-  (define-ftype vk:offset2-d (struct [x int32_t] [y int32_t]))
+  (define-ftype vk:offset2-d (struct [x int32-t] [y int32-t]))
   (define-ftype vk:extent2-d
-    (struct [width uint32_t] [height uint32_t]))
+    (struct [width uint32-t] [height uint32-t]))
   (define-ftype vk:rect2-d
     (struct [offset vk:offset2-d] [extent vk:extent2-d]))
   (define-ftype vk:pipeline-viewport-state-create-info
@@ -2642,9 +2626,9 @@
       [s-type vk:structure-type]
       [p-next uptr]
       [flags vk:pipeline-viewport-state-create-flags]
-      [viewport-count uint32_t]
+      [viewport-count uint32-t]
       [p-viewports uptr]
-      [scissor-count uint32_t]
+      [scissor-count uint32-t]
       [p-scissors uptr]))
   (define-ftype vk:pipeline-rasterization-state-create-info
     (struct
@@ -2678,9 +2662,9 @@
       [pass-op vk:stencil-op]
       [depth-fail-op vk:stencil-op]
       [compare-op vk:compare-op]
-      [compare-mask uint32_t]
-      [write-mask uint32_t]
-      [reference uint32_t]))
+      [compare-mask uint32-t]
+      [write-mask uint32-t]
+      [reference uint32-t]))
   (define-ftype vk:pipeline-depth-stencil-state-create-info
     (struct
       [s-type vk:structure-type]
@@ -2712,7 +2696,7 @@
       [flags vk:pipeline-color-blend-state-create-flags]
       [logic-op-enable vk:bool32]
       [logic-op vk:logic-op]
-      [attachment-count uint32_t]
+      [attachment-count uint32-t]
       [p-attachments uptr]
       [blend-constants (array 4 float)]))
   (define-ftype vk:pipeline-dynamic-state-create-info
@@ -2720,14 +2704,14 @@
       [s-type vk:structure-type]
       [p-next uptr]
       [flags vk:pipeline-dynamic-state-create-flags]
-      [dynamic-state-count uint32_t]
+      [dynamic-state-count uint32-t]
       [p-dynamic-states uptr]))
   (define-ftype vk:graphics-pipeline-create-info
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
       [flags vk:pipeline-create-flags]
-      [stage-count uint32_t]
+      [stage-count uint32-t]
       [p-stages uptr]
       [p-vertex-input-state uptr]
       [p-input-assembly-state uptr]
@@ -2740,9 +2724,9 @@
       [p-dynamic-state uptr]
       [layout vk:pipeline-layout]
       [render-pass vk:render-pass]
-      [subpass uint32_t]
+      [subpass uint32-t]
       [base-pipeline-handle vk:pipeline]
-      [base-pipeline-index int32_t]))
+      [base-pipeline-index int32-t]))
   (define-ftype vk:compute-pipeline-create-info
     (struct
       [s-type vk:structure-type]
@@ -2751,20 +2735,20 @@
       [stage vk:pipeline-shader-stage-create-info]
       [layout vk:pipeline-layout]
       [base-pipeline-handle vk:pipeline]
-      [base-pipeline-index int32_t]))
+      [base-pipeline-index int32-t]))
   (define-ftype vk:push-constant-range
     (struct
       [stage-flags vk:shader-stage-flags]
-      [offset uint32_t]
-      [size uint32_t]))
+      [offset uint32-t]
+      [size uint32-t]))
   (define-ftype vk:pipeline-layout-create-info
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
       [flags vk:pipeline-layout-create-flags]
-      [set-layout-count uint32_t]
+      [set-layout-count uint32-t]
       [p-set-layouts uptr]
-      [push-constant-range-count uint32_t]
+      [push-constant-range-count uint32-t]
       [p-push-constant-ranges uptr]))
   (define-ftype vk:sampler-create-info
     (struct
@@ -2788,9 +2772,9 @@
       [unnormalized-coordinates vk:bool32]))
   (define-ftype vk:descriptor-set-layout-binding
     (struct
-      [binding uint32_t]
+      [binding uint32-t]
       [descriptor-type vk:descriptor-type]
-      [descriptor-count uint32_t]
+      [descriptor-count uint32-t]
       [stage-flags vk:shader-stage-flags]
       [p-immutable-samplers uptr]))
   (define-ftype vk:descriptor-set-layout-create-info
@@ -2798,26 +2782,26 @@
       [s-type vk:structure-type]
       [p-next uptr]
       [flags vk:descriptor-set-layout-create-flags]
-      [binding-count uint32_t]
+      [binding-count uint32-t]
       [p-bindings uptr]))
   (define-ftype vk:descriptor-pool-size
     (struct
       [type vk:descriptor-type]
-      [descriptor-count uint32_t]))
+      [descriptor-count uint32-t]))
   (define-ftype vk:descriptor-pool-create-info
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
       [flags vk:descriptor-pool-create-flags]
-      [max-sets uint32_t]
-      [pool-size-count uint32_t]
+      [max-sets uint32-t]
+      [pool-size-count uint32-t]
       [p-pool-sizes uptr]))
   (define-ftype vk:descriptor-set-allocate-info
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
       [descriptor-pool vk:descriptor-pool]
-      [descriptor-set-count uint32_t]
+      [descriptor-set-count uint32-t]
       [p-set-layouts uptr]))
   (define-ftype vk:descriptor-image-info
     (struct
@@ -2834,9 +2818,9 @@
       [s-type vk:structure-type]
       [p-next uptr]
       [dst-set vk:descriptor-set]
-      [dst-binding uint32_t]
-      [dst-array-element uint32_t]
-      [descriptor-count uint32_t]
+      [dst-binding uint32-t]
+      [dst-array-element uint32-t]
+      [descriptor-count uint32-t]
       [descriptor-type vk:descriptor-type]
       [p-image-info uptr]
       [p-buffer-info uptr]
@@ -2846,23 +2830,23 @@
       [s-type vk:structure-type]
       [p-next uptr]
       [src-set vk:descriptor-set]
-      [src-binding uint32_t]
-      [src-array-element uint32_t]
+      [src-binding uint32-t]
+      [src-array-element uint32-t]
       [dst-set vk:descriptor-set]
-      [dst-binding uint32_t]
-      [dst-array-element uint32_t]
-      [descriptor-count uint32_t]))
+      [dst-binding uint32-t]
+      [dst-array-element uint32-t]
+      [descriptor-count uint32-t]))
   (define-ftype vk:framebuffer-create-info
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
       [flags vk:framebuffer-create-flags]
       [render-pass vk:render-pass]
-      [attachment-count uint32_t]
+      [attachment-count uint32-t]
       [p-attachments uptr]
-      [width uint32_t]
-      [height uint32_t]
-      [layers uint32_t]))
+      [width uint32-t]
+      [height uint32-t]
+      [layers uint32-t]))
   (define-ftype vk:attachment-description
     (struct
       [flags vk:attachment-description-flags]
@@ -2875,23 +2859,23 @@
       [initial-layout vk:image-layout]
       [final-layout vk:image-layout]))
   (define-ftype vk:attachment-reference
-    (struct [attachment uint32_t] [layout vk:image-layout]))
+    (struct [attachment uint32-t] [layout vk:image-layout]))
   (define-ftype vk:subpass-description
     (struct
       [flags vk:subpass-description-flags]
       [pipeline-bind-point vk:pipeline-bind-point]
-      [input-attachment-count uint32_t]
+      [input-attachment-count uint32-t]
       [p-input-attachments uptr]
-      [color-attachment-count uint32_t]
+      [color-attachment-count uint32-t]
       [p-color-attachments uptr]
       [p-resolve-attachments uptr]
       [p-depth-stencil-attachment uptr]
-      [preserve-attachment-count uint32_t]
+      [preserve-attachment-count uint32-t]
       [p-preserve-attachments uptr]))
   (define-ftype vk:subpass-dependency
     (struct
-      [src-subpass uint32_t]
-      [dst-subpass uint32_t]
+      [src-subpass uint32-t]
+      [dst-subpass uint32-t]
       [src-stage-mask vk:pipeline-stage-flags]
       [dst-stage-mask vk:pipeline-stage-flags]
       [src-access-mask vk:access-flags]
@@ -2902,31 +2886,31 @@
       [s-type vk:structure-type]
       [p-next uptr]
       [flags vk:render-pass-create-flags]
-      [attachment-count uint32_t]
+      [attachment-count uint32-t]
       [p-attachments uptr]
-      [subpass-count uint32_t]
+      [subpass-count uint32-t]
       [p-subpasses uptr]
-      [dependency-count uint32_t]
+      [dependency-count uint32-t]
       [p-dependencies uptr]))
   (define-ftype vk:command-pool-create-info
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
       [flags vk:command-pool-create-flags]
-      [queue-family-index uint32_t]))
+      [queue-family-index uint32-t]))
   (define-ftype vk:command-buffer-allocate-info
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
       [command-pool vk:command-pool]
       [level vk:command-buffer-level]
-      [command-buffer-count uint32_t]))
+      [command-buffer-count uint32-t]))
   (define-ftype vk:command-buffer-inheritance-info
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
       [render-pass vk:render-pass]
-      [subpass uint32_t]
+      [subpass uint32-t]
       [framebuffer vk:framebuffer]
       [occlusion-query-enable vk:bool32]
       [query-flags vk:query-control-flags]
@@ -2945,9 +2929,9 @@
   (define-ftype vk:image-subresource-layers
     (struct
       [aspect-mask vk:image-aspect-flags]
-      [mip-level uint32_t]
-      [base-array-layer uint32_t]
-      [layer-count uint32_t]))
+      [mip-level uint32-t]
+      [base-array-layer uint32-t]
+      [layer-count uint32-t]))
   (define-ftype vk:image-copy
     (struct
       [src-subresource vk:image-subresource-layers]
@@ -2964,18 +2948,18 @@
   (define-ftype vk:buffer-image-copy
     (struct
       [buffer-offset vk:device-size]
-      [buffer-row-length uint32_t]
-      [buffer-image-height uint32_t]
+      [buffer-row-length uint32-t]
+      [buffer-image-height uint32-t]
       [image-subresource vk:image-subresource-layers]
       [image-offset vk:offset3-d]
       [image-extent vk:extent3-d]))
   (define-ftype vk:clear-color-value
     (union
       [float32 (array 4 float)]
-      [int32 (array 4 int32_t)]
-      [uint32 (array 4 uint32_t)]))
+      [int32 (array 4 int32-t)]
+      [uint32 (array 4 uint32-t)]))
   (define-ftype vk:clear-depth-stencil-value
-    (struct [depth float] [stencil uint32_t]))
+    (struct [depth float] [stencil uint32-t]))
   (define-ftype vk:clear-value
     (union
       [color vk:clear-color-value]
@@ -2983,13 +2967,13 @@
   (define-ftype vk:clear-attachment
     (struct
       [aspect-mask vk:image-aspect-flags]
-      [color-attachment uint32_t]
+      [color-attachment uint32-t]
       [clear-value vk:clear-value]))
   (define-ftype vk:clear-rect
     (struct
       [rect vk:rect2-d]
-      [base-array-layer uint32_t]
-      [layer-count uint32_t]))
+      [base-array-layer uint32-t]
+      [layer-count uint32-t]))
   (define-ftype vk:image-resolve
     (struct
       [src-subresource vk:image-subresource-layers]
@@ -3009,8 +2993,8 @@
       [p-next uptr]
       [src-access-mask vk:access-flags]
       [dst-access-mask vk:access-flags]
-      [src-queue-family-index uint32_t]
-      [dst-queue-family-index uint32_t]
+      [src-queue-family-index uint32-t]
+      [dst-queue-family-index uint32-t]
       [buffer vk:buffer]
       [offset vk:device-size]
       [size vk:device-size]))
@@ -3022,8 +3006,8 @@
       [dst-access-mask vk:access-flags]
       [old-layout vk:image-layout]
       [new-layout vk:image-layout]
-      [src-queue-family-index uint32_t]
-      [dst-queue-family-index uint32_t]
+      [src-queue-family-index uint32-t]
+      [dst-queue-family-index uint32-t]
       [image vk:image]
       [subresource-range vk:image-subresource-range]))
   (define-ftype vk:render-pass-begin-info
@@ -3033,178 +3017,177 @@
       [render-pass vk:render-pass]
       [framebuffer vk:framebuffer]
       [render-area vk:rect2-d]
-      [clear-value-count uint32_t]
+      [clear-value-count uint32-t]
       [p-clear-values uptr]))
   (define-ftype vk:dispatch-indirect-command
-    (struct [x uint32_t] [y uint32_t] [z uint32_t]))
+    (struct [x uint32-t] [y uint32-t] [z uint32-t]))
   (define-ftype vk:draw-indexed-indirect-command
     (struct
-      [index-count uint32_t]
-      [instance-count uint32_t]
-      [first-index uint32_t]
-      [vertex-offset int32_t]
-      [first-instance uint32_t]))
+      [index-count uint32-t]
+      [instance-count uint32-t]
+      [first-index uint32-t]
+      [vertex-offset int32-t]
+      [first-instance uint32-t]))
   (define-ftype vk:draw-indirect-command
     (struct
-      [vertex-count uint32_t]
-      [instance-count uint32_t]
-      [first-vertex uint32_t]
-      [first-instance uint32_t]))
-  (define-ftype p-f-n_vk-create-instance uptr)
-  (define-ftype p-f-n_vk-destroy-instance uptr)
-  (define-ftype p-f-n_vk-enumerate-physical-devices uptr)
-  (define-ftype p-f-n_vk-get-physical-device-features uptr)
-  (define-ftype p-f-n_vk-get-physical-device-format-properties
+      [vertex-count uint32-t]
+      [instance-count uint32-t]
+      [first-vertex uint32-t]
+      [first-instance uint32-t]))
+  (define-ftype pfn-vk-create-instance uptr)
+  (define-ftype pfn-vk-destroy-instance uptr)
+  (define-ftype pfn-vk-enumerate-physical-devices uptr)
+  (define-ftype pfn-vk-get-physical-device-features uptr)
+  (define-ftype pfn-vk-get-physical-device-format-properties
     uptr)
-  (define-ftype p-f-n_vk-get-physical-device-image-format-properties
+  (define-ftype pfn-vk-get-physical-device-image-format-properties
     uptr)
-  (define-ftype p-f-n_vk-get-physical-device-properties uptr)
-  (define-ftype p-f-n_vk-get-physical-device-queue-family-properties
+  (define-ftype pfn-vk-get-physical-device-properties uptr)
+  (define-ftype pfn-vk-get-physical-device-queue-family-properties
     uptr)
-  (define-ftype p-f-n_vk-get-physical-device-memory-properties
+  (define-ftype pfn-vk-get-physical-device-memory-properties
     uptr)
-  (define-ftype p-f-n_vk-get-instance-proc-addr uptr)
-  (define-ftype p-f-n_vk-get-device-proc-addr uptr)
-  (define-ftype p-f-n_vk-create-device uptr)
-  (define-ftype p-f-n_vk-destroy-device uptr)
-  (define-ftype p-f-n_vk-enumerate-instance-extension-properties
+  (define-ftype pfn-vk-get-instance-proc-addr uptr)
+  (define-ftype pfn-vk-get-device-proc-addr uptr)
+  (define-ftype pfn-vk-create-device uptr)
+  (define-ftype pfn-vk-destroy-device uptr)
+  (define-ftype pfn-vk-enumerate-instance-extension-properties
     uptr)
-  (define-ftype p-f-n_vk-enumerate-device-extension-properties
+  (define-ftype pfn-vk-enumerate-device-extension-properties
     uptr)
-  (define-ftype p-f-n_vk-enumerate-instance-layer-properties
+  (define-ftype pfn-vk-enumerate-instance-layer-properties
     uptr)
-  (define-ftype p-f-n_vk-enumerate-device-layer-properties
+  (define-ftype pfn-vk-enumerate-device-layer-properties uptr)
+  (define-ftype pfn-vk-get-device-queue uptr)
+  (define-ftype pfn-vk-queue-submit uptr)
+  (define-ftype pfn-vk-queue-wait-idle uptr)
+  (define-ftype pfn-vk-device-wait-idle uptr)
+  (define-ftype pfn-vk-allocate-memory uptr)
+  (define-ftype pfn-vk-free-memory uptr)
+  (define-ftype pfn-vk-map-memory uptr)
+  (define-ftype pfn-vk-unmap-memory uptr)
+  (define-ftype pfn-vk-flush-mapped-memory-ranges uptr)
+  (define-ftype pfn-vk-invalidate-mapped-memory-ranges uptr)
+  (define-ftype pfn-vk-get-device-memory-commitment uptr)
+  (define-ftype pfn-vk-bind-buffer-memory uptr)
+  (define-ftype pfn-vk-bind-image-memory uptr)
+  (define-ftype pfn-vk-get-buffer-memory-requirements uptr)
+  (define-ftype pfn-vk-get-image-memory-requirements uptr)
+  (define-ftype pfn-vk-get-image-sparse-memory-requirements
     uptr)
-  (define-ftype p-f-n_vk-get-device-queue uptr)
-  (define-ftype p-f-n_vk-queue-submit uptr)
-  (define-ftype p-f-n_vk-queue-wait-idle uptr)
-  (define-ftype p-f-n_vk-device-wait-idle uptr)
-  (define-ftype p-f-n_vk-allocate-memory uptr)
-  (define-ftype p-f-n_vk-free-memory uptr)
-  (define-ftype p-f-n_vk-map-memory uptr)
-  (define-ftype p-f-n_vk-unmap-memory uptr)
-  (define-ftype p-f-n_vk-flush-mapped-memory-ranges uptr)
-  (define-ftype p-f-n_vk-invalidate-mapped-memory-ranges uptr)
-  (define-ftype p-f-n_vk-get-device-memory-commitment uptr)
-  (define-ftype p-f-n_vk-bind-buffer-memory uptr)
-  (define-ftype p-f-n_vk-bind-image-memory uptr)
-  (define-ftype p-f-n_vk-get-buffer-memory-requirements uptr)
-  (define-ftype p-f-n_vk-get-image-memory-requirements uptr)
-  (define-ftype p-f-n_vk-get-image-sparse-memory-requirements
+  (define-ftype pfn-vk-get-physical-device-sparse-image-format-properties
     uptr)
-  (define-ftype p-f-n_vk-get-physical-device-sparse-image-format-properties
-    uptr)
-  (define-ftype p-f-n_vk-queue-bind-sparse uptr)
-  (define-ftype p-f-n_vk-create-fence uptr)
-  (define-ftype p-f-n_vk-destroy-fence uptr)
-  (define-ftype p-f-n_vk-reset-fences uptr)
-  (define-ftype p-f-n_vk-get-fence-status uptr)
-  (define-ftype p-f-n_vk-wait-for-fences uptr)
-  (define-ftype p-f-n_vk-create-semaphore uptr)
-  (define-ftype p-f-n_vk-destroy-semaphore uptr)
-  (define-ftype p-f-n_vk-create-event uptr)
-  (define-ftype p-f-n_vk-destroy-event uptr)
-  (define-ftype p-f-n_vk-get-event-status uptr)
-  (define-ftype p-f-n_vk-set-event uptr)
-  (define-ftype p-f-n_vk-reset-event uptr)
-  (define-ftype p-f-n_vk-create-query-pool uptr)
-  (define-ftype p-f-n_vk-destroy-query-pool uptr)
-  (define-ftype p-f-n_vk-get-query-pool-results uptr)
-  (define-ftype p-f-n_vk-create-buffer uptr)
-  (define-ftype p-f-n_vk-destroy-buffer uptr)
-  (define-ftype p-f-n_vk-create-buffer-view uptr)
-  (define-ftype p-f-n_vk-destroy-buffer-view uptr)
-  (define-ftype p-f-n_vk-create-image uptr)
-  (define-ftype p-f-n_vk-destroy-image uptr)
-  (define-ftype p-f-n_vk-get-image-subresource-layout uptr)
-  (define-ftype p-f-n_vk-create-image-view uptr)
-  (define-ftype p-f-n_vk-destroy-image-view uptr)
-  (define-ftype p-f-n_vk-create-shader-module uptr)
-  (define-ftype p-f-n_vk-destroy-shader-module uptr)
-  (define-ftype p-f-n_vk-create-pipeline-cache uptr)
-  (define-ftype p-f-n_vk-destroy-pipeline-cache uptr)
-  (define-ftype p-f-n_vk-get-pipeline-cache-data uptr)
-  (define-ftype p-f-n_vk-merge-pipeline-caches uptr)
-  (define-ftype p-f-n_vk-create-graphics-pipelines uptr)
-  (define-ftype p-f-n_vk-create-compute-pipelines uptr)
-  (define-ftype p-f-n_vk-destroy-pipeline uptr)
-  (define-ftype p-f-n_vk-create-pipeline-layout uptr)
-  (define-ftype p-f-n_vk-destroy-pipeline-layout uptr)
-  (define-ftype p-f-n_vk-create-sampler uptr)
-  (define-ftype p-f-n_vk-destroy-sampler uptr)
-  (define-ftype p-f-n_vk-create-descriptor-set-layout uptr)
-  (define-ftype p-f-n_vk-destroy-descriptor-set-layout uptr)
-  (define-ftype p-f-n_vk-create-descriptor-pool uptr)
-  (define-ftype p-f-n_vk-destroy-descriptor-pool uptr)
-  (define-ftype p-f-n_vk-reset-descriptor-pool uptr)
-  (define-ftype p-f-n_vk-allocate-descriptor-sets uptr)
-  (define-ftype p-f-n_vk-free-descriptor-sets uptr)
-  (define-ftype p-f-n_vk-update-descriptor-sets uptr)
-  (define-ftype p-f-n_vk-create-framebuffer uptr)
-  (define-ftype p-f-n_vk-destroy-framebuffer uptr)
-  (define-ftype p-f-n_vk-create-render-pass uptr)
-  (define-ftype p-f-n_vk-destroy-render-pass uptr)
-  (define-ftype p-f-n_vk-get-render-area-granularity uptr)
-  (define-ftype p-f-n_vk-create-command-pool uptr)
-  (define-ftype p-f-n_vk-destroy-command-pool uptr)
-  (define-ftype p-f-n_vk-reset-command-pool uptr)
-  (define-ftype p-f-n_vk-allocate-command-buffers uptr)
-  (define-ftype p-f-n_vk-free-command-buffers uptr)
-  (define-ftype p-f-n_vk-begin-command-buffer uptr)
-  (define-ftype p-f-n_vk-end-command-buffer uptr)
-  (define-ftype p-f-n_vk-reset-command-buffer uptr)
-  (define-ftype p-f-n_vk-cmd-bind-pipeline uptr)
-  (define-ftype p-f-n_vk-cmd-set-viewport uptr)
-  (define-ftype p-f-n_vk-cmd-set-scissor uptr)
-  (define-ftype p-f-n_vk-cmd-set-line-width uptr)
-  (define-ftype p-f-n_vk-cmd-set-depth-bias uptr)
-  (define-ftype p-f-n_vk-cmd-set-blend-constants uptr)
-  (define-ftype p-f-n_vk-cmd-set-depth-bounds uptr)
-  (define-ftype p-f-n_vk-cmd-set-stencil-compare-mask uptr)
-  (define-ftype p-f-n_vk-cmd-set-stencil-write-mask uptr)
-  (define-ftype p-f-n_vk-cmd-set-stencil-reference uptr)
-  (define-ftype p-f-n_vk-cmd-bind-descriptor-sets uptr)
-  (define-ftype p-f-n_vk-cmd-bind-index-buffer uptr)
-  (define-ftype p-f-n_vk-cmd-bind-vertex-buffers uptr)
-  (define-ftype p-f-n_vk-cmd-draw uptr)
-  (define-ftype p-f-n_vk-cmd-draw-indexed uptr)
-  (define-ftype p-f-n_vk-cmd-draw-indirect uptr)
-  (define-ftype p-f-n_vk-cmd-draw-indexed-indirect uptr)
-  (define-ftype p-f-n_vk-cmd-dispatch uptr)
-  (define-ftype p-f-n_vk-cmd-dispatch-indirect uptr)
-  (define-ftype p-f-n_vk-cmd-copy-buffer uptr)
-  (define-ftype p-f-n_vk-cmd-copy-image uptr)
-  (define-ftype p-f-n_vk-cmd-blit-image uptr)
-  (define-ftype p-f-n_vk-cmd-copy-buffer-to-image uptr)
-  (define-ftype p-f-n_vk-cmd-copy-image-to-buffer uptr)
-  (define-ftype p-f-n_vk-cmd-update-buffer uptr)
-  (define-ftype p-f-n_vk-cmd-fill-buffer uptr)
-  (define-ftype p-f-n_vk-cmd-clear-color-image uptr)
-  (define-ftype p-f-n_vk-cmd-clear-depth-stencil-image uptr)
-  (define-ftype p-f-n_vk-cmd-clear-attachments uptr)
-  (define-ftype p-f-n_vk-cmd-resolve-image uptr)
-  (define-ftype p-f-n_vk-cmd-set-event uptr)
-  (define-ftype p-f-n_vk-cmd-reset-event uptr)
-  (define-ftype p-f-n_vk-cmd-wait-events uptr)
-  (define-ftype p-f-n_vk-cmd-pipeline-barrier uptr)
-  (define-ftype p-f-n_vk-cmd-begin-query uptr)
-  (define-ftype p-f-n_vk-cmd-end-query uptr)
-  (define-ftype p-f-n_vk-cmd-reset-query-pool uptr)
-  (define-ftype p-f-n_vk-cmd-write-timestamp uptr)
-  (define-ftype p-f-n_vk-cmd-copy-query-pool-results uptr)
-  (define-ftype p-f-n_vk-cmd-push-constants uptr)
-  (define-ftype p-f-n_vk-cmd-begin-render-pass uptr)
-  (define-ftype p-f-n_vk-cmd-next-subpass uptr)
-  (define-ftype p-f-n_vk-cmd-end-render-pass uptr)
-  (define-ftype p-f-n_vk-cmd-execute-commands uptr)
-  (define-ftype vk:surface-k-h-r uptr)
-  (define-ftype vk:color-space-k-h-r enum)
+  (define-ftype pfn-vk-queue-bind-sparse uptr)
+  (define-ftype pfn-vk-create-fence uptr)
+  (define-ftype pfn-vk-destroy-fence uptr)
+  (define-ftype pfn-vk-reset-fences uptr)
+  (define-ftype pfn-vk-get-fence-status uptr)
+  (define-ftype pfn-vk-wait-for-fences uptr)
+  (define-ftype pfn-vk-create-semaphore uptr)
+  (define-ftype pfn-vk-destroy-semaphore uptr)
+  (define-ftype pfn-vk-create-event uptr)
+  (define-ftype pfn-vk-destroy-event uptr)
+  (define-ftype pfn-vk-get-event-status uptr)
+  (define-ftype pfn-vk-set-event uptr)
+  (define-ftype pfn-vk-reset-event uptr)
+  (define-ftype pfn-vk-create-query-pool uptr)
+  (define-ftype pfn-vk-destroy-query-pool uptr)
+  (define-ftype pfn-vk-get-query-pool-results uptr)
+  (define-ftype pfn-vk-create-buffer uptr)
+  (define-ftype pfn-vk-destroy-buffer uptr)
+  (define-ftype pfn-vk-create-buffer-view uptr)
+  (define-ftype pfn-vk-destroy-buffer-view uptr)
+  (define-ftype pfn-vk-create-image uptr)
+  (define-ftype pfn-vk-destroy-image uptr)
+  (define-ftype pfn-vk-get-image-subresource-layout uptr)
+  (define-ftype pfn-vk-create-image-view uptr)
+  (define-ftype pfn-vk-destroy-image-view uptr)
+  (define-ftype pfn-vk-create-shader-module uptr)
+  (define-ftype pfn-vk-destroy-shader-module uptr)
+  (define-ftype pfn-vk-create-pipeline-cache uptr)
+  (define-ftype pfn-vk-destroy-pipeline-cache uptr)
+  (define-ftype pfn-vk-get-pipeline-cache-data uptr)
+  (define-ftype pfn-vk-merge-pipeline-caches uptr)
+  (define-ftype pfn-vk-create-graphics-pipelines uptr)
+  (define-ftype pfn-vk-create-compute-pipelines uptr)
+  (define-ftype pfn-vk-destroy-pipeline uptr)
+  (define-ftype pfn-vk-create-pipeline-layout uptr)
+  (define-ftype pfn-vk-destroy-pipeline-layout uptr)
+  (define-ftype pfn-vk-create-sampler uptr)
+  (define-ftype pfn-vk-destroy-sampler uptr)
+  (define-ftype pfn-vk-create-descriptor-set-layout uptr)
+  (define-ftype pfn-vk-destroy-descriptor-set-layout uptr)
+  (define-ftype pfn-vk-create-descriptor-pool uptr)
+  (define-ftype pfn-vk-destroy-descriptor-pool uptr)
+  (define-ftype pfn-vk-reset-descriptor-pool uptr)
+  (define-ftype pfn-vk-allocate-descriptor-sets uptr)
+  (define-ftype pfn-vk-free-descriptor-sets uptr)
+  (define-ftype pfn-vk-update-descriptor-sets uptr)
+  (define-ftype pfn-vk-create-framebuffer uptr)
+  (define-ftype pfn-vk-destroy-framebuffer uptr)
+  (define-ftype pfn-vk-create-render-pass uptr)
+  (define-ftype pfn-vk-destroy-render-pass uptr)
+  (define-ftype pfn-vk-get-render-area-granularity uptr)
+  (define-ftype pfn-vk-create-command-pool uptr)
+  (define-ftype pfn-vk-destroy-command-pool uptr)
+  (define-ftype pfn-vk-reset-command-pool uptr)
+  (define-ftype pfn-vk-allocate-command-buffers uptr)
+  (define-ftype pfn-vk-free-command-buffers uptr)
+  (define-ftype pfn-vk-begin-command-buffer uptr)
+  (define-ftype pfn-vk-end-command-buffer uptr)
+  (define-ftype pfn-vk-reset-command-buffer uptr)
+  (define-ftype pfn-vk-cmd-bind-pipeline uptr)
+  (define-ftype pfn-vk-cmd-set-viewport uptr)
+  (define-ftype pfn-vk-cmd-set-scissor uptr)
+  (define-ftype pfn-vk-cmd-set-line-width uptr)
+  (define-ftype pfn-vk-cmd-set-depth-bias uptr)
+  (define-ftype pfn-vk-cmd-set-blend-constants uptr)
+  (define-ftype pfn-vk-cmd-set-depth-bounds uptr)
+  (define-ftype pfn-vk-cmd-set-stencil-compare-mask uptr)
+  (define-ftype pfn-vk-cmd-set-stencil-write-mask uptr)
+  (define-ftype pfn-vk-cmd-set-stencil-reference uptr)
+  (define-ftype pfn-vk-cmd-bind-descriptor-sets uptr)
+  (define-ftype pfn-vk-cmd-bind-index-buffer uptr)
+  (define-ftype pfn-vk-cmd-bind-vertex-buffers uptr)
+  (define-ftype pfn-vk-cmd-draw uptr)
+  (define-ftype pfn-vk-cmd-draw-indexed uptr)
+  (define-ftype pfn-vk-cmd-draw-indirect uptr)
+  (define-ftype pfn-vk-cmd-draw-indexed-indirect uptr)
+  (define-ftype pfn-vk-cmd-dispatch uptr)
+  (define-ftype pfn-vk-cmd-dispatch-indirect uptr)
+  (define-ftype pfn-vk-cmd-copy-buffer uptr)
+  (define-ftype pfn-vk-cmd-copy-image uptr)
+  (define-ftype pfn-vk-cmd-blit-image uptr)
+  (define-ftype pfn-vk-cmd-copy-buffer-to-image uptr)
+  (define-ftype pfn-vk-cmd-copy-image-to-buffer uptr)
+  (define-ftype pfn-vk-cmd-update-buffer uptr)
+  (define-ftype pfn-vk-cmd-fill-buffer uptr)
+  (define-ftype pfn-vk-cmd-clear-color-image uptr)
+  (define-ftype pfn-vk-cmd-clear-depth-stencil-image uptr)
+  (define-ftype pfn-vk-cmd-clear-attachments uptr)
+  (define-ftype pfn-vk-cmd-resolve-image uptr)
+  (define-ftype pfn-vk-cmd-set-event uptr)
+  (define-ftype pfn-vk-cmd-reset-event uptr)
+  (define-ftype pfn-vk-cmd-wait-events uptr)
+  (define-ftype pfn-vk-cmd-pipeline-barrier uptr)
+  (define-ftype pfn-vk-cmd-begin-query uptr)
+  (define-ftype pfn-vk-cmd-end-query uptr)
+  (define-ftype pfn-vk-cmd-reset-query-pool uptr)
+  (define-ftype pfn-vk-cmd-write-timestamp uptr)
+  (define-ftype pfn-vk-cmd-copy-query-pool-results uptr)
+  (define-ftype pfn-vk-cmd-push-constants uptr)
+  (define-ftype pfn-vk-cmd-begin-render-pass uptr)
+  (define-ftype pfn-vk-cmd-next-subpass uptr)
+  (define-ftype pfn-vk-cmd-end-render-pass uptr)
+  (define-ftype pfn-vk-cmd-execute-commands uptr)
+  (define-ftype vk:surface-khr uptr)
+  (define-ftype vk:color-space-khr enum)
   (define vk:color-space-srgb-nonlinear-khr 0)
   (define vk:color-space-begin-range-khr 0)
   (define vk:color-space-end-range-khr 0)
   (define vk:color-space-range-size-khr 1)
   (define vk:color-space-max-enum-khr 2147483647)
-  (define-ftype vk:present-mode-k-h-r enum)
+  (define-ftype vk:present-mode-khr enum)
   (define vk:present-mode-immediate-khr 0)
   (define vk:present-mode-mailbox-khr 1)
   (define vk:present-mode-fifo-khr 2)
@@ -3213,7 +3196,7 @@
   (define vk:present-mode-end-range-khr 3)
   (define vk:present-mode-range-size-khr 4)
   (define vk:present-mode-max-enum-khr 2147483647)
-  (define-ftype vk:surface-transform-flag-bits-k-h-r enum)
+  (define-ftype vk:surface-transform-flag-bits-khr enum)
   (define vk:surface-transform-identity-bit-khr 1)
   (define vk:surface-transform-rotate-90-bit-khr 2)
   (define vk:surface-transform-rotate-180-bit-khr 4)
@@ -3228,80 +3211,80 @@
   (define vk:surface-transform-inherit-bit-khr 256)
   (define vk:surface-transform-flag-bits-max-enum-khr
     2147483647)
-  (define-ftype vk:surface-transform-flags-k-h-r vk:flags)
-  (define-ftype vk:composite-alpha-flag-bits-k-h-r enum)
+  (define-ftype vk:surface-transform-flags-khr vk:flags)
+  (define-ftype vk:composite-alpha-flag-bits-khr enum)
   (define vk:composite-alpha-opaque-bit-khr 1)
   (define vk:composite-alpha-pre-multiplied-bit-khr 2)
   (define vk:composite-alpha-post-multiplied-bit-khr 4)
   (define vk:composite-alpha-inherit-bit-khr 8)
   (define vk:composite-alpha-flag-bits-max-enum-khr
     2147483647)
-  (define-ftype vk:composite-alpha-flags-k-h-r vk:flags)
-  (define-ftype vk:surface-capabilities-k-h-r
+  (define-ftype vk:composite-alpha-flags-khr vk:flags)
+  (define-ftype vk:surface-capabilities-khr
     (struct
-      [min-image-count uint32_t]
-      [max-image-count uint32_t]
+      [min-image-count uint32-t]
+      [max-image-count uint32-t]
       [current-extent vk:extent2-d]
       [min-image-extent vk:extent2-d]
       [max-image-extent vk:extent2-d]
-      [max-image-array-layers uint32_t]
-      [supported-transforms vk:surface-transform-flags-k-h-r]
-      [current-transform vk:surface-transform-flag-bits-k-h-r]
-      [supported-composite-alpha vk:composite-alpha-flags-k-h-r]
+      [max-image-array-layers uint32-t]
+      [supported-transforms vk:surface-transform-flags-khr]
+      [current-transform vk:surface-transform-flag-bits-khr]
+      [supported-composite-alpha vk:composite-alpha-flags-khr]
       [supported-usage-flags vk:image-usage-flags]))
-  (define-ftype vk:surface-format-k-h-r
+  (define-ftype vk:surface-format-khr
     (struct
       [format vk:format]
-      [color-space vk:color-space-k-h-r]))
-  (define-ftype p-f-n_vk-destroy-surface-k-h-r uptr)
-  (define-ftype p-f-n_vk-get-physical-device-surface-support-k-h-r
+      [color-space vk:color-space-khr]))
+  (define-ftype pfn-vk-destroy-surface-khr uptr)
+  (define-ftype pfn-vk-get-physical-device-surface-support-khr
     uptr)
-  (define-ftype p-f-n_vk-get-physical-device-surface-capabilities-k-h-r
+  (define-ftype pfn-vk-get-physical-device-surface-capabilities-khr
     uptr)
-  (define-ftype p-f-n_vk-get-physical-device-surface-formats-k-h-r
+  (define-ftype pfn-vk-get-physical-device-surface-formats-khr
     uptr)
-  (define-ftype p-f-n_vk-get-physical-device-surface-present-modes-k-h-r
+  (define-ftype pfn-vk-get-physical-device-surface-present-modes-khr
     uptr)
-  (define-ftype vk:swapchain-k-h-r uptr)
-  (define-ftype vk:swapchain-create-flags-k-h-r vk:flags)
-  (define-ftype vk:swapchain-create-info-k-h-r
+  (define-ftype vk:swapchain-khr uptr)
+  (define-ftype vk:swapchain-create-flags-khr vk:flags)
+  (define-ftype vk:swapchain-create-info-khr
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
-      [flags vk:swapchain-create-flags-k-h-r]
-      [surface vk:surface-k-h-r]
-      [min-image-count uint32_t]
+      [flags vk:swapchain-create-flags-khr]
+      [surface vk:surface-khr]
+      [min-image-count uint32-t]
       [image-format vk:format]
-      [image-color-space vk:color-space-k-h-r]
+      [image-color-space vk:color-space-khr]
       [image-extent vk:extent2-d]
-      [image-array-layers uint32_t]
+      [image-array-layers uint32-t]
       [image-usage vk:image-usage-flags]
       [image-sharing-mode vk:sharing-mode]
-      [queue-family-index-count uint32_t]
+      [queue-family-index-count uint32-t]
       [p-queue-family-indices uptr]
-      [pre-transform vk:surface-transform-flag-bits-k-h-r]
-      [composite-alpha vk:composite-alpha-flag-bits-k-h-r]
-      [present-mode vk:present-mode-k-h-r]
+      [pre-transform vk:surface-transform-flag-bits-khr]
+      [composite-alpha vk:composite-alpha-flag-bits-khr]
+      [present-mode vk:present-mode-khr]
       [clipped vk:bool32]
-      [old-swapchain vk:swapchain-k-h-r]))
-  (define-ftype vk:present-info-k-h-r
+      [old-swapchain vk:swapchain-khr]))
+  (define-ftype vk:present-info-khr
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
-      [wait-semaphore-count uint32_t]
+      [wait-semaphore-count uint32-t]
       [p-wait-semaphores uptr]
-      [swapchain-count uint32_t]
+      [swapchain-count uint32-t]
       [p-swapchains uptr]
       [p-image-indices uptr]
       [p-results uptr]))
-  (define-ftype p-f-n_vk-create-swapchain-k-h-r uptr)
-  (define-ftype p-f-n_vk-destroy-swapchain-k-h-r uptr)
-  (define-ftype p-f-n_vk-get-swapchain-images-k-h-r uptr)
-  (define-ftype p-f-n_vk-acquire-next-image-k-h-r uptr)
-  (define-ftype p-f-n_vk-queue-present-k-h-r uptr)
-  (define-ftype vk:display-k-h-r uptr)
-  (define-ftype vk:display-mode-k-h-r uptr)
-  (define-ftype vk:display-plane-alpha-flag-bits-k-h-r enum)
+  (define-ftype pfn-vk-create-swapchain-khr uptr)
+  (define-ftype pfn-vk-destroy-swapchain-khr uptr)
+  (define-ftype pfn-vk-get-swapchain-images-khr uptr)
+  (define-ftype pfn-vk-acquire-next-image-khr uptr)
+  (define-ftype pfn-vk-queue-present-khr uptr)
+  (define-ftype vk:display-khr uptr)
+  (define-ftype vk:display-mode-khr uptr)
+  (define-ftype vk:display-plane-alpha-flag-bits-khr enum)
   (define vk:display-plane-alpha-opaque-bit-khr 1)
   (define vk:display-plane-alpha-global-bit-khr 2)
   (define vk:display-plane-alpha-per-pixel-bit-khr 4)
@@ -3309,36 +3292,35 @@
     8)
   (define vk:display-plane-alpha-flag-bits-max-enum-khr
     2147483647)
-  (define-ftype vk:display-plane-alpha-flags-k-h-r vk:flags)
-  (define-ftype vk:display-mode-create-flags-k-h-r vk:flags)
-  (define-ftype vk:display-surface-create-flags-k-h-r
-    vk:flags)
-  (define-ftype vk:display-properties-k-h-r
+  (define-ftype vk:display-plane-alpha-flags-khr vk:flags)
+  (define-ftype vk:display-mode-create-flags-khr vk:flags)
+  (define-ftype vk:display-surface-create-flags-khr vk:flags)
+  (define-ftype vk:display-properties-khr
     (struct
-      [display vk:display-k-h-r]
+      [display vk:display-khr]
       [display-name uptr]
       [physical-dimensions vk:extent2-d]
       [physical-resolution vk:extent2-d]
-      [supported-transforms vk:surface-transform-flags-k-h-r]
+      [supported-transforms vk:surface-transform-flags-khr]
       [plane-reorder-possible vk:bool32]
       [persistent-content vk:bool32]))
-  (define-ftype vk:display-mode-parameters-k-h-r
+  (define-ftype vk:display-mode-parameters-khr
     (struct
       [visible-region vk:extent2-d]
-      [refresh-rate uint32_t]))
-  (define-ftype vk:display-mode-properties-k-h-r
+      [refresh-rate uint32-t]))
+  (define-ftype vk:display-mode-properties-khr
     (struct
-      [display-mode vk:display-mode-k-h-r]
-      [parameters vk:display-mode-parameters-k-h-r]))
-  (define-ftype vk:display-mode-create-info-k-h-r
+      [display-mode vk:display-mode-khr]
+      [parameters vk:display-mode-parameters-khr]))
+  (define-ftype vk:display-mode-create-info-khr
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
-      [flags vk:display-mode-create-flags-k-h-r]
-      [parameters vk:display-mode-parameters-k-h-r]))
-  (define-ftype vk:display-plane-capabilities-k-h-r
+      [flags vk:display-mode-create-flags-khr]
+      [parameters vk:display-mode-parameters-khr]))
+  (define-ftype vk:display-plane-capabilities-khr
     (struct
-      [supported-alpha vk:display-plane-alpha-flags-k-h-r]
+      [supported-alpha vk:display-plane-alpha-flags-khr]
       [min-src-position vk:offset2-d]
       [max-src-position vk:offset2-d]
       [min-src-extent vk:extent2-d]
@@ -3347,45 +3329,43 @@
       [max-dst-position vk:offset2-d]
       [min-dst-extent vk:extent2-d]
       [max-dst-extent vk:extent2-d]))
-  (define-ftype vk:display-plane-properties-k-h-r
+  (define-ftype vk:display-plane-properties-khr
     (struct
-      [current-display vk:display-k-h-r]
-      [current-stack-index uint32_t]))
-  (define-ftype vk:display-surface-create-info-k-h-r
+      [current-display vk:display-khr]
+      [current-stack-index uint32-t]))
+  (define-ftype vk:display-surface-create-info-khr
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
-      [flags vk:display-surface-create-flags-k-h-r]
-      [display-mode vk:display-mode-k-h-r]
-      [plane-index uint32_t]
-      [plane-stack-index uint32_t]
-      [transform vk:surface-transform-flag-bits-k-h-r]
+      [flags vk:display-surface-create-flags-khr]
+      [display-mode vk:display-mode-khr]
+      [plane-index uint32-t]
+      [plane-stack-index uint32-t]
+      [transform vk:surface-transform-flag-bits-khr]
       [global-alpha float]
-      [alpha-mode vk:display-plane-alpha-flag-bits-k-h-r]
+      [alpha-mode vk:display-plane-alpha-flag-bits-khr]
       [image-extent vk:extent2-d]))
-  (define-ftype p-f-n_vk-get-physical-device-display-properties-k-h-r
+  (define-ftype pfn-vk-get-physical-device-display-properties-khr
     uptr)
-  (define-ftype p-f-n_vk-get-physical-device-display-plane-properties-k-h-r
+  (define-ftype pfn-vk-get-physical-device-display-plane-properties-khr
     uptr)
-  (define-ftype p-f-n_vk-get-display-plane-supported-displays-k-h-r
+  (define-ftype pfn-vk-get-display-plane-supported-displays-khr
     uptr)
-  (define-ftype p-f-n_vk-get-display-mode-properties-k-h-r
+  (define-ftype pfn-vk-get-display-mode-properties-khr uptr)
+  (define-ftype pfn-vk-create-display-mode-khr uptr)
+  (define-ftype pfn-vk-get-display-plane-capabilities-khr
     uptr)
-  (define-ftype p-f-n_vk-create-display-mode-k-h-r uptr)
-  (define-ftype p-f-n_vk-get-display-plane-capabilities-k-h-r
-    uptr)
-  (define-ftype p-f-n_vk-create-display-plane-surface-k-h-r
-    uptr)
-  (define-ftype vk:display-present-info-k-h-r
+  (define-ftype pfn-vk-create-display-plane-surface-khr uptr)
+  (define-ftype vk:display-present-info-khr
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
       [src-rect vk:rect2-d]
       [dst-rect vk:rect2-d]
       [persistent vk:bool32]))
-  (define-ftype p-f-n_vk-create-shared-swapchains-k-h-r uptr)
-  (define-ftype vk:debug-report-callback-e-x-t uptr)
-  (define-ftype vk:debug-report-object-type-e-x-t enum)
+  (define-ftype pfn-vk-create-shared-swapchains-khr uptr)
+  (define-ftype vk:debug-report-callback-ext uptr)
+  (define-ftype vk:debug-report-object-type-ext enum)
   (define vk:debug-report-object-type-unknown-ext 0)
   (define vk:debug-report-object-type-instance-ext 1)
   (define vk:debug-report-object-type-physical-device-ext 2)
@@ -3420,95 +3400,91 @@
   (define vk:debug-report-object-type-end-range-ext 28)
   (define vk:debug-report-object-type-range-size-ext 29)
   (define vk:debug-report-object-type-max-enum-ext 2147483647)
-  (define-ftype vk:debug-report-error-e-x-t enum)
+  (define-ftype vk:debug-report-error-ext enum)
   (define vk:debug-report-error-none-ext 0)
   (define vk:debug-report-error-callback-ref-ext 1)
   (define vk:debug-report-error-begin-range-ext 0)
   (define vk:debug-report-error-end-range-ext 1)
   (define vk:debug-report-error-range-size-ext 2)
   (define vk:debug-report-error-max-enum-ext 2147483647)
-  (define-ftype vk:debug-report-flag-bits-e-x-t enum)
+  (define-ftype vk:debug-report-flag-bits-ext enum)
   (define vk:debug-report-information-bit-ext 1)
   (define vk:debug-report-warning-bit-ext 2)
   (define vk:debug-report-performance-warning-bit-ext 4)
   (define vk:debug-report-error-bit-ext 8)
   (define vk:debug-report-debug-bit-ext 16)
   (define vk:debug-report-flag-bits-max-enum-ext 2147483647)
-  (define-ftype vk:debug-report-flags-e-x-t vk:flags)
-  (define-ftype p-f-n_vk-debug-report-callback-e-x-t uptr)
-  (define-ftype vk:debug-report-callback-create-info-e-x-t
+  (define-ftype vk:debug-report-flags-ext vk:flags)
+  (define-ftype pfn-vk-debug-report-callback-ext uptr)
+  (define-ftype vk:debug-report-callback-create-info-ext
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
-      [flags vk:debug-report-flags-e-x-t]
-      [pfn-callback p-f-n_vk-debug-report-callback-e-x-t]
+      [flags vk:debug-report-flags-ext]
+      [pfn-callback pfn-vk-debug-report-callback-ext]
       [p-user-data uptr]))
-  (define-ftype p-f-n_vk-create-debug-report-callback-e-x-t
-    uptr)
-  (define-ftype p-f-n_vk-destroy-debug-report-callback-e-x-t
-    uptr)
-  (define-ftype p-f-n_vk-debug-report-message-e-x-t uptr)
-  (define-ftype vk:rasterization-order-a-m-d enum)
+  (define-ftype pfn-vk-create-debug-report-callback-ext uptr)
+  (define-ftype pfn-vk-destroy-debug-report-callback-ext uptr)
+  (define-ftype pfn-vk-debug-report-message-ext uptr)
+  (define-ftype vk:rasterization-order-amd enum)
   (define vk:rasterization-order-strict-amd 0)
   (define vk:rasterization-order-relaxed-amd 1)
   (define vk:rasterization-order-begin-range-amd 0)
   (define vk:rasterization-order-end-range-amd 1)
   (define vk:rasterization-order-range-size-amd 2)
   (define vk:rasterization-order-max-enum-amd 2147483647)
-  (define-ftype vk:pipeline-rasterization-state-rasterization-order-a-m-d
+  (define-ftype vk:pipeline-rasterization-state-rasterization-order-amd
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
-      [rasterization-order vk:rasterization-order-a-m-d]))
-  (define-ftype vk:debug-marker-object-name-info-e-x-t
+      [rasterization-order vk:rasterization-order-amd]))
+  (define-ftype vk:debug-marker-object-name-info-ext
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
-      [object-type vk:debug-report-object-type-e-x-t]
-      [object uint64_t]
+      [object-type vk:debug-report-object-type-ext]
+      [object uint64-t]
       [p-object-name uptr]))
-  (define-ftype vk:debug-marker-object-tag-info-e-x-t
+  (define-ftype vk:debug-marker-object-tag-info-ext
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
-      [object-type vk:debug-report-object-type-e-x-t]
-      [object uint64_t]
-      [tag-name uint64_t]
-      [tag-size size_t]
+      [object-type vk:debug-report-object-type-ext]
+      [object uint64-t]
+      [tag-name uint64-t]
+      [tag-size size-t]
       [p-tag uptr]))
-  (define-ftype vk:debug-marker-marker-info-e-x-t
+  (define-ftype vk:debug-marker-marker-info-ext
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
       [p-marker-name uptr]
       [color (array 4 float)]))
-  (define-ftype p-f-n_vk-debug-marker-set-object-tag-e-x-t
-    uptr)
-  (define-ftype p-f-n_vk-debug-marker-set-object-name-e-x-t
-    uptr)
-  (define-ftype p-f-n_vk-cmd-debug-marker-begin-e-x-t uptr)
-  (define-ftype p-f-n_vk-cmd-debug-marker-end-e-x-t uptr)
-  (define-ftype p-f-n_vk-cmd-debug-marker-insert-e-x-t uptr)
-  (define-ftype vk:dedicated-allocation-image-create-info-n-v
+  (define-ftype pfn-vk-debug-marker-set-object-tag-ext uptr)
+  (define-ftype pfn-vk-debug-marker-set-object-name-ext uptr)
+  (define-ftype pfn-vk-cmd-debug-marker-begin-ext uptr)
+  (define-ftype pfn-vk-cmd-debug-marker-end-ext uptr)
+  (define-ftype pfn-vk-cmd-debug-marker-insert-ext uptr)
+  (define-ftype vk:dedicated-allocation-image-create-info-nv
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
       [dedicated-allocation vk:bool32]))
-  (define-ftype vk:dedicated-allocation-buffer-create-info-n-v
+  (define-ftype vk:dedicated-allocation-buffer-create-info-nv
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
       [dedicated-allocation vk:bool32]))
-  (define-ftype vk:dedicated-allocation-memory-allocate-info-n-v
+  (define-ftype vk:dedicated-allocation-memory-allocate-info-nv
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
       [image vk:image]
       [buffer vk:buffer]))
-  (define-ftype p-f-n_vk-cmd-draw-indirect-count-a-m-d uptr)
-  (define-ftype p-f-n_vk-cmd-draw-indexed-indirect-count-a-m-d
+  (define-ftype pfn-vk-cmd-draw-indirect-count-amd uptr)
+  (define-ftype pfn-vk-cmd-draw-indexed-indirect-count-amd
     uptr)
-  (define-ftype vk:external-memory-handle-type-flag-bits-n-v
+  (define-ftype vk:external-memory-handle-type-flag-bits-nv
     enum)
   (define vk:external-memory-handle-type-opaque-win32-bit-nv
     1)
@@ -3519,44 +3495,44 @@
     8)
   (define vk:external-memory-handle-type-flag-bits-max-enum-nv
     2147483647)
-  (define-ftype vk:external-memory-handle-type-flags-n-v
+  (define-ftype vk:external-memory-handle-type-flags-nv
     vk:flags)
-  (define-ftype vk:external-memory-feature-flag-bits-n-v enum)
+  (define-ftype vk:external-memory-feature-flag-bits-nv enum)
   (define vk:external-memory-feature-dedicated-only-bit-nv 1)
   (define vk:external-memory-feature-exportable-bit-nv 2)
   (define vk:external-memory-feature-importable-bit-nv 4)
   (define vk:external-memory-feature-flag-bits-max-enum-nv
     2147483647)
-  (define-ftype vk:external-memory-feature-flags-n-v vk:flags)
-  (define-ftype vk:external-image-format-properties-n-v
+  (define-ftype vk:external-memory-feature-flags-nv vk:flags)
+  (define-ftype vk:external-image-format-properties-nv
     (struct
       [image-format-properties vk:image-format-properties]
-      [external-memory-features vk:external-memory-feature-flags-n-v]
-      [export-from-imported-handle-types vk:external-memory-handle-type-flags-n-v]
-      [compatible-handle-types vk:external-memory-handle-type-flags-n-v]))
-  (define-ftype p-f-n_vk-get-physical-device-external-image-format-properties-n-v
+      [external-memory-features vk:external-memory-feature-flags-nv]
+      [export-from-imported-handle-types vk:external-memory-handle-type-flags-nv]
+      [compatible-handle-types vk:external-memory-handle-type-flags-nv]))
+  (define-ftype pfn-vk-get-physical-device-external-image-format-properties-nv
     uptr)
-  (define-ftype vk:external-memory-image-create-info-n-v
+  (define-ftype vk:external-memory-image-create-info-nv
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
-      [handle-types vk:external-memory-handle-type-flags-n-v]))
-  (define-ftype vk:export-memory-allocate-info-n-v
+      [handle-types vk:external-memory-handle-type-flags-nv]))
+  (define-ftype vk:export-memory-allocate-info-nv
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
-      [handle-types vk:external-memory-handle-type-flags-n-v]))
-  (define-ftype vk:validation-check-e-x-t enum)
+      [handle-types vk:external-memory-handle-type-flags-nv]))
+  (define-ftype vk:validation-check-ext enum)
   (define vk:validation-check-all-ext 0)
   (define vk:validation-check-begin-range-ext 0)
   (define vk:validation-check-end-range-ext 0)
   (define vk:validation-check-range-size-ext 1)
   (define vk:validation-check-max-enum-ext 2147483647)
-  (define-ftype vk:validation-flags-e-x-t
+  (define-ftype vk:validation-flags-ext
     (struct
       [s-type vk:structure-type]
       [p-next uptr]
-      [disabled-validation-check-count uint32_t]
+      [disabled-validation-check-count uint32-t]
       [p-disabled-validation-checks uptr]))
   (define vk:create-instance
     (foreign-procedure "vkCreateInstance"
@@ -3603,11 +3579,11 @@
   (define vk:get-instance-proc-addr
     (foreign-procedure "vkGetInstanceProcAddr"
       (vk:instance uptr)
-      p-f-n_vk-void-function))
+      pfn-vk-void-function))
   (define vk:get-device-proc-addr
     (foreign-procedure "vkGetDeviceProcAddr"
       (vk:device uptr)
-      p-f-n_vk-void-function))
+      pfn-vk-void-function))
   (define vk:create-device
     (foreign-procedure "vkCreateDevice"
       (vk:physical-device uptr uptr uptr)
@@ -3632,11 +3608,11 @@
       vk:result))
   (define vk:get-device-queue
     (foreign-procedure "vkGetDeviceQueue"
-      (vk:device uint32_t uint32_t uptr)
+      (vk:device uint32-t uint32-t uptr)
       void))
   (define vk:queue-submit
     (foreign-procedure "vkQueueSubmit"
-      (vk:queue uint32_t uptr vk:fence)
+      (vk:queue uint32-t uptr vk:fence)
       vk:result))
   (define vk:queue-wait-idle
     (foreign-procedure "vkQueueWaitIdle" (vk:queue) vk:result))
@@ -3667,11 +3643,11 @@
       void))
   (define vk:flush-mapped-memory-ranges
     (foreign-procedure "vkFlushMappedMemoryRanges"
-      (vk:device uint32_t uptr)
+      (vk:device uint32-t uptr)
       vk:result))
   (define vk:invalidate-mapped-memory-ranges
     (foreign-procedure "vkInvalidateMappedMemoryRanges"
-      (vk:device uint32_t uptr)
+      (vk:device uint32-t uptr)
       vk:result))
   (define vk:get-device-memory-commitment
     (foreign-procedure "vkGetDeviceMemoryCommitment"
@@ -3710,7 +3686,7 @@
       void))
   (define vk:queue-bind-sparse
     (foreign-procedure "vkQueueBindSparse"
-      (vk:queue uint32_t uptr vk:fence)
+      (vk:queue uint32-t uptr vk:fence)
       vk:result))
   (define vk:create-fence
     (foreign-procedure "vkCreateFence"
@@ -3722,7 +3698,7 @@
       void))
   (define vk:reset-fences
     (foreign-procedure "vkResetFences"
-      (vk:device uint32_t uptr)
+      (vk:device uint32-t uptr)
       vk:result))
   (define vk:get-fence-status
     (foreign-procedure "vkGetFenceStatus"
@@ -3730,7 +3706,7 @@
       vk:result))
   (define vk:wait-for-fences
     (foreign-procedure "vkWaitForFences"
-      (vk:device uint32_t uptr vk:bool32 uint64_t)
+      (vk:device uint32-t uptr vk:bool32 uint64-t)
       vk:result))
   (define vk:create-semaphore
     (foreign-procedure "vkCreateSemaphore"
@@ -3772,9 +3748,9 @@
     (foreign-procedure "vkGetQueryPoolResults"
       (vk:device
        vk:query-pool
-       uint32_t
-       uint32_t
-       size_t
+       uint32-t
+       uint32-t
+       size-t
        uptr
        vk:device-size
        vk:query-result-flags)
@@ -3837,15 +3813,15 @@
       vk:result))
   (define vk:merge-pipeline-caches
     (foreign-procedure "vkMergePipelineCaches"
-      (vk:device vk:pipeline-cache uint32_t uptr)
+      (vk:device vk:pipeline-cache uint32-t uptr)
       vk:result))
   (define vk:create-graphics-pipelines
     (foreign-procedure "vkCreateGraphicsPipelines"
-      (vk:device vk:pipeline-cache uint32_t uptr uptr uptr)
+      (vk:device vk:pipeline-cache uint32-t uptr uptr uptr)
       vk:result))
   (define vk:create-compute-pipelines
     (foreign-procedure "vkCreateComputePipelines"
-      (vk:device vk:pipeline-cache uint32_t uptr uptr uptr)
+      (vk:device vk:pipeline-cache uint32-t uptr uptr uptr)
       vk:result))
   (define vk:destroy-pipeline
     (foreign-procedure "vkDestroyPipeline"
@@ -3895,11 +3871,11 @@
       vk:result))
   (define vk:free-descriptor-sets
     (foreign-procedure "vkFreeDescriptorSets"
-      (vk:device vk:descriptor-pool uint32_t uptr)
+      (vk:device vk:descriptor-pool uint32-t uptr)
       vk:result))
   (define vk:update-descriptor-sets
     (foreign-procedure "vkUpdateDescriptorSets"
-      (vk:device uint32_t uptr uint32_t uptr)
+      (vk:device uint32-t uptr uint32-t uptr)
       void))
   (define vk:create-framebuffer
     (foreign-procedure "vkCreateFramebuffer"
@@ -3939,7 +3915,7 @@
       vk:result))
   (define vk:free-command-buffers
     (foreign-procedure "vkFreeCommandBuffers"
-      (vk:device vk:command-pool uint32_t uptr)
+      (vk:device vk:command-pool uint32-t uptr)
       void))
   (define vk:begin-command-buffer
     (foreign-procedure "vkBeginCommandBuffer"
@@ -3959,11 +3935,11 @@
       void))
   (define vk:cmd-set-viewport
     (foreign-procedure "vkCmdSetViewport"
-      (vk:command-buffer uint32_t uint32_t uptr)
+      (vk:command-buffer uint32-t uint32-t uptr)
       void))
   (define vk:cmd-set-scissor
     (foreign-procedure "vkCmdSetScissor"
-      (vk:command-buffer uint32_t uint32_t uptr)
+      (vk:command-buffer uint32-t uint32-t uptr)
       void))
   (define vk:cmd-set-line-width
     (foreign-procedure "vkCmdSetLineWidth"
@@ -3983,25 +3959,25 @@
       void))
   (define vk:cmd-set-stencil-compare-mask
     (foreign-procedure "vkCmdSetStencilCompareMask"
-      (vk:command-buffer vk:stencil-face-flags uint32_t)
+      (vk:command-buffer vk:stencil-face-flags uint32-t)
       void))
   (define vk:cmd-set-stencil-write-mask
     (foreign-procedure "vkCmdSetStencilWriteMask"
-      (vk:command-buffer vk:stencil-face-flags uint32_t)
+      (vk:command-buffer vk:stencil-face-flags uint32-t)
       void))
   (define vk:cmd-set-stencil-reference
     (foreign-procedure "vkCmdSetStencilReference"
-      (vk:command-buffer vk:stencil-face-flags uint32_t)
+      (vk:command-buffer vk:stencil-face-flags uint32-t)
       void))
   (define vk:cmd-bind-descriptor-sets
     (foreign-procedure "vkCmdBindDescriptorSets"
       (vk:command-buffer
        vk:pipeline-bind-point
        vk:pipeline-layout
-       uint32_t
-       uint32_t
+       uint32-t
+       uint32-t
        uptr
-       uint32_t
+       uint32-t
        uptr)
       void))
   (define vk:cmd-bind-index-buffer
@@ -4010,40 +3986,40 @@
       void))
   (define vk:cmd-bind-vertex-buffers
     (foreign-procedure "vkCmdBindVertexBuffers"
-      (vk:command-buffer uint32_t uint32_t uptr uptr)
+      (vk:command-buffer uint32-t uint32-t uptr uptr)
       void))
   (define vk:cmd-draw
     (foreign-procedure "vkCmdDraw"
-      (vk:command-buffer uint32_t uint32_t uint32_t uint32_t)
+      (vk:command-buffer uint32-t uint32-t uint32-t uint32-t)
       void))
   (define vk:cmd-draw-indexed
     (foreign-procedure "vkCmdDrawIndexed"
       (vk:command-buffer
-       uint32_t
-       uint32_t
-       uint32_t
-       int32_t
-       uint32_t)
+       uint32-t
+       uint32-t
+       uint32-t
+       int32-t
+       uint32-t)
       void))
   (define vk:cmd-draw-indirect
     (foreign-procedure "vkCmdDrawIndirect"
       (vk:command-buffer
        vk:buffer
        vk:device-size
-       uint32_t
-       uint32_t)
+       uint32-t
+       uint32-t)
       void))
   (define vk:cmd-draw-indexed-indirect
     (foreign-procedure "vkCmdDrawIndexedIndirect"
       (vk:command-buffer
        vk:buffer
        vk:device-size
-       uint32_t
-       uint32_t)
+       uint32-t
+       uint32-t)
       void))
   (define vk:cmd-dispatch
     (foreign-procedure "vkCmdDispatch"
-      (vk:command-buffer uint32_t uint32_t uint32_t)
+      (vk:command-buffer uint32-t uint32-t uint32-t)
       void))
   (define vk:cmd-dispatch-indirect
     (foreign-procedure "vkCmdDispatchIndirect"
@@ -4051,7 +4027,7 @@
       void))
   (define vk:cmd-copy-buffer
     (foreign-procedure "vkCmdCopyBuffer"
-      (vk:command-buffer vk:buffer vk:buffer uint32_t uptr)
+      (vk:command-buffer vk:buffer vk:buffer uint32-t uptr)
       void))
   (define vk:cmd-copy-image
     (foreign-procedure "vkCmdCopyImage"
@@ -4060,7 +4036,7 @@
        vk:image-layout
        vk:image
        vk:image-layout
-       uint32_t
+       uint32-t
        uptr)
       void))
   (define vk:cmd-blit-image
@@ -4070,7 +4046,7 @@
        vk:image-layout
        vk:image
        vk:image-layout
-       uint32_t
+       uint32-t
        uptr
        vk:filter)
       void))
@@ -4080,7 +4056,7 @@
        vk:buffer
        vk:image
        vk:image-layout
-       uint32_t
+       uint32-t
        uptr)
       void))
   (define vk:cmd-copy-image-to-buffer
@@ -4089,7 +4065,7 @@
        vk:image
        vk:image-layout
        vk:buffer
-       uint32_t
+       uint32-t
        uptr)
       void))
   (define vk:cmd-update-buffer
@@ -4106,7 +4082,7 @@
        vk:buffer
        vk:device-size
        vk:device-size
-       uint32_t)
+       uint32-t)
       void))
   (define vk:cmd-clear-color-image
     (foreign-procedure "vkCmdClearColorImage"
@@ -4114,7 +4090,7 @@
        vk:image
        vk:image-layout
        uptr
-       uint32_t
+       uint32-t
        uptr)
       void))
   (define vk:cmd-clear-depth-stencil-image
@@ -4123,12 +4099,12 @@
        vk:image
        vk:image-layout
        uptr
-       uint32_t
+       uint32-t
        uptr)
       void))
   (define vk:cmd-clear-attachments
     (foreign-procedure "vkCmdClearAttachments"
-      (vk:command-buffer uint32_t uptr uint32_t uptr)
+      (vk:command-buffer uint32-t uptr uint32-t uptr)
       void))
   (define vk:cmd-resolve-image
     (foreign-procedure "vkCmdResolveImage"
@@ -4137,7 +4113,7 @@
        vk:image-layout
        vk:image
        vk:image-layout
-       uint32_t
+       uint32-t
        uptr)
       void))
   (define vk:cmd-set-event
@@ -4151,15 +4127,15 @@
   (define vk:cmd-wait-events
     (foreign-procedure "vkCmdWaitEvents"
       (vk:command-buffer
-       uint32_t
+       uint32-t
        uptr
        vk:pipeline-stage-flags
        vk:pipeline-stage-flags
-       uint32_t
+       uint32-t
        uptr
-       uint32_t
+       uint32-t
        uptr
-       uint32_t
+       uint32-t
        uptr)
       void))
   (define vk:cmd-pipeline-barrier
@@ -4168,41 +4144,41 @@
        vk:pipeline-stage-flags
        vk:pipeline-stage-flags
        vk:dependency-flags
-       uint32_t
+       uint32-t
        uptr
-       uint32_t
+       uint32-t
        uptr
-       uint32_t
+       uint32-t
        uptr)
       void))
   (define vk:cmd-begin-query
     (foreign-procedure "vkCmdBeginQuery"
       (vk:command-buffer
        vk:query-pool
-       uint32_t
+       uint32-t
        vk:query-control-flags)
       void))
   (define vk:cmd-end-query
     (foreign-procedure "vkCmdEndQuery"
-      (vk:command-buffer vk:query-pool uint32_t)
+      (vk:command-buffer vk:query-pool uint32-t)
       void))
   (define vk:cmd-reset-query-pool
     (foreign-procedure "vkCmdResetQueryPool"
-      (vk:command-buffer vk:query-pool uint32_t uint32_t)
+      (vk:command-buffer vk:query-pool uint32-t uint32-t)
       void))
   (define vk:cmd-write-timestamp
     (foreign-procedure "vkCmdWriteTimestamp"
       (vk:command-buffer
        vk:pipeline-stage-flag-bits
        vk:query-pool
-       uint32_t)
+       uint32-t)
       void))
   (define vk:cmd-copy-query-pool-results
     (foreign-procedure "vkCmdCopyQueryPoolResults"
       (vk:command-buffer
        vk:query-pool
-       uint32_t
-       uint32_t
+       uint32-t
+       uint32-t
        vk:buffer
        vk:device-size
        vk:device-size
@@ -4213,8 +4189,8 @@
       (vk:command-buffer
        vk:pipeline-layout
        vk:shader-stage-flags
-       uint32_t
-       uint32_t
+       uint32-t
+       uint32-t
        uptr)
       void))
   (define vk:cmd-begin-render-pass
@@ -4231,86 +4207,86 @@
       void))
   (define vk:cmd-execute-commands
     (foreign-procedure "vkCmdExecuteCommands"
-      (vk:command-buffer uint32_t uptr)
+      (vk:command-buffer uint32-t uptr)
       void))
-  (define vk:destroy-surface-k-h-r
+  (define vk:destroy-surface-khr
     (foreign-procedure "vkDestroySurfaceKHR"
-      (vk:instance vk:surface-k-h-r uptr)
+      (vk:instance vk:surface-khr uptr)
       void))
-  (define vk:get-physical-device-surface-support-k-h-r
+  (define vk:get-physical-device-surface-support-khr
     (foreign-procedure "vkGetPhysicalDeviceSurfaceSupportKHR"
-      (vk:physical-device uint32_t vk:surface-k-h-r uptr)
+      (vk:physical-device uint32-t vk:surface-khr uptr)
       vk:result))
-  (define vk:get-physical-device-surface-capabilities-k-h-r
+  (define vk:get-physical-device-surface-capabilities-khr
     (foreign-procedure "vkGetPhysicalDeviceSurfaceCapabilitiesKHR"
-      (vk:physical-device vk:surface-k-h-r uptr)
+      (vk:physical-device vk:surface-khr uptr)
       vk:result))
-  (define vk:get-physical-device-surface-formats-k-h-r
+  (define vk:get-physical-device-surface-formats-khr
     (foreign-procedure "vkGetPhysicalDeviceSurfaceFormatsKHR"
-      (vk:physical-device vk:surface-k-h-r uptr uptr)
+      (vk:physical-device vk:surface-khr uptr uptr)
       vk:result))
-  (define vk:get-physical-device-surface-present-modes-k-h-r
+  (define vk:get-physical-device-surface-present-modes-khr
     (foreign-procedure "vkGetPhysicalDeviceSurfacePresentModesKHR"
-      (vk:physical-device vk:surface-k-h-r uptr uptr)
+      (vk:physical-device vk:surface-khr uptr uptr)
       vk:result))
-  (define vk:create-swapchain-k-h-r
+  (define vk:create-swapchain-khr
     (foreign-procedure "vkCreateSwapchainKHR"
       (vk:device uptr uptr uptr)
       vk:result))
-  (define vk:destroy-swapchain-k-h-r
+  (define vk:destroy-swapchain-khr
     (foreign-procedure "vkDestroySwapchainKHR"
-      (vk:device vk:swapchain-k-h-r uptr)
+      (vk:device vk:swapchain-khr uptr)
       void))
-  (define vk:get-swapchain-images-k-h-r
+  (define vk:get-swapchain-images-khr
     (foreign-procedure "vkGetSwapchainImagesKHR"
-      (vk:device vk:swapchain-k-h-r uptr uptr)
+      (vk:device vk:swapchain-khr uptr uptr)
       vk:result))
-  (define vk:acquire-next-image-k-h-r
+  (define vk:acquire-next-image-khr
     (foreign-procedure "vkAcquireNextImageKHR"
       (vk:device
-       vk:swapchain-k-h-r
-       uint64_t
+       vk:swapchain-khr
+       uint64-t
        vk:semaphore
        vk:fence
        uptr)
       vk:result))
-  (define vk:queue-present-k-h-r
+  (define vk:queue-present-khr
     (foreign-procedure "vkQueuePresentKHR"
       (vk:queue uptr)
       vk:result))
-  (define vk:get-physical-device-display-properties-k-h-r
+  (define vk:get-physical-device-display-properties-khr
     (foreign-procedure "vkGetPhysicalDeviceDisplayPropertiesKHR"
       (vk:physical-device uptr uptr)
       vk:result))
-  (define vk:get-physical-device-display-plane-properties-k-h-r
+  (define vk:get-physical-device-display-plane-properties-khr
     (foreign-procedure "vkGetPhysicalDeviceDisplayPlanePropertiesKHR"
       (vk:physical-device uptr uptr)
       vk:result))
-  (define vk:get-display-plane-supported-displays-k-h-r
+  (define vk:get-display-plane-supported-displays-khr
     (foreign-procedure "vkGetDisplayPlaneSupportedDisplaysKHR"
-      (vk:physical-device uint32_t uptr uptr)
+      (vk:physical-device uint32-t uptr uptr)
       vk:result))
-  (define vk:get-display-mode-properties-k-h-r
+  (define vk:get-display-mode-properties-khr
     (foreign-procedure "vkGetDisplayModePropertiesKHR"
-      (vk:physical-device vk:display-k-h-r uptr uptr)
+      (vk:physical-device vk:display-khr uptr uptr)
       vk:result))
-  (define vk:create-display-mode-k-h-r
+  (define vk:create-display-mode-khr
     (foreign-procedure "vkCreateDisplayModeKHR"
-      (vk:physical-device vk:display-k-h-r uptr uptr uptr)
+      (vk:physical-device vk:display-khr uptr uptr uptr)
       vk:result))
-  (define vk:get-display-plane-capabilities-k-h-r
+  (define vk:get-display-plane-capabilities-khr
     (foreign-procedure "vkGetDisplayPlaneCapabilitiesKHR"
-      (vk:physical-device vk:display-mode-k-h-r uint32_t uptr)
+      (vk:physical-device vk:display-mode-khr uint32-t uptr)
       vk:result))
-  (define vk:create-display-plane-surface-k-h-r
+  (define vk:create-display-plane-surface-khr
     (foreign-procedure "vkCreateDisplayPlaneSurfaceKHR"
       (vk:instance uptr uptr uptr)
       vk:result))
-  (define vk:create-shared-swapchains-k-h-r
+  (define vk:create-shared-swapchains-khr
     (foreign-procedure "vkCreateSharedSwapchainsKHR"
-      (vk:device uint32_t uptr uptr uptr)
+      (vk:device uint32-t uptr uptr uptr)
       vk:result))
-  (define vk:get-physical-device-external-image-format-properties-n-v
+  (define vk:get-physical-device-external-image-format-properties-nv
     (foreign-procedure "vkGetPhysicalDeviceExternalImageFormatPropertiesNV"
       (vk:physical-device
        vk:format
@@ -4318,6 +4294,6 @@
        vk:image-tiling
        vk:image-usage-flags
        vk:image-create-flags
-       vk:external-memory-handle-type-flags-n-v
+       vk:external-memory-handle-type-flags-nv
        uptr)
       vk:result)))

@@ -16,9 +16,10 @@
        (res '())
        (exported-symbols '())
        (output-list '())
-       (display (lambda (sexp)
+       (display (lambda (sexp . internal?)
                   (set! output-list (cons sexp output-list))
-                  (if (string-prefix? "define" (symbol->string (car sexp)))
+                  (if (and (null? internal?)
+                           (string-prefix? "define" (symbol->string (car sexp))))
                       (set! exported-symbols (cons (cadr sexp) exported-symbols)))))
        (newline (lambda () (void)))
        )
@@ -27,27 +28,14 @@
     (lambda ()
       
       (newline)
-      (display '(define-ftype integer-128 (struct (lo unsigned-64) (hi integer-64))))
+      (display '(define-ftype integer-128 (struct (lo unsigned-64) (hi integer-64))) #t)
       (newline)
-      (display '(define-ftype unsigned-128 (struct (lo unsigned-64) (hi unsigned-64))))
+      (display '(define-ftype unsigned-128 (struct (lo unsigned-64) (hi unsigned-64))) #t)
       (newline)
-      (display '(define-ftype enum int))
+      (display '(define-ftype enum int) #t)
       (newline)
       
-      (let* ((vk-symbol (lambda (sym)
-                          (let ((str (if (symbol? sym) (symbol->string sym) sym)))
-                            (string->symbol
-                             (let ((dstr (string-downcase
-                                          (let loop ((str str)
-                                                     (i (string-index-right str char-set:upper-case 1)))
-                                            (if (not i)
-                                                str
-                                                (loop (string-replace str "-" i i)
-                                                      (string-index-right str char-set:upper-case 1 i)))))))
-                               (if (string-prefix? "vk-" dstr)
-                                   (string-append "vk:" (substring dstr 3 (string-length dstr)))
-                                   dstr))))))
-             (vk-enum-symbol (lambda (sym)
+      (let* ((vk-enum-symbol (lambda (sym)
                                (let ((str (if (symbol? sym) (symbol->string sym) sym)))
                                  (string->symbol
                                   (let ((dstr (string-downcase
@@ -55,6 +43,20 @@
                                     (if (string-prefix? "vk-" dstr)
                                         (string-append "vk:" (substring dstr 3 (string-length dstr)))
                                         dstr))))))
+             (vk-symbol (lambda (sym)
+                          (let ((str (if (symbol? sym) (symbol->string sym) sym)))
+                            (let ((dstr (string-downcase
+                                         (let loop ((str str)
+                                                    (i (string-index-right str char-set:upper-case)))
+                                           (if (not i)
+                                               str
+                                               (loop (if (or (= 0 i)
+                                                             (char-upper-case? (string-ref str (- i 1))))
+                                                         str
+                                                         (string-replace str "-" i i))
+                                                     (string-index-right str char-set:upper-case 1 i)))))))
+                              (vk-enum-symbol dstr)))))
+             
              (resolve-type (lambda (type-name)
                              (let ((str (if (symbol? type-name) (symbol->string type-name) type-name)))
                                (cond
