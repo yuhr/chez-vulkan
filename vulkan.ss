@@ -1,13 +1,6 @@
 (load-shared-object "libvulkan.so")
 (library (vulkan)
-  (export int128-t uint128-t builtin-ms-va-list ptrdiff-t
-   size-t wchar-t int8-t int16-t int32-t int64-t uint8-t
-   uint16-t uint32-t uint64-t int-least8-t int-least16-t
-   int-least32-t int-least64-t uint-least8-t uint-least16-t
-   uint-least32-t uint-least64-t int-fast8-t int-fast16-t
-   int-fast32-t int-fast64-t uint-fast8-t uint-fast16-t
-   uint-fast32-t uint-fast64-t intptr-t uintptr-t intmax-t
-   uintmax-t vk:flags vk:bool32 vk:device-size vk:sample-mask
+  (export vk:flags vk:bool32 vk:device-size vk:sample-mask
    vk:instance vk:physical-device vk:device vk:queue
    vk:semaphore vk:command-buffer vk:fence vk:device-memory
    vk:buffer vk:image vk:event vk:query-pool vk:buffer-view
@@ -647,13 +640,10 @@
    vk:command-buffer-reset-flags vk:stencil-face-flag-bits
    vk:stencil-face-front-bit vk:stencil-face-back-bit
    vk:stencil-front-and-back vk:stencil-face-flag-bits-max-enum
-   vk:stencil-face-flags pfn-vk-allocation-function
-   pfn-vk-reallocation-function pfn-vk-free-function
-   pfn-vk-internal-allocation-notification
-   pfn-vk-internal-free-notification pfn-vk-void-function
-   vk:application-info vk:instance-create-info
-   vk:allocation-callbacks vk:physical-device-features
-   vk:format-properties vk:extent3-d vk:image-format-properties
+   vk:stencil-face-flags vk:application-info
+   vk:instance-create-info vk:allocation-callbacks
+   vk:physical-device-features vk:format-properties
+   vk:extent3-d vk:image-format-properties
    vk:physical-device-limits
    vk:physical-device-sparse-properties
    vk:physical-device-properties vk:queue-family-properties
@@ -713,87 +703,6 @@
    vk:image-memory-barrier vk:render-pass-begin-info
    vk:dispatch-indirect-command
    vk:draw-indexed-indirect-command vk:draw-indirect-command
-   pfn-vk-create-instance pfn-vk-destroy-instance
-   pfn-vk-enumerate-physical-devices
-   pfn-vk-get-physical-device-features
-   pfn-vk-get-physical-device-format-properties
-   pfn-vk-get-physical-device-image-format-properties
-   pfn-vk-get-physical-device-properties
-   pfn-vk-get-physical-device-queue-family-properties
-   pfn-vk-get-physical-device-memory-properties
-   pfn-vk-get-instance-proc-addr pfn-vk-get-device-proc-addr
-   pfn-vk-create-device pfn-vk-destroy-device
-   pfn-vk-enumerate-instance-extension-properties
-   pfn-vk-enumerate-device-extension-properties
-   pfn-vk-enumerate-instance-layer-properties
-   pfn-vk-enumerate-device-layer-properties
-   pfn-vk-get-device-queue pfn-vk-queue-submit
-   pfn-vk-queue-wait-idle pfn-vk-device-wait-idle
-   pfn-vk-allocate-memory pfn-vk-free-memory pfn-vk-map-memory
-   pfn-vk-unmap-memory pfn-vk-flush-mapped-memory-ranges
-   pfn-vk-invalidate-mapped-memory-ranges
-   pfn-vk-get-device-memory-commitment
-   pfn-vk-bind-buffer-memory pfn-vk-bind-image-memory
-   pfn-vk-get-buffer-memory-requirements
-   pfn-vk-get-image-memory-requirements
-   pfn-vk-get-image-sparse-memory-requirements
-   pfn-vk-get-physical-device-sparse-image-format-properties
-   pfn-vk-queue-bind-sparse pfn-vk-create-fence
-   pfn-vk-destroy-fence pfn-vk-reset-fences
-   pfn-vk-get-fence-status pfn-vk-wait-for-fences
-   pfn-vk-create-semaphore pfn-vk-destroy-semaphore
-   pfn-vk-create-event pfn-vk-destroy-event
-   pfn-vk-get-event-status pfn-vk-set-event pfn-vk-reset-event
-   pfn-vk-create-query-pool pfn-vk-destroy-query-pool
-   pfn-vk-get-query-pool-results pfn-vk-create-buffer
-   pfn-vk-destroy-buffer pfn-vk-create-buffer-view
-   pfn-vk-destroy-buffer-view pfn-vk-create-image
-   pfn-vk-destroy-image pfn-vk-get-image-subresource-layout
-   pfn-vk-create-image-view pfn-vk-destroy-image-view
-   pfn-vk-create-shader-module pfn-vk-destroy-shader-module
-   pfn-vk-create-pipeline-cache pfn-vk-destroy-pipeline-cache
-   pfn-vk-get-pipeline-cache-data pfn-vk-merge-pipeline-caches
-   pfn-vk-create-graphics-pipelines
-   pfn-vk-create-compute-pipelines pfn-vk-destroy-pipeline
-   pfn-vk-create-pipeline-layout pfn-vk-destroy-pipeline-layout
-   pfn-vk-create-sampler pfn-vk-destroy-sampler
-   pfn-vk-create-descriptor-set-layout
-   pfn-vk-destroy-descriptor-set-layout
-   pfn-vk-create-descriptor-pool pfn-vk-destroy-descriptor-pool
-   pfn-vk-reset-descriptor-pool pfn-vk-allocate-descriptor-sets
-   pfn-vk-free-descriptor-sets pfn-vk-update-descriptor-sets
-   pfn-vk-create-framebuffer pfn-vk-destroy-framebuffer
-   pfn-vk-create-render-pass pfn-vk-destroy-render-pass
-   pfn-vk-get-render-area-granularity
-   pfn-vk-create-command-pool pfn-vk-destroy-command-pool
-   pfn-vk-reset-command-pool pfn-vk-allocate-command-buffers
-   pfn-vk-free-command-buffers pfn-vk-begin-command-buffer
-   pfn-vk-end-command-buffer pfn-vk-reset-command-buffer
-   pfn-vk-cmd-bind-pipeline pfn-vk-cmd-set-viewport
-   pfn-vk-cmd-set-scissor pfn-vk-cmd-set-line-width
-   pfn-vk-cmd-set-depth-bias pfn-vk-cmd-set-blend-constants
-   pfn-vk-cmd-set-depth-bounds
-   pfn-vk-cmd-set-stencil-compare-mask
-   pfn-vk-cmd-set-stencil-write-mask
-   pfn-vk-cmd-set-stencil-reference
-   pfn-vk-cmd-bind-descriptor-sets pfn-vk-cmd-bind-index-buffer
-   pfn-vk-cmd-bind-vertex-buffers pfn-vk-cmd-draw
-   pfn-vk-cmd-draw-indexed pfn-vk-cmd-draw-indirect
-   pfn-vk-cmd-draw-indexed-indirect pfn-vk-cmd-dispatch
-   pfn-vk-cmd-dispatch-indirect pfn-vk-cmd-copy-buffer
-   pfn-vk-cmd-copy-image pfn-vk-cmd-blit-image
-   pfn-vk-cmd-copy-buffer-to-image
-   pfn-vk-cmd-copy-image-to-buffer pfn-vk-cmd-update-buffer
-   pfn-vk-cmd-fill-buffer pfn-vk-cmd-clear-color-image
-   pfn-vk-cmd-clear-depth-stencil-image
-   pfn-vk-cmd-clear-attachments pfn-vk-cmd-resolve-image
-   pfn-vk-cmd-set-event pfn-vk-cmd-reset-event
-   pfn-vk-cmd-wait-events pfn-vk-cmd-pipeline-barrier
-   pfn-vk-cmd-begin-query pfn-vk-cmd-end-query
-   pfn-vk-cmd-reset-query-pool pfn-vk-cmd-write-timestamp
-   pfn-vk-cmd-copy-query-pool-results pfn-vk-cmd-push-constants
-   pfn-vk-cmd-begin-render-pass pfn-vk-cmd-next-subpass
-   pfn-vk-cmd-end-render-pass pfn-vk-cmd-execute-commands
    vk:surface-khr vk:color-space-khr
    vk:color-space-srgb-nonlinear-khr
    vk:color-space-begin-range-khr vk:color-space-end-range-khr
@@ -823,17 +732,9 @@
    vk:composite-alpha-inherit-bit-khr
    vk:composite-alpha-flag-bits-max-enum-khr
    vk:composite-alpha-flags-khr vk:surface-capabilities-khr
-   vk:surface-format-khr pfn-vk-destroy-surface-khr
-   pfn-vk-get-physical-device-surface-support-khr
-   pfn-vk-get-physical-device-surface-capabilities-khr
-   pfn-vk-get-physical-device-surface-formats-khr
-   pfn-vk-get-physical-device-surface-present-modes-khr
-   vk:swapchain-khr vk:swapchain-create-flags-khr
-   vk:swapchain-create-info-khr vk:present-info-khr
-   pfn-vk-create-swapchain-khr pfn-vk-destroy-swapchain-khr
-   pfn-vk-get-swapchain-images-khr
-   pfn-vk-acquire-next-image-khr pfn-vk-queue-present-khr
-   vk:display-khr vk:display-mode-khr
+   vk:surface-format-khr vk:swapchain-khr
+   vk:swapchain-create-flags-khr vk:swapchain-create-info-khr
+   vk:present-info-khr vk:display-khr vk:display-mode-khr
    vk:display-plane-alpha-flag-bits-khr
    vk:display-plane-alpha-opaque-bit-khr
    vk:display-plane-alpha-global-bit-khr
@@ -849,16 +750,8 @@
    vk:display-plane-capabilities-khr
    vk:display-plane-properties-khr
    vk:display-surface-create-info-khr
-   pfn-vk-get-physical-device-display-properties-khr
-   pfn-vk-get-physical-device-display-plane-properties-khr
-   pfn-vk-get-display-plane-supported-displays-khr
-   pfn-vk-get-display-mode-properties-khr
-   pfn-vk-create-display-mode-khr
-   pfn-vk-get-display-plane-capabilities-khr
-   pfn-vk-create-display-plane-surface-khr
-   vk:display-present-info-khr
-   pfn-vk-create-shared-swapchains-khr
-   vk:debug-report-callback-ext vk:debug-report-object-type-ext
+   vk:display-present-info-khr vk:debug-report-callback-ext
+   vk:debug-report-object-type-ext
    vk:debug-report-object-type-unknown-ext
    vk:debug-report-object-type-instance-ext
    vk:debug-report-object-type-physical-device-ext
@@ -904,12 +797,9 @@
    vk:debug-report-performance-warning-bit-ext
    vk:debug-report-error-bit-ext vk:debug-report-debug-bit-ext
    vk:debug-report-flag-bits-max-enum-ext
-   vk:debug-report-flags-ext pfn-vk-debug-report-callback-ext
+   vk:debug-report-flags-ext
    vk:debug-report-callback-create-info-ext
-   pfn-vk-create-debug-report-callback-ext
-   pfn-vk-destroy-debug-report-callback-ext
-   pfn-vk-debug-report-message-ext vk:rasterization-order-amd
-   vk:rasterization-order-strict-amd
+   vk:rasterization-order-amd vk:rasterization-order-strict-amd
    vk:rasterization-order-relaxed-amd
    vk:rasterization-order-begin-range-amd
    vk:rasterization-order-end-range-amd
@@ -919,16 +809,9 @@
    vk:debug-marker-object-name-info-ext
    vk:debug-marker-object-tag-info-ext
    vk:debug-marker-marker-info-ext
-   pfn-vk-debug-marker-set-object-tag-ext
-   pfn-vk-debug-marker-set-object-name-ext
-   pfn-vk-cmd-debug-marker-begin-ext
-   pfn-vk-cmd-debug-marker-end-ext
-   pfn-vk-cmd-debug-marker-insert-ext
    vk:dedicated-allocation-image-create-info-nv
    vk:dedicated-allocation-buffer-create-info-nv
    vk:dedicated-allocation-memory-allocate-info-nv
-   pfn-vk-cmd-draw-indirect-count-amd
-   pfn-vk-cmd-draw-indexed-indirect-count-amd
    vk:external-memory-handle-type-flag-bits-nv
    vk:external-memory-handle-type-opaque-win32-bit-nv
    vk:external-memory-handle-type-opaque-win32-kmt-bit-nv
@@ -943,7 +826,6 @@
    vk:external-memory-feature-flag-bits-max-enum-nv
    vk:external-memory-feature-flags-nv
    vk:external-image-format-properties-nv
-   pfn-vk-get-physical-device-external-image-format-properties-nv
    vk:external-memory-image-create-info-nv
    vk:export-memory-allocate-info-nv vk:validation-check-ext
    vk:validation-check-all-ext
