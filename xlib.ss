@@ -22,7 +22,7 @@
                        vk:result))
   (define vk:get-physical-device-xlib-presentation-support-khr
     (foreign-procedure "vkGetPhysicalDeviceXlibPresentationSupportKHR"
-                       (vk:physical-device uint32-t uptr unsigned-64)
+                       (vk:physical-device unsigned-32 uptr unsigned-64)
                        vk:bool32))
   
   )
