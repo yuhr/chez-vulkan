@@ -14,7 +14,7 @@
      (p-next uptr)
      (flags vk:xlib-surface-create-flags-khr)
      (dpy uptr)
-     (window unsigned-64)))
+     (window uptr)))
   
   (define vk:create-xlib-surface-khr
     (foreign-procedure "vkCreateXlibSurfaceKHR"
