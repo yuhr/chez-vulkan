@@ -1,6 +1,6 @@
 # chez-vulkan
 
-Chez Scheme bindings for Vulkan graphics API.
+Vulkan graphics API binding for Chez Scheme.
 
 ## Libraries
 
@@ -14,6 +14,7 @@ Currently supported platforms are following:
 - `(vulkan wayland)`
 
 ## TODO
+- xcb support
 - mir support
 - examples
 - refine generator code
