@@ -14,12 +14,13 @@ Window-system platforms:
 - `(vulkan xlib)` (including `VK_EXT_acquire_xlib_display`)
 - `(vulkan xcb)`
 - `(vulkan wayland)`
-- `(vulkan win32)` (hand-written; the others are generated from the headers)
+- `(vulkan win32)`
 
 The libraries load the Vulkan loader under its name on each platform:
 `libvulkan.so.1` on Linux and other Unix systems, `vulkan-1.dll` on
 Windows, and `libvulkan.1.dylib` (falling back to MoltenVK) on macOS.
-Tested with Chez Scheme 10.4.1 on x86-64 Linux.
+Tested with Chez Scheme 10.4.1 on x86-64 Linux, and with the Windows build of
+Chez Scheme 10.4.1 under Wine (the compute example and a Win32 surface).
 
 ## Using with Akku
 
@@ -89,8 +90,8 @@ the result.
 
 ## Regenerating
 
-`vulkan.ss`, `xlib.ss`, `xcb.ss` and `wayland.ss` are generated from the
-system Vulkan headers (currently 1.4.363). Requires
+All of `vulkan.ss`, `xlib.ss`, `xcb.ss`, `wayland.ss` and `win32.ss` are
+generated from the Vulkan headers (currently 1.4.363). Requires
 [CastXML](https://github.com/CastXML/CastXML), a Vulkan loader
 (`libvulkan.so.1`) and the X11, Xrandr, xcb and Wayland development
 headers.
@@ -100,6 +101,17 @@ castxml --castxml-gccxml -DVK_USE_PLATFORM_XLIB_KHR \
   -DVK_USE_PLATFORM_XLIB_XRANDR_EXT -DVK_USE_PLATFORM_XCB_KHR \
   -DVK_USE_PLATFORM_WAYLAND_KHR -o res/vulkan.xml /usr/include/vulkan/vulkan.h
 scheme --script generate-vulkan.ss
+```
+
+`win32.ss` comes from a second parse of the headers for 64-bit Windows,
+using the Windows SDK and MSVC headers (for example from
+[msvc-wine](https://github.com/mstorsjo/msvc-wine)). The generator checks
+that the core library from this parse is identical to `vulkan.ss`:
+
+```sh
+WINSDK_INCLUDE=.../Windows\ Kits/10/Include/10.0.26100.0 \
+MSVC_INCLUDE=.../VC/Tools/MSVC/14.52.37025/include res/make-win32-xml.sh
+scheme --script generate-vulkan.ss res/vulkan-win32.xml
 ```
 
 Which functions get plain names is decided from the headers, not from the
@@ -118,5 +130,4 @@ with an enum value get a `-struct` suffix
 headers, also update `vk:header-version` in `constants.ss`.
 
 ## TODO
-- generate `(vulkan win32)` from the headers and test it on Windows
-- test on macOS (MoltenVK)
+- test on Windows itself (so far under Wine) and on macOS (MoltenVK)

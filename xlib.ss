@@ -52,6 +52,7 @@
          (let ([addr (get-proc-addr handle cname)])
            (and (not (zero? addr))
                 (foreign-procedure addr args ret))))]))
+  (define-ftype enum int)
   (define-ftype vk:xlib-surface-create-flags-khr vk:flags)
   (define-ftype vk:xlib-surface-create-info-khr
     (struct
