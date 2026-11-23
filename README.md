@@ -2,6 +2,8 @@
 
 Vulkan graphics API binding for Chez Scheme.
 
+![chezcube, one of the examples: a spinning cube with a λ on each face](docs/chezcube.gif)
+
 ## Libraries
 
 - `(vulkan)` contains necessities of Vulkan API.
@@ -12,6 +14,9 @@ Currently supported platforms are following:
 - `(vulkan xlib)`
 - `(vulkan win32)`
 - `(vulkan wayland)`
+
+Tested with Chez Scheme 10.4.1 on x86-64 Linux. The bindings load the
+Vulkan loader as `libvulkan.so.1`.
 
 ## Using with Akku
 
@@ -47,10 +52,8 @@ Run from the repository root:
   quits. Needs libglfw3 and, via `akku install`, the `image-formats` package
   for reading the PNG.
 
-  ![chezcube: a spinning cube with a λ on each face](docs/chezcube.gif)
-
   `--step DEGREES` turns the cube by a fixed angle per frame instead of by
-  elapsed time; the GIF above is 90 frames captured with `--step 4`.
+  elapsed time; the GIF at the top is 90 frames captured with `--step 4`.
 
   image-formats 0.1.0 decodes PNG rows that use the Paeth filter
   incorrectly and reads only 8-bit gray/RGB/RGBA images, so `lambda.png` is
@@ -101,6 +104,5 @@ headers, also update `vk:header-version` in `constants.ss`.
 
 ## TODO
 - xcb support
-- mir support
-- more examples (graphics/windowing)
-- refine generator code
+- generate the platform libraries (xlib, wayland, xcb) from the headers
+- load the Vulkan loader by its macOS and Windows names
