@@ -13,6 +13,14 @@ Currently supported platforms are following:
 - `(vulkan win32)`
 - `(vulkan wayland)`
 
+## Examples
+
+Run from the repository root:
+
+- `scheme --script examples/compute/compute.ss [device-index]` — headless
+  compute: squares 1000 floats in a storage buffer with a compute shader
+  (`square.comp`, precompiled to `square.spv`) and checks the result.
+
 ## Extension functions
 
 Functions the loader exports (core 1.0–1.4 and the WSI surface/swapchain
@@ -53,5 +61,5 @@ headers, also update `vk:header-version` in `constants.ss`.
 ## TODO
 - xcb support
 - mir support
-- examples
+- more examples (graphics/windowing)
 - refine generator code
