@@ -10,74 +10,12 @@
 
 (load "vulkan.ss")
 (load "constants.ss")
-(import (vulkan) (vulkan constants))
+(load "examples/common.ss")
+(import (vulkan) (vulkan constants) (examples common))
 
 (define element-count 1000)
 (define workgroup-size 64)              ; local_size_x in square.comp
 (define shader-path "examples/compute/square.spv")
-
-;;; ------------------------------------------------------------------
-;;; Small helpers for foreign memory.  Everything allocated through
-;;; `malloc` is released by `free-all` at the end.
-
-(define allocations '())
-
-(define (malloc size)
-  (let ((addr (foreign-alloc (max size 1))))
-    (do ((i 0 (+ i 1))) ((= i size))
-      (foreign-set! 'unsigned-8 addr i 0))
-    (set! allocations (cons addr allocations))
-    addr))
-
-(define (free-all)
-  (for-each foreign-free allocations)
-  (set! allocations '()))
-
-;; (new T (field ... value) ...) => zeroed ftype pointer with fields set.
-;; A field path may be nested: (new T (stage module m)) sets p->stage.module.
-(define-syntax new
-  (syntax-rules ()
-    ((_ T (field ... value) ...)
-     (let ((p (make-ftype-pointer T (malloc (ftype-sizeof T)))))
-       (ftype-set! T (field ...) p value) ...
-       p))))
-
-;; (new-array T n) => zeroed ftype pointer to n consecutive Ts.
-(define-syntax new-array
-  (syntax-rules ()
-    ((_ T n) (make-ftype-pointer T (malloc (* n (ftype-sizeof T)))))))
-
-(define (addr p) (ftype-pointer-address p))
-
-(define (c-string s)
-  (let* ((bv (string->utf8 s))
-         (n (bytevector-length bv))
-         (a (malloc (+ n 1))))
-    (do ((i 0 (+ i 1))) ((= i n))
-      (foreign-set! 'unsigned-8 a i (bytevector-u8-ref bv i)))
-    a))
-
-(define (c-string->string a)
-  (let loop ((i 0) (acc '()))
-    (let ((b (foreign-ref 'unsigned-8 a i)))
-      (if (zero? b)
-          (utf8->string (u8-list->bytevector (reverse acc)))
-          (loop (+ i 1) (cons b acc))))))
-
-;; Signal an error unless a VkResult is VK_SUCCESS.
-(define (check who result)
-  (unless (= result vk:success)
-    (error who "Vulkan call failed" result)))
-
-;; Call f with a pointer to a fresh handle slot, check the result, and
-;; return the handle written there.
-(define (create who f)
-  (let ((slot (new-array uptr 1)))
-    (check who (f (addr slot)))
-    (ftype-ref uptr () slot)))
-
-(define (read-file-bytes path)
-  (call-with-port (open-file-input-port path) get-bytevector-all))
 
 ;;; ------------------------------------------------------------------
 ;;; Instance and device.
@@ -208,16 +146,12 @@
 
 (define shader-module
   (let* ((code (read-file-bytes shader-path))
-         (n (bytevector-length code))
-         (code-addr (malloc n)))
-    (do ((i 0 (+ i 1))) ((= i n))
-      (foreign-set! 'unsigned-8 code-addr i (bytevector-u8-ref code i)))
-    (let ((info (new vk:shader-module-create-info
-                     (s-type vk:structure-type-shader-module-create-info)
-                     (code-size n)
-                     (p-code code-addr))))
-      (create 'vkCreateShaderModule
-              (lambda (out) (vk:create-shader-module device (addr info) 0 out))))))
+         (info (new vk:shader-module-create-info
+                    (s-type vk:structure-type-shader-module-create-info)
+                    (code-size (bytevector-length code))
+                    (p-code (bytes->foreign code)))))
+    (create 'vkCreateShaderModule
+            (lambda (out) (vk:create-shader-module device (addr info) 0 out)))))
 
 (define set-layout
   (let* ((binding (new vk:descriptor-set-layout-binding

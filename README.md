@@ -20,6 +20,14 @@ Run from the repository root:
 - `scheme --script examples/compute/compute.ss [device-index]` — headless
   compute: squares 1000 floats in a storage buffer with a compute shader
   (`square.comp`, precompiled to `square.spv`) and checks the result.
+- `scheme --script examples/gears/gears.ss [--device N] [--novsync]` —
+  chezgears: the classic three spinning gears in an X11 window (XWayland on
+  Wayland desktops), using dynamic rendering. Arrow keys and `z`/`Z` rotate
+  the view, Esc quits. Needs only libX11 besides the Vulkan loader; the Xlib
+  bindings are in `examples/x11.ss`.
+
+`examples/common.ss` has the helpers both use (zeroed struct allocation with
+`new`, result checking, Vulkan's two-call enumeration pattern).
 
 ## Extension functions
 
