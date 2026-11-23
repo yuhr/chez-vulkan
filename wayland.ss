@@ -1,7 +1,7 @@
 
 (library (vulkan wayland)
-  (export vk:xlib-surface-create-flags-khr
-          vk:xlib-surface-create-info-khr
+  (export vk:wayland-surface-create-flags-khr
+          vk:wayland-surface-create-info-khr
           vk:create-wayland-surface-khr
           vk:get-physical-device-wayland-presentation-support-khr)
   (import (scheme)

@@ -1,5 +1,5 @@
 
-(library (vulkan xlib)
+(library (vulkan win32)
   (export vk:win32-surface-create-flags-khr
           vk:win32-surface-create-info-khr
           vk:create-win32-surface-khr
@@ -12,7 +12,7 @@
     (struct
      (s-type vk:structure-type)
      (p-next uptr)
-     (flags vk:xlib-surface-create-flags-khr)
+     (flags vk:win32-surface-create-flags-khr)
      (hinstance uptr)
      (hwnd uptr)))
   
