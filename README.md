@@ -9,14 +9,17 @@ Vulkan graphics API binding for Chez Scheme.
 - `(vulkan)` contains necessities of Vulkan API.
 - `(vulkan constants)` defines some Vulkan constants omitted while auto-generating.
 
-Currently supported platforms are following:
+Window-system platforms:
 
-- `(vulkan xlib)`
-- `(vulkan win32)`
+- `(vulkan xlib)` (including `VK_EXT_acquire_xlib_display`)
+- `(vulkan xcb)`
 - `(vulkan wayland)`
+- `(vulkan win32)` (hand-written; the others are generated from the headers)
 
-Tested with Chez Scheme 10.4.1 on x86-64 Linux. The bindings load the
-Vulkan loader as `libvulkan.so.1`.
+The libraries load the Vulkan loader under its name on each platform:
+`libvulkan.so.1` on Linux and other Unix systems, `vulkan-1.dll` on
+Windows, and `libvulkan.1.dylib` (falling back to MoltenVK) on macOS.
+Tested with Chez Scheme 10.4.1 on x86-64 Linux.
 
 ## Using with Akku
 
@@ -86,14 +89,26 @@ the result.
 
 ## Regenerating
 
-`vulkan.ss` is generated from the system Vulkan headers (currently 1.4.363).
-Requires [CastXML](https://github.com/CastXML/CastXML) and a Vulkan loader
-(`libvulkan.so.1`).
+`vulkan.ss`, `xlib.ss`, `xcb.ss` and `wayland.ss` are generated from the
+system Vulkan headers (currently 1.4.363). Requires
+[CastXML](https://github.com/CastXML/CastXML), a Vulkan loader
+(`libvulkan.so.1`) and the X11, Xrandr, xcb and Wayland development
+headers.
 
 ```sh
-castxml --castxml-gccxml -o res/vulkan.xml /usr/include/vulkan/vulkan.h
+castxml --castxml-gccxml -DVK_USE_PLATFORM_XLIB_KHR \
+  -DVK_USE_PLATFORM_XLIB_XRANDR_EXT -DVK_USE_PLATFORM_XCB_KHR \
+  -DVK_USE_PLATFORM_WAYLAND_KHR -o res/vulkan.xml /usr/include/vulkan/vulkan.h
 scheme --script generate-vulkan.ss
 ```
+
+Which functions get plain names is decided from the headers, not from the
+installed loader, so regenerating anywhere gives the same bindings: the
+functions every Vulkan loader exports (core 1.0–1.4 and the window-system
+extensions: surface, swapchain, display, the platform surface functions)
+are bound directly, and the rest get `vk:load-*` procedures. If a local
+`libvulkan.so.1` is present, the generator also compares the result with its
+exports and prints any differences as notes.
 
 The generator checks every struct/union's size and field offsets against
 CastXML's layout. C bitfields are exposed through named `(bits ...)` groups,
@@ -103,6 +118,5 @@ with an enum value get a `-struct` suffix
 headers, also update `vk:header-version` in `constants.ss`.
 
 ## TODO
-- xcb support
-- generate the platform libraries (xlib, wayland, xcb) from the headers
-- load the Vulkan loader by its macOS and Windows names
+- generate `(vulkan win32)` from the headers and test it on Windows
+- test on macOS (MoltenVK)

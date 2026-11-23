@@ -7161,7 +7161,29 @@
    vk:load-cmd-draw-mesh-tasks-indirect-ext
    vk:load-cmd-draw-mesh-tasks-indirect-count-ext)
   (import (chezscheme))
-  (define loader (load-shared-object "libvulkan.so.1"))
+  (define loader
+    (let* ([mt (symbol->string (machine-type))]
+           [os? (lambda (suffix)
+                  (let ([n (string-length mt)] [k (string-length suffix)])
+                    (and (>= n k)
+                         (string=? suffix (substring mt (- n k) n)))))]
+           [candidates (cond
+                         [(os? "nt") '("vulkan-1.dll")]
+                         [(os? "osx")
+                          '("libvulkan.1.dylib"
+                             "/usr/local/lib/libvulkan.1.dylib"
+                             "/opt/homebrew/lib/libvulkan.1.dylib"
+                             "libMoltenVK.dylib")]
+                         [else '("libvulkan.so.1" "libvulkan.so")])])
+      (let try ([names candidates])
+        (cond
+          [(null? names)
+           (error 'vulkan
+             "cannot load the Vulkan loader; tried"
+             candidates)]
+          [(guard (e [#t #f]) (load-shared-object (car names)) #t)
+           (car names)]
+          [else (try (cdr names))]))))
   (define-syntax define-vk-procedure
     (syntax-rules ()
       [(_ name cname args ret)

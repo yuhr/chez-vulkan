@@ -1,23 +1,38 @@
-;;; Generates vulkan.ss from res/vulkan.xml.
+;;; Generates vulkan.ss, xlib.ss, xcb.ss and wayland.ss from res/vulkan.xml.
 ;;;
-;;; res/vulkan.xml is produced by castxml from the system Vulkan headers:
+;;; res/vulkan.xml is produced by castxml from the system Vulkan headers,
+;;; with the Linux window-system platforms enabled (needs the X11, Xrandr,
+;;; xcb and Wayland development headers):
 ;;;
-;;;   castxml --castxml-gccxml -o res/vulkan.xml /usr/include/vulkan/vulkan.h
+;;;   castxml --castxml-gccxml -DVK_USE_PLATFORM_XLIB_KHR \
+;;;     -DVK_USE_PLATFORM_XLIB_XRANDR_EXT -DVK_USE_PLATFORM_XCB_KHR \
+;;;     -DVK_USE_PLATFORM_WAYLAND_KHR -o res/vulkan.xml /usr/include/vulkan/vulkan.h
 ;;;
 ;;; then run this file from the repository root:
 ;;;
 ;;;   scheme --script generate-vulkan.ss
 ;;;
-;;; Only functions exported by the local Vulkan loader (libvulkan.so.1) are
-;;; bound; extension functions must be fetched with vkGet*ProcAddr.
-;;; After writing vulkan.ss, every generated struct/union is checked against
+;;; Functions every Vulkan loader exports (core 1.0-1.4 and the standard
+;;; window-system extensions, decided from the header section each one is
+;;; declared in) are bound directly; all other functions get a vk:load-*
+;;; procedure that fetches them with vkGet*ProcAddr.  The headers must be
+;;; where castxml read them.  The local loader is only used for a
+;;; cross-check, so the output does not depend on its version.  After
+;;; writing the libraries, every generated struct/union is checked against
 ;;; the sizes and field offsets castxml reported.
 
 (import (chezscheme))
 
-(define loader-name "libvulkan.so.1")
+(define loader-name "libvulkan.so.1")   ; only for cross-checking exports
 (define input-file "res/vulkan.xml")
-(define output-file "vulkan.ss")
+
+;; Each generated library: its name, output file and the Vulkan headers
+;; whose declarations it holds.  Platform libraries import (vulkan).
+(define libraries
+  '((core    (vulkan)         "vulkan.ss"  ("vulkan_core.h" "vulkan.h" "vk_platform.h" "vk_video/"))
+    (xlib    (vulkan xlib)    "xlib.ss"    ("vulkan_xlib.h" "vulkan_xlib_xrandr.h"))
+    (xcb     (vulkan xcb)     "xcb.ss"     ("vulkan_xcb.h"))
+    (wayland (vulkan wayland) "wayland.ss" ("vulkan_wayland.h"))))
 
 ;;; ------------------------------------------------------------------
 ;;; Minimal XML reader (sufficient for castxml output: elements and
@@ -187,20 +202,32 @@
 (define (lookup id)
   (or (hashtable-ref by-id id #f) (error 'generate "unknown id" id)))
 
-;; Files that belong to the Vulkan API (vulkan/*.h and vk_video/*.h).
-(define vulkan-files
+;; File id -> the library (core, xlib, ...) its declarations belong to.
+;; Only vulkan/*.h and vk_video/*.h files are Vulkan's own.
+(define file-libraries
   (let ((ht (make-hashtable string-hash string=?)))
-    (for-each (lambda (n)
-                (when (and (eq? (node-tag n) 'File)
-                           (let ((name (attr n 'name)))
-                             (or (string-search "/vulkan/" name)
-                                 (string-search "/vk_video/" name))))
-                  (hashtable-set! ht (attr n 'id) #t)))
-              (node-children doc))
+    (for-each
+     (lambda (n)
+       (when (eq? (node-tag n) 'File)
+         (let ((name (attr n 'name)))
+           (when (or (string-search "/vulkan/" name) (string-search "/vk_video/" name))
+             (let ((lib (find (lambda (l)
+                                (exists (lambda (pat)
+                                          (if (string-suffix? "/" pat)
+                                              (string-search (string-append "/" pat) name)
+                                              (string-suffix? (string-append "/" pat) name)))
+                                        (cadddr l)))
+                              libraries)))
+               (if lib
+                   (hashtable-set! ht (attr n 'id) (car lib))
+                   (printf "note: ignoring ~a (no library for it)\n" name)))))))
+     (node-children doc))
     ht))
 
-(define (vulkan-node? n)
-  (let ((f (attr n 'file))) (and f (hashtable-ref vulkan-files f #f))))
+(define (node-library n)
+  (let ((f (attr n 'file))) (and f (hashtable-ref file-libraries f #f))))
+
+(define (vulkan-node? n) (and (node-library n) #t))
 
 ;; Enum/flag value names.  A handful of structs mangle to the same symbol
 ;; as an enum value (e.g. VkPipelineCacheHeaderVersionOne vs.
@@ -228,17 +255,17 @@
 ;;; ------------------------------------------------------------------
 ;;; Type translation.
 
-(define fundamental-types
-  '(("signed char" . integer-8) ("unsigned char" . unsigned-8) ("char" . char)
-    ("short int" . integer-16) ("short unsigned int" . unsigned-16)
-    ("int" . integer-32) ("unsigned int" . unsigned-32)
-    ("long int" . integer-64) ("long unsigned int" . unsigned-64)
-    ("long long int" . integer-64) ("long long unsigned int" . unsigned-64)
-    ("float" . float) ("double" . double) ("void" . void)))
-
-(define (fundamental->ftype name)
-  (let ((p (assoc name fundamental-types)))
-    (if p (cdr p) (error 'generate "unsupported fundamental type" name))))
+;; Integer types are mapped by their size, not their C name: `long' is
+;; 64 bits on Linux but 32 bits on Windows.
+(define (fundamental->ftype n)
+  (let ((name (attr n 'name)) (size (attr n 'size)))
+    (cond
+     ((member name '("float" "double" "void" "char")) (string->symbol name))
+     ((member name '("signed char" "unsigned char" "short int" "short unsigned int"
+                     "int" "unsigned int" "long int" "long unsigned int"
+                     "long long int" "long long unsigned int"))
+      (string->symbol (format "~a-~a" (if (string-search "unsigned" name) "unsigned" "integer") size)))
+     (else (error 'generate "unsupported fundamental type" name)))))
 
 ;; Strip typedefs and qualifiers down to a FundamentalType/Enumeration node.
 (define (underlying n)
@@ -246,13 +273,17 @@
     ((Typedef CvQualifiedType ElaboratedType) (underlying (lookup (attr n 'type))))
     (else n)))
 
-(define output '())          ; generated forms, reversed
-(define exported '())        ; vk:* symbols, reversed
+;; Forms are emitted into the library being generated; `defined' spans
+;; all libraries, so platform libraries refer to (vulkan)'s types.
+(define output '())          ; generated forms of the current library, reversed
+(define exported '())        ; its vk:* symbols, reversed
+(define all-forms '())       ; every library's forms, in order, for the layout check
 (define defined (make-eq-hashtable))   ; symbol -> #t once its form is emitted
 (define layouts '())         ; (symbol size-in-bits ((field-sym . offset) ...)) for checking
 
 (define (emit! form)
   (set! output (cons form output))
+  (set! all-forms (cons form all-forms))
   (when (and (pair? form) (memq (car form) '(define define-ftype define-vk-procedure define-vk-loader)))
     (let ((name (cadr form)))
       (when (hashtable-ref defined name #f)
@@ -268,7 +299,7 @@
 (define (type->ftype id)
   (let ((n (lookup id)))
     (case (node-tag n)
-      ((FundamentalType) (fundamental->ftype (attr n 'name)))
+      ((FundamentalType) (fundamental->ftype n))
       ((CvQualifiedType ElaboratedType) (type->ftype (attr n 'type)))
       ((PointerType) 'uptr)
       ((ArrayType)
@@ -383,35 +414,10 @@
 ;;; ------------------------------------------------------------------
 ;;; Generate.
 
-(load-shared-object loader-name)
-
-(emit! '(define-ftype enum int))
-
-;; Types and enum values, in header order (dependencies first).
-(for-each (lambda (n)
-            (when (and (vulkan-node? n) (named? n)
-                       (memq (node-tag n) '(Typedef Enumeration Struct Union))
-                       (not (attr n 'incomplete)))
-              (ensure-defined! n)))
-          (node-children doc))
-
-;; static const VkFlags64 constants (64-bit flag bits).
-(for-each (lambda (n)
-            (when (and (eq? (node-tag n) 'Variable) (vulkan-node? n) (attr n 'init))
-              (let* ((init (attr n 'init))
-                     (digits (let strip ((s init))
-                               (if (and (> (string-length s) 0)
-                                        (memv (string-ref s (- (string-length s) 1))
-                                              '(#\u #\U #\l #\L)))
-                                   (strip (substring s 0 (- (string-length s) 1)))
-                                   s)))
-                     (value (cond
-                             ((string-prefix? "0x" digits)
-                              (string->number (substring digits 2 (string-length digits)) 16))
-                             (else (string->number digits)))))
-                (unless value (error 'generate "cannot parse constant" (attr n 'name) init))
-                (emit! `(define ,(vk-enum-symbol (attr n 'name)) ,value)))))
-          (node-children doc))
+(define have-loader?
+  (guard (e (#t (printf "note: no ~a here; skipping the export cross-check\n" loader-name) #f))
+    (load-shared-object loader-name)
+    #t))
 
 ;; Functions exported by the loader are bound directly.  The rest
 ;; (extension functions) get a vk:load-* procedure that fetches the entry
@@ -430,62 +436,174 @@
   (let ((s (symbol->string (vk-symbol name))))
     (string->symbol (string-append "vk:load-" (substring s 3 (string-length s))))))
 
-(for-each (lambda (n)
-            (when (and (eq? (node-tag n) 'Function) (vulkan-node? n))
-              (let ((name (attr n 'name))
-                    (args (map (lambda (a) (param-type (attr a 'type)))
-                               (filter (lambda (c) (eq? (node-tag c) 'Argument))
-                                       (node-children n))))
-                    (ret (param-type (attr n 'returns))))
-                (if (foreign-entry? name)
-                    (emit! `(define-vk-procedure ,(vk-symbol name) ,name ,args ,ret))
-                    (emit! `(define-vk-loader ,(loader-symbol name)
-                              ,(if (device-level? n) 'device-proc-addr 'instance-proc-addr)
-                              ,name ,args ,ret))))))
-          (node-children doc))
+;; The section (VK_VERSION_1_3, VK_KHR_swapchain, ...) each function is
+;; declared in: the last "#define VK_xxx 1" before it in its header.
+(define section-starts                  ; file id -> ((line . section) ...), descending
+  (let ((ht (make-hashtable string-hash string=?)))
+    (for-each
+     (lambda (n)
+       (when (and (eq? (node-tag n) 'File) (hashtable-ref file-libraries (attr n 'id) #f))
+         (let ((path (attr n 'name)))
+           (unless (file-exists? path)
+             (error 'generate "header not found; regenerate res/vulkan.xml on this machine" path))
+           (call-with-input-file path
+             (lambda (in)
+               (let loop ((line 1) (acc '()))
+                 (let ((text (get-line in)))
+                   (if (eof-object? text)
+                       (hashtable-set! ht (attr n 'id) acc)
+                       (loop (+ line 1)
+                             (let ((words (split-ws text)))
+                               ;; Section markers are VK_VERSION_x_y and extension
+                               ;; names, which have lower-case letters (VK_KHR_surface);
+                               ;; not e.g. VK_KHR_SURFACE_SPEC_VERSION 1.
+                               (if (and (= (length words) 3)
+                                        (string=? (car words) "#define")
+                                        (string=? (caddr words) "1")
+                                        (let ((name (cadr words)))
+                                          (or (string-prefix? "VK_VERSION_" name)
+                                              (and (string-prefix? "VK_" name)
+                                                   (exists char-lower-case? (string->list name))))))
+                                   (cons (cons line (cadr words)) acc)
+                                   acc)))))))))))
+     (node-children doc))
+    ht))
 
-(define (count-forms head)
-  (length (filter (lambda (f) (and (pair? f) (eq? (car f) head))) output)))
+(define (function-section fn)
+  (let ((line (string->number (attr fn 'line))))
+    (let ((hit (find (lambda (p) (< (car p) line))
+                     (hashtable-ref section-starts (attr fn 'file) '()))))
+      (and hit (cdr hit)))))
 
-(define library-form
-  `(library (vulkan)
-     (export ,@(reverse exported))
-     (import (chezscheme))
-     (define loader (load-shared-object ,loader-name))
-     ;; Bind lazily-checked: a missing entry (older loader) only errors when called.
-     (define-syntax define-vk-procedure
-       (syntax-rules ()
-         ((_ name cname args ret)
-          (define name
-            (if (foreign-entry? cname)
-                (foreign-procedure cname args ret)
-                (lambda rest
-                  (error 'name "not exported by the Vulkan loader" cname)))))))
-     (define instance-proc-addr
-       (foreign-procedure "vkGetInstanceProcAddr" (uptr utf-8) uptr))
-     (define device-proc-addr
-       (foreign-procedure "vkGetDeviceProcAddr" (uptr utf-8) uptr))
-     ;; (name handle) => procedure, or #f when the driver/loader does not
-     ;; provide the function (e.g. the extension is not enabled).
-     (define-syntax define-vk-loader
-       (syntax-rules ()
-         ((_ name get-proc-addr cname args ret)
-          (define (name handle)
-            (let ((addr (get-proc-addr handle cname)))
-              (and (not (zero? addr))
-                   (foreign-procedure addr args ret)))))))
-     ,@(reverse output)))
+;; What every Vulkan loader exports: the core versions, the generic
+;; window-system extensions and each platform's surface extension.
+(define (loader-export? fn)
+  (let ((section (function-section fn)))
+    (and section
+         (or (string-prefix? "VK_VERSION_" section)
+             (member section '("VK_KHR_surface" "VK_KHR_swapchain" "VK_KHR_display"
+                               "VK_KHR_display_swapchain" "VK_KHR_get_display_properties2"
+                               "VK_KHR_get_surface_capabilities2" "VK_EXT_headless_surface"))
+             (and (string-prefix? "VK_KHR_" section) (string-suffix? "_surface" section))))))
 
-(call-with-output-file output-file
-  (lambda (out)
-    (display ";;; Generated by generate-vulkan.ss from res/vulkan.xml -- do not edit.\n" out)
-    (parameterize ((print-radix 10))
-      (pretty-print library-form out)))
-  'truncate)
+;; static const VkFlags64 values: "32ULL", "0x1ULL", ...
+(define (parse-constant n)
+  (let* ((init (attr n 'init))
+         (digits (let strip ((s init))
+                   (if (and (> (string-length s) 0)
+                            (memv (string-ref s (- (string-length s) 1)) '(#\u #\U #\l #\L)))
+                       (strip (substring s 0 (- (string-length s) 1)))
+                       s)))
+         (value (if (string-prefix? "0x" digits)
+                    (string->number (substring digits 2 (string-length digits)) 16)
+                    (string->number digits))))
+    (or value (error 'generate "cannot parse constant" (attr n 'name) init))))
 
-(printf "wrote ~a: ~a exports, ~a functions bound, ~a extension loaders\n"
-        output-file (length exported)
-        (count-forms 'define-vk-procedure) (count-forms 'define-vk-loader))
+(define warnings 0)
+
+;; Emit LIB's types, constants and functions => (values exports body).
+(define (generate-library! lib)
+  (set! output '())
+  (set! exported '())
+  (when (eq? lib 'core) (emit! '(define-ftype enum int)))
+  ;; Types and enum values, in header order (dependencies first).
+  (for-each (lambda (n)
+              (when (and (eq? (node-library n) lib) (named? n)
+                         (memq (node-tag n) '(Typedef Enumeration Struct Union))
+                         (not (attr n 'incomplete)))
+                (ensure-defined! n)))
+            (node-children doc))
+  ;; static const VkFlags64 constants (64-bit flag bits).
+  (for-each (lambda (n)
+              (when (and (eq? (node-tag n) 'Variable) (eq? (node-library n) lib) (attr n 'init))
+                (emit! `(define ,(vk-enum-symbol (attr n 'name)) ,(parse-constant n)))))
+            (node-children doc))
+  (for-each (lambda (n)
+              (when (and (eq? (node-tag n) 'Function) (eq? (node-library n) lib))
+                (let* ((name (attr n 'name))
+                       (args (map (lambda (a) (param-type (attr a 'type)))
+                                  (filter (lambda (c) (eq? (node-tag c) 'Argument))
+                                          (node-children n))))
+                       (ret (param-type (attr n 'returns)))
+                       (direct? (and (loader-export? n) #t)))
+                  ;; Advisory only: an older local loader lacks newer functions
+                  ;; (they then fail when called), a newer one may export more.
+                  (when (and have-loader? (not (eq? direct? (foreign-entry? name))))
+                    (set! warnings (+ warnings 1))
+                    (printf "note: ~a is bound ~a, but the local loader ~a it\n" name
+                            (if direct? "directly" "through vk:load-*")
+                            (if (foreign-entry? name) "exports" "does not export")))
+                  (if direct?
+                      (emit! `(define-vk-procedure ,(vk-symbol name) ,name ,args ,ret))
+                      (emit! `(define-vk-loader ,(loader-symbol name)
+                                ,(if (device-level? n) 'device-proc-addr 'instance-proc-addr)
+                                ,name ,args ,ret))))))
+            (node-children doc))
+  (values (reverse exported) (reverse output)))
+
+;; Shared by every generated library: load the Vulkan loader (by its name on
+;; this platform) and the two ways of binding a function.
+(define prelude
+  '((define loader
+      (let* ((mt (symbol->string (machine-type)))
+             (os? (lambda (suffix)
+                    (let ((n (string-length mt)) (k (string-length suffix)))
+                      (and (>= n k) (string=? suffix (substring mt (- n k) n))))))
+             (candidates
+              (cond ((os? "nt") '("vulkan-1.dll"))
+                    ((os? "osx") '("libvulkan.1.dylib" "/usr/local/lib/libvulkan.1.dylib"
+                                   "/opt/homebrew/lib/libvulkan.1.dylib" "libMoltenVK.dylib"))
+                    (else '("libvulkan.so.1" "libvulkan.so")))))
+        (let try ((names candidates))
+          (cond ((null? names) (error 'vulkan "cannot load the Vulkan loader; tried" candidates))
+                ((guard (e (#t #f)) (load-shared-object (car names)) #t) (car names))
+                (else (try (cdr names)))))))
+    ;; Bind lazily-checked: a missing entry (older loader) only errors when called.
+    (define-syntax define-vk-procedure
+      (syntax-rules ()
+        ((_ name cname args ret)
+         (define name
+           (if (foreign-entry? cname)
+               (foreign-procedure cname args ret)
+               (lambda rest
+                 (error 'name "not exported by the Vulkan loader" cname)))))))
+    (define instance-proc-addr
+      (foreign-procedure "vkGetInstanceProcAddr" (uptr utf-8) uptr))
+    (define device-proc-addr
+      (foreign-procedure "vkGetDeviceProcAddr" (uptr utf-8) uptr))
+    ;; (name handle) => procedure, or #f when the driver/loader does not
+    ;; provide the function (e.g. the extension is not enabled).
+    (define-syntax define-vk-loader
+      (syntax-rules ()
+        ((_ name get-proc-addr cname args ret)
+         (define (name handle)
+           (let ((addr (get-proc-addr handle cname)))
+             (and (not (zero? addr))
+                  (foreign-procedure addr args ret)))))))))
+
+(define (count-forms head body)
+  (length (filter (lambda (f) (and (pair? f) (eq? (car f) head))) body)))
+
+(for-each
+ (lambda (l)
+   (let ((lib (car l)) (name (cadr l)) (file (caddr l)))
+     (let-values (((exports body) (generate-library! lib)))
+       (call-with-output-file file
+         (lambda (out)
+           (display ";;; Generated by generate-vulkan.ss from res/vulkan.xml -- do not edit.\n" out)
+           (parameterize ((print-radix 10))
+             (pretty-print
+              `(library ,name
+                 (export ,@exports)
+                 (import (chezscheme) ,@(if (eq? lib 'core) '() '((vulkan))))
+                 ,@prelude
+                 ,@body)
+              out)))
+         'truncate)
+       (printf "wrote ~a: ~a exports, ~a functions bound, ~a extension loaders\n"
+               file (length exports)
+               (count-forms 'define-vk-procedure body) (count-forms 'define-vk-loader body)))))
+ libraries)
 
 ;;; ------------------------------------------------------------------
 ;;; Verify ftype layouts against castxml.
@@ -494,7 +612,7 @@
   (for-each (lambda (form)
               (when (and (pair? form) (eq? (car form) 'define-ftype))
                 (eval form env)))
-            (reverse output))
+            (reverse all-forms))
   (let ((errors 0))
     (for-each
      (lambda (l)
@@ -514,4 +632,6 @@
           offsets)))
      layouts)
     (printf "checked ~a struct/union layouts: ~a mismatches\n" (length layouts) errors)
+    (unless (zero? warnings)
+      (printf "~a functions differ from the local loader's exports (see notes above)\n" warnings))
     (unless (zero? errors) (exit 1))))
