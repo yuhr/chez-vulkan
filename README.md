@@ -2,6 +2,9 @@
 
 Vulkan graphics API binding for Chez Scheme.
 
+The same bindings for GNU Guile, with the same names and generation rules:
+[guile-vulkan](https://github.com/ebenali/guile-vulkan).
+
 ![chezcube, one of the examples: a spinning cube with a λ on each face](docs/chezcube.gif)
 
 ## Libraries
