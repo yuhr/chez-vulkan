@@ -1,0 +1,170 @@
+# Regenerates the bindings and runs the examples and tests on Mesa's
+# software Vulkan driver (lavapipe), on Linux and Windows.  Every download is
+# pinned to a version and SHA-256; actions are pinned to commits.
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CHEZ_VERSION: 10.4.1
+  CHEZ_SOURCE_SHA256: 2e74952db7bc177f0c3602e2217a341ba677d733eec4cd7726418c3a4e1ef308
+  CHEZ_WINDOWS_SHA256: 81c869b0f6a88dfeb37cc3c55198f816b7d08e5740900fef5e985f089476081d
+  VULKAN_HEADERS_COMMIT: 6802bb4733b63ed5efd3adb308a6c885ef180ea1 # v1.4.363
+  VULKAN_LOADER_COMMIT: 9e9518d2cf00054a220ae1a40f4406804b420ef5  # v1.4.363
+  MESA_WINDOWS_VERSION: 26.3.1
+  MESA_WINDOWS_SHA256: 64e84cf13d67dd354640bf443ed0445e6a83afd06a5729f0750b3744d633b3f1
+
+jobs:
+  linux:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Check out the Vulkan headers the bindings were generated from
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: KhronosGroup/Vulkan-Headers
+          ref: ${{ env.VULKAN_HEADERS_COMMIT }}
+          path: vulkan-headers
+
+      - name: Install packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            castxml libx11-dev libxrandr-dev libxcb1-dev libwayland-dev \
+            libvulkan1 mesa-vulkan-drivers vulkan-validationlayers xvfb \
+            libncurses-dev uuid-dev
+
+      - name: Cache Chez Scheme
+        id: chez
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/chez
+          key: chez-${{ env.CHEZ_VERSION }}-ubuntu-24.04-x64
+
+      - name: Build Chez Scheme
+        if: steps.chez.outputs.cache-hit != 'true'
+        run: |
+          curl -fsSL -o csv.tar.gz \
+            "https://github.com/cisco/ChezScheme/releases/download/v$CHEZ_VERSION/csv$CHEZ_VERSION.tar.gz"
+          echo "$CHEZ_SOURCE_SHA256  csv.tar.gz" | sha256sum -c
+          tar xzf csv.tar.gz
+          cd "csv$CHEZ_VERSION"
+          ./configure --threads --disable-x11 --installprefix="$HOME/chez"
+          make -j"$(nproc)"
+          make install
+
+      - run: echo "$HOME/chez/bin" >> "$GITHUB_PATH"
+
+      - name: Regenerate the bindings
+        run: |
+          castxml --castxml-gccxml -Ivulkan-headers/include \
+            -DVK_USE_PLATFORM_XLIB_KHR -DVK_USE_PLATFORM_XLIB_XRANDR_EXT \
+            -DVK_USE_PLATFORM_XCB_KHR -DVK_USE_PLATFORM_WAYLAND_KHR \
+            -o res/vulkan.xml vulkan-headers/include/vulkan/vulkan.h
+          scheme --script generate-vulkan.ss
+
+      - name: The generated libraries match the committed ones
+        run: git diff --exit-code --stat -- vulkan.ss xlib.ss xcb.ss wayland.ss
+
+      - name: Compute example (lavapipe, validation layer)
+        run: |
+          VK_INSTANCE_LAYERS=VK_LAYER_KHRONOS_validation \
+            scheme --script examples/compute/compute.ss 2>&1 | tee compute.txt
+          grep -q '1000/1000 elements correct' compute.txt
+          ! grep -q '^Validation Error' compute.txt
+
+      - name: Gears example (Xvfb, lavapipe, validation layer)
+        run: |
+          VK_INSTANCE_LAYERS=VK_LAYER_KHRONOS_validation \
+            xvfb-run -a scheme --script examples/gears/gears.ss --frames 60 2>&1 | tee gears.txt
+          ! grep -q '^Validation Error' gears.txt
+
+      - name: XCB surface test (Xvfb, lavapipe)
+        run: xvfb-run -a scheme --script tests/xcb-surface.ss
+
+  windows:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Cache the Vulkan loader
+        id: loader
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: vulkan-runtime
+          key: vulkan-loader-${{ env.VULKAN_LOADER_COMMIT }}-windows-x64
+
+      - name: Check out the Vulkan headers
+        if: steps.loader.outputs.cache-hit != 'true'
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: KhronosGroup/Vulkan-Headers
+          ref: ${{ env.VULKAN_HEADERS_COMMIT }}
+          path: vulkan-headers
+
+      - name: Check out the Vulkan loader
+        if: steps.loader.outputs.cache-hit != 'true'
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: KhronosGroup/Vulkan-Loader
+          ref: ${{ env.VULKAN_LOADER_COMMIT }}
+          path: vulkan-loader
+
+      # Windows has no Vulkan loader without a GPU driver; build Khronos's.
+      - name: Build the Vulkan loader (vulkan-1.dll)
+        if: steps.loader.outputs.cache-hit != 'true'
+        run: |
+          cmake -S vulkan-headers -B headers-build
+          cmake --install headers-build --prefix "$PWD/headers-install"
+          cmake -S vulkan-loader -B loader-build -A x64 `
+            -DCMAKE_PREFIX_PATH="$PWD/headers-install" -DBUILD_TESTS=OFF
+          cmake --build loader-build --config Release
+          New-Item -ItemType Directory -Force vulkan-runtime | Out-Null
+          Copy-Item loader-build/loader/Release/vulkan-1.dll vulkan-runtime/
+
+      - name: Install Mesa's software Vulkan driver (lavapipe)
+        run: |
+          curl.exe -fsSL -o mesa.7z `
+            "https://github.com/pal1000/mesa-dist-win/releases/download/$env:MESA_WINDOWS_VERSION/mesa3d-$env:MESA_WINDOWS_VERSION-release-msvc.7z"
+          if ((Get-FileHash mesa.7z -Algorithm SHA256).Hash -ne $env:MESA_WINDOWS_SHA256) { throw "mesa3d: SHA-256 mismatch" }
+          7z x mesa.7z -omesa | Out-Null
+          # The loader ignores VK_DRIVER_FILES in elevated processes, and the
+          # runner is elevated, so register the driver the way installers do:
+          # a value named after its manifest, 0 meaning enabled.
+          $key = 'HKLM:\SOFTWARE\Khronos\Vulkan\Drivers'
+          New-Item -Force -Path $key | Out-Null
+          New-ItemProperty -Force -Path $key -Name "$PWD\mesa\x64\lvp_icd.x86_64.json" `
+            -PropertyType DWord -Value 0 | Out-Null
+
+      - name: Install Chez Scheme
+        run: |
+          curl.exe -fsSL -o chez.exe `
+            "https://github.com/cisco/ChezScheme/releases/download/v$env:CHEZ_VERSION/ChezScheme$env:CHEZ_VERSION.exe"
+          if ((Get-FileHash chez.exe -Algorithm SHA256).Hash -ne $env:CHEZ_WINDOWS_SHA256) { throw "Chez Scheme: SHA-256 mismatch" }
+          Start-Process -Wait -FilePath .\chez.exe -ArgumentList '/quiet', '/norestart'
+          $bin = "$env:ProgramFiles\Chez Scheme $env:CHEZ_VERSION\bin\ta6nt"
+          # Windows looks next to the program before System32 and PATH; the
+          # runner image has an older vulkan-1.dll in System32.
+          Copy-Item vulkan-runtime\vulkan-1.dll $bin
+          $bin >> $env:GITHUB_PATH
+
+      - name: Compute example (lavapipe)
+        run: |
+          scheme --script examples/compute/compute.ss 2>&1 | Tee-Object -FilePath compute.txt
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          if (-not (Select-String -Quiet -Pattern '1000/1000 elements correct' -Path compute.txt)) { exit 1 }
+
+      - name: Win32 surface test (lavapipe)
+        run: |
+          scheme --script tests/win32-surface.ss
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
