@@ -253,7 +253,7 @@
 
 (define (emit! form)
   (set! output (cons form output))
-  (when (and (pair? form) (memq (car form) '(define define-ftype define-vk-procedure)))
+  (when (and (pair? form) (memq (car form) '(define define-ftype define-vk-procedure define-vk-loader)))
     (let ((name (cadr form)))
       (when (hashtable-ref defined name #f)
         (error 'generate "duplicate definition" name))
@@ -413,19 +413,39 @@
                 (emit! `(define ,(vk-enum-symbol (attr n 'name)) ,value)))))
           (node-children doc))
 
-;; Functions exported by the loader.
-(define skipped-functions 0)
+;; Functions exported by the loader are bound directly.  The rest
+;; (extension functions) get a vk:load-* procedure that fetches the entry
+;; point with vkGetDeviceProcAddr (device-level: first parameter is a
+;; VkDevice, VkQueue or VkCommandBuffer) or vkGetInstanceProcAddr.
+(define (device-level? fn)
+  (let ((args (filter (lambda (c) (eq? (node-tag c) 'Argument)) (node-children fn))))
+    (and (pair? args)
+         (let strip ((t (lookup (attr (car args) 'type))))
+           (case (node-tag t)
+             ((CvQualifiedType) (strip (lookup (attr t 'type))))
+             ((Typedef) (member (attr t 'name) '("VkDevice" "VkQueue" "VkCommandBuffer")))
+             (else #f))))))
+
+(define (loader-symbol name)
+  (let ((s (symbol->string (vk-symbol name))))
+    (string->symbol (string-append "vk:load-" (substring s 3 (string-length s))))))
+
 (for-each (lambda (n)
             (when (and (eq? (node-tag n) 'Function) (vulkan-node? n))
-              (let ((name (attr n 'name)))
+              (let ((name (attr n 'name))
+                    (args (map (lambda (a) (param-type (attr a 'type)))
+                               (filter (lambda (c) (eq? (node-tag c) 'Argument))
+                                       (node-children n))))
+                    (ret (param-type (attr n 'returns))))
                 (if (foreign-entry? name)
-                    (emit! `(define-vk-procedure ,(vk-symbol name) ,name
-                              ,(map (lambda (a) (param-type (attr a 'type)))
-                                    (filter (lambda (c) (eq? (node-tag c) 'Argument))
-                                            (node-children n)))
-                              ,(param-type (attr n 'returns))))
-                    (set! skipped-functions (+ skipped-functions 1))))))
+                    (emit! `(define-vk-procedure ,(vk-symbol name) ,name ,args ,ret))
+                    (emit! `(define-vk-loader ,(loader-symbol name)
+                              ,(if (device-level? n) 'device-proc-addr 'instance-proc-addr)
+                              ,name ,args ,ret))))))
           (node-children doc))
+
+(define (count-forms head)
+  (length (filter (lambda (f) (and (pair? f) (eq? (car f) head))) output)))
 
 (define library-form
   `(library (vulkan)
@@ -441,6 +461,19 @@
                 (foreign-procedure cname args ret)
                 (lambda rest
                   (error 'name "not exported by the Vulkan loader" cname)))))))
+     (define instance-proc-addr
+       (foreign-procedure "vkGetInstanceProcAddr" (uptr utf-8) uptr))
+     (define device-proc-addr
+       (foreign-procedure "vkGetDeviceProcAddr" (uptr utf-8) uptr))
+     ;; (name handle) => procedure, or #f when the driver/loader does not
+     ;; provide the function (e.g. the extension is not enabled).
+     (define-syntax define-vk-loader
+       (syntax-rules ()
+         ((_ name get-proc-addr cname args ret)
+          (define (name handle)
+            (let ((addr (get-proc-addr handle cname)))
+              (and (not (zero? addr))
+                   (foreign-procedure addr args ret)))))))
      ,@(reverse output)))
 
 (call-with-output-file output-file
@@ -450,10 +483,9 @@
       (pretty-print library-form out)))
   'truncate)
 
-(printf "wrote ~a: ~a exports, ~a functions bound, ~a not exported by ~a\n"
+(printf "wrote ~a: ~a exports, ~a functions bound, ~a extension loaders\n"
         output-file (length exported)
-        (length (filter (lambda (f) (and (pair? f) (eq? (car f) 'define-vk-procedure))) output))
-        skipped-functions loader-name)
+        (count-forms 'define-vk-procedure) (count-forms 'define-vk-loader))
 
 ;;; ------------------------------------------------------------------
 ;;; Verify ftype layouts against castxml.

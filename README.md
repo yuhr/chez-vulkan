@@ -13,13 +13,30 @@ Currently supported platforms are following:
 - `(vulkan win32)`
 - `(vulkan wayland)`
 
+## Extension functions
+
+Functions the loader exports (core 1.0–1.4 and the WSI surface/swapchain
+functions) are bound directly, e.g. `vk:create-instance`. Every other
+function has a `vk:load-*` procedure that fetches it at runtime and returns
+a callable procedure, or `#f` if it is unavailable (for example, the
+extension was not enabled). Device-level functions (first parameter a
+`VkDevice`, `VkQueue` or `VkCommandBuffer`) take a device; the rest take an
+instance:
+
+```scheme
+(define draw-mesh-tasks (vk:load-cmd-draw-mesh-tasks-ext device))
+(when draw-mesh-tasks
+  (draw-mesh-tasks command-buffer x y z))
+```
+
+Each `vk:load-*` call looks the function up again, so load once and keep
+the result.
+
 ## Regenerating
 
 `vulkan.ss` is generated from the system Vulkan headers (currently 1.4.363).
 Requires [CastXML](https://github.com/CastXML/CastXML) and a Vulkan loader
-(`libvulkan.so.1`); only functions the loader exports are bound, extension
-functions must be fetched with `vk:get-instance-proc-addr` /
-`vk:get-device-proc-addr`.
+(`libvulkan.so.1`).
 
 ```sh
 castxml --castxml-gccxml -o res/vulkan.xml /usr/include/vulkan/vulkan.h

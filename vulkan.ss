@@ -6664,13 +6664,502 @@
    vk:get-display-plane-capabilities-khr
    vk:create-display-plane-surface-khr
    vk:create-shared-swapchains-khr
+   vk:load-get-physical-device-video-capabilities-khr
+   vk:load-get-physical-device-video-format-properties-khr
+   vk:load-create-video-session-khr
+   vk:load-destroy-video-session-khr
+   vk:load-get-video-session-memory-requirements-khr
+   vk:load-bind-video-session-memory-khr
+   vk:load-create-video-session-parameters-khr
+   vk:load-update-video-session-parameters-khr
+   vk:load-destroy-video-session-parameters-khr
+   vk:load-cmd-begin-video-coding-khr
+   vk:load-cmd-end-video-coding-khr
+   vk:load-cmd-control-video-coding-khr
+   vk:load-cmd-decode-video-khr vk:load-cmd-begin-rendering-khr
+   vk:load-cmd-end-rendering-khr
+   vk:load-get-physical-device-features2-khr
+   vk:load-get-physical-device-properties2-khr
+   vk:load-get-physical-device-format-properties2-khr
+   vk:load-get-physical-device-image-format-properties2-khr
+   vk:load-get-physical-device-queue-family-properties2-khr
+   vk:load-get-physical-device-memory-properties2-khr
+   vk:load-get-physical-device-sparse-image-format-properties2-khr
+   vk:load-get-device-group-peer-memory-features-khr
+   vk:load-cmd-set-device-mask-khr
+   vk:load-cmd-dispatch-base-khr vk:load-trim-command-pool-khr
+   vk:load-enumerate-physical-device-groups-khr
+   vk:load-get-physical-device-external-buffer-properties-khr
+   vk:load-get-memory-fd-khr
+   vk:load-get-memory-fd-properties-khr
+   vk:load-get-physical-device-external-semaphore-properties-khr
+   vk:load-import-semaphore-fd-khr vk:load-get-semaphore-fd-khr
+   vk:load-cmd-push-descriptor-set-khr
+   vk:load-cmd-push-descriptor-set-with-template-khr
+   vk:load-create-descriptor-update-template-khr
+   vk:load-destroy-descriptor-update-template-khr
+   vk:load-update-descriptor-set-with-template-khr
+   vk:load-create-render-pass2-khr
+   vk:load-cmd-begin-render-pass2-khr
+   vk:load-cmd-next-subpass2-khr
+   vk:load-cmd-end-render-pass2-khr
+   vk:load-get-swapchain-status-khr
+   vk:load-get-physical-device-external-fence-properties-khr
+   vk:load-import-fence-fd-khr vk:load-get-fence-fd-khr
+   vk:load-enumerate-physical-device-queue-family-performance-query-counters-khr
+   vk:load-get-physical-device-queue-family-performance-query-passes-khr
+   vk:load-acquire-profiling-lock-khr
+   vk:load-release-profiling-lock-khr
    vk:get-physical-device-surface-capabilities2-khr
    vk:get-physical-device-surface-formats2-khr
    vk:get-physical-device-display-properties2-khr
    vk:get-physical-device-display-plane-properties2-khr
    vk:get-display-mode-properties2-khr
    vk:get-display-plane-capabilities2-khr
-   vk:create-headless-surface-ext)
+   vk:load-get-image-memory-requirements2-khr
+   vk:load-get-buffer-memory-requirements2-khr
+   vk:load-get-image-sparse-memory-requirements2-khr
+   vk:load-create-sampler-ycbcr-conversion-khr
+   vk:load-destroy-sampler-ycbcr-conversion-khr
+   vk:load-bind-buffer-memory2-khr
+   vk:load-bind-image-memory2-khr
+   vk:load-get-descriptor-set-layout-support-khr
+   vk:load-cmd-draw-indirect-count-khr
+   vk:load-cmd-draw-indexed-indirect-count-khr
+   vk:load-get-semaphore-counter-value-khr
+   vk:load-wait-semaphores-khr vk:load-signal-semaphore-khr
+   vk:load-get-physical-device-fragment-shading-rates-khr
+   vk:load-cmd-set-fragment-shading-rate-khr
+   vk:load-cmd-set-rendering-attachment-locations-khr
+   vk:load-cmd-set-rendering-input-attachment-indices-khr
+   vk:load-wait-for-present-khr
+   vk:load-get-buffer-device-address-khr
+   vk:load-get-buffer-opaque-capture-address-khr
+   vk:load-get-device-memory-opaque-capture-address-khr
+   vk:load-create-deferred-operation-khr
+   vk:load-destroy-deferred-operation-khr
+   vk:load-get-deferred-operation-max-concurrency-khr
+   vk:load-get-deferred-operation-result-khr
+   vk:load-deferred-operation-join-khr
+   vk:load-get-pipeline-executable-properties-khr
+   vk:load-get-pipeline-executable-statistics-khr
+   vk:load-get-pipeline-executable-internal-representations-khr
+   vk:load-map-memory2-khr vk:load-unmap-memory2-khr
+   vk:load-get-physical-device-video-encode-quality-level-properties-khr
+   vk:load-get-encoded-video-session-parameters-khr
+   vk:load-cmd-encode-video-khr vk:load-cmd-set-event2-khr
+   vk:load-cmd-reset-event2-khr vk:load-cmd-wait-events2-khr
+   vk:load-cmd-pipeline-barrier2-khr
+   vk:load-cmd-write-timestamp2-khr vk:load-queue-submit2-khr
+   vk:load-cmd-bind-index-buffer3-khr
+   vk:load-cmd-bind-vertex-buffers3-khr
+   vk:load-cmd-draw-indirect2-khr
+   vk:load-cmd-draw-indexed-indirect2-khr
+   vk:load-cmd-dispatch-indirect2-khr
+   vk:load-cmd-copy-memory-khr
+   vk:load-cmd-copy-memory-to-image-khr
+   vk:load-cmd-copy-image-to-memory-khr
+   vk:load-cmd-update-memory-khr vk:load-cmd-fill-memory-khr
+   vk:load-cmd-copy-query-pool-results-to-memory-khr
+   vk:load-cmd-draw-indirect-count2-khr
+   vk:load-cmd-draw-indexed-indirect-count2-khr
+   vk:load-cmd-begin-conditional-rendering2-ext
+   vk:load-cmd-bind-transform-feedback-buffers2-ext
+   vk:load-cmd-begin-transform-feedback2-ext
+   vk:load-cmd-end-transform-feedback2-ext
+   vk:load-cmd-draw-indirect-byte-count2-ext
+   vk:load-cmd-draw-mesh-tasks-indirect2-ext
+   vk:load-cmd-draw-mesh-tasks-indirect-count2-ext
+   vk:load-cmd-write-marker-to-memory-amd
+   vk:load-create-acceleration-structure2-khr
+   vk:load-cmd-copy-buffer2-khr vk:load-cmd-copy-image2-khr
+   vk:load-cmd-copy-buffer-to-image2-khr
+   vk:load-cmd-copy-image-to-buffer2-khr
+   vk:load-cmd-blit-image2-khr vk:load-cmd-resolve-image2-khr
+   vk:load-cmd-trace-rays-indirect2-khr
+   vk:load-get-device-buffer-memory-requirements-khr
+   vk:load-get-device-image-memory-requirements-khr
+   vk:load-get-device-image-sparse-memory-requirements-khr
+   vk:load-cmd-bind-index-buffer2-khr
+   vk:load-get-rendering-area-granularity-khr
+   vk:load-get-device-image-subresource-layout-khr
+   vk:load-get-image-subresource-layout2-khr
+   vk:load-wait-for-present2-khr
+   vk:load-create-pipeline-binaries-khr
+   vk:load-destroy-pipeline-binary-khr
+   vk:load-get-pipeline-key-khr
+   vk:load-get-pipeline-binary-data-khr
+   vk:load-release-captured-pipeline-data-khr
+   vk:load-release-swapchain-images-khr
+   vk:load-get-physical-device-cooperative-matrix-properties-khr
+   vk:load-cmd-set-line-stipple-khr
+   vk:load-get-physical-device-calibrateable-time-domains-khr
+   vk:load-get-calibrated-timestamps-khr
+   vk:load-cmd-bind-descriptor-sets2-khr
+   vk:load-cmd-push-constants2-khr
+   vk:load-cmd-push-descriptor-set2-khr
+   vk:load-cmd-push-descriptor-set-with-template2-khr
+   vk:load-cmd-set-descriptor-buffer-offsets2-ext
+   vk:load-cmd-bind-descriptor-buffer-embedded-samplers2-ext
+   vk:load-cmd-copy-memory-indirect-khr
+   vk:load-cmd-copy-memory-to-image-indirect-khr
+   vk:load-get-device-fault-reports-khr
+   vk:load-get-device-fault-debug-info-khr
+   vk:load-cmd-end-rendering2-khr
+   vk:load-create-debug-report-callback-ext
+   vk:load-destroy-debug-report-callback-ext
+   vk:load-debug-report-message-ext
+   vk:load-debug-marker-set-object-tag-ext
+   vk:load-debug-marker-set-object-name-ext
+   vk:load-cmd-debug-marker-begin-ext
+   vk:load-cmd-debug-marker-end-ext
+   vk:load-cmd-debug-marker-insert-ext
+   vk:load-cmd-bind-transform-feedback-buffers-ext
+   vk:load-cmd-begin-transform-feedback-ext
+   vk:load-cmd-end-transform-feedback-ext
+   vk:load-cmd-begin-query-indexed-ext
+   vk:load-cmd-end-query-indexed-ext
+   vk:load-cmd-draw-indirect-byte-count-ext
+   vk:load-create-cu-module-nvx vk:load-create-cu-function-nvx
+   vk:load-destroy-cu-module-nvx
+   vk:load-destroy-cu-function-nvx
+   vk:load-cmd-cu-launch-kernel-nvx
+   vk:load-get-image-view-handle-nvx
+   vk:load-get-image-view-handle64-nvx
+   vk:load-get-image-view-address-nvx
+   vk:load-get-device-combined-image-sampler-index-nvx
+   vk:load-cmd-draw-indirect-count-amd
+   vk:load-cmd-draw-indexed-indirect-count-amd
+   vk:load-get-shader-info-amd
+   vk:load-get-physical-device-external-image-format-properties-nv
+   vk:load-cmd-begin-conditional-rendering-ext
+   vk:load-cmd-end-conditional-rendering-ext
+   vk:load-cmd-set-viewport-wscaling-nv
+   vk:load-release-display-ext
+   vk:load-get-physical-device-surface-capabilities2-ext
+   vk:load-display-power-control-ext
+   vk:load-register-device-event-ext
+   vk:load-register-display-event-ext
+   vk:load-get-swapchain-counter-ext
+   vk:load-get-refresh-cycle-duration-google
+   vk:load-get-past-presentation-timing-google
+   vk:load-cmd-set-discard-rectangle-ext
+   vk:load-cmd-set-discard-rectangle-enable-ext
+   vk:load-cmd-set-discard-rectangle-mode-ext
+   vk:load-set-hdr-metadata-ext
+   vk:load-set-debug-utils-object-name-ext
+   vk:load-set-debug-utils-object-tag-ext
+   vk:load-queue-begin-debug-utils-label-ext
+   vk:load-queue-end-debug-utils-label-ext
+   vk:load-queue-insert-debug-utils-label-ext
+   vk:load-cmd-begin-debug-utils-label-ext
+   vk:load-cmd-end-debug-utils-label-ext
+   vk:load-cmd-insert-debug-utils-label-ext
+   vk:load-create-debug-utils-messenger-ext
+   vk:load-destroy-debug-utils-messenger-ext
+   vk:load-submit-debug-utils-message-ext
+   vk:load-create-gpa-session-amd
+   vk:load-destroy-gpa-session-amd
+   vk:load-set-gpa-device-clock-mode-amd
+   vk:load-get-gpa-device-clock-info-amd
+   vk:load-cmd-begin-gpa-session-amd
+   vk:load-cmd-end-gpa-session-amd
+   vk:load-cmd-begin-gpa-sample-amd
+   vk:load-cmd-end-gpa-sample-amd
+   vk:load-get-gpa-session-status-amd
+   vk:load-get-gpa-session-results-amd
+   vk:load-reset-gpa-session-amd
+   vk:load-cmd-copy-gpa-session-results-amd
+   vk:load-write-sampler-descriptors-ext
+   vk:load-write-resource-descriptors-ext
+   vk:load-cmd-bind-sampler-heap-ext
+   vk:load-cmd-bind-resource-heap-ext vk:load-cmd-push-data-ext
+   vk:load-get-image-opaque-capture-data-ext
+   vk:load-get-physical-device-descriptor-size-ext
+   vk:load-register-custom-border-color-ext
+   vk:load-unregister-custom-border-color-ext
+   vk:load-get-tensor-opaque-capture-data-arm
+   vk:load-cmd-set-sample-locations-ext
+   vk:load-get-physical-device-multisample-properties-ext
+   vk:load-get-image-drm-format-modifier-properties-ext
+   vk:load-create-validation-cache-ext
+   vk:load-destroy-validation-cache-ext
+   vk:load-merge-validation-caches-ext
+   vk:load-get-validation-cache-data-ext
+   vk:load-cmd-bind-shading-rate-image-nv
+   vk:load-cmd-set-viewport-shading-rate-palette-nv
+   vk:load-cmd-set-coarse-sample-order-nv
+   vk:load-create-acceleration-structure-nv
+   vk:load-destroy-acceleration-structure-nv
+   vk:load-get-acceleration-structure-memory-requirements-nv
+   vk:load-bind-acceleration-structure-memory-nv
+   vk:load-cmd-build-acceleration-structure-nv
+   vk:load-cmd-copy-acceleration-structure-nv
+   vk:load-cmd-trace-rays-nv
+   vk:load-create-ray-tracing-pipelines-nv
+   vk:load-get-ray-tracing-shader-group-handles-khr
+   vk:load-get-ray-tracing-shader-group-handles-nv
+   vk:load-get-acceleration-structure-handle-nv
+   vk:load-cmd-write-acceleration-structures-properties-nv
+   vk:load-compile-deferred-nv
+   vk:load-get-memory-host-pointer-properties-ext
+   vk:load-cmd-write-buffer-marker-amd
+   vk:load-cmd-write-buffer-marker2-amd
+   vk:load-get-physical-device-calibrateable-time-domains-ext
+   vk:load-get-calibrated-timestamps-ext
+   vk:load-cmd-draw-mesh-tasks-nv
+   vk:load-cmd-draw-mesh-tasks-indirect-nv
+   vk:load-cmd-draw-mesh-tasks-indirect-count-nv
+   vk:load-cmd-set-exclusive-scissor-enable-nv
+   vk:load-cmd-set-exclusive-scissor-nv
+   vk:load-cmd-set-checkpoint-nv
+   vk:load-get-queue-checkpoint-data-nv
+   vk:load-get-queue-checkpoint-data2-nv
+   vk:load-set-swapchain-present-timing-queue-size-ext
+   vk:load-get-swapchain-timing-properties-ext
+   vk:load-get-swapchain-time-domain-properties-ext
+   vk:load-get-past-presentation-timing-ext
+   vk:load-initialize-performance-api-intel
+   vk:load-uninitialize-performance-api-intel
+   vk:load-cmd-set-performance-marker-intel
+   vk:load-cmd-set-performance-stream-marker-intel
+   vk:load-cmd-set-performance-override-intel
+   vk:load-acquire-performance-configuration-intel
+   vk:load-release-performance-configuration-intel
+   vk:load-queue-set-performance-configuration-intel
+   vk:load-get-performance-parameter-intel
+   vk:load-set-local-dimming-amd
+   vk:load-get-buffer-device-address-ext
+   vk:load-get-physical-device-tool-properties-ext
+   vk:load-get-physical-device-cooperative-matrix-properties-nv
+   vk:load-get-physical-device-supported-framebuffer-mixed-samples-combinations-nv
+   vk:create-headless-surface-ext
+   vk:load-cmd-set-line-stipple-ext
+   vk:load-reset-query-pool-ext vk:load-cmd-set-cull-mode-ext
+   vk:load-cmd-set-front-face-ext
+   vk:load-cmd-set-primitive-topology-ext
+   vk:load-cmd-set-viewport-with-count-ext
+   vk:load-cmd-set-scissor-with-count-ext
+   vk:load-cmd-bind-vertex-buffers2-ext
+   vk:load-cmd-set-depth-test-enable-ext
+   vk:load-cmd-set-depth-write-enable-ext
+   vk:load-cmd-set-depth-compare-op-ext
+   vk:load-cmd-set-depth-bounds-test-enable-ext
+   vk:load-cmd-set-stencil-test-enable-ext
+   vk:load-cmd-set-stencil-op-ext
+   vk:load-copy-memory-to-image-ext
+   vk:load-copy-image-to-memory-ext
+   vk:load-copy-image-to-image-ext
+   vk:load-transition-image-layout-ext
+   vk:load-get-image-subresource-layout2-ext
+   vk:load-release-swapchain-images-ext
+   vk:load-get-generated-commands-memory-requirements-nv
+   vk:load-cmd-preprocess-generated-commands-nv
+   vk:load-cmd-execute-generated-commands-nv
+   vk:load-cmd-bind-pipeline-shader-group-nv
+   vk:load-create-indirect-commands-layout-nv
+   vk:load-destroy-indirect-commands-layout-nv
+   vk:load-cmd-set-depth-bias2-ext
+   vk:load-acquire-drm-display-ext vk:load-get-drm-display-ext
+   vk:load-create-private-data-slot-ext
+   vk:load-destroy-private-data-slot-ext
+   vk:load-set-private-data-ext vk:load-get-private-data-ext
+   vk:load-queue-set-perf-hint-qcom
+   vk:load-cmd-dispatch-tile-qcom
+   vk:load-cmd-begin-per-tile-execution-qcom
+   vk:load-cmd-end-per-tile-execution-qcom
+   vk:load-set-latency-sleep-mode-legacy-nv
+   vk:load-latency-sleep-legacy-nv
+   vk:load-set-latency-marker-legacy-nv
+   vk:load-get-latency-timings-legacy-nv
+   vk:load-queue-notify-out-of-band-legacy-nv
+   vk:load-get-sleep-status-legacy-nv
+   vk:load-shutdown-latency-device-legacy-nv
+   vk:load-get-descriptor-set-layout-size-ext
+   vk:load-get-descriptor-set-layout-binding-offset-ext
+   vk:load-get-descriptor-ext
+   vk:load-cmd-bind-descriptor-buffers-ext
+   vk:load-cmd-set-descriptor-buffer-offsets-ext
+   vk:load-cmd-bind-descriptor-buffer-embedded-samplers-ext
+   vk:load-get-buffer-opaque-capture-descriptor-data-ext
+   vk:load-get-image-opaque-capture-descriptor-data-ext
+   vk:load-get-image-view-opaque-capture-descriptor-data-ext
+   vk:load-get-sampler-opaque-capture-descriptor-data-ext
+   vk:load-get-acceleration-structure-opaque-capture-descriptor-data-ext
+   vk:load-cmd-set-fragment-shading-rate-enum-nv
+   vk:load-get-device-fault-info-ext
+   vk:load-cmd-set-vertex-input-ext
+   vk:load-get-device-subpass-shading-max-workgroup-size-huawei
+   vk:load-cmd-subpass-shading-huawei
+   vk:load-cmd-bind-invocation-mask-huawei
+   vk:load-get-memory-remote-address-nv
+   vk:load-get-pipeline-properties-ext
+   vk:load-cmd-set-patch-control-points-ext
+   vk:load-cmd-set-rasterizer-discard-enable-ext
+   vk:load-cmd-set-depth-bias-enable-ext
+   vk:load-cmd-set-logic-op-ext
+   vk:load-cmd-set-primitive-restart-enable-ext
+   vk:load-cmd-set-color-write-enable-ext
+   vk:load-cmd-draw-multi-ext
+   vk:load-cmd-draw-multi-indexed-ext
+   vk:load-create-micromap-ext vk:load-destroy-micromap-ext
+   vk:load-cmd-build-micromaps-ext vk:load-build-micromaps-ext
+   vk:load-copy-micromap-ext
+   vk:load-copy-micromap-to-memory-ext
+   vk:load-copy-memory-to-micromap-ext
+   vk:load-write-micromaps-properties-ext
+   vk:load-cmd-copy-micromap-ext
+   vk:load-cmd-copy-micromap-to-memory-ext
+   vk:load-cmd-copy-memory-to-micromap-ext
+   vk:load-cmd-write-micromaps-properties-ext
+   vk:load-get-device-micromap-compatibility-ext
+   vk:load-get-micromap-build-sizes-ext
+   vk:load-cmd-draw-cluster-huawei
+   vk:load-cmd-draw-cluster-indirect-huawei
+   vk:load-set-device-memory-priority-ext
+   vk:load-cmd-set-dispatch-parameters-arm
+   vk:load-get-descriptor-set-layout-host-mapping-info-valve
+   vk:load-get-descriptor-set-host-mapping-valve
+   vk:load-cmd-copy-memory-indirect-nv
+   vk:load-cmd-copy-memory-to-image-indirect-nv
+   vk:load-cmd-decompress-memory-nv
+   vk:load-cmd-decompress-memory-indirect-count-nv
+   vk:load-get-pipeline-indirect-memory-requirements-nv
+   vk:load-cmd-update-pipeline-indirect-buffer-nv
+   vk:load-get-pipeline-indirect-device-address-nv
+   vk:load-cmd-set-depth-clamp-enable-ext
+   vk:load-cmd-set-polygon-mode-ext
+   vk:load-cmd-set-rasterization-samples-ext
+   vk:load-cmd-set-sample-mask-ext
+   vk:load-cmd-set-alpha-to-coverage-enable-ext
+   vk:load-cmd-set-alpha-to-one-enable-ext
+   vk:load-cmd-set-logic-op-enable-ext
+   vk:load-cmd-set-color-blend-enable-ext
+   vk:load-cmd-set-color-blend-equation-ext
+   vk:load-cmd-set-color-write-mask-ext
+   vk:load-cmd-set-tessellation-domain-origin-ext
+   vk:load-cmd-set-rasterization-stream-ext
+   vk:load-cmd-set-conservative-rasterization-mode-ext
+   vk:load-cmd-set-extra-primitive-overestimation-size-ext
+   vk:load-cmd-set-depth-clip-enable-ext
+   vk:load-cmd-set-sample-locations-enable-ext
+   vk:load-cmd-set-color-blend-advanced-ext
+   vk:load-cmd-set-provoking-vertex-mode-ext
+   vk:load-cmd-set-line-rasterization-mode-ext
+   vk:load-cmd-set-line-stipple-enable-ext
+   vk:load-cmd-set-depth-clip-negative-one-to-one-ext
+   vk:load-cmd-set-viewport-wscaling-enable-nv
+   vk:load-cmd-set-viewport-swizzle-nv
+   vk:load-cmd-set-coverage-to-color-enable-nv
+   vk:load-cmd-set-coverage-to-color-location-nv
+   vk:load-cmd-set-coverage-modulation-mode-nv
+   vk:load-cmd-set-coverage-modulation-table-enable-nv
+   vk:load-cmd-set-coverage-modulation-table-nv
+   vk:load-cmd-set-shading-rate-image-enable-nv
+   vk:load-cmd-set-representative-fragment-test-enable-nv
+   vk:load-cmd-set-coverage-reduction-mode-nv
+   vk:load-create-tensor-arm vk:load-destroy-tensor-arm
+   vk:load-create-tensor-view-arm
+   vk:load-destroy-tensor-view-arm
+   vk:load-get-tensor-memory-requirements-arm
+   vk:load-bind-tensor-memory-arm
+   vk:load-get-device-tensor-memory-requirements-arm
+   vk:load-cmd-copy-tensor-arm
+   vk:load-get-physical-device-external-tensor-properties-arm
+   vk:load-get-tensor-opaque-capture-descriptor-data-arm
+   vk:load-get-tensor-view-opaque-capture-descriptor-data-arm
+   vk:load-get-shader-module-identifier-ext
+   vk:load-get-shader-module-create-info-identifier-ext
+   vk:load-get-physical-device-optical-flow-image-formats-nv
+   vk:load-create-optical-flow-session-nv
+   vk:load-destroy-optical-flow-session-nv
+   vk:load-bind-optical-flow-session-image-nv
+   vk:load-cmd-optical-flow-execute-nv
+   vk:load-anti-lag-update-amd vk:load-create-shaders-ext
+   vk:load-destroy-shader-ext
+   vk:load-get-shader-binary-data-ext
+   vk:load-cmd-bind-shaders-ext
+   vk:load-cmd-set-depth-clamp-range-ext
+   vk:load-get-framebuffer-tile-properties-qcom
+   vk:load-get-dynamic-rendering-tile-properties-qcom
+   vk:load-get-physical-device-cooperative-vector-properties-nv
+   vk:load-convert-cooperative-vector-matrix-nv
+   vk:load-cmd-convert-cooperative-vector-matrix-nv
+   vk:load-set-latency-sleep-mode-nv vk:load-latency-sleep-nv
+   vk:load-set-latency-marker-nv vk:load-get-latency-timings-nv
+   vk:load-queue-notify-out-of-band-nv
+   vk:load-create-data-graph-pipelines-arm
+   vk:load-create-data-graph-pipeline-session-arm
+   vk:load-get-data-graph-pipeline-session-bind-point-requirements-arm
+   vk:load-get-data-graph-pipeline-session-memory-requirements-arm
+   vk:load-bind-data-graph-pipeline-session-memory-arm
+   vk:load-destroy-data-graph-pipeline-session-arm
+   vk:load-cmd-dispatch-data-graph-arm
+   vk:load-get-data-graph-pipeline-available-properties-arm
+   vk:load-get-data-graph-pipeline-properties-arm
+   vk:load-get-physical-device-queue-family-data-graph-properties-arm
+   vk:load-get-physical-device-queue-family-data-graph-processing-engine-properties-arm
+   vk:load-get-physical-device-queue-family-data-graph-engine-operation-properties-arm
+   vk:load-cmd-set-attachment-feedback-loop-enable-ext
+   vk:load-cmd-bind-tile-memory-qcom
+   vk:load-cmd-decompress-memory-ext
+   vk:load-cmd-decompress-memory-indirect-count-ext
+   vk:load-create-external-compute-queue-nv
+   vk:load-destroy-external-compute-queue-nv
+   vk:load-get-external-compute-queue-data-nv
+   vk:load-get-cluster-acceleration-structure-build-sizes-nv
+   vk:load-cmd-build-cluster-acceleration-structure-indirect-nv
+   vk:load-get-partitioned-acceleration-structures-build-sizes-nv
+   vk:load-cmd-build-partitioned-acceleration-structures-nv
+   vk:load-get-generated-commands-memory-requirements-ext
+   vk:load-cmd-preprocess-generated-commands-ext
+   vk:load-cmd-execute-generated-commands-ext
+   vk:load-create-indirect-commands-layout-ext
+   vk:load-destroy-indirect-commands-layout-ext
+   vk:load-create-indirect-execution-set-ext
+   vk:load-destroy-indirect-execution-set-ext
+   vk:load-update-indirect-execution-set-pipeline-ext
+   vk:load-update-indirect-execution-set-shader-ext
+   vk:load-get-physical-device-cooperative-matrix-flexible-dimensions-properties-nv
+   vk:load-enumerate-physical-device-queue-family-performance-counters-by-region-arm
+   vk:load-enumerate-physical-device-shader-instrumentation-metrics-arm
+   vk:load-create-shader-instrumentation-arm
+   vk:load-destroy-shader-instrumentation-arm
+   vk:load-cmd-begin-shader-instrumentation-arm
+   vk:load-cmd-end-shader-instrumentation-arm
+   vk:load-get-shader-instrumentation-values-arm
+   vk:load-clear-shader-instrumentation-metrics-arm
+   vk:load-cmd-end-rendering2-ext
+   vk:load-cmd-begin-custom-resolve-ext
+   vk:load-get-physical-device-queue-family-data-graph-optical-flow-image-formats-arm
+   vk:load-cmd-set-compute-occupancy-priority-nv
+   vk:load-get-physical-device-cooperative-matrix-properties2-ext
+   vk:load-cmd-set-primitive-restart-index-ext
+   vk:load-create-acceleration-structure-khr
+   vk:load-destroy-acceleration-structure-khr
+   vk:load-cmd-build-acceleration-structures-khr
+   vk:load-cmd-build-acceleration-structures-indirect-khr
+   vk:load-build-acceleration-structures-khr
+   vk:load-copy-acceleration-structure-khr
+   vk:load-copy-acceleration-structure-to-memory-khr
+   vk:load-copy-memory-to-acceleration-structure-khr
+   vk:load-write-acceleration-structures-properties-khr
+   vk:load-cmd-copy-acceleration-structure-khr
+   vk:load-cmd-copy-acceleration-structure-to-memory-khr
+   vk:load-cmd-copy-memory-to-acceleration-structure-khr
+   vk:load-get-acceleration-structure-device-address-khr
+   vk:load-cmd-write-acceleration-structures-properties-khr
+   vk:load-get-device-acceleration-structure-compatibility-khr
+   vk:load-get-acceleration-structure-build-sizes-khr
+   vk:load-cmd-trace-rays-khr
+   vk:load-create-ray-tracing-pipelines-khr
+   vk:load-get-ray-tracing-capture-replay-shader-group-handles-khr
+   vk:load-cmd-trace-rays-indirect-khr
+   vk:load-get-ray-tracing-shader-group-stack-size-khr
+   vk:load-cmd-set-ray-tracing-pipeline-stack-size-khr
+   vk:load-cmd-draw-mesh-tasks-ext
+   vk:load-cmd-draw-mesh-tasks-indirect-ext
+   vk:load-cmd-draw-mesh-tasks-indirect-count-ext)
   (import (chezscheme))
   (define loader (load-shared-object "libvulkan.so.1"))
   (define-syntax define-vk-procedure
@@ -6683,6 +7172,19 @@
                (error 'name
                  "not exported by the Vulkan loader"
                  cname))))]))
+  (define instance-proc-addr
+    (foreign-procedure "vkGetInstanceProcAddr"
+      (uptr utf-8)
+      uptr))
+  (define device-proc-addr
+    (foreign-procedure "vkGetDeviceProcAddr" (uptr utf-8) uptr))
+  (define-syntax define-vk-loader
+    (syntax-rules ()
+      [(_ name get-proc-addr cname args ret)
+       (define (name handle)
+         (let ([addr (get-proc-addr handle cname)])
+           (and (not (zero? addr))
+                (foreign-procedure addr args ret))))]))
   (define-ftype enum int)
   (define-ftype vk:bool32 unsigned-32)
   (define-ftype vk:device-address unsigned-64)
@@ -29115,6 +29617,171 @@
     "vkCreateSharedSwapchainsKHR"
     (vk:device unsigned-32 uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-get-physical-device-video-capabilities-khr
+    instance-proc-addr "vkGetPhysicalDeviceVideoCapabilitiesKHR"
+    (vk:physical-device uptr uptr) vk:result)
+  (define-vk-loader vk:load-get-physical-device-video-format-properties-khr
+    instance-proc-addr
+    "vkGetPhysicalDeviceVideoFormatPropertiesKHR"
+    (vk:physical-device uptr uptr uptr) vk:result)
+  (define-vk-loader vk:load-create-video-session-khr device-proc-addr
+    "vkCreateVideoSessionKHR" (vk:device uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-destroy-video-session-khr device-proc-addr
+    "vkDestroyVideoSessionKHR"
+    (vk:device vk:video-session-khr uptr) void)
+  (define-vk-loader vk:load-get-video-session-memory-requirements-khr
+    device-proc-addr "vkGetVideoSessionMemoryRequirementsKHR"
+    (vk:device vk:video-session-khr uptr uptr) vk:result)
+  (define-vk-loader vk:load-bind-video-session-memory-khr device-proc-addr
+    "vkBindVideoSessionMemoryKHR"
+    (vk:device vk:video-session-khr unsigned-32 uptr) vk:result)
+  (define-vk-loader vk:load-create-video-session-parameters-khr
+    device-proc-addr "vkCreateVideoSessionParametersKHR"
+    (vk:device uptr uptr uptr) vk:result)
+  (define-vk-loader vk:load-update-video-session-parameters-khr
+    device-proc-addr "vkUpdateVideoSessionParametersKHR"
+    (vk:device vk:video-session-parameters-khr uptr) vk:result)
+  (define-vk-loader vk:load-destroy-video-session-parameters-khr
+    device-proc-addr "vkDestroyVideoSessionParametersKHR"
+    (vk:device vk:video-session-parameters-khr uptr) void)
+  (define-vk-loader vk:load-cmd-begin-video-coding-khr device-proc-addr
+    "vkCmdBeginVideoCodingKHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-end-video-coding-khr device-proc-addr
+    "vkCmdEndVideoCodingKHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-control-video-coding-khr device-proc-addr
+    "vkCmdControlVideoCodingKHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-decode-video-khr device-proc-addr
+    "vkCmdDecodeVideoKHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-begin-rendering-khr device-proc-addr
+    "vkCmdBeginRenderingKHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-end-rendering-khr device-proc-addr
+    "vkCmdEndRenderingKHR" (vk:command-buffer) void)
+  (define-vk-loader vk:load-get-physical-device-features2-khr
+    instance-proc-addr "vkGetPhysicalDeviceFeatures2KHR"
+    (vk:physical-device uptr) void)
+  (define-vk-loader vk:load-get-physical-device-properties2-khr
+    instance-proc-addr "vkGetPhysicalDeviceProperties2KHR"
+    (vk:physical-device uptr) void)
+  (define-vk-loader vk:load-get-physical-device-format-properties2-khr
+    instance-proc-addr "vkGetPhysicalDeviceFormatProperties2KHR"
+    (vk:physical-device vk:format uptr) void)
+  (define-vk-loader vk:load-get-physical-device-image-format-properties2-khr
+    instance-proc-addr
+    "vkGetPhysicalDeviceImageFormatProperties2KHR"
+    (vk:physical-device uptr uptr) vk:result)
+  (define-vk-loader vk:load-get-physical-device-queue-family-properties2-khr
+    instance-proc-addr
+    "vkGetPhysicalDeviceQueueFamilyProperties2KHR"
+    (vk:physical-device uptr uptr) void)
+  (define-vk-loader vk:load-get-physical-device-memory-properties2-khr
+    instance-proc-addr "vkGetPhysicalDeviceMemoryProperties2KHR"
+    (vk:physical-device uptr) void)
+  (define-vk-loader
+    vk:load-get-physical-device-sparse-image-format-properties2-khr
+    instance-proc-addr
+    "vkGetPhysicalDeviceSparseImageFormatProperties2KHR"
+    (vk:physical-device uptr uptr uptr) void)
+  (define-vk-loader vk:load-get-device-group-peer-memory-features-khr
+    device-proc-addr "vkGetDeviceGroupPeerMemoryFeaturesKHR"
+    (vk:device unsigned-32 unsigned-32 unsigned-32 uptr) void)
+  (define-vk-loader vk:load-cmd-set-device-mask-khr device-proc-addr
+    "vkCmdSetDeviceMaskKHR" (vk:command-buffer unsigned-32)
+    void)
+  (define-vk-loader vk:load-cmd-dispatch-base-khr device-proc-addr
+    "vkCmdDispatchBaseKHR"
+    (vk:command-buffer unsigned-32 unsigned-32 unsigned-32
+      unsigned-32 unsigned-32 unsigned-32)
+    void)
+  (define-vk-loader vk:load-trim-command-pool-khr device-proc-addr
+    "vkTrimCommandPoolKHR"
+    (vk:device vk:command-pool vk:command-pool-trim-flags) void)
+  (define-vk-loader vk:load-enumerate-physical-device-groups-khr
+    instance-proc-addr "vkEnumeratePhysicalDeviceGroupsKHR"
+    (vk:instance uptr uptr) vk:result)
+  (define-vk-loader vk:load-get-physical-device-external-buffer-properties-khr
+    instance-proc-addr
+    "vkGetPhysicalDeviceExternalBufferPropertiesKHR"
+    (vk:physical-device uptr uptr) void)
+  (define-vk-loader vk:load-get-memory-fd-khr device-proc-addr
+    "vkGetMemoryFdKHR" (vk:device uptr uptr) vk:result)
+  (define-vk-loader vk:load-get-memory-fd-properties-khr device-proc-addr
+    "vkGetMemoryFdPropertiesKHR"
+    (vk:device
+      vk:external-memory-handle-type-flag-bits
+      integer-32
+      uptr)
+    vk:result)
+  (define-vk-loader
+    vk:load-get-physical-device-external-semaphore-properties-khr
+    instance-proc-addr
+    "vkGetPhysicalDeviceExternalSemaphorePropertiesKHR"
+    (vk:physical-device uptr uptr) void)
+  (define-vk-loader vk:load-import-semaphore-fd-khr device-proc-addr
+    "vkImportSemaphoreFdKHR" (vk:device uptr) vk:result)
+  (define-vk-loader vk:load-get-semaphore-fd-khr device-proc-addr
+    "vkGetSemaphoreFdKHR" (vk:device uptr uptr) vk:result)
+  (define-vk-loader vk:load-cmd-push-descriptor-set-khr device-proc-addr
+    "vkCmdPushDescriptorSetKHR"
+    (vk:command-buffer vk:pipeline-bind-point vk:pipeline-layout
+      unsigned-32 unsigned-32 uptr)
+    void)
+  (define-vk-loader vk:load-cmd-push-descriptor-set-with-template-khr
+    device-proc-addr "vkCmdPushDescriptorSetWithTemplateKHR"
+    (vk:command-buffer
+      vk:descriptor-update-template
+      vk:pipeline-layout
+      unsigned-32
+      uptr)
+    void)
+  (define-vk-loader vk:load-create-descriptor-update-template-khr
+    device-proc-addr "vkCreateDescriptorUpdateTemplateKHR"
+    (vk:device uptr uptr uptr) vk:result)
+  (define-vk-loader vk:load-destroy-descriptor-update-template-khr
+    device-proc-addr "vkDestroyDescriptorUpdateTemplateKHR"
+    (vk:device vk:descriptor-update-template uptr) void)
+  (define-vk-loader vk:load-update-descriptor-set-with-template-khr
+    device-proc-addr "vkUpdateDescriptorSetWithTemplateKHR"
+    (vk:device
+      vk:descriptor-set
+      vk:descriptor-update-template
+      uptr)
+    void)
+  (define-vk-loader vk:load-create-render-pass2-khr device-proc-addr
+    "vkCreateRenderPass2KHR" (vk:device uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-cmd-begin-render-pass2-khr device-proc-addr
+    "vkCmdBeginRenderPass2KHR" (vk:command-buffer uptr uptr)
+    void)
+  (define-vk-loader vk:load-cmd-next-subpass2-khr device-proc-addr
+    "vkCmdNextSubpass2KHR" (vk:command-buffer uptr uptr) void)
+  (define-vk-loader vk:load-cmd-end-render-pass2-khr device-proc-addr
+    "vkCmdEndRenderPass2KHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-get-swapchain-status-khr device-proc-addr
+    "vkGetSwapchainStatusKHR" (vk:device vk:swapchain-khr)
+    vk:result)
+  (define-vk-loader vk:load-get-physical-device-external-fence-properties-khr
+    instance-proc-addr
+    "vkGetPhysicalDeviceExternalFencePropertiesKHR"
+    (vk:physical-device uptr uptr) void)
+  (define-vk-loader vk:load-import-fence-fd-khr device-proc-addr
+    "vkImportFenceFdKHR" (vk:device uptr) vk:result)
+  (define-vk-loader vk:load-get-fence-fd-khr device-proc-addr "vkGetFenceFdKHR"
+    (vk:device uptr uptr) vk:result)
+  (define-vk-loader
+    vk:load-enumerate-physical-device-queue-family-performance-query-counters-khr
+    instance-proc-addr
+    "vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR"
+    (vk:physical-device unsigned-32 uptr uptr uptr) vk:result)
+  (define-vk-loader
+    vk:load-get-physical-device-queue-family-performance-query-passes-khr
+    instance-proc-addr
+    "vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR"
+    (vk:physical-device uptr uptr) void)
+  (define-vk-loader vk:load-acquire-profiling-lock-khr device-proc-addr
+    "vkAcquireProfilingLockKHR" (vk:device uptr) vk:result)
+  (define-vk-loader vk:load-release-profiling-lock-khr device-proc-addr
+    "vkReleaseProfilingLockKHR" (vk:device) void)
   (define-vk-procedure
     vk:get-physical-device-surface-capabilities2-khr
     "vkGetPhysicalDeviceSurfaceCapabilities2KHR"
@@ -29145,8 +29812,1585 @@
     "vkGetDisplayPlaneCapabilities2KHR"
     (vk:physical-device uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-get-image-memory-requirements2-khr device-proc-addr
+    "vkGetImageMemoryRequirements2KHR" (vk:device uptr uptr)
+    void)
+  (define-vk-loader vk:load-get-buffer-memory-requirements2-khr
+    device-proc-addr "vkGetBufferMemoryRequirements2KHR"
+    (vk:device uptr uptr) void)
+  (define-vk-loader vk:load-get-image-sparse-memory-requirements2-khr
+    device-proc-addr "vkGetImageSparseMemoryRequirements2KHR"
+    (vk:device uptr uptr uptr) void)
+  (define-vk-loader vk:load-create-sampler-ycbcr-conversion-khr
+    device-proc-addr "vkCreateSamplerYcbcrConversionKHR"
+    (vk:device uptr uptr uptr) vk:result)
+  (define-vk-loader vk:load-destroy-sampler-ycbcr-conversion-khr
+    device-proc-addr "vkDestroySamplerYcbcrConversionKHR"
+    (vk:device vk:sampler-ycbcr-conversion uptr) void)
+  (define-vk-loader vk:load-bind-buffer-memory2-khr device-proc-addr
+    "vkBindBufferMemory2KHR" (vk:device unsigned-32 uptr)
+    vk:result)
+  (define-vk-loader vk:load-bind-image-memory2-khr device-proc-addr
+    "vkBindImageMemory2KHR" (vk:device unsigned-32 uptr)
+    vk:result)
+  (define-vk-loader vk:load-get-descriptor-set-layout-support-khr
+    device-proc-addr "vkGetDescriptorSetLayoutSupportKHR"
+    (vk:device uptr uptr) void)
+  (define-vk-loader vk:load-cmd-draw-indirect-count-khr device-proc-addr
+    "vkCmdDrawIndirectCountKHR"
+    (vk:command-buffer vk:buffer vk:device-size vk:buffer
+      vk:device-size unsigned-32 unsigned-32)
+    void)
+  (define-vk-loader vk:load-cmd-draw-indexed-indirect-count-khr
+    device-proc-addr "vkCmdDrawIndexedIndirectCountKHR"
+    (vk:command-buffer vk:buffer vk:device-size vk:buffer
+      vk:device-size unsigned-32 unsigned-32)
+    void)
+  (define-vk-loader vk:load-get-semaphore-counter-value-khr device-proc-addr
+    "vkGetSemaphoreCounterValueKHR"
+    (vk:device vk:semaphore uptr) vk:result)
+  (define-vk-loader vk:load-wait-semaphores-khr device-proc-addr
+    "vkWaitSemaphoresKHR" (vk:device uptr unsigned-64)
+    vk:result)
+  (define-vk-loader vk:load-signal-semaphore-khr device-proc-addr
+    "vkSignalSemaphoreKHR" (vk:device uptr) vk:result)
+  (define-vk-loader vk:load-get-physical-device-fragment-shading-rates-khr
+    instance-proc-addr
+    "vkGetPhysicalDeviceFragmentShadingRatesKHR"
+    (vk:physical-device uptr uptr) vk:result)
+  (define-vk-loader vk:load-cmd-set-fragment-shading-rate-khr device-proc-addr
+    "vkCmdSetFragmentShadingRateKHR"
+    (vk:command-buffer uptr uptr) void)
+  (define-vk-loader vk:load-cmd-set-rendering-attachment-locations-khr
+    device-proc-addr "vkCmdSetRenderingAttachmentLocationsKHR"
+    (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-set-rendering-input-attachment-indices-khr
+    device-proc-addr
+    "vkCmdSetRenderingInputAttachmentIndicesKHR"
+    (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-wait-for-present-khr device-proc-addr
+    "vkWaitForPresentKHR"
+    (vk:device vk:swapchain-khr unsigned-64 unsigned-64)
+    vk:result)
+  (define-vk-loader vk:load-get-buffer-device-address-khr device-proc-addr
+    "vkGetBufferDeviceAddressKHR" (vk:device uptr)
+    vk:device-address)
+  (define-vk-loader vk:load-get-buffer-opaque-capture-address-khr
+    device-proc-addr "vkGetBufferOpaqueCaptureAddressKHR"
+    (vk:device uptr) unsigned-64)
+  (define-vk-loader vk:load-get-device-memory-opaque-capture-address-khr
+    device-proc-addr "vkGetDeviceMemoryOpaqueCaptureAddressKHR"
+    (vk:device uptr) unsigned-64)
+  (define-vk-loader vk:load-create-deferred-operation-khr device-proc-addr
+    "vkCreateDeferredOperationKHR" (vk:device uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-destroy-deferred-operation-khr device-proc-addr
+    "vkDestroyDeferredOperationKHR"
+    (vk:device vk:deferred-operation-khr uptr) void)
+  (define-vk-loader vk:load-get-deferred-operation-max-concurrency-khr
+    device-proc-addr "vkGetDeferredOperationMaxConcurrencyKHR"
+    (vk:device vk:deferred-operation-khr) unsigned-32)
+  (define-vk-loader vk:load-get-deferred-operation-result-khr device-proc-addr
+    "vkGetDeferredOperationResultKHR"
+    (vk:device vk:deferred-operation-khr) vk:result)
+  (define-vk-loader vk:load-deferred-operation-join-khr device-proc-addr
+    "vkDeferredOperationJoinKHR"
+    (vk:device vk:deferred-operation-khr) vk:result)
+  (define-vk-loader vk:load-get-pipeline-executable-properties-khr
+    device-proc-addr "vkGetPipelineExecutablePropertiesKHR"
+    (vk:device uptr uptr uptr) vk:result)
+  (define-vk-loader vk:load-get-pipeline-executable-statistics-khr
+    device-proc-addr "vkGetPipelineExecutableStatisticsKHR"
+    (vk:device uptr uptr uptr) vk:result)
+  (define-vk-loader
+    vk:load-get-pipeline-executable-internal-representations-khr
+    device-proc-addr
+    "vkGetPipelineExecutableInternalRepresentationsKHR"
+    (vk:device uptr uptr uptr) vk:result)
+  (define-vk-loader vk:load-map-memory2-khr device-proc-addr
+    "vkMapMemory2KHR" (vk:device uptr uptr) vk:result)
+  (define-vk-loader vk:load-unmap-memory2-khr device-proc-addr
+    "vkUnmapMemory2KHR" (vk:device uptr) vk:result)
+  (define-vk-loader
+    vk:load-get-physical-device-video-encode-quality-level-properties-khr
+    instance-proc-addr
+    "vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR"
+    (vk:physical-device uptr uptr) vk:result)
+  (define-vk-loader vk:load-get-encoded-video-session-parameters-khr
+    device-proc-addr "vkGetEncodedVideoSessionParametersKHR"
+    (vk:device uptr uptr uptr uptr) vk:result)
+  (define-vk-loader vk:load-cmd-encode-video-khr device-proc-addr
+    "vkCmdEncodeVideoKHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-set-event2-khr device-proc-addr
+    "vkCmdSetEvent2KHR" (vk:command-buffer vk:event uptr) void)
+  (define-vk-loader vk:load-cmd-reset-event2-khr device-proc-addr
+    "vkCmdResetEvent2KHR"
+    (vk:command-buffer vk:event vk:pipeline-stage-flags2) void)
+  (define-vk-loader vk:load-cmd-wait-events2-khr device-proc-addr
+    "vkCmdWaitEvents2KHR"
+    (vk:command-buffer unsigned-32 uptr uptr) void)
+  (define-vk-loader vk:load-cmd-pipeline-barrier2-khr device-proc-addr
+    "vkCmdPipelineBarrier2KHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-write-timestamp2-khr device-proc-addr
+    "vkCmdWriteTimestamp2KHR"
+    (vk:command-buffer
+      vk:pipeline-stage-flags2
+      vk:query-pool
+      unsigned-32)
+    void)
+  (define-vk-loader vk:load-queue-submit2-khr device-proc-addr
+    "vkQueueSubmit2KHR" (vk:queue unsigned-32 uptr vk:fence)
+    vk:result)
+  (define-vk-loader vk:load-cmd-bind-index-buffer3-khr device-proc-addr
+    "vkCmdBindIndexBuffer3KHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-bind-vertex-buffers3-khr device-proc-addr
+    "vkCmdBindVertexBuffers3KHR"
+    (vk:command-buffer unsigned-32 unsigned-32 uptr) void)
+  (define-vk-loader vk:load-cmd-draw-indirect2-khr device-proc-addr
+    "vkCmdDrawIndirect2KHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-draw-indexed-indirect2-khr device-proc-addr
+    "vkCmdDrawIndexedIndirect2KHR" (vk:command-buffer uptr)
+    void)
+  (define-vk-loader vk:load-cmd-dispatch-indirect2-khr device-proc-addr
+    "vkCmdDispatchIndirect2KHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-copy-memory-khr device-proc-addr
+    "vkCmdCopyMemoryKHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-copy-memory-to-image-khr device-proc-addr
+    "vkCmdCopyMemoryToImageKHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-copy-image-to-memory-khr device-proc-addr
+    "vkCmdCopyImageToMemoryKHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-update-memory-khr device-proc-addr
+    "vkCmdUpdateMemoryKHR"
+    (vk:command-buffer
+      uptr
+      vk:address-command-flags-khr
+      vk:device-size
+      uptr)
+    void)
+  (define-vk-loader vk:load-cmd-fill-memory-khr device-proc-addr
+    "vkCmdFillMemoryKHR"
+    (vk:command-buffer
+      uptr
+      vk:address-command-flags-khr
+      unsigned-32)
+    void)
+  (define-vk-loader vk:load-cmd-copy-query-pool-results-to-memory-khr
+    device-proc-addr "vkCmdCopyQueryPoolResultsToMemoryKHR"
+    (vk:command-buffer vk:query-pool unsigned-32 unsigned-32 uptr
+      vk:address-command-flags-khr vk:query-result-flags)
+    void)
+  (define-vk-loader vk:load-cmd-draw-indirect-count2-khr device-proc-addr
+    "vkCmdDrawIndirectCount2KHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-draw-indexed-indirect-count2-khr
+    device-proc-addr "vkCmdDrawIndexedIndirectCount2KHR"
+    (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-begin-conditional-rendering2-ext
+    device-proc-addr "vkCmdBeginConditionalRendering2EXT"
+    (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-bind-transform-feedback-buffers2-ext
+    device-proc-addr "vkCmdBindTransformFeedbackBuffers2EXT"
+    (vk:command-buffer unsigned-32 unsigned-32 uptr) void)
+  (define-vk-loader vk:load-cmd-begin-transform-feedback2-ext device-proc-addr
+    "vkCmdBeginTransformFeedback2EXT"
+    (vk:command-buffer unsigned-32 unsigned-32 uptr) void)
+  (define-vk-loader vk:load-cmd-end-transform-feedback2-ext device-proc-addr
+    "vkCmdEndTransformFeedback2EXT"
+    (vk:command-buffer unsigned-32 unsigned-32 uptr) void)
+  (define-vk-loader vk:load-cmd-draw-indirect-byte-count2-ext device-proc-addr
+    "vkCmdDrawIndirectByteCount2EXT"
+    (vk:command-buffer unsigned-32 unsigned-32 uptr unsigned-32
+      unsigned-32)
+    void)
+  (define-vk-loader vk:load-cmd-draw-mesh-tasks-indirect2-ext device-proc-addr
+    "vkCmdDrawMeshTasksIndirect2EXT" (vk:command-buffer uptr)
+    void)
+  (define-vk-loader vk:load-cmd-draw-mesh-tasks-indirect-count2-ext
+    device-proc-addr "vkCmdDrawMeshTasksIndirectCount2EXT"
+    (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-write-marker-to-memory-amd device-proc-addr
+    "vkCmdWriteMarkerToMemoryAMD" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-create-acceleration-structure2-khr device-proc-addr
+    "vkCreateAccelerationStructure2KHR"
+    (vk:device uptr uptr uptr) vk:result)
+  (define-vk-loader vk:load-cmd-copy-buffer2-khr device-proc-addr
+    "vkCmdCopyBuffer2KHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-copy-image2-khr device-proc-addr
+    "vkCmdCopyImage2KHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-copy-buffer-to-image2-khr device-proc-addr
+    "vkCmdCopyBufferToImage2KHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-copy-image-to-buffer2-khr device-proc-addr
+    "vkCmdCopyImageToBuffer2KHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-blit-image2-khr device-proc-addr
+    "vkCmdBlitImage2KHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-resolve-image2-khr device-proc-addr
+    "vkCmdResolveImage2KHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-trace-rays-indirect2-khr device-proc-addr
+    "vkCmdTraceRaysIndirect2KHR"
+    (vk:command-buffer vk:device-address) void)
+  (define-vk-loader vk:load-get-device-buffer-memory-requirements-khr
+    device-proc-addr "vkGetDeviceBufferMemoryRequirementsKHR"
+    (vk:device uptr uptr) void)
+  (define-vk-loader vk:load-get-device-image-memory-requirements-khr
+    device-proc-addr "vkGetDeviceImageMemoryRequirementsKHR"
+    (vk:device uptr uptr) void)
+  (define-vk-loader vk:load-get-device-image-sparse-memory-requirements-khr
+    device-proc-addr
+    "vkGetDeviceImageSparseMemoryRequirementsKHR"
+    (vk:device uptr uptr uptr) void)
+  (define-vk-loader vk:load-cmd-bind-index-buffer2-khr device-proc-addr
+    "vkCmdBindIndexBuffer2KHR"
+    (vk:command-buffer
+      vk:buffer
+      vk:device-size
+      vk:device-size
+      vk:index-type)
+    void)
+  (define-vk-loader vk:load-get-rendering-area-granularity-khr device-proc-addr
+    "vkGetRenderingAreaGranularityKHR" (vk:device uptr uptr)
+    void)
+  (define-vk-loader vk:load-get-device-image-subresource-layout-khr
+    device-proc-addr "vkGetDeviceImageSubresourceLayoutKHR"
+    (vk:device uptr uptr) void)
+  (define-vk-loader vk:load-get-image-subresource-layout2-khr device-proc-addr
+    "vkGetImageSubresourceLayout2KHR"
+    (vk:device vk:image uptr uptr) void)
+  (define-vk-loader vk:load-wait-for-present2-khr device-proc-addr
+    "vkWaitForPresent2KHR" (vk:device vk:swapchain-khr uptr)
+    vk:result)
+  (define-vk-loader vk:load-create-pipeline-binaries-khr device-proc-addr
+    "vkCreatePipelineBinariesKHR" (vk:device uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-destroy-pipeline-binary-khr device-proc-addr
+    "vkDestroyPipelineBinaryKHR"
+    (vk:device vk:pipeline-binary-khr uptr) void)
+  (define-vk-loader vk:load-get-pipeline-key-khr device-proc-addr
+    "vkGetPipelineKeyKHR" (vk:device uptr uptr) vk:result)
+  (define-vk-loader vk:load-get-pipeline-binary-data-khr device-proc-addr
+    "vkGetPipelineBinaryDataKHR" (vk:device uptr uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-release-captured-pipeline-data-khr device-proc-addr
+    "vkReleaseCapturedPipelineDataKHR" (vk:device uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-release-swapchain-images-khr device-proc-addr
+    "vkReleaseSwapchainImagesKHR" (vk:device uptr) vk:result)
+  (define-vk-loader
+    vk:load-get-physical-device-cooperative-matrix-properties-khr
+    instance-proc-addr
+    "vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR"
+    (vk:physical-device uptr uptr) vk:result)
+  (define-vk-loader vk:load-cmd-set-line-stipple-khr device-proc-addr
+    "vkCmdSetLineStippleKHR"
+    (vk:command-buffer unsigned-32 unsigned-16) void)
+  (define-vk-loader vk:load-get-physical-device-calibrateable-time-domains-khr
+    instance-proc-addr
+    "vkGetPhysicalDeviceCalibrateableTimeDomainsKHR"
+    (vk:physical-device uptr uptr) vk:result)
+  (define-vk-loader vk:load-get-calibrated-timestamps-khr device-proc-addr
+    "vkGetCalibratedTimestampsKHR"
+    (vk:device unsigned-32 uptr uptr uptr) vk:result)
+  (define-vk-loader vk:load-cmd-bind-descriptor-sets2-khr device-proc-addr
+    "vkCmdBindDescriptorSets2KHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-push-constants2-khr device-proc-addr
+    "vkCmdPushConstants2KHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-push-descriptor-set2-khr device-proc-addr
+    "vkCmdPushDescriptorSet2KHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-push-descriptor-set-with-template2-khr
+    device-proc-addr "vkCmdPushDescriptorSetWithTemplate2KHR"
+    (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-set-descriptor-buffer-offsets2-ext
+    device-proc-addr "vkCmdSetDescriptorBufferOffsets2EXT"
+    (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-bind-descriptor-buffer-embedded-samplers2-ext
+    device-proc-addr
+    "vkCmdBindDescriptorBufferEmbeddedSamplers2EXT"
+    (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-copy-memory-indirect-khr device-proc-addr
+    "vkCmdCopyMemoryIndirectKHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-copy-memory-to-image-indirect-khr
+    device-proc-addr "vkCmdCopyMemoryToImageIndirectKHR"
+    (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-get-device-fault-reports-khr device-proc-addr
+    "vkGetDeviceFaultReportsKHR"
+    (vk:device unsigned-64 uptr uptr) vk:result)
+  (define-vk-loader vk:load-get-device-fault-debug-info-khr device-proc-addr
+    "vkGetDeviceFaultDebugInfoKHR" (vk:device uptr) vk:result)
+  (define-vk-loader vk:load-cmd-end-rendering2-khr device-proc-addr
+    "vkCmdEndRendering2KHR" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-create-debug-report-callback-ext instance-proc-addr
+    "vkCreateDebugReportCallbackEXT"
+    (vk:instance uptr uptr uptr) vk:result)
+  (define-vk-loader vk:load-destroy-debug-report-callback-ext
+    instance-proc-addr "vkDestroyDebugReportCallbackEXT"
+    (vk:instance vk:debug-report-callback-ext uptr) void)
+  (define-vk-loader vk:load-debug-report-message-ext instance-proc-addr
+    "vkDebugReportMessageEXT"
+    (vk:instance vk:debug-report-flags-ext
+      vk:debug-report-object-type-ext unsigned-64 unsigned-64
+      integer-32 uptr uptr)
+    void)
+  (define-vk-loader vk:load-debug-marker-set-object-tag-ext device-proc-addr
+    "vkDebugMarkerSetObjectTagEXT" (vk:device uptr) vk:result)
+  (define-vk-loader vk:load-debug-marker-set-object-name-ext device-proc-addr
+    "vkDebugMarkerSetObjectNameEXT" (vk:device uptr) vk:result)
+  (define-vk-loader vk:load-cmd-debug-marker-begin-ext device-proc-addr
+    "vkCmdDebugMarkerBeginEXT" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-debug-marker-end-ext device-proc-addr
+    "vkCmdDebugMarkerEndEXT" (vk:command-buffer) void)
+  (define-vk-loader vk:load-cmd-debug-marker-insert-ext device-proc-addr
+    "vkCmdDebugMarkerInsertEXT" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-bind-transform-feedback-buffers-ext
+    device-proc-addr "vkCmdBindTransformFeedbackBuffersEXT"
+    (vk:command-buffer unsigned-32 unsigned-32 uptr uptr uptr)
+    void)
+  (define-vk-loader vk:load-cmd-begin-transform-feedback-ext device-proc-addr
+    "vkCmdBeginTransformFeedbackEXT"
+    (vk:command-buffer unsigned-32 unsigned-32 uptr uptr) void)
+  (define-vk-loader vk:load-cmd-end-transform-feedback-ext device-proc-addr
+    "vkCmdEndTransformFeedbackEXT"
+    (vk:command-buffer unsigned-32 unsigned-32 uptr uptr) void)
+  (define-vk-loader vk:load-cmd-begin-query-indexed-ext device-proc-addr
+    "vkCmdBeginQueryIndexedEXT"
+    (vk:command-buffer
+      vk:query-pool
+      unsigned-32
+      vk:query-control-flags
+      unsigned-32)
+    void)
+  (define-vk-loader vk:load-cmd-end-query-indexed-ext device-proc-addr
+    "vkCmdEndQueryIndexedEXT"
+    (vk:command-buffer vk:query-pool unsigned-32 unsigned-32)
+    void)
+  (define-vk-loader vk:load-cmd-draw-indirect-byte-count-ext device-proc-addr
+    "vkCmdDrawIndirectByteCountEXT"
+    (vk:command-buffer unsigned-32 unsigned-32 vk:buffer
+      vk:device-size unsigned-32 unsigned-32)
+    void)
+  (define-vk-loader vk:load-create-cu-module-nvx device-proc-addr
+    "vkCreateCuModuleNVX" (vk:device uptr uptr uptr) vk:result)
+  (define-vk-loader vk:load-create-cu-function-nvx device-proc-addr
+    "vkCreateCuFunctionNVX" (vk:device uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-destroy-cu-module-nvx device-proc-addr
+    "vkDestroyCuModuleNVX" (vk:device vk:cu-module-nvx uptr)
+    void)
+  (define-vk-loader vk:load-destroy-cu-function-nvx device-proc-addr
+    "vkDestroyCuFunctionNVX" (vk:device vk:cu-function-nvx uptr)
+    void)
+  (define-vk-loader vk:load-cmd-cu-launch-kernel-nvx device-proc-addr
+    "vkCmdCuLaunchKernelNVX" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-get-image-view-handle-nvx device-proc-addr
+    "vkGetImageViewHandleNVX" (vk:device uptr) unsigned-32)
+  (define-vk-loader vk:load-get-image-view-handle64-nvx device-proc-addr
+    "vkGetImageViewHandle64NVX" (vk:device uptr) unsigned-64)
+  (define-vk-loader vk:load-get-image-view-address-nvx device-proc-addr
+    "vkGetImageViewAddressNVX" (vk:device vk:image-view uptr)
+    vk:result)
+  (define-vk-loader vk:load-get-device-combined-image-sampler-index-nvx
+    device-proc-addr "vkGetDeviceCombinedImageSamplerIndexNVX"
+    (vk:device unsigned-64 unsigned-64) unsigned-64)
+  (define-vk-loader vk:load-cmd-draw-indirect-count-amd device-proc-addr
+    "vkCmdDrawIndirectCountAMD"
+    (vk:command-buffer vk:buffer vk:device-size vk:buffer
+      vk:device-size unsigned-32 unsigned-32)
+    void)
+  (define-vk-loader vk:load-cmd-draw-indexed-indirect-count-amd
+    device-proc-addr "vkCmdDrawIndexedIndirectCountAMD"
+    (vk:command-buffer vk:buffer vk:device-size vk:buffer
+      vk:device-size unsigned-32 unsigned-32)
+    void)
+  (define-vk-loader vk:load-get-shader-info-amd device-proc-addr
+    "vkGetShaderInfoAMD"
+    (vk:device vk:pipeline vk:shader-stage-flag-bits
+      vk:shader-info-type-amd uptr uptr)
+    vk:result)
+  (define-vk-loader
+    vk:load-get-physical-device-external-image-format-properties-nv
+    instance-proc-addr
+    "vkGetPhysicalDeviceExternalImageFormatPropertiesNV"
+    (vk:physical-device vk:format vk:image-type vk:image-tiling
+      vk:image-usage-flags vk:image-create-flags
+      vk:external-memory-handle-type-flags-nv uptr)
+    vk:result)
+  (define-vk-loader vk:load-cmd-begin-conditional-rendering-ext
+    device-proc-addr "vkCmdBeginConditionalRenderingEXT"
+    (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-end-conditional-rendering-ext device-proc-addr
+    "vkCmdEndConditionalRenderingEXT" (vk:command-buffer) void)
+  (define-vk-loader vk:load-cmd-set-viewport-wscaling-nv device-proc-addr
+    "vkCmdSetViewportWScalingNV"
+    (vk:command-buffer unsigned-32 unsigned-32 uptr) void)
+  (define-vk-loader vk:load-release-display-ext instance-proc-addr
+    "vkReleaseDisplayEXT" (vk:physical-device vk:display-khr)
+    vk:result)
+  (define-vk-loader vk:load-get-physical-device-surface-capabilities2-ext
+    instance-proc-addr
+    "vkGetPhysicalDeviceSurfaceCapabilities2EXT"
+    (vk:physical-device vk:surface-khr uptr) vk:result)
+  (define-vk-loader vk:load-display-power-control-ext device-proc-addr
+    "vkDisplayPowerControlEXT" (vk:device vk:display-khr uptr)
+    vk:result)
+  (define-vk-loader vk:load-register-device-event-ext device-proc-addr
+    "vkRegisterDeviceEventEXT" (vk:device uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-register-display-event-ext device-proc-addr
+    "vkRegisterDisplayEventEXT"
+    (vk:device vk:display-khr uptr uptr uptr) vk:result)
+  (define-vk-loader vk:load-get-swapchain-counter-ext device-proc-addr
+    "vkGetSwapchainCounterEXT"
+    (vk:device
+      vk:swapchain-khr
+      vk:surface-counter-flag-bits-ext
+      uptr)
+    vk:result)
+  (define-vk-loader vk:load-get-refresh-cycle-duration-google device-proc-addr
+    "vkGetRefreshCycleDurationGOOGLE"
+    (vk:device vk:swapchain-khr uptr) vk:result)
+  (define-vk-loader vk:load-get-past-presentation-timing-google
+    device-proc-addr "vkGetPastPresentationTimingGOOGLE"
+    (vk:device vk:swapchain-khr uptr uptr) vk:result)
+  (define-vk-loader vk:load-cmd-set-discard-rectangle-ext device-proc-addr
+    "vkCmdSetDiscardRectangleEXT"
+    (vk:command-buffer unsigned-32 unsigned-32 uptr) void)
+  (define-vk-loader vk:load-cmd-set-discard-rectangle-enable-ext
+    device-proc-addr "vkCmdSetDiscardRectangleEnableEXT"
+    (vk:command-buffer vk:bool32) void)
+  (define-vk-loader vk:load-cmd-set-discard-rectangle-mode-ext device-proc-addr
+    "vkCmdSetDiscardRectangleModeEXT"
+    (vk:command-buffer vk:discard-rectangle-mode-ext) void)
+  (define-vk-loader vk:load-set-hdr-metadata-ext device-proc-addr
+    "vkSetHdrMetadataEXT" (vk:device unsigned-32 uptr uptr)
+    void)
+  (define-vk-loader vk:load-set-debug-utils-object-name-ext device-proc-addr
+    "vkSetDebugUtilsObjectNameEXT" (vk:device uptr) vk:result)
+  (define-vk-loader vk:load-set-debug-utils-object-tag-ext device-proc-addr
+    "vkSetDebugUtilsObjectTagEXT" (vk:device uptr) vk:result)
+  (define-vk-loader vk:load-queue-begin-debug-utils-label-ext device-proc-addr
+    "vkQueueBeginDebugUtilsLabelEXT" (vk:queue uptr) void)
+  (define-vk-loader vk:load-queue-end-debug-utils-label-ext device-proc-addr
+    "vkQueueEndDebugUtilsLabelEXT" (vk:queue) void)
+  (define-vk-loader vk:load-queue-insert-debug-utils-label-ext device-proc-addr
+    "vkQueueInsertDebugUtilsLabelEXT" (vk:queue uptr) void)
+  (define-vk-loader vk:load-cmd-begin-debug-utils-label-ext device-proc-addr
+    "vkCmdBeginDebugUtilsLabelEXT" (vk:command-buffer uptr)
+    void)
+  (define-vk-loader vk:load-cmd-end-debug-utils-label-ext device-proc-addr
+    "vkCmdEndDebugUtilsLabelEXT" (vk:command-buffer) void)
+  (define-vk-loader vk:load-cmd-insert-debug-utils-label-ext device-proc-addr
+    "vkCmdInsertDebugUtilsLabelEXT" (vk:command-buffer uptr)
+    void)
+  (define-vk-loader vk:load-create-debug-utils-messenger-ext instance-proc-addr
+    "vkCreateDebugUtilsMessengerEXT"
+    (vk:instance uptr uptr uptr) vk:result)
+  (define-vk-loader vk:load-destroy-debug-utils-messenger-ext
+    instance-proc-addr "vkDestroyDebugUtilsMessengerEXT"
+    (vk:instance vk:debug-utils-messenger-ext uptr) void)
+  (define-vk-loader vk:load-submit-debug-utils-message-ext instance-proc-addr
+    "vkSubmitDebugUtilsMessageEXT"
+    (vk:instance
+      vk:debug-utils-message-severity-flag-bits-ext
+      vk:debug-utils-message-type-flags-ext
+      uptr)
+    void)
+  (define-vk-loader vk:load-create-gpa-session-amd device-proc-addr
+    "vkCreateGpaSessionAMD" (vk:device uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-destroy-gpa-session-amd device-proc-addr
+    "vkDestroyGpaSessionAMD" (vk:device vk:gpa-session-amd uptr)
+    void)
+  (define-vk-loader vk:load-set-gpa-device-clock-mode-amd device-proc-addr
+    "vkSetGpaDeviceClockModeAMD" (vk:device uptr) vk:result)
+  (define-vk-loader vk:load-get-gpa-device-clock-info-amd device-proc-addr
+    "vkGetGpaDeviceClockInfoAMD" (vk:device uptr) vk:result)
+  (define-vk-loader vk:load-cmd-begin-gpa-session-amd device-proc-addr
+    "vkCmdBeginGpaSessionAMD"
+    (vk:command-buffer vk:gpa-session-amd) vk:result)
+  (define-vk-loader vk:load-cmd-end-gpa-session-amd device-proc-addr
+    "vkCmdEndGpaSessionAMD"
+    (vk:command-buffer vk:gpa-session-amd) vk:result)
+  (define-vk-loader vk:load-cmd-begin-gpa-sample-amd device-proc-addr
+    "vkCmdBeginGpaSampleAMD"
+    (vk:command-buffer vk:gpa-session-amd uptr uptr) vk:result)
+  (define-vk-loader vk:load-cmd-end-gpa-sample-amd device-proc-addr
+    "vkCmdEndGpaSampleAMD"
+    (vk:command-buffer vk:gpa-session-amd unsigned-32) void)
+  (define-vk-loader vk:load-get-gpa-session-status-amd device-proc-addr
+    "vkGetGpaSessionStatusAMD" (vk:device vk:gpa-session-amd)
+    vk:result)
+  (define-vk-loader vk:load-get-gpa-session-results-amd device-proc-addr
+    "vkGetGpaSessionResultsAMD"
+    (vk:device vk:gpa-session-amd unsigned-32 uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-reset-gpa-session-amd device-proc-addr
+    "vkResetGpaSessionAMD" (vk:device vk:gpa-session-amd)
+    vk:result)
+  (define-vk-loader vk:load-cmd-copy-gpa-session-results-amd device-proc-addr
+    "vkCmdCopyGpaSessionResultsAMD"
+    (vk:command-buffer vk:gpa-session-amd) void)
+  (define-vk-loader vk:load-write-sampler-descriptors-ext device-proc-addr
+    "vkWriteSamplerDescriptorsEXT"
+    (vk:device unsigned-32 uptr uptr) vk:result)
+  (define-vk-loader vk:load-write-resource-descriptors-ext device-proc-addr
+    "vkWriteResourceDescriptorsEXT"
+    (vk:device unsigned-32 uptr uptr) vk:result)
+  (define-vk-loader vk:load-cmd-bind-sampler-heap-ext device-proc-addr
+    "vkCmdBindSamplerHeapEXT" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-bind-resource-heap-ext device-proc-addr
+    "vkCmdBindResourceHeapEXT" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-push-data-ext device-proc-addr
+    "vkCmdPushDataEXT" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-get-image-opaque-capture-data-ext device-proc-addr
+    "vkGetImageOpaqueCaptureDataEXT"
+    (vk:device unsigned-32 uptr uptr) vk:result)
+  (define-vk-loader vk:load-get-physical-device-descriptor-size-ext
+    instance-proc-addr "vkGetPhysicalDeviceDescriptorSizeEXT"
+    (vk:physical-device vk:descriptor-type) vk:device-size)
+  (define-vk-loader vk:load-register-custom-border-color-ext device-proc-addr
+    "vkRegisterCustomBorderColorEXT"
+    (vk:device uptr vk:bool32 uptr) vk:result)
+  (define-vk-loader vk:load-unregister-custom-border-color-ext device-proc-addr
+    "vkUnregisterCustomBorderColorEXT" (vk:device unsigned-32)
+    void)
+  (define-vk-loader vk:load-get-tensor-opaque-capture-data-arm device-proc-addr
+    "vkGetTensorOpaqueCaptureDataARM"
+    (vk:device unsigned-32 uptr uptr) vk:result)
+  (define-vk-loader vk:load-cmd-set-sample-locations-ext device-proc-addr
+    "vkCmdSetSampleLocationsEXT" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-get-physical-device-multisample-properties-ext
+    instance-proc-addr
+    "vkGetPhysicalDeviceMultisamplePropertiesEXT"
+    (vk:physical-device vk:sample-count-flag-bits uptr) void)
+  (define-vk-loader vk:load-get-image-drm-format-modifier-properties-ext
+    device-proc-addr "vkGetImageDrmFormatModifierPropertiesEXT"
+    (vk:device vk:image uptr) vk:result)
+  (define-vk-loader vk:load-create-validation-cache-ext device-proc-addr
+    "vkCreateValidationCacheEXT" (vk:device uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-destroy-validation-cache-ext device-proc-addr
+    "vkDestroyValidationCacheEXT"
+    (vk:device vk:validation-cache-ext uptr) void)
+  (define-vk-loader vk:load-merge-validation-caches-ext device-proc-addr
+    "vkMergeValidationCachesEXT"
+    (vk:device vk:validation-cache-ext unsigned-32 uptr)
+    vk:result)
+  (define-vk-loader vk:load-get-validation-cache-data-ext device-proc-addr
+    "vkGetValidationCacheDataEXT"
+    (vk:device vk:validation-cache-ext uptr uptr) vk:result)
+  (define-vk-loader vk:load-cmd-bind-shading-rate-image-nv device-proc-addr
+    "vkCmdBindShadingRateImageNV"
+    (vk:command-buffer vk:image-view vk:image-layout) void)
+  (define-vk-loader vk:load-cmd-set-viewport-shading-rate-palette-nv
+    device-proc-addr "vkCmdSetViewportShadingRatePaletteNV"
+    (vk:command-buffer unsigned-32 unsigned-32 uptr) void)
+  (define-vk-loader vk:load-cmd-set-coarse-sample-order-nv device-proc-addr
+    "vkCmdSetCoarseSampleOrderNV"
+    (vk:command-buffer
+      vk:coarse-sample-order-type-nv
+      unsigned-32
+      uptr)
+    void)
+  (define-vk-loader vk:load-create-acceleration-structure-nv device-proc-addr
+    "vkCreateAccelerationStructureNV" (vk:device uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-destroy-acceleration-structure-nv device-proc-addr
+    "vkDestroyAccelerationStructureNV"
+    (vk:device vk:acceleration-structure-nv uptr) void)
+  (define-vk-loader vk:load-get-acceleration-structure-memory-requirements-nv
+    device-proc-addr
+    "vkGetAccelerationStructureMemoryRequirementsNV"
+    (vk:device uptr uptr) void)
+  (define-vk-loader vk:load-bind-acceleration-structure-memory-nv
+    device-proc-addr "vkBindAccelerationStructureMemoryNV"
+    (vk:device unsigned-32 uptr) vk:result)
+  (define-vk-loader vk:load-cmd-build-acceleration-structure-nv
+    device-proc-addr "vkCmdBuildAccelerationStructureNV"
+    (vk:command-buffer uptr vk:buffer vk:device-size vk:bool32
+      vk:acceleration-structure-nv vk:acceleration-structure-nv
+      vk:buffer vk:device-size)
+    void)
+  (define-vk-loader vk:load-cmd-copy-acceleration-structure-nv device-proc-addr
+    "vkCmdCopyAccelerationStructureNV"
+    (vk:command-buffer
+      vk:acceleration-structure-nv
+      vk:acceleration-structure-nv
+      vk:copy-acceleration-structure-mode-khr)
+    void)
+  (define-vk-loader vk:load-cmd-trace-rays-nv device-proc-addr
+    "vkCmdTraceRaysNV"
+    (vk:command-buffer vk:buffer vk:device-size vk:buffer vk:device-size
+      vk:device-size vk:buffer vk:device-size vk:device-size
+      vk:buffer vk:device-size vk:device-size unsigned-32
+      unsigned-32 unsigned-32)
+    void)
+  (define-vk-loader vk:load-create-ray-tracing-pipelines-nv device-proc-addr
+    "vkCreateRayTracingPipelinesNV"
+    (vk:device vk:pipeline-cache unsigned-32 uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-get-ray-tracing-shader-group-handles-khr
+    device-proc-addr "vkGetRayTracingShaderGroupHandlesKHR"
+    (vk:device vk:pipeline unsigned-32 unsigned-32 unsigned-64
+      uptr)
+    vk:result)
+  (define-vk-loader vk:load-get-ray-tracing-shader-group-handles-nv
+    device-proc-addr "vkGetRayTracingShaderGroupHandlesNV"
+    (vk:device vk:pipeline unsigned-32 unsigned-32 unsigned-64
+      uptr)
+    vk:result)
+  (define-vk-loader vk:load-get-acceleration-structure-handle-nv
+    device-proc-addr "vkGetAccelerationStructureHandleNV"
+    (vk:device vk:acceleration-structure-nv unsigned-64 uptr)
+    vk:result)
+  (define-vk-loader vk:load-cmd-write-acceleration-structures-properties-nv
+    device-proc-addr
+    "vkCmdWriteAccelerationStructuresPropertiesNV"
+    (vk:command-buffer unsigned-32 uptr vk:query-type
+      vk:query-pool unsigned-32)
+    void)
+  (define-vk-loader vk:load-compile-deferred-nv device-proc-addr
+    "vkCompileDeferredNV" (vk:device vk:pipeline unsigned-32)
+    vk:result)
+  (define-vk-loader vk:load-get-memory-host-pointer-properties-ext
+    device-proc-addr "vkGetMemoryHostPointerPropertiesEXT"
+    (vk:device
+      vk:external-memory-handle-type-flag-bits
+      uptr
+      uptr)
+    vk:result)
+  (define-vk-loader vk:load-cmd-write-buffer-marker-amd device-proc-addr
+    "vkCmdWriteBufferMarkerAMD"
+    (vk:command-buffer
+      vk:pipeline-stage-flag-bits
+      vk:buffer
+      vk:device-size
+      unsigned-32)
+    void)
+  (define-vk-loader vk:load-cmd-write-buffer-marker2-amd device-proc-addr
+    "vkCmdWriteBufferMarker2AMD"
+    (vk:command-buffer
+      vk:pipeline-stage-flags2
+      vk:buffer
+      vk:device-size
+      unsigned-32)
+    void)
+  (define-vk-loader vk:load-get-physical-device-calibrateable-time-domains-ext
+    instance-proc-addr
+    "vkGetPhysicalDeviceCalibrateableTimeDomainsEXT"
+    (vk:physical-device uptr uptr) vk:result)
+  (define-vk-loader vk:load-get-calibrated-timestamps-ext device-proc-addr
+    "vkGetCalibratedTimestampsEXT"
+    (vk:device unsigned-32 uptr uptr uptr) vk:result)
+  (define-vk-loader vk:load-cmd-draw-mesh-tasks-nv device-proc-addr
+    "vkCmdDrawMeshTasksNV"
+    (vk:command-buffer unsigned-32 unsigned-32) void)
+  (define-vk-loader vk:load-cmd-draw-mesh-tasks-indirect-nv device-proc-addr
+    "vkCmdDrawMeshTasksIndirectNV"
+    (vk:command-buffer
+      vk:buffer
+      vk:device-size
+      unsigned-32
+      unsigned-32)
+    void)
+  (define-vk-loader vk:load-cmd-draw-mesh-tasks-indirect-count-nv
+    device-proc-addr "vkCmdDrawMeshTasksIndirectCountNV"
+    (vk:command-buffer vk:buffer vk:device-size vk:buffer
+      vk:device-size unsigned-32 unsigned-32)
+    void)
+  (define-vk-loader vk:load-cmd-set-exclusive-scissor-enable-nv
+    device-proc-addr "vkCmdSetExclusiveScissorEnableNV"
+    (vk:command-buffer unsigned-32 unsigned-32 uptr) void)
+  (define-vk-loader vk:load-cmd-set-exclusive-scissor-nv device-proc-addr
+    "vkCmdSetExclusiveScissorNV"
+    (vk:command-buffer unsigned-32 unsigned-32 uptr) void)
+  (define-vk-loader vk:load-cmd-set-checkpoint-nv device-proc-addr
+    "vkCmdSetCheckpointNV" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-get-queue-checkpoint-data-nv device-proc-addr
+    "vkGetQueueCheckpointDataNV" (vk:queue uptr uptr) void)
+  (define-vk-loader vk:load-get-queue-checkpoint-data2-nv device-proc-addr
+    "vkGetQueueCheckpointData2NV" (vk:queue uptr uptr) void)
+  (define-vk-loader vk:load-set-swapchain-present-timing-queue-size-ext
+    device-proc-addr "vkSetSwapchainPresentTimingQueueSizeEXT"
+    (vk:device vk:swapchain-khr unsigned-32) vk:result)
+  (define-vk-loader vk:load-get-swapchain-timing-properties-ext
+    device-proc-addr "vkGetSwapchainTimingPropertiesEXT"
+    (vk:device vk:swapchain-khr uptr uptr) vk:result)
+  (define-vk-loader vk:load-get-swapchain-time-domain-properties-ext
+    device-proc-addr "vkGetSwapchainTimeDomainPropertiesEXT"
+    (vk:device vk:swapchain-khr uptr uptr) vk:result)
+  (define-vk-loader vk:load-get-past-presentation-timing-ext device-proc-addr
+    "vkGetPastPresentationTimingEXT" (vk:device uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-initialize-performance-api-intel device-proc-addr
+    "vkInitializePerformanceApiINTEL" (vk:device uptr)
+    vk:result)
+  (define-vk-loader vk:load-uninitialize-performance-api-intel device-proc-addr
+    "vkUninitializePerformanceApiINTEL" (vk:device) void)
+  (define-vk-loader vk:load-cmd-set-performance-marker-intel device-proc-addr
+    "vkCmdSetPerformanceMarkerINTEL" (vk:command-buffer uptr)
+    vk:result)
+  (define-vk-loader vk:load-cmd-set-performance-stream-marker-intel
+    device-proc-addr "vkCmdSetPerformanceStreamMarkerINTEL"
+    (vk:command-buffer uptr) vk:result)
+  (define-vk-loader vk:load-cmd-set-performance-override-intel device-proc-addr
+    "vkCmdSetPerformanceOverrideINTEL" (vk:command-buffer uptr)
+    vk:result)
+  (define-vk-loader vk:load-acquire-performance-configuration-intel
+    device-proc-addr "vkAcquirePerformanceConfigurationINTEL"
+    (vk:device uptr uptr) vk:result)
+  (define-vk-loader vk:load-release-performance-configuration-intel
+    device-proc-addr "vkReleasePerformanceConfigurationINTEL"
+    (vk:device vk:performance-configuration-intel) vk:result)
+  (define-vk-loader vk:load-queue-set-performance-configuration-intel
+    device-proc-addr "vkQueueSetPerformanceConfigurationINTEL"
+    (vk:queue vk:performance-configuration-intel) vk:result)
+  (define-vk-loader vk:load-get-performance-parameter-intel device-proc-addr
+    "vkGetPerformanceParameterINTEL"
+    (vk:device vk:performance-parameter-type-intel uptr)
+    vk:result)
+  (define-vk-loader vk:load-set-local-dimming-amd device-proc-addr
+    "vkSetLocalDimmingAMD"
+    (vk:device vk:swapchain-khr vk:bool32) void)
+  (define-vk-loader vk:load-get-buffer-device-address-ext device-proc-addr
+    "vkGetBufferDeviceAddressEXT" (vk:device uptr)
+    vk:device-address)
+  (define-vk-loader vk:load-get-physical-device-tool-properties-ext
+    instance-proc-addr "vkGetPhysicalDeviceToolPropertiesEXT"
+    (vk:physical-device uptr uptr) vk:result)
+  (define-vk-loader
+    vk:load-get-physical-device-cooperative-matrix-properties-nv
+    instance-proc-addr
+    "vkGetPhysicalDeviceCooperativeMatrixPropertiesNV"
+    (vk:physical-device uptr uptr) vk:result)
+  (define-vk-loader
+    vk:load-get-physical-device-supported-framebuffer-mixed-samples-combinations-nv
+    instance-proc-addr
+    "vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV"
+    (vk:physical-device uptr uptr) vk:result)
   (define-vk-procedure
     vk:create-headless-surface-ext
     "vkCreateHeadlessSurfaceEXT"
     (vk:instance uptr uptr uptr)
-    vk:result))
+    vk:result)
+  (define-vk-loader vk:load-cmd-set-line-stipple-ext device-proc-addr
+    "vkCmdSetLineStippleEXT"
+    (vk:command-buffer unsigned-32 unsigned-16) void)
+  (define-vk-loader vk:load-reset-query-pool-ext device-proc-addr
+    "vkResetQueryPoolEXT"
+    (vk:device vk:query-pool unsigned-32 unsigned-32) void)
+  (define-vk-loader vk:load-cmd-set-cull-mode-ext device-proc-addr
+    "vkCmdSetCullModeEXT" (vk:command-buffer vk:cull-mode-flags)
+    void)
+  (define-vk-loader vk:load-cmd-set-front-face-ext device-proc-addr
+    "vkCmdSetFrontFaceEXT" (vk:command-buffer vk:front-face)
+    void)
+  (define-vk-loader vk:load-cmd-set-primitive-topology-ext device-proc-addr
+    "vkCmdSetPrimitiveTopologyEXT"
+    (vk:command-buffer vk:primitive-topology) void)
+  (define-vk-loader vk:load-cmd-set-viewport-with-count-ext device-proc-addr
+    "vkCmdSetViewportWithCountEXT"
+    (vk:command-buffer unsigned-32 uptr) void)
+  (define-vk-loader vk:load-cmd-set-scissor-with-count-ext device-proc-addr
+    "vkCmdSetScissorWithCountEXT"
+    (vk:command-buffer unsigned-32 uptr) void)
+  (define-vk-loader vk:load-cmd-bind-vertex-buffers2-ext device-proc-addr
+    "vkCmdBindVertexBuffers2EXT"
+    (vk:command-buffer unsigned-32 unsigned-32 uptr uptr uptr
+      uptr)
+    void)
+  (define-vk-loader vk:load-cmd-set-depth-test-enable-ext device-proc-addr
+    "vkCmdSetDepthTestEnableEXT" (vk:command-buffer vk:bool32)
+    void)
+  (define-vk-loader vk:load-cmd-set-depth-write-enable-ext device-proc-addr
+    "vkCmdSetDepthWriteEnableEXT" (vk:command-buffer vk:bool32)
+    void)
+  (define-vk-loader vk:load-cmd-set-depth-compare-op-ext device-proc-addr
+    "vkCmdSetDepthCompareOpEXT"
+    (vk:command-buffer vk:compare-op) void)
+  (define-vk-loader vk:load-cmd-set-depth-bounds-test-enable-ext
+    device-proc-addr "vkCmdSetDepthBoundsTestEnableEXT"
+    (vk:command-buffer vk:bool32) void)
+  (define-vk-loader vk:load-cmd-set-stencil-test-enable-ext device-proc-addr
+    "vkCmdSetStencilTestEnableEXT" (vk:command-buffer vk:bool32)
+    void)
+  (define-vk-loader vk:load-cmd-set-stencil-op-ext device-proc-addr
+    "vkCmdSetStencilOpEXT"
+    (vk:command-buffer vk:stencil-face-flags vk:stencil-op
+      vk:stencil-op vk:stencil-op vk:compare-op)
+    void)
+  (define-vk-loader vk:load-copy-memory-to-image-ext device-proc-addr
+    "vkCopyMemoryToImageEXT" (vk:device uptr) vk:result)
+  (define-vk-loader vk:load-copy-image-to-memory-ext device-proc-addr
+    "vkCopyImageToMemoryEXT" (vk:device uptr) vk:result)
+  (define-vk-loader vk:load-copy-image-to-image-ext device-proc-addr
+    "vkCopyImageToImageEXT" (vk:device uptr) vk:result)
+  (define-vk-loader vk:load-transition-image-layout-ext device-proc-addr
+    "vkTransitionImageLayoutEXT" (vk:device unsigned-32 uptr)
+    vk:result)
+  (define-vk-loader vk:load-get-image-subresource-layout2-ext device-proc-addr
+    "vkGetImageSubresourceLayout2EXT"
+    (vk:device vk:image uptr uptr) void)
+  (define-vk-loader vk:load-release-swapchain-images-ext device-proc-addr
+    "vkReleaseSwapchainImagesEXT" (vk:device uptr) vk:result)
+  (define-vk-loader vk:load-get-generated-commands-memory-requirements-nv
+    device-proc-addr
+    "vkGetGeneratedCommandsMemoryRequirementsNV"
+    (vk:device uptr uptr) void)
+  (define-vk-loader vk:load-cmd-preprocess-generated-commands-nv
+    device-proc-addr "vkCmdPreprocessGeneratedCommandsNV"
+    (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-execute-generated-commands-nv device-proc-addr
+    "vkCmdExecuteGeneratedCommandsNV"
+    (vk:command-buffer vk:bool32 uptr) void)
+  (define-vk-loader vk:load-cmd-bind-pipeline-shader-group-nv device-proc-addr
+    "vkCmdBindPipelineShaderGroupNV"
+    (vk:command-buffer
+      vk:pipeline-bind-point
+      vk:pipeline
+      unsigned-32)
+    void)
+  (define-vk-loader vk:load-create-indirect-commands-layout-nv device-proc-addr
+    "vkCreateIndirectCommandsLayoutNV"
+    (vk:device uptr uptr uptr) vk:result)
+  (define-vk-loader vk:load-destroy-indirect-commands-layout-nv
+    device-proc-addr "vkDestroyIndirectCommandsLayoutNV"
+    (vk:device vk:indirect-commands-layout-nv uptr) void)
+  (define-vk-loader vk:load-cmd-set-depth-bias2-ext device-proc-addr
+    "vkCmdSetDepthBias2EXT" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-acquire-drm-display-ext instance-proc-addr
+    "vkAcquireDrmDisplayEXT"
+    (vk:physical-device integer-32 vk:display-khr) vk:result)
+  (define-vk-loader vk:load-get-drm-display-ext instance-proc-addr
+    "vkGetDrmDisplayEXT"
+    (vk:physical-device integer-32 unsigned-32 uptr) vk:result)
+  (define-vk-loader vk:load-create-private-data-slot-ext device-proc-addr
+    "vkCreatePrivateDataSlotEXT" (vk:device uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-destroy-private-data-slot-ext device-proc-addr
+    "vkDestroyPrivateDataSlotEXT"
+    (vk:device vk:private-data-slot uptr) void)
+  (define-vk-loader vk:load-set-private-data-ext device-proc-addr
+    "vkSetPrivateDataEXT"
+    (vk:device
+      vk:object-type
+      unsigned-64
+      vk:private-data-slot
+      unsigned-64)
+    vk:result)
+  (define-vk-loader vk:load-get-private-data-ext device-proc-addr
+    "vkGetPrivateDataEXT"
+    (vk:device
+      vk:object-type
+      unsigned-64
+      vk:private-data-slot
+      uptr)
+    void)
+  (define-vk-loader vk:load-queue-set-perf-hint-qcom device-proc-addr
+    "vkQueueSetPerfHintQCOM" (vk:queue uptr) vk:result)
+  (define-vk-loader vk:load-cmd-dispatch-tile-qcom device-proc-addr
+    "vkCmdDispatchTileQCOM" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-begin-per-tile-execution-qcom device-proc-addr
+    "vkCmdBeginPerTileExecutionQCOM" (vk:command-buffer uptr)
+    void)
+  (define-vk-loader vk:load-cmd-end-per-tile-execution-qcom device-proc-addr
+    "vkCmdEndPerTileExecutionQCOM" (vk:command-buffer uptr)
+    void)
+  (define-vk-loader vk:load-set-latency-sleep-mode-legacy-nv device-proc-addr
+    "vkSetLatencySleepModeLegacyNV"
+    (vk:device vk:bool32 vk:bool32 unsigned-32) void)
+  (define-vk-loader vk:load-latency-sleep-legacy-nv device-proc-addr
+    "vkLatencySleepLegacyNV"
+    (vk:device vk:semaphore unsigned-64) void)
+  (define-vk-loader vk:load-set-latency-marker-legacy-nv device-proc-addr
+    "vkSetLatencyMarkerLegacyNV"
+    (vk:device unsigned-64 unsigned-32) void)
+  (define-vk-loader vk:load-get-latency-timings-legacy-nv device-proc-addr
+    "vkGetLatencyTimingsLegacyNV" (vk:device uptr) void)
+  (define-vk-loader vk:load-queue-notify-out-of-band-legacy-nv device-proc-addr
+    "vkQueueNotifyOutOfBandLegacyNV" (vk:queue unsigned-32)
+    void)
+  (define-vk-loader vk:load-get-sleep-status-legacy-nv device-proc-addr
+    "vkGetSleepStatusLegacyNV" (vk:device uptr) void)
+  (define-vk-loader vk:load-shutdown-latency-device-legacy-nv device-proc-addr
+    "vkShutdownLatencyDeviceLegacyNV" (vk:device) void)
+  (define-vk-loader vk:load-get-descriptor-set-layout-size-ext device-proc-addr
+    "vkGetDescriptorSetLayoutSizeEXT"
+    (vk:device vk:descriptor-set-layout uptr) void)
+  (define-vk-loader vk:load-get-descriptor-set-layout-binding-offset-ext
+    device-proc-addr "vkGetDescriptorSetLayoutBindingOffsetEXT"
+    (vk:device vk:descriptor-set-layout unsigned-32 uptr) void)
+  (define-vk-loader vk:load-get-descriptor-ext device-proc-addr
+    "vkGetDescriptorEXT" (vk:device uptr unsigned-64 uptr) void)
+  (define-vk-loader vk:load-cmd-bind-descriptor-buffers-ext device-proc-addr
+    "vkCmdBindDescriptorBuffersEXT"
+    (vk:command-buffer unsigned-32 uptr) void)
+  (define-vk-loader vk:load-cmd-set-descriptor-buffer-offsets-ext
+    device-proc-addr "vkCmdSetDescriptorBufferOffsetsEXT"
+    (vk:command-buffer vk:pipeline-bind-point vk:pipeline-layout
+      unsigned-32 unsigned-32 uptr uptr)
+    void)
+  (define-vk-loader vk:load-cmd-bind-descriptor-buffer-embedded-samplers-ext
+    device-proc-addr
+    "vkCmdBindDescriptorBufferEmbeddedSamplersEXT"
+    (vk:command-buffer
+      vk:pipeline-bind-point
+      vk:pipeline-layout
+      unsigned-32)
+    void)
+  (define-vk-loader vk:load-get-buffer-opaque-capture-descriptor-data-ext
+    device-proc-addr "vkGetBufferOpaqueCaptureDescriptorDataEXT"
+    (vk:device uptr uptr) vk:result)
+  (define-vk-loader vk:load-get-image-opaque-capture-descriptor-data-ext
+    device-proc-addr "vkGetImageOpaqueCaptureDescriptorDataEXT"
+    (vk:device uptr uptr) vk:result)
+  (define-vk-loader vk:load-get-image-view-opaque-capture-descriptor-data-ext
+    device-proc-addr
+    "vkGetImageViewOpaqueCaptureDescriptorDataEXT"
+    (vk:device uptr uptr) vk:result)
+  (define-vk-loader vk:load-get-sampler-opaque-capture-descriptor-data-ext
+    device-proc-addr
+    "vkGetSamplerOpaqueCaptureDescriptorDataEXT"
+    (vk:device uptr uptr) vk:result)
+  (define-vk-loader
+    vk:load-get-acceleration-structure-opaque-capture-descriptor-data-ext
+    device-proc-addr
+    "vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT"
+    (vk:device uptr uptr) vk:result)
+  (define-vk-loader vk:load-cmd-set-fragment-shading-rate-enum-nv
+    device-proc-addr "vkCmdSetFragmentShadingRateEnumNV"
+    (vk:command-buffer vk:fragment-shading-rate-nv uptr) void)
+  (define-vk-loader vk:load-get-device-fault-info-ext device-proc-addr
+    "vkGetDeviceFaultInfoEXT" (vk:device uptr uptr) vk:result)
+  (define-vk-loader vk:load-cmd-set-vertex-input-ext device-proc-addr
+    "vkCmdSetVertexInputEXT"
+    (vk:command-buffer unsigned-32 uptr unsigned-32 uptr) void)
+  (define-vk-loader
+    vk:load-get-device-subpass-shading-max-workgroup-size-huawei
+    device-proc-addr
+    "vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI"
+    (vk:device vk:render-pass uptr) vk:result)
+  (define-vk-loader vk:load-cmd-subpass-shading-huawei device-proc-addr
+    "vkCmdSubpassShadingHUAWEI" (vk:command-buffer) void)
+  (define-vk-loader vk:load-cmd-bind-invocation-mask-huawei device-proc-addr
+    "vkCmdBindInvocationMaskHUAWEI"
+    (vk:command-buffer vk:image-view vk:image-layout) void)
+  (define-vk-loader vk:load-get-memory-remote-address-nv device-proc-addr
+    "vkGetMemoryRemoteAddressNV" (vk:device uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-get-pipeline-properties-ext device-proc-addr
+    "vkGetPipelinePropertiesEXT" (vk:device uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-cmd-set-patch-control-points-ext device-proc-addr
+    "vkCmdSetPatchControlPointsEXT"
+    (vk:command-buffer unsigned-32) void)
+  (define-vk-loader vk:load-cmd-set-rasterizer-discard-enable-ext
+    device-proc-addr "vkCmdSetRasterizerDiscardEnableEXT"
+    (vk:command-buffer vk:bool32) void)
+  (define-vk-loader vk:load-cmd-set-depth-bias-enable-ext device-proc-addr
+    "vkCmdSetDepthBiasEnableEXT" (vk:command-buffer vk:bool32)
+    void)
+  (define-vk-loader vk:load-cmd-set-logic-op-ext device-proc-addr
+    "vkCmdSetLogicOpEXT" (vk:command-buffer vk:logic-op) void)
+  (define-vk-loader vk:load-cmd-set-primitive-restart-enable-ext
+    device-proc-addr "vkCmdSetPrimitiveRestartEnableEXT"
+    (vk:command-buffer vk:bool32) void)
+  (define-vk-loader vk:load-cmd-set-color-write-enable-ext device-proc-addr
+    "vkCmdSetColorWriteEnableEXT"
+    (vk:command-buffer unsigned-32 uptr) void)
+  (define-vk-loader vk:load-cmd-draw-multi-ext device-proc-addr
+    "vkCmdDrawMultiEXT"
+    (vk:command-buffer unsigned-32 uptr unsigned-32 unsigned-32
+      unsigned-32)
+    void)
+  (define-vk-loader vk:load-cmd-draw-multi-indexed-ext device-proc-addr
+    "vkCmdDrawMultiIndexedEXT"
+    (vk:command-buffer unsigned-32 uptr unsigned-32 unsigned-32
+      unsigned-32 uptr)
+    void)
+  (define-vk-loader vk:load-create-micromap-ext device-proc-addr
+    "vkCreateMicromapEXT" (vk:device uptr uptr uptr) vk:result)
+  (define-vk-loader vk:load-destroy-micromap-ext device-proc-addr
+    "vkDestroyMicromapEXT" (vk:device vk:micromap-ext uptr)
+    void)
+  (define-vk-loader vk:load-cmd-build-micromaps-ext device-proc-addr
+    "vkCmdBuildMicromapsEXT"
+    (vk:command-buffer unsigned-32 uptr) void)
+  (define-vk-loader vk:load-build-micromaps-ext device-proc-addr
+    "vkBuildMicromapsEXT"
+    (vk:device vk:deferred-operation-khr unsigned-32 uptr)
+    vk:result)
+  (define-vk-loader vk:load-copy-micromap-ext device-proc-addr
+    "vkCopyMicromapEXT"
+    (vk:device vk:deferred-operation-khr uptr) vk:result)
+  (define-vk-loader vk:load-copy-micromap-to-memory-ext device-proc-addr
+    "vkCopyMicromapToMemoryEXT"
+    (vk:device vk:deferred-operation-khr uptr) vk:result)
+  (define-vk-loader vk:load-copy-memory-to-micromap-ext device-proc-addr
+    "vkCopyMemoryToMicromapEXT"
+    (vk:device vk:deferred-operation-khr uptr) vk:result)
+  (define-vk-loader vk:load-write-micromaps-properties-ext device-proc-addr
+    "vkWriteMicromapsPropertiesEXT"
+    (vk:device unsigned-32 uptr vk:query-type unsigned-64 uptr
+      unsigned-64)
+    vk:result)
+  (define-vk-loader vk:load-cmd-copy-micromap-ext device-proc-addr
+    "vkCmdCopyMicromapEXT" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-copy-micromap-to-memory-ext device-proc-addr
+    "vkCmdCopyMicromapToMemoryEXT" (vk:command-buffer uptr)
+    void)
+  (define-vk-loader vk:load-cmd-copy-memory-to-micromap-ext device-proc-addr
+    "vkCmdCopyMemoryToMicromapEXT" (vk:command-buffer uptr)
+    void)
+  (define-vk-loader vk:load-cmd-write-micromaps-properties-ext device-proc-addr
+    "vkCmdWriteMicromapsPropertiesEXT"
+    (vk:command-buffer unsigned-32 uptr vk:query-type
+      vk:query-pool unsigned-32)
+    void)
+  (define-vk-loader vk:load-get-device-micromap-compatibility-ext
+    device-proc-addr "vkGetDeviceMicromapCompatibilityEXT"
+    (vk:device uptr uptr) void)
+  (define-vk-loader vk:load-get-micromap-build-sizes-ext device-proc-addr
+    "vkGetMicromapBuildSizesEXT"
+    (vk:device
+      vk:acceleration-structure-build-type-khr
+      uptr
+      uptr)
+    void)
+  (define-vk-loader vk:load-cmd-draw-cluster-huawei device-proc-addr
+    "vkCmdDrawClusterHUAWEI"
+    (vk:command-buffer unsigned-32 unsigned-32 unsigned-32)
+    void)
+  (define-vk-loader vk:load-cmd-draw-cluster-indirect-huawei device-proc-addr
+    "vkCmdDrawClusterIndirectHUAWEI"
+    (vk:command-buffer vk:buffer vk:device-size) void)
+  (define-vk-loader vk:load-set-device-memory-priority-ext device-proc-addr
+    "vkSetDeviceMemoryPriorityEXT"
+    (vk:device vk:device-memory float) void)
+  (define-vk-loader vk:load-cmd-set-dispatch-parameters-arm device-proc-addr
+    "vkCmdSetDispatchParametersARM" (vk:command-buffer uptr)
+    void)
+  (define-vk-loader vk:load-get-descriptor-set-layout-host-mapping-info-valve
+    device-proc-addr
+    "vkGetDescriptorSetLayoutHostMappingInfoVALVE"
+    (vk:device uptr uptr) void)
+  (define-vk-loader vk:load-get-descriptor-set-host-mapping-valve
+    device-proc-addr "vkGetDescriptorSetHostMappingVALVE"
+    (vk:device vk:descriptor-set uptr) void)
+  (define-vk-loader vk:load-cmd-copy-memory-indirect-nv device-proc-addr
+    "vkCmdCopyMemoryIndirectNV"
+    (vk:command-buffer
+      vk:device-address
+      unsigned-32
+      unsigned-32)
+    void)
+  (define-vk-loader vk:load-cmd-copy-memory-to-image-indirect-nv
+    device-proc-addr "vkCmdCopyMemoryToImageIndirectNV"
+    (vk:command-buffer vk:device-address unsigned-32 unsigned-32
+      vk:image vk:image-layout uptr)
+    void)
+  (define-vk-loader vk:load-cmd-decompress-memory-nv device-proc-addr
+    "vkCmdDecompressMemoryNV"
+    (vk:command-buffer unsigned-32 uptr) void)
+  (define-vk-loader vk:load-cmd-decompress-memory-indirect-count-nv
+    device-proc-addr "vkCmdDecompressMemoryIndirectCountNV"
+    (vk:command-buffer
+      vk:device-address
+      vk:device-address
+      unsigned-32)
+    void)
+  (define-vk-loader vk:load-get-pipeline-indirect-memory-requirements-nv
+    device-proc-addr "vkGetPipelineIndirectMemoryRequirementsNV"
+    (vk:device uptr uptr) void)
+  (define-vk-loader vk:load-cmd-update-pipeline-indirect-buffer-nv
+    device-proc-addr "vkCmdUpdatePipelineIndirectBufferNV"
+    (vk:command-buffer vk:pipeline-bind-point vk:pipeline) void)
+  (define-vk-loader vk:load-get-pipeline-indirect-device-address-nv
+    device-proc-addr "vkGetPipelineIndirectDeviceAddressNV"
+    (vk:device uptr) vk:device-address)
+  (define-vk-loader vk:load-cmd-set-depth-clamp-enable-ext device-proc-addr
+    "vkCmdSetDepthClampEnableEXT" (vk:command-buffer vk:bool32)
+    void)
+  (define-vk-loader vk:load-cmd-set-polygon-mode-ext device-proc-addr
+    "vkCmdSetPolygonModeEXT" (vk:command-buffer vk:polygon-mode)
+    void)
+  (define-vk-loader vk:load-cmd-set-rasterization-samples-ext device-proc-addr
+    "vkCmdSetRasterizationSamplesEXT"
+    (vk:command-buffer vk:sample-count-flag-bits) void)
+  (define-vk-loader vk:load-cmd-set-sample-mask-ext device-proc-addr
+    "vkCmdSetSampleMaskEXT"
+    (vk:command-buffer vk:sample-count-flag-bits uptr) void)
+  (define-vk-loader vk:load-cmd-set-alpha-to-coverage-enable-ext
+    device-proc-addr "vkCmdSetAlphaToCoverageEnableEXT"
+    (vk:command-buffer vk:bool32) void)
+  (define-vk-loader vk:load-cmd-set-alpha-to-one-enable-ext device-proc-addr
+    "vkCmdSetAlphaToOneEnableEXT" (vk:command-buffer vk:bool32)
+    void)
+  (define-vk-loader vk:load-cmd-set-logic-op-enable-ext device-proc-addr
+    "vkCmdSetLogicOpEnableEXT" (vk:command-buffer vk:bool32)
+    void)
+  (define-vk-loader vk:load-cmd-set-color-blend-enable-ext device-proc-addr
+    "vkCmdSetColorBlendEnableEXT"
+    (vk:command-buffer unsigned-32 unsigned-32 uptr) void)
+  (define-vk-loader vk:load-cmd-set-color-blend-equation-ext device-proc-addr
+    "vkCmdSetColorBlendEquationEXT"
+    (vk:command-buffer unsigned-32 unsigned-32 uptr) void)
+  (define-vk-loader vk:load-cmd-set-color-write-mask-ext device-proc-addr
+    "vkCmdSetColorWriteMaskEXT"
+    (vk:command-buffer unsigned-32 unsigned-32 uptr) void)
+  (define-vk-loader vk:load-cmd-set-tessellation-domain-origin-ext
+    device-proc-addr "vkCmdSetTessellationDomainOriginEXT"
+    (vk:command-buffer vk:tessellation-domain-origin) void)
+  (define-vk-loader vk:load-cmd-set-rasterization-stream-ext device-proc-addr
+    "vkCmdSetRasterizationStreamEXT"
+    (vk:command-buffer unsigned-32) void)
+  (define-vk-loader vk:load-cmd-set-conservative-rasterization-mode-ext
+    device-proc-addr "vkCmdSetConservativeRasterizationModeEXT"
+    (vk:command-buffer vk:conservative-rasterization-mode-ext)
+    void)
+  (define-vk-loader vk:load-cmd-set-extra-primitive-overestimation-size-ext
+    device-proc-addr
+    "vkCmdSetExtraPrimitiveOverestimationSizeEXT"
+    (vk:command-buffer float) void)
+  (define-vk-loader vk:load-cmd-set-depth-clip-enable-ext device-proc-addr
+    "vkCmdSetDepthClipEnableEXT" (vk:command-buffer vk:bool32)
+    void)
+  (define-vk-loader vk:load-cmd-set-sample-locations-enable-ext
+    device-proc-addr "vkCmdSetSampleLocationsEnableEXT"
+    (vk:command-buffer vk:bool32) void)
+  (define-vk-loader vk:load-cmd-set-color-blend-advanced-ext device-proc-addr
+    "vkCmdSetColorBlendAdvancedEXT"
+    (vk:command-buffer unsigned-32 unsigned-32 uptr) void)
+  (define-vk-loader vk:load-cmd-set-provoking-vertex-mode-ext device-proc-addr
+    "vkCmdSetProvokingVertexModeEXT"
+    (vk:command-buffer vk:provoking-vertex-mode-ext) void)
+  (define-vk-loader vk:load-cmd-set-line-rasterization-mode-ext
+    device-proc-addr "vkCmdSetLineRasterizationModeEXT"
+    (vk:command-buffer vk:line-rasterization-mode-ext) void)
+  (define-vk-loader vk:load-cmd-set-line-stipple-enable-ext device-proc-addr
+    "vkCmdSetLineStippleEnableEXT" (vk:command-buffer vk:bool32)
+    void)
+  (define-vk-loader vk:load-cmd-set-depth-clip-negative-one-to-one-ext
+    device-proc-addr "vkCmdSetDepthClipNegativeOneToOneEXT"
+    (vk:command-buffer vk:bool32) void)
+  (define-vk-loader vk:load-cmd-set-viewport-wscaling-enable-nv
+    device-proc-addr "vkCmdSetViewportWScalingEnableNV"
+    (vk:command-buffer vk:bool32) void)
+  (define-vk-loader vk:load-cmd-set-viewport-swizzle-nv device-proc-addr
+    "vkCmdSetViewportSwizzleNV"
+    (vk:command-buffer unsigned-32 unsigned-32 uptr) void)
+  (define-vk-loader vk:load-cmd-set-coverage-to-color-enable-nv
+    device-proc-addr "vkCmdSetCoverageToColorEnableNV"
+    (vk:command-buffer vk:bool32) void)
+  (define-vk-loader vk:load-cmd-set-coverage-to-color-location-nv
+    device-proc-addr "vkCmdSetCoverageToColorLocationNV"
+    (vk:command-buffer unsigned-32) void)
+  (define-vk-loader vk:load-cmd-set-coverage-modulation-mode-nv
+    device-proc-addr "vkCmdSetCoverageModulationModeNV"
+    (vk:command-buffer vk:coverage-modulation-mode-nv) void)
+  (define-vk-loader vk:load-cmd-set-coverage-modulation-table-enable-nv
+    device-proc-addr "vkCmdSetCoverageModulationTableEnableNV"
+    (vk:command-buffer vk:bool32) void)
+  (define-vk-loader vk:load-cmd-set-coverage-modulation-table-nv
+    device-proc-addr "vkCmdSetCoverageModulationTableNV"
+    (vk:command-buffer unsigned-32 uptr) void)
+  (define-vk-loader vk:load-cmd-set-shading-rate-image-enable-nv
+    device-proc-addr "vkCmdSetShadingRateImageEnableNV"
+    (vk:command-buffer vk:bool32) void)
+  (define-vk-loader vk:load-cmd-set-representative-fragment-test-enable-nv
+    device-proc-addr
+    "vkCmdSetRepresentativeFragmentTestEnableNV"
+    (vk:command-buffer vk:bool32) void)
+  (define-vk-loader vk:load-cmd-set-coverage-reduction-mode-nv device-proc-addr
+    "vkCmdSetCoverageReductionModeNV"
+    (vk:command-buffer vk:coverage-reduction-mode-nv) void)
+  (define-vk-loader vk:load-create-tensor-arm device-proc-addr
+    "vkCreateTensorARM" (vk:device uptr uptr uptr) vk:result)
+  (define-vk-loader vk:load-destroy-tensor-arm device-proc-addr
+    "vkDestroyTensorARM" (vk:device vk:tensor-arm uptr) void)
+  (define-vk-loader vk:load-create-tensor-view-arm device-proc-addr
+    "vkCreateTensorViewARM" (vk:device uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-destroy-tensor-view-arm device-proc-addr
+    "vkDestroyTensorViewARM" (vk:device vk:tensor-view-arm uptr)
+    void)
+  (define-vk-loader vk:load-get-tensor-memory-requirements-arm device-proc-addr
+    "vkGetTensorMemoryRequirementsARM" (vk:device uptr uptr)
+    void)
+  (define-vk-loader vk:load-bind-tensor-memory-arm device-proc-addr
+    "vkBindTensorMemoryARM" (vk:device unsigned-32 uptr)
+    vk:result)
+  (define-vk-loader vk:load-get-device-tensor-memory-requirements-arm
+    device-proc-addr "vkGetDeviceTensorMemoryRequirementsARM"
+    (vk:device uptr uptr) void)
+  (define-vk-loader vk:load-cmd-copy-tensor-arm device-proc-addr
+    "vkCmdCopyTensorARM" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-get-physical-device-external-tensor-properties-arm
+    instance-proc-addr
+    "vkGetPhysicalDeviceExternalTensorPropertiesARM"
+    (vk:physical-device uptr uptr) void)
+  (define-vk-loader vk:load-get-tensor-opaque-capture-descriptor-data-arm
+    device-proc-addr "vkGetTensorOpaqueCaptureDescriptorDataARM"
+    (vk:device uptr uptr) vk:result)
+  (define-vk-loader vk:load-get-tensor-view-opaque-capture-descriptor-data-arm
+    device-proc-addr
+    "vkGetTensorViewOpaqueCaptureDescriptorDataARM"
+    (vk:device uptr uptr) vk:result)
+  (define-vk-loader vk:load-get-shader-module-identifier-ext device-proc-addr
+    "vkGetShaderModuleIdentifierEXT"
+    (vk:device vk:shader-module uptr) void)
+  (define-vk-loader vk:load-get-shader-module-create-info-identifier-ext
+    device-proc-addr "vkGetShaderModuleCreateInfoIdentifierEXT"
+    (vk:device uptr uptr) void)
+  (define-vk-loader vk:load-get-physical-device-optical-flow-image-formats-nv
+    instance-proc-addr
+    "vkGetPhysicalDeviceOpticalFlowImageFormatsNV"
+    (vk:physical-device uptr uptr uptr) vk:result)
+  (define-vk-loader vk:load-create-optical-flow-session-nv device-proc-addr
+    "vkCreateOpticalFlowSessionNV" (vk:device uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-destroy-optical-flow-session-nv device-proc-addr
+    "vkDestroyOpticalFlowSessionNV"
+    (vk:device vk:optical-flow-session-nv uptr) void)
+  (define-vk-loader vk:load-bind-optical-flow-session-image-nv device-proc-addr
+    "vkBindOpticalFlowSessionImageNV"
+    (vk:device
+      vk:optical-flow-session-nv
+      vk:optical-flow-session-binding-point-nv
+      vk:image-view
+      vk:image-layout)
+    vk:result)
+  (define-vk-loader vk:load-cmd-optical-flow-execute-nv device-proc-addr
+    "vkCmdOpticalFlowExecuteNV"
+    (vk:command-buffer vk:optical-flow-session-nv uptr) void)
+  (define-vk-loader vk:load-anti-lag-update-amd
+    device-proc-addr "vkAntiLagUpdateAMD" (vk:device uptr) void)
+  (define-vk-loader vk:load-create-shaders-ext device-proc-addr
+    "vkCreateShadersEXT" (vk:device unsigned-32 uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-destroy-shader-ext device-proc-addr
+    "vkDestroyShaderEXT" (vk:device vk:shader-ext uptr) void)
+  (define-vk-loader vk:load-get-shader-binary-data-ext device-proc-addr
+    "vkGetShaderBinaryDataEXT"
+    (vk:device vk:shader-ext uptr uptr) vk:result)
+  (define-vk-loader vk:load-cmd-bind-shaders-ext device-proc-addr
+    "vkCmdBindShadersEXT"
+    (vk:command-buffer unsigned-32 uptr uptr) void)
+  (define-vk-loader vk:load-cmd-set-depth-clamp-range-ext device-proc-addr
+    "vkCmdSetDepthClampRangeEXT"
+    (vk:command-buffer vk:depth-clamp-mode-ext uptr) void)
+  (define-vk-loader vk:load-get-framebuffer-tile-properties-qcom
+    device-proc-addr "vkGetFramebufferTilePropertiesQCOM"
+    (vk:device vk:framebuffer uptr uptr) vk:result)
+  (define-vk-loader vk:load-get-dynamic-rendering-tile-properties-qcom
+    device-proc-addr "vkGetDynamicRenderingTilePropertiesQCOM"
+    (vk:device uptr uptr) vk:result)
+  (define-vk-loader
+    vk:load-get-physical-device-cooperative-vector-properties-nv
+    instance-proc-addr
+    "vkGetPhysicalDeviceCooperativeVectorPropertiesNV"
+    (vk:physical-device uptr uptr) vk:result)
+  (define-vk-loader vk:load-convert-cooperative-vector-matrix-nv
+    device-proc-addr "vkConvertCooperativeVectorMatrixNV"
+    (vk:device uptr) vk:result)
+  (define-vk-loader vk:load-cmd-convert-cooperative-vector-matrix-nv
+    device-proc-addr "vkCmdConvertCooperativeVectorMatrixNV"
+    (vk:command-buffer unsigned-32 uptr) void)
+  (define-vk-loader vk:load-set-latency-sleep-mode-nv device-proc-addr
+    "vkSetLatencySleepModeNV" (vk:device vk:swapchain-khr uptr)
+    vk:result)
+  (define-vk-loader vk:load-latency-sleep-nv device-proc-addr
+    "vkLatencySleepNV" (vk:device vk:swapchain-khr uptr)
+    vk:result)
+  (define-vk-loader vk:load-set-latency-marker-nv device-proc-addr
+    "vkSetLatencyMarkerNV" (vk:device vk:swapchain-khr uptr)
+    void)
+  (define-vk-loader vk:load-get-latency-timings-nv device-proc-addr
+    "vkGetLatencyTimingsNV" (vk:device vk:swapchain-khr uptr)
+    void)
+  (define-vk-loader vk:load-queue-notify-out-of-band-nv device-proc-addr
+    "vkQueueNotifyOutOfBandNV" (vk:queue uptr) void)
+  (define-vk-loader vk:load-create-data-graph-pipelines-arm device-proc-addr
+    "vkCreateDataGraphPipelinesARM"
+    (vk:device vk:deferred-operation-khr vk:pipeline-cache
+      unsigned-32 uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-create-data-graph-pipeline-session-arm
+    device-proc-addr "vkCreateDataGraphPipelineSessionARM"
+    (vk:device uptr uptr uptr) vk:result)
+  (define-vk-loader
+    vk:load-get-data-graph-pipeline-session-bind-point-requirements-arm
+    device-proc-addr
+    "vkGetDataGraphPipelineSessionBindPointRequirementsARM"
+    (vk:device uptr uptr uptr) vk:result)
+  (define-vk-loader
+    vk:load-get-data-graph-pipeline-session-memory-requirements-arm
+    device-proc-addr
+    "vkGetDataGraphPipelineSessionMemoryRequirementsARM"
+    (vk:device uptr uptr) void)
+  (define-vk-loader vk:load-bind-data-graph-pipeline-session-memory-arm
+    device-proc-addr "vkBindDataGraphPipelineSessionMemoryARM"
+    (vk:device unsigned-32 uptr) vk:result)
+  (define-vk-loader vk:load-destroy-data-graph-pipeline-session-arm
+    device-proc-addr "vkDestroyDataGraphPipelineSessionARM"
+    (vk:device vk:data-graph-pipeline-session-arm uptr) void)
+  (define-vk-loader vk:load-cmd-dispatch-data-graph-arm device-proc-addr
+    "vkCmdDispatchDataGraphARM"
+    (vk:command-buffer vk:data-graph-pipeline-session-arm uptr)
+    void)
+  (define-vk-loader vk:load-get-data-graph-pipeline-available-properties-arm
+    device-proc-addr
+    "vkGetDataGraphPipelineAvailablePropertiesARM"
+    (vk:device uptr uptr uptr) vk:result)
+  (define-vk-loader vk:load-get-data-graph-pipeline-properties-arm
+    device-proc-addr "vkGetDataGraphPipelinePropertiesARM"
+    (vk:device uptr unsigned-32 uptr) vk:result)
+  (define-vk-loader
+    vk:load-get-physical-device-queue-family-data-graph-properties-arm
+    instance-proc-addr
+    "vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM"
+    (vk:physical-device unsigned-32 uptr uptr) vk:result)
+  (define-vk-loader
+    vk:load-get-physical-device-queue-family-data-graph-processing-engine-properties-arm
+    instance-proc-addr
+    "vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM"
+    (vk:physical-device uptr uptr) void)
+  (define-vk-loader
+    vk:load-get-physical-device-queue-family-data-graph-engine-operation-properties-arm
+    instance-proc-addr
+    "vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM"
+    (vk:physical-device unsigned-32 uptr uptr) vk:result)
+  (define-vk-loader vk:load-cmd-set-attachment-feedback-loop-enable-ext
+    device-proc-addr "vkCmdSetAttachmentFeedbackLoopEnableEXT"
+    (vk:command-buffer vk:image-aspect-flags) void)
+  (define-vk-loader vk:load-cmd-bind-tile-memory-qcom device-proc-addr
+    "vkCmdBindTileMemoryQCOM" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-decompress-memory-ext device-proc-addr
+    "vkCmdDecompressMemoryEXT" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-decompress-memory-indirect-count-ext
+    device-proc-addr "vkCmdDecompressMemoryIndirectCountEXT"
+    (vk:command-buffer vk:memory-decompression-method-flags-ext vk:device-address
+      vk:device-address unsigned-32 unsigned-32)
+    void)
+  (define-vk-loader vk:load-create-external-compute-queue-nv device-proc-addr
+    "vkCreateExternalComputeQueueNV" (vk:device uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-destroy-external-compute-queue-nv device-proc-addr
+    "vkDestroyExternalComputeQueueNV"
+    (vk:device vk:external-compute-queue-nv uptr) void)
+  (define-vk-loader vk:load-get-external-compute-queue-data-nv
+    instance-proc-addr "vkGetExternalComputeQueueDataNV"
+    (vk:external-compute-queue-nv uptr uptr) void)
+  (define-vk-loader vk:load-get-cluster-acceleration-structure-build-sizes-nv
+    device-proc-addr
+    "vkGetClusterAccelerationStructureBuildSizesNV"
+    (vk:device uptr uptr) void)
+  (define-vk-loader
+    vk:load-cmd-build-cluster-acceleration-structure-indirect-nv
+    device-proc-addr
+    "vkCmdBuildClusterAccelerationStructureIndirectNV"
+    (vk:command-buffer uptr) void)
+  (define-vk-loader
+    vk:load-get-partitioned-acceleration-structures-build-sizes-nv
+    device-proc-addr
+    "vkGetPartitionedAccelerationStructuresBuildSizesNV"
+    (vk:device uptr uptr) void)
+  (define-vk-loader vk:load-cmd-build-partitioned-acceleration-structures-nv
+    device-proc-addr
+    "vkCmdBuildPartitionedAccelerationStructuresNV"
+    (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-get-generated-commands-memory-requirements-ext
+    device-proc-addr
+    "vkGetGeneratedCommandsMemoryRequirementsEXT"
+    (vk:device uptr uptr) void)
+  (define-vk-loader vk:load-cmd-preprocess-generated-commands-ext
+    device-proc-addr "vkCmdPreprocessGeneratedCommandsEXT"
+    (vk:command-buffer uptr vk:command-buffer) void)
+  (define-vk-loader vk:load-cmd-execute-generated-commands-ext device-proc-addr
+    "vkCmdExecuteGeneratedCommandsEXT"
+    (vk:command-buffer vk:bool32 uptr) void)
+  (define-vk-loader vk:load-create-indirect-commands-layout-ext
+    device-proc-addr "vkCreateIndirectCommandsLayoutEXT"
+    (vk:device uptr uptr uptr) vk:result)
+  (define-vk-loader vk:load-destroy-indirect-commands-layout-ext
+    device-proc-addr "vkDestroyIndirectCommandsLayoutEXT"
+    (vk:device vk:indirect-commands-layout-ext uptr) void)
+  (define-vk-loader vk:load-create-indirect-execution-set-ext device-proc-addr
+    "vkCreateIndirectExecutionSetEXT" (vk:device uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-destroy-indirect-execution-set-ext device-proc-addr
+    "vkDestroyIndirectExecutionSetEXT"
+    (vk:device vk:indirect-execution-set-ext uptr) void)
+  (define-vk-loader vk:load-update-indirect-execution-set-pipeline-ext
+    device-proc-addr "vkUpdateIndirectExecutionSetPipelineEXT"
+    (vk:device vk:indirect-execution-set-ext unsigned-32 uptr)
+    void)
+  (define-vk-loader vk:load-update-indirect-execution-set-shader-ext
+    device-proc-addr "vkUpdateIndirectExecutionSetShaderEXT"
+    (vk:device vk:indirect-execution-set-ext unsigned-32 uptr)
+    void)
+  (define-vk-loader
+    vk:load-get-physical-device-cooperative-matrix-flexible-dimensions-properties-nv
+    instance-proc-addr
+    "vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV"
+    (vk:physical-device uptr uptr) vk:result)
+  (define-vk-loader
+    vk:load-enumerate-physical-device-queue-family-performance-counters-by-region-arm
+    instance-proc-addr
+    "vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM"
+    (vk:physical-device unsigned-32 uptr uptr uptr) vk:result)
+  (define-vk-loader
+    vk:load-enumerate-physical-device-shader-instrumentation-metrics-arm
+    instance-proc-addr
+    "vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM"
+    (vk:physical-device uptr uptr) vk:result)
+  (define-vk-loader vk:load-create-shader-instrumentation-arm device-proc-addr
+    "vkCreateShaderInstrumentationARM"
+    (vk:device uptr uptr uptr) vk:result)
+  (define-vk-loader vk:load-destroy-shader-instrumentation-arm device-proc-addr
+    "vkDestroyShaderInstrumentationARM"
+    (vk:device vk:shader-instrumentation-arm uptr) void)
+  (define-vk-loader vk:load-cmd-begin-shader-instrumentation-arm
+    device-proc-addr "vkCmdBeginShaderInstrumentationARM"
+    (vk:command-buffer vk:shader-instrumentation-arm) void)
+  (define-vk-loader vk:load-cmd-end-shader-instrumentation-arm device-proc-addr
+    "vkCmdEndShaderInstrumentationARM" (vk:command-buffer) void)
+  (define-vk-loader vk:load-get-shader-instrumentation-values-arm
+    device-proc-addr "vkGetShaderInstrumentationValuesARM"
+    (vk:device
+      vk:shader-instrumentation-arm
+      uptr
+      uptr
+      vk:shader-instrumentation-values-flags-arm)
+    vk:result)
+  (define-vk-loader vk:load-clear-shader-instrumentation-metrics-arm
+    device-proc-addr "vkClearShaderInstrumentationMetricsARM"
+    (vk:device vk:shader-instrumentation-arm) void)
+  (define-vk-loader vk:load-cmd-end-rendering2-ext device-proc-addr
+    "vkCmdEndRendering2EXT" (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-begin-custom-resolve-ext device-proc-addr
+    "vkCmdBeginCustomResolveEXT" (vk:command-buffer uptr) void)
+  (define-vk-loader
+    vk:load-get-physical-device-queue-family-data-graph-optical-flow-image-formats-arm
+    instance-proc-addr
+    "vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM"
+    (vk:physical-device unsigned-32 uptr uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-cmd-set-compute-occupancy-priority-nv
+    device-proc-addr "vkCmdSetComputeOccupancyPriorityNV"
+    (vk:command-buffer uptr) void)
+  (define-vk-loader
+    vk:load-get-physical-device-cooperative-matrix-properties2-ext
+    instance-proc-addr
+    "vkGetPhysicalDeviceCooperativeMatrixProperties2EXT"
+    (vk:physical-device uptr uptr uptr) vk:result)
+  (define-vk-loader vk:load-cmd-set-primitive-restart-index-ext
+    device-proc-addr "vkCmdSetPrimitiveRestartIndexEXT"
+    (vk:command-buffer unsigned-32) void)
+  (define-vk-loader vk:load-create-acceleration-structure-khr device-proc-addr
+    "vkCreateAccelerationStructureKHR"
+    (vk:device uptr uptr uptr) vk:result)
+  (define-vk-loader vk:load-destroy-acceleration-structure-khr device-proc-addr
+    "vkDestroyAccelerationStructureKHR"
+    (vk:device vk:acceleration-structure-khr uptr) void)
+  (define-vk-loader vk:load-cmd-build-acceleration-structures-khr
+    device-proc-addr "vkCmdBuildAccelerationStructuresKHR"
+    (vk:command-buffer unsigned-32 uptr uptr) void)
+  (define-vk-loader vk:load-cmd-build-acceleration-structures-indirect-khr
+    device-proc-addr
+    "vkCmdBuildAccelerationStructuresIndirectKHR"
+    (vk:command-buffer unsigned-32 uptr uptr uptr uptr) void)
+  (define-vk-loader vk:load-build-acceleration-structures-khr device-proc-addr
+    "vkBuildAccelerationStructuresKHR"
+    (vk:device vk:deferred-operation-khr unsigned-32 uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-copy-acceleration-structure-khr device-proc-addr
+    "vkCopyAccelerationStructureKHR"
+    (vk:device vk:deferred-operation-khr uptr) vk:result)
+  (define-vk-loader vk:load-copy-acceleration-structure-to-memory-khr
+    device-proc-addr "vkCopyAccelerationStructureToMemoryKHR"
+    (vk:device vk:deferred-operation-khr uptr) vk:result)
+  (define-vk-loader vk:load-copy-memory-to-acceleration-structure-khr
+    device-proc-addr "vkCopyMemoryToAccelerationStructureKHR"
+    (vk:device vk:deferred-operation-khr uptr) vk:result)
+  (define-vk-loader vk:load-write-acceleration-structures-properties-khr
+    device-proc-addr
+    "vkWriteAccelerationStructuresPropertiesKHR"
+    (vk:device unsigned-32 uptr vk:query-type unsigned-64 uptr
+      unsigned-64)
+    vk:result)
+  (define-vk-loader vk:load-cmd-copy-acceleration-structure-khr
+    device-proc-addr "vkCmdCopyAccelerationStructureKHR"
+    (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-copy-acceleration-structure-to-memory-khr
+    device-proc-addr "vkCmdCopyAccelerationStructureToMemoryKHR"
+    (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-cmd-copy-memory-to-acceleration-structure-khr
+    device-proc-addr "vkCmdCopyMemoryToAccelerationStructureKHR"
+    (vk:command-buffer uptr) void)
+  (define-vk-loader vk:load-get-acceleration-structure-device-address-khr
+    device-proc-addr
+    "vkGetAccelerationStructureDeviceAddressKHR"
+    (vk:device uptr) vk:device-address)
+  (define-vk-loader vk:load-cmd-write-acceleration-structures-properties-khr
+    device-proc-addr
+    "vkCmdWriteAccelerationStructuresPropertiesKHR"
+    (vk:command-buffer unsigned-32 uptr vk:query-type
+      vk:query-pool unsigned-32)
+    void)
+  (define-vk-loader vk:load-get-device-acceleration-structure-compatibility-khr
+    device-proc-addr
+    "vkGetDeviceAccelerationStructureCompatibilityKHR"
+    (vk:device uptr uptr) void)
+  (define-vk-loader vk:load-get-acceleration-structure-build-sizes-khr
+    device-proc-addr "vkGetAccelerationStructureBuildSizesKHR"
+    (vk:device
+      vk:acceleration-structure-build-type-khr
+      uptr
+      uptr
+      uptr)
+    void)
+  (define-vk-loader vk:load-cmd-trace-rays-khr device-proc-addr
+    "vkCmdTraceRaysKHR"
+    (vk:command-buffer uptr uptr uptr uptr unsigned-32
+      unsigned-32 unsigned-32)
+    void)
+  (define-vk-loader vk:load-create-ray-tracing-pipelines-khr device-proc-addr
+    "vkCreateRayTracingPipelinesKHR"
+    (vk:device vk:deferred-operation-khr vk:pipeline-cache
+      unsigned-32 uptr uptr uptr)
+    vk:result)
+  (define-vk-loader
+    vk:load-get-ray-tracing-capture-replay-shader-group-handles-khr
+    device-proc-addr
+    "vkGetRayTracingCaptureReplayShaderGroupHandlesKHR"
+    (vk:device vk:pipeline unsigned-32 unsigned-32 unsigned-64
+      uptr)
+    vk:result)
+  (define-vk-loader vk:load-cmd-trace-rays-indirect-khr device-proc-addr
+    "vkCmdTraceRaysIndirectKHR"
+    (vk:command-buffer uptr uptr uptr uptr vk:device-address)
+    void)
+  (define-vk-loader vk:load-get-ray-tracing-shader-group-stack-size-khr
+    device-proc-addr "vkGetRayTracingShaderGroupStackSizeKHR"
+    (vk:device
+      vk:pipeline
+      unsigned-32
+      vk:shader-group-shader-khr)
+    vk:device-size)
+  (define-vk-loader vk:load-cmd-set-ray-tracing-pipeline-stack-size-khr
+    device-proc-addr "vkCmdSetRayTracingPipelineStackSizeKHR"
+    (vk:command-buffer unsigned-32) void)
+  (define-vk-loader vk:load-cmd-draw-mesh-tasks-ext device-proc-addr
+    "vkCmdDrawMeshTasksEXT"
+    (vk:command-buffer unsigned-32 unsigned-32 unsigned-32)
+    void)
+  (define-vk-loader vk:load-cmd-draw-mesh-tasks-indirect-ext device-proc-addr
+    "vkCmdDrawMeshTasksIndirectEXT"
+    (vk:command-buffer
+      vk:buffer
+      vk:device-size
+      unsigned-32
+      unsigned-32)
+    void)
+  (define-vk-loader vk:load-cmd-draw-mesh-tasks-indirect-count-ext
+    device-proc-addr "vkCmdDrawMeshTasksIndirectCountEXT"
+    (vk:command-buffer vk:buffer vk:device-size vk:buffer
+      vk:device-size unsigned-32 unsigned-32)
+    void))
