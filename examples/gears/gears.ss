@@ -15,7 +15,8 @@
 (load "xlib.ss")
 (load "examples/common.ss")
 (load "examples/x11.ss")
-(import (vulkan) (vulkan constants) (vulkan xlib) (examples common) (examples x11))
+(load "examples/math.ss")
+(import (vulkan) (vulkan constants) (vulkan xlib) (examples common) (examples x11) (examples math))
 
 ;;; ------------------------------------------------------------------
 ;;; Options.
@@ -38,8 +39,6 @@
 ;;; Gear geometry: the classic gear() routine, emitted as triangles.  Each
 ;;; vertex is (x y z nx ny nz).  Faces that the original drew flat-shaded get
 ;;; one normal per triangle; the inner cylinder keeps per-vertex normals.
-
-(define pi (* 4 (atan 1)))
 
 (define (gear-triangles inner-radius outer-radius width teeth tooth-depth)
   (let* ((r0 inner-radius)
@@ -130,45 +129,6 @@
   `((red   (0.8 0.1 0.0 1.0) (1.0 4.0 1.0 20 0.7) (-3.0 -2.0) 1.0 0.0)
     (green (0.0 0.8 0.2 1.0) (0.5 2.0 2.0 10 0.7) (3.1 -2.0) -2.0 -9.0)
     (blue  (0.2 0.2 1.0 1.0) (1.3 2.0 0.5 10 0.7) (-3.1 4.2) -2.0 -25.0)))
-
-;;; ------------------------------------------------------------------
-;;; 4x4 matrices: column-major flvectors, element (row r, column c) at 4c+r.
-
-(define (mat . rows)                    ; written row by row for readability
-  (let ((m (make-flvector 16 0.0)))
-    (do ((r 0 (+ r 1))) ((= r 4) m)
-      (do ((c 0 (+ c 1))) ((= c 4))
-        (flvector-set! m (+ (* 4 c) r) (inexact (list-ref rows (+ (* 4 r) c))))))))
-
-(define (mat* a b)
-  (let ((m (make-flvector 16 0.0)))
-    (do ((c 0 (+ c 1))) ((= c 4) m)
-      (do ((r 0 (+ r 1))) ((= r 4))
-        (let loop ((k 0) (sum 0.0))
-          (if (= k 4)
-              (flvector-set! m (+ (* 4 c) r) sum)
-              (loop (+ k 1) (fl+ sum (fl* (flvector-ref a (+ (* 4 k) r))
-                                          (flvector-ref b (+ (* 4 c) k)))))))))))
-
-(define (translate x y z) (mat 1 0 0 x  0 1 0 y  0 0 1 z  0 0 0 1))
-(define (radians deg) (/ (* deg pi) 180.0))
-(define (rotate-x deg)
-  (let ((c (cos (radians deg))) (s (sin (radians deg))))
-    (mat 1 0 0 0  0 c (- s) 0  0 s c 0  0 0 0 1)))
-(define (rotate-y deg)
-  (let ((c (cos (radians deg))) (s (sin (radians deg))))
-    (mat c 0 s 0  0 1 0 0  (- s) 0 c 0  0 0 0 1)))
-(define (rotate-z deg)
-  (let ((c (cos (radians deg))) (s (sin (radians deg))))
-    (mat c (- s) 0 0  s c 0 0  0 0 1 0  0 0 0 1)))
-
-;; glFrustum with Vulkan's 0..1 depth range.  Y stays up because the
-;; viewport is flipped (negative height).
-(define (frustum l r b t n f)
-  (mat (/ (* 2 n) (- r l)) 0 (/ (+ r l) (- r l)) 0
-       0 (/ (* 2 n) (- t b)) (/ (+ t b) (- t b)) 0
-       0 0 (/ f (- n f)) (/ (* n f) (- n f))
-       0 0 -1 0))
 
 ;;; ------------------------------------------------------------------
 ;;; Window, instance, surface.
@@ -771,12 +731,8 @@
 (define angle 0.0)
 
 (define (write-push-constants! mvp modelview color)
-  (do ((i 0 (+ i 1))) ((= i 16))
-    (foreign-set! 'float push-constants (* 4 i) (flvector-ref mvp i)))
-  ;; mat3 normal matrix: three columns, each padded to a vec4
-  (do ((c 0 (+ c 1))) ((= c 3))
-    (do ((r 0 (+ r 1))) ((= r 3))
-      (foreign-set! 'float push-constants (+ 64 (* 16 c) (* 4 r)) (flvector-ref modelview (+ (* 4 c) r)))))
+  (write-matrix! push-constants 0 mvp)
+  (write-normal-matrix! push-constants 64 modelview)
   (let loop ((i 0) (color color))
     (unless (null? color)
       (foreign-set! 'float push-constants (+ 112 (* 4 i)) (inexact (car color)))

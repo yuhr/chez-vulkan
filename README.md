@@ -13,6 +13,21 @@ Currently supported platforms are following:
 - `(vulkan win32)`
 - `(vulkan wayland)`
 
+## Using with Akku
+
+The repository is an [Akku](https://akkuscm.org/) project. `akku install`
+links every library under `.akku/lib` by its name, so inside the Akku
+environment they can be imported directly:
+
+```sh
+akku install
+.akku/env scheme
+> (import (vulkan) (vulkan constants))
+```
+
+The bindings themselves have no dependencies; Akku.manifest lists
+`image-formats` as a development dependency for the chezcube example.
+
 ## Examples
 
 Run from the repository root:
@@ -25,9 +40,27 @@ Run from the repository root:
   Wayland desktops), using dynamic rendering. Arrow keys and `z`/`Z` rotate
   the view, Esc quits. Needs only libX11 besides the Vulkan loader; the Xlib
   bindings are in `examples/x11.ss`.
+- `.akku/env scheme --script examples/cube/cube.ss [--device N] [--novsync]`
+  — chezcube: a spinning, lit cube textured with `lambda.png`, in a GLFW
+  window (native Wayland or X11). Shows texture upload with mipmaps, a
+  sampler and a descriptor set. Arrow keys rotate it, space pauses, Esc
+  quits. Needs libglfw3 and, via `akku install`, the `image-formats` package
+  for reading the PNG.
 
-`examples/common.ss` has the helpers both use (zeroed struct allocation with
-`new`, result checking, Vulkan's two-call enumeration pattern).
+  ![chezcube: a spinning cube with a λ on each face](docs/chezcube.gif)
+
+  `--step DEGREES` turns the cube by a fixed angle per frame instead of by
+  elapsed time; the GIF above is 90 frames captured with `--step 4`.
+
+  image-formats 0.1.0 decodes PNG rows that use the Paeth filter
+  incorrectly and reads only 8-bit gray/RGB/RGBA images, so `lambda.png` is
+  saved with unfiltered rows. To use another image, re-save it with
+  `convert in.png -strip -define png:compression-filter=1 PNG24:out.png`.
+
+Shared helpers: `examples/common.ss` (zeroed struct allocation with `new`,
+result checking, Vulkan's two-call enumeration pattern), `examples/math.ss`
+(4x4 matrices), and the window bindings `examples/x11.ss` and
+`examples/glfw.ss`.
 
 ## Extension functions
 
