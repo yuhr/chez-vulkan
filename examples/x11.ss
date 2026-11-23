@@ -108,7 +108,10 @@
               (let ((type (ftype-ref x-any-event (type) (make-ftype-pointer x-any-event ev))))
                 (cond
                  ((= type key-press)
-                  (on-key (XLookupKeysym ev 0))
+                  ;; Index 1 is the shifted symbol (Z for z), if the key has one.
+                  (let* ((shift? (odd? (ftype-ref x-key-event (state) (make-ftype-pointer x-key-event ev))))
+                         (shifted (if shift? (XLookupKeysym ev 1) 0)))
+                    (on-key (if (zero? shifted) (XLookupKeysym ev 0) shifted)))
                   (loop open))
                  ((= type configure-notify)
                   (let* ((p (make-ftype-pointer x-configure-event ev))

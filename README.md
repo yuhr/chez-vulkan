@@ -71,13 +71,13 @@ result checking, Vulkan's two-call enumeration pattern), `examples/math.ss`
 
 ## Extension functions
 
-Functions the loader exports (core 1.0–1.4 and the WSI surface/swapchain
-functions) are bound directly, e.g. `vk:create-instance`. Every other
-function has a `vk:load-*` procedure that fetches it at runtime and returns
-a callable procedure, or `#f` if it is unavailable (for example, the
-extension was not enabled). Device-level functions (first parameter a
+Functions every Vulkan loader exports (core 1.0–1.4 and the window-system
+functions) are bound directly, e.g. `vk:create-instance`. Every function,
+including those, also has a `vk:load-*` procedure that fetches it at runtime
+and returns a callable procedure, or `#f` if it is unavailable (for example,
+the extension was not enabled). Device-level functions (first parameter a
 `VkDevice`, `VkQueue` or `VkCommandBuffer`) take a device; the rest take an
-instance:
+instance (global functions such as `vkCreateInstance` take 0):
 
 ```scheme
 (define draw-mesh-tasks (vk:load-cmd-draw-mesh-tasks-ext device))
@@ -86,7 +86,9 @@ instance:
 ```
 
 Each `vk:load-*` call looks the function up again, so load once and keep
-the result.
+the result. A directly bound function that the installed loader is too old
+to export raises an error when called; its `vk:load-*` still fetches it from
+the driver, e.g. `(vk:load-cmd-push-descriptor-set device)` on a 1.3 loader.
 
 ## Regenerating
 

@@ -199,6 +199,8 @@
 
 (define-values (physical-device queue-family)
   (let-values (((n devices) (enumerate-array uptr (lambda (c p) (vk:enumerate-physical-devices instance c p)))))
+    (when (and device-choice (not (and (fixnum? device-choice) (< -1 device-choice n))))
+      (error 'gears "no such device; --device takes 0 to" (- n 1)))
     (let ((candidates (if device-choice
                           (list (ftype-ref uptr () devices device-choice))
                           (let loop ((i (- n 1)) (acc '()))
@@ -781,12 +783,15 @@
 
 (define swapchain-stale? (not (create-swapchain!)))
 
-;; Draw one frame.  Returns #f if nothing was drawn (minimized window).
+;; Draw one frame.  Returns #t if a frame was drawn, #f to retry at once
+;; (the swapchain was out of date), or 'idle when no swapchain can be made
+;; (e.g. the window has no area).
 (define (draw-frame! frame)
   (when swapchain-stale?
     (check 'vkDeviceWaitIdle (vk:device-wait-idle device))
     (set! swapchain-stale? (not (create-swapchain!))))
-  (and (not swapchain-stale?)
+  (if swapchain-stale?
+      'idle
        (let ((fence (vector-ref fences frame))
              (cmd (vector-ref command-buffers frame)))
          (ftype-set! uptr () fence-slot fence)
@@ -837,7 +842,10 @@
              (not (and frame-limit (>= total-frames frame-limit))))
     (let* ((t (now)) (dt (- t last)))
       (set! angle (let ((a (+ angle (* 70.0 dt)))) (if (> a 3600.0) (- a 3600.0) a)))
-      (let ((drawn (draw-frame! frame)))
+      (let* ((result (draw-frame! frame))
+             (drawn (eq? result #t)))
+        (when (eq? result 'idle)           ; nothing to draw into: don't spin
+          (sleep (make-time 'time-duration 50000000 0)))
         (let ((frames (if drawn (+ frames 1) frames))
               (total-frames (if drawn (+ total-frames 1) total-frames)))
           (if (>= (- t report-start) 5.0)

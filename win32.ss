@@ -26,8 +26,9 @@
    vk:surface-full-screen-exclusive-info-ext
    vk:surface-capabilities-full-screen-exclusive-ext
    vk:surface-full-screen-exclusive-win32-info-ext
-   vk:create-win32-surface-khr
+   vk:create-win32-surface-khr vk:load-create-win32-surface-khr
    vk:get-physical-device-win32-presentation-support-khr
+   vk:load-get-physical-device-win32-presentation-support-khr
    vk:load-get-memory-win32-handle-khr
    vk:load-get-memory-win32-handle-properties-khr
    vk:load-import-semaphore-win32-handle-khr
@@ -256,11 +257,18 @@
     "vkCreateWin32SurfaceKHR"
     (vk:instance uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-create-win32-surface-khr instance-proc-addr
+    "vkCreateWin32SurfaceKHR" (vk:instance uptr uptr uptr)
+    vk:result)
   (define-vk-procedure
     vk:get-physical-device-win32-presentation-support-khr
     "vkGetPhysicalDeviceWin32PresentationSupportKHR"
     (vk:physical-device unsigned-32)
     vk:bool32)
+  (define-vk-loader vk:load-get-physical-device-win32-presentation-support-khr
+    instance-proc-addr
+    "vkGetPhysicalDeviceWin32PresentationSupportKHR"
+    (vk:physical-device unsigned-32) vk:bool32)
   (define-vk-loader vk:load-get-memory-win32-handle-khr device-proc-addr
     "vkGetMemoryWin32HandleKHR" (vk:device uptr uptr) vk:result)
   (define-vk-loader vk:load-get-memory-win32-handle-properties-khr

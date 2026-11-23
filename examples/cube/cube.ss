@@ -134,6 +134,8 @@
 
 (define-values (physical-device queue-family)
   (let-values (((n devices) (enumerate-array uptr (lambda (c p) (vk:enumerate-physical-devices instance c p)))))
+    (when (and device-choice (not (and (fixnum? device-choice) (< -1 device-choice n))))
+      (error 'cube "no such device; --device takes 0 to" (- n 1)))
     (let ((candidates (if device-choice
                           (list (ftype-ref uptr () devices device-choice))
                           (let loop ((i (- n 1)) (acc '()))
@@ -945,7 +947,9 @@
 
 (define swapchain-stale? (not (create-swapchain!)))
 
-;; Draw one frame.  Returns #f if nothing was drawn.
+;; Draw one frame.  Returns #t if a frame was drawn, #f to retry at once
+;; (the swapchain was out of date), or 'idle when no swapchain can be made
+;; (the window is minimized).
 (define (draw-frame! frame)
   (let-values (((fb-w fb-h) (glfw-framebuffer-size window)))
     (unless (and (= fb-w extent-width) (= fb-h extent-height))
@@ -953,7 +957,8 @@
   (when swapchain-stale?
     (check 'vkDeviceWaitIdle (vk:device-wait-idle device))
     (set! swapchain-stale? (not (create-swapchain!))))
-  (and (not swapchain-stale?)
+  (if swapchain-stale?
+      'idle
        (let ((fence (vector-ref fences frame))
              (cmd (vector-ref command-buffers frame)))
          (ftype-set! uptr () fence-slot fence)
@@ -1005,11 +1010,12 @@
       (unless paused?
         (set! spin (let ((a (+ spin (if spin-step (inexact spin-step) (* 45.0 dt)))))
                      (if (>= a 360.0) (- a 360.0) a))))
-      (let* ((drawn (draw-frame! frame))
+      (let* ((result (draw-frame! frame))
+             (drawn (eq? result #t))
              (frames (if drawn (+ frames 1) frames))
              (total-frames (if drawn (+ total-frames 1) total-frames))
              (next (if drawn (modulo (+ frame 1) frames-in-flight) frame)))
-        (unless drawn (glfw-wait-events))   ; minimized: sleep until something happens
+        (when (eq? result 'idle) (glfw-wait-events))   ; minimized: sleep until something happens
         (if (>= (- t report-start) 5.0)
             (begin
               (printf "~a frames in ~,1f seconds = ~,3f FPS\n"

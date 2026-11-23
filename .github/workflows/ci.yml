@@ -23,6 +23,10 @@ env:
 jobs:
   linux:
     runs-on: ubuntu-24.04
+    defaults:
+      run:
+        # Explicitly bash: -eo pipefail, so `scheme ... | tee` fails when scheme does.
+        shell: bash
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 

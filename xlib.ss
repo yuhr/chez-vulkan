@@ -2,7 +2,9 @@
 (library (vulkan xlib)
   (export vk:xlib-surface-create-flags-khr
     vk:xlib-surface-create-info-khr vk:create-xlib-surface-khr
+    vk:load-create-xlib-surface-khr
     vk:get-physical-device-xlib-presentation-support-khr
+    vk:load-get-physical-device-xlib-presentation-support-khr
     vk:load-acquire-xlib-display-ext
     vk:load-get-rand-routput-display-ext)
   (import (chezscheme) (vulkan))
@@ -71,11 +73,18 @@
     "vkCreateXlibSurfaceKHR"
     (vk:instance uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-create-xlib-surface-khr instance-proc-addr
+    "vkCreateXlibSurfaceKHR" (vk:instance uptr uptr uptr)
+    vk:result)
   (define-vk-procedure
     vk:get-physical-device-xlib-presentation-support-khr
     "vkGetPhysicalDeviceXlibPresentationSupportKHR"
     (vk:physical-device unsigned-32 uptr unsigned-64)
     vk:bool32)
+  (define-vk-loader vk:load-get-physical-device-xlib-presentation-support-khr
+    instance-proc-addr
+    "vkGetPhysicalDeviceXlibPresentationSupportKHR"
+    (vk:physical-device unsigned-32 uptr unsigned-64) vk:bool32)
   (define-vk-loader vk:load-acquire-xlib-display-ext instance-proc-addr
     "vkAcquireXlibDisplayEXT"
     (vk:physical-device uptr vk:display-khr) vk:result)

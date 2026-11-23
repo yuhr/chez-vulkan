@@ -17,9 +17,10 @@
 ;;;
 ;;;   scheme --script generate-vulkan.ss res/vulkan-win32.xml
 ;;;
-;;; Each run writes the libraries whose headers are in its input.  A second
-;;; input does not rewrite vulkan.ss: the core library generated from it
-;;; must be identical to the existing vulkan.ss, or the run fails.
+;;; Each run writes the libraries whose headers are in its input.  The
+;;; Windows parse (recognized by vulkan_win32.h) does not rewrite vulkan.ss:
+;;; the core library generated from it must be identical to the existing
+;;; vulkan.ss, or the run fails.
 ;;;
 ;;; Functions every Vulkan loader exports (core 1.0-1.4 and the standard
 ;;; window-system extensions, decided from the header section each one is
@@ -548,11 +549,13 @@
                     (printf "note: ~a is bound ~a, but the local loader ~a it\n" name
                             (if direct? "directly" "through vk:load-*")
                             (if (foreign-entry? name) "exports" "does not export")))
-                  (if direct?
-                      (emit! `(define-vk-procedure ,(vk-symbol name) ,name ,args ,ret))
-                      (emit! `(define-vk-loader ,(loader-symbol name)
-                                ,(if (device-level? n) 'device-proc-addr 'instance-proc-addr)
-                                ,name ,args ,ret))))))
+                  (when direct?
+                    (emit! `(define-vk-procedure ,(vk-symbol name) ,name ,args ,ret)))
+                  ;; Every function also gets a vk:load-*, so a function newer
+                  ;; than the installed loader can still be fetched from the driver.
+                  (emit! `(define-vk-loader ,(loader-symbol name)
+                            ,(if (device-level? n) 'device-proc-addr 'instance-proc-addr)
+                            ,name ,args ,ret)))))
             (node-children doc))
   (values (reverse exported) (reverse output)))
 
@@ -625,7 +628,8 @@
        (let-values (((exports body) (generate-library! lib)))
          (let ((text (library-text lib name exports body)))
            (cond
-            ((and (eq? lib 'core) (not (string=? input-file default-input)))
+            ;; The Windows parse (it has vulkan_win32.h) only checks the core.
+            ((and (eq? lib 'core) (in-input? 'win32))
              ;; A second parse must agree with the one vulkan.ss came from.
              (if (and (file-exists? file)
                       (string=? text (call-with-input-file file get-string-all)))

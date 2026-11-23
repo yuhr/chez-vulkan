@@ -121,14 +121,21 @@
       (ftype-ref uptr () slot)))
 
   ;; Vulkan's two-call enumeration pattern.  f receives (count-ptr array-ptr)
-  ;; and may return a VkResult or nothing.  Returns (values n pointer-to-Ts).
+  ;; and may return a VkResult (checked) or nothing.  If the count grew
+  ;; between the calls (VK_INCOMPLETE), it starts over.
+  ;; Returns (values n pointer-to-Ts).
   (define-syntax enumerate-array
     (syntax-rules ()
       ((_ T f)
        (let ((count (new-array unsigned-32 1)) (g f))
-         (g (addr count) 0)
-         (let* ((n (ftype-ref unsigned-32 () count))
-                (items (new-array T n)))
-           (g (addr count) (addr items))
-           (values (ftype-ref unsigned-32 () count) items))))))
+         (let retry ()
+           (let ((r (g (addr count) 0)))
+             (when (number? r) (check 'enumerate-array r)))
+           (let* ((n (ftype-ref unsigned-32 () count))
+                  (items (new-array T n))
+                  (r (g (addr count) (addr items))))
+             (cond ((and (number? r) (= r vk:incomplete)) (retry))
+                   (else
+                    (when (number? r) (check 'enumerate-array r))
+                    (values (ftype-ref unsigned-32 () count) items)))))))))
   )

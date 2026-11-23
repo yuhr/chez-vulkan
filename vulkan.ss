@@ -6509,161 +6509,338 @@
    vk:tensor-usage-data-graph-bit-arm
    vk:data-graph-pipeline-session-create-protected-bit-arm
    vk:data-graph-pipeline-session-create-optical-flow-cache-bit-arm
-   vk:create-instance vk:destroy-instance
+   vk:create-instance vk:load-create-instance
+   vk:destroy-instance vk:load-destroy-instance
    vk:enumerate-physical-devices
+   vk:load-enumerate-physical-devices
    vk:get-physical-device-features
+   vk:load-get-physical-device-features
    vk:get-physical-device-format-properties
+   vk:load-get-physical-device-format-properties
    vk:get-physical-device-image-format-properties
+   vk:load-get-physical-device-image-format-properties
    vk:get-physical-device-properties
+   vk:load-get-physical-device-properties
    vk:get-physical-device-queue-family-properties
+   vk:load-get-physical-device-queue-family-properties
    vk:get-physical-device-memory-properties
-   vk:get-instance-proc-addr vk:get-device-proc-addr
-   vk:create-device vk:destroy-device
+   vk:load-get-physical-device-memory-properties
+   vk:get-instance-proc-addr vk:load-get-instance-proc-addr
+   vk:get-device-proc-addr vk:load-get-device-proc-addr
+   vk:create-device vk:load-create-device vk:destroy-device
+   vk:load-destroy-device
    vk:enumerate-instance-extension-properties
+   vk:load-enumerate-instance-extension-properties
    vk:enumerate-device-extension-properties
+   vk:load-enumerate-device-extension-properties
    vk:enumerate-instance-layer-properties
-   vk:enumerate-device-layer-properties vk:get-device-queue
-   vk:queue-submit vk:queue-wait-idle vk:device-wait-idle
-   vk:allocate-memory vk:free-memory vk:map-memory
-   vk:unmap-memory vk:flush-mapped-memory-ranges
+   vk:load-enumerate-instance-layer-properties
+   vk:enumerate-device-layer-properties
+   vk:load-enumerate-device-layer-properties
+   vk:get-device-queue vk:load-get-device-queue vk:queue-submit
+   vk:load-queue-submit vk:queue-wait-idle
+   vk:load-queue-wait-idle vk:device-wait-idle
+   vk:load-device-wait-idle vk:allocate-memory
+   vk:load-allocate-memory vk:free-memory vk:load-free-memory
+   vk:map-memory vk:load-map-memory vk:unmap-memory
+   vk:load-unmap-memory vk:flush-mapped-memory-ranges
+   vk:load-flush-mapped-memory-ranges
    vk:invalidate-mapped-memory-ranges
-   vk:get-device-memory-commitment vk:bind-buffer-memory
-   vk:bind-image-memory vk:get-buffer-memory-requirements
+   vk:load-invalidate-mapped-memory-ranges
+   vk:get-device-memory-commitment
+   vk:load-get-device-memory-commitment vk:bind-buffer-memory
+   vk:load-bind-buffer-memory vk:bind-image-memory
+   vk:load-bind-image-memory vk:get-buffer-memory-requirements
+   vk:load-get-buffer-memory-requirements
    vk:get-image-memory-requirements
+   vk:load-get-image-memory-requirements
    vk:get-image-sparse-memory-requirements
+   vk:load-get-image-sparse-memory-requirements
    vk:get-physical-device-sparse-image-format-properties
-   vk:queue-bind-sparse vk:create-fence vk:destroy-fence
-   vk:reset-fences vk:get-fence-status vk:wait-for-fences
-   vk:create-semaphore vk:destroy-semaphore
-   vk:create-query-pool vk:destroy-query-pool
-   vk:get-query-pool-results vk:create-buffer vk:destroy-buffer
-   vk:create-image vk:destroy-image
-   vk:get-image-subresource-layout vk:create-image-view
-   vk:destroy-image-view vk:create-command-pool
-   vk:destroy-command-pool vk:reset-command-pool
-   vk:allocate-command-buffers vk:free-command-buffers
-   vk:begin-command-buffer vk:end-command-buffer
-   vk:reset-command-buffer vk:cmd-copy-buffer vk:cmd-copy-image
-   vk:cmd-copy-buffer-to-image vk:cmd-copy-image-to-buffer
-   vk:cmd-update-buffer vk:cmd-fill-buffer
-   vk:cmd-pipeline-barrier vk:cmd-begin-query vk:cmd-end-query
-   vk:cmd-reset-query-pool vk:cmd-write-timestamp
-   vk:cmd-copy-query-pool-results vk:cmd-execute-commands
-   vk:create-event vk:destroy-event vk:get-event-status
-   vk:set-event vk:reset-event vk:create-buffer-view
-   vk:destroy-buffer-view vk:create-shader-module
-   vk:destroy-shader-module vk:create-pipeline-cache
-   vk:destroy-pipeline-cache vk:get-pipeline-cache-data
-   vk:merge-pipeline-caches vk:create-compute-pipelines
-   vk:destroy-pipeline vk:create-pipeline-layout
-   vk:destroy-pipeline-layout vk:create-sampler
-   vk:destroy-sampler vk:create-descriptor-set-layout
-   vk:destroy-descriptor-set-layout vk:create-descriptor-pool
-   vk:destroy-descriptor-pool vk:reset-descriptor-pool
-   vk:allocate-descriptor-sets vk:free-descriptor-sets
-   vk:update-descriptor-sets vk:cmd-bind-pipeline
-   vk:cmd-bind-descriptor-sets vk:cmd-clear-color-image
-   vk:cmd-dispatch vk:cmd-dispatch-indirect vk:cmd-set-event
-   vk:cmd-reset-event vk:cmd-wait-events vk:cmd-push-constants
-   vk:create-graphics-pipelines vk:create-framebuffer
-   vk:destroy-framebuffer vk:create-render-pass
-   vk:destroy-render-pass vk:get-render-area-granularity
-   vk:cmd-set-viewport vk:cmd-set-scissor vk:cmd-set-line-width
-   vk:cmd-set-depth-bias vk:cmd-set-blend-constants
-   vk:cmd-set-depth-bounds vk:cmd-set-stencil-compare-mask
-   vk:cmd-set-stencil-write-mask vk:cmd-set-stencil-reference
-   vk:cmd-bind-index-buffer vk:cmd-bind-vertex-buffers
-   vk:cmd-draw vk:cmd-draw-indexed vk:cmd-draw-indirect
-   vk:cmd-draw-indexed-indirect vk:cmd-blit-image
-   vk:cmd-clear-depth-stencil-image vk:cmd-clear-attachments
-   vk:cmd-resolve-image vk:cmd-begin-render-pass
-   vk:cmd-next-subpass vk:cmd-end-render-pass
-   vk:enumerate-instance-version vk:bind-buffer-memory2
-   vk:bind-image-memory2
+   vk:load-get-physical-device-sparse-image-format-properties
+   vk:queue-bind-sparse vk:load-queue-bind-sparse
+   vk:create-fence vk:load-create-fence vk:destroy-fence
+   vk:load-destroy-fence vk:reset-fences vk:load-reset-fences
+   vk:get-fence-status vk:load-get-fence-status
+   vk:wait-for-fences vk:load-wait-for-fences
+   vk:create-semaphore vk:load-create-semaphore
+   vk:destroy-semaphore vk:load-destroy-semaphore
+   vk:create-query-pool vk:load-create-query-pool
+   vk:destroy-query-pool vk:load-destroy-query-pool
+   vk:get-query-pool-results vk:load-get-query-pool-results
+   vk:create-buffer vk:load-create-buffer vk:destroy-buffer
+   vk:load-destroy-buffer vk:create-image vk:load-create-image
+   vk:destroy-image vk:load-destroy-image
+   vk:get-image-subresource-layout
+   vk:load-get-image-subresource-layout vk:create-image-view
+   vk:load-create-image-view vk:destroy-image-view
+   vk:load-destroy-image-view vk:create-command-pool
+   vk:load-create-command-pool vk:destroy-command-pool
+   vk:load-destroy-command-pool vk:reset-command-pool
+   vk:load-reset-command-pool vk:allocate-command-buffers
+   vk:load-allocate-command-buffers vk:free-command-buffers
+   vk:load-free-command-buffers vk:begin-command-buffer
+   vk:load-begin-command-buffer vk:end-command-buffer
+   vk:load-end-command-buffer vk:reset-command-buffer
+   vk:load-reset-command-buffer vk:cmd-copy-buffer
+   vk:load-cmd-copy-buffer vk:cmd-copy-image
+   vk:load-cmd-copy-image vk:cmd-copy-buffer-to-image
+   vk:load-cmd-copy-buffer-to-image vk:cmd-copy-image-to-buffer
+   vk:load-cmd-copy-image-to-buffer vk:cmd-update-buffer
+   vk:load-cmd-update-buffer vk:cmd-fill-buffer
+   vk:load-cmd-fill-buffer vk:cmd-pipeline-barrier
+   vk:load-cmd-pipeline-barrier vk:cmd-begin-query
+   vk:load-cmd-begin-query vk:cmd-end-query
+   vk:load-cmd-end-query vk:cmd-reset-query-pool
+   vk:load-cmd-reset-query-pool vk:cmd-write-timestamp
+   vk:load-cmd-write-timestamp vk:cmd-copy-query-pool-results
+   vk:load-cmd-copy-query-pool-results vk:cmd-execute-commands
+   vk:load-cmd-execute-commands vk:create-event
+   vk:load-create-event vk:destroy-event vk:load-destroy-event
+   vk:get-event-status vk:load-get-event-status vk:set-event
+   vk:load-set-event vk:reset-event vk:load-reset-event
+   vk:create-buffer-view vk:load-create-buffer-view
+   vk:destroy-buffer-view vk:load-destroy-buffer-view
+   vk:create-shader-module vk:load-create-shader-module
+   vk:destroy-shader-module vk:load-destroy-shader-module
+   vk:create-pipeline-cache vk:load-create-pipeline-cache
+   vk:destroy-pipeline-cache vk:load-destroy-pipeline-cache
+   vk:get-pipeline-cache-data vk:load-get-pipeline-cache-data
+   vk:merge-pipeline-caches vk:load-merge-pipeline-caches
+   vk:create-compute-pipelines vk:load-create-compute-pipelines
+   vk:destroy-pipeline vk:load-destroy-pipeline
+   vk:create-pipeline-layout vk:load-create-pipeline-layout
+   vk:destroy-pipeline-layout vk:load-destroy-pipeline-layout
+   vk:create-sampler vk:load-create-sampler vk:destroy-sampler
+   vk:load-destroy-sampler vk:create-descriptor-set-layout
+   vk:load-create-descriptor-set-layout
+   vk:destroy-descriptor-set-layout
+   vk:load-destroy-descriptor-set-layout
+   vk:create-descriptor-pool vk:load-create-descriptor-pool
+   vk:destroy-descriptor-pool vk:load-destroy-descriptor-pool
+   vk:reset-descriptor-pool vk:load-reset-descriptor-pool
+   vk:allocate-descriptor-sets vk:load-allocate-descriptor-sets
+   vk:free-descriptor-sets vk:load-free-descriptor-sets
+   vk:update-descriptor-sets vk:load-update-descriptor-sets
+   vk:cmd-bind-pipeline vk:load-cmd-bind-pipeline
+   vk:cmd-bind-descriptor-sets vk:load-cmd-bind-descriptor-sets
+   vk:cmd-clear-color-image vk:load-cmd-clear-color-image
+   vk:cmd-dispatch vk:load-cmd-dispatch
+   vk:cmd-dispatch-indirect vk:load-cmd-dispatch-indirect
+   vk:cmd-set-event vk:load-cmd-set-event vk:cmd-reset-event
+   vk:load-cmd-reset-event vk:cmd-wait-events
+   vk:load-cmd-wait-events vk:cmd-push-constants
+   vk:load-cmd-push-constants vk:create-graphics-pipelines
+   vk:load-create-graphics-pipelines vk:create-framebuffer
+   vk:load-create-framebuffer vk:destroy-framebuffer
+   vk:load-destroy-framebuffer vk:create-render-pass
+   vk:load-create-render-pass vk:destroy-render-pass
+   vk:load-destroy-render-pass vk:get-render-area-granularity
+   vk:load-get-render-area-granularity vk:cmd-set-viewport
+   vk:load-cmd-set-viewport vk:cmd-set-scissor
+   vk:load-cmd-set-scissor vk:cmd-set-line-width
+   vk:load-cmd-set-line-width vk:cmd-set-depth-bias
+   vk:load-cmd-set-depth-bias vk:cmd-set-blend-constants
+   vk:load-cmd-set-blend-constants vk:cmd-set-depth-bounds
+   vk:load-cmd-set-depth-bounds vk:cmd-set-stencil-compare-mask
+   vk:load-cmd-set-stencil-compare-mask
+   vk:cmd-set-stencil-write-mask
+   vk:load-cmd-set-stencil-write-mask
+   vk:cmd-set-stencil-reference
+   vk:load-cmd-set-stencil-reference vk:cmd-bind-index-buffer
+   vk:load-cmd-bind-index-buffer vk:cmd-bind-vertex-buffers
+   vk:load-cmd-bind-vertex-buffers vk:cmd-draw vk:load-cmd-draw
+   vk:cmd-draw-indexed vk:load-cmd-draw-indexed
+   vk:cmd-draw-indirect vk:load-cmd-draw-indirect
+   vk:cmd-draw-indexed-indirect
+   vk:load-cmd-draw-indexed-indirect vk:cmd-blit-image
+   vk:load-cmd-blit-image vk:cmd-clear-depth-stencil-image
+   vk:load-cmd-clear-depth-stencil-image
+   vk:cmd-clear-attachments vk:load-cmd-clear-attachments
+   vk:cmd-resolve-image vk:load-cmd-resolve-image
+   vk:cmd-begin-render-pass vk:load-cmd-begin-render-pass
+   vk:cmd-next-subpass vk:load-cmd-next-subpass
+   vk:cmd-end-render-pass vk:load-cmd-end-render-pass
+   vk:enumerate-instance-version
+   vk:load-enumerate-instance-version vk:bind-buffer-memory2
+   vk:load-bind-buffer-memory2 vk:bind-image-memory2
+   vk:load-bind-image-memory2
    vk:get-device-group-peer-memory-features
-   vk:cmd-set-device-mask vk:enumerate-physical-device-groups
+   vk:load-get-device-group-peer-memory-features
+   vk:cmd-set-device-mask vk:load-cmd-set-device-mask
+   vk:enumerate-physical-device-groups
+   vk:load-enumerate-physical-device-groups
    vk:get-image-memory-requirements2
+   vk:load-get-image-memory-requirements2
    vk:get-buffer-memory-requirements2
+   vk:load-get-buffer-memory-requirements2
    vk:get-image-sparse-memory-requirements2
+   vk:load-get-image-sparse-memory-requirements2
    vk:get-physical-device-features2
+   vk:load-get-physical-device-features2
    vk:get-physical-device-properties2
+   vk:load-get-physical-device-properties2
    vk:get-physical-device-format-properties2
+   vk:load-get-physical-device-format-properties2
    vk:get-physical-device-image-format-properties2
+   vk:load-get-physical-device-image-format-properties2
    vk:get-physical-device-queue-family-properties2
+   vk:load-get-physical-device-queue-family-properties2
    vk:get-physical-device-memory-properties2
+   vk:load-get-physical-device-memory-properties2
    vk:get-physical-device-sparse-image-format-properties2
-   vk:trim-command-pool vk:get-device-queue2
+   vk:load-get-physical-device-sparse-image-format-properties2
+   vk:trim-command-pool vk:load-trim-command-pool
+   vk:get-device-queue2 vk:load-get-device-queue2
    vk:get-physical-device-external-buffer-properties
+   vk:load-get-physical-device-external-buffer-properties
    vk:get-physical-device-external-fence-properties
+   vk:load-get-physical-device-external-fence-properties
    vk:get-physical-device-external-semaphore-properties
-   vk:cmd-dispatch-base vk:create-descriptor-update-template
+   vk:load-get-physical-device-external-semaphore-properties
+   vk:cmd-dispatch-base vk:load-cmd-dispatch-base
+   vk:create-descriptor-update-template
+   vk:load-create-descriptor-update-template
    vk:destroy-descriptor-update-template
+   vk:load-destroy-descriptor-update-template
    vk:update-descriptor-set-with-template
+   vk:load-update-descriptor-set-with-template
    vk:get-descriptor-set-layout-support
+   vk:load-get-descriptor-set-layout-support
    vk:create-sampler-ycbcr-conversion
-   vk:destroy-sampler-ycbcr-conversion vk:reset-query-pool
-   vk:get-semaphore-counter-value vk:wait-semaphores
-   vk:signal-semaphore vk:get-buffer-device-address
+   vk:load-create-sampler-ycbcr-conversion
+   vk:destroy-sampler-ycbcr-conversion
+   vk:load-destroy-sampler-ycbcr-conversion vk:reset-query-pool
+   vk:load-reset-query-pool vk:get-semaphore-counter-value
+   vk:load-get-semaphore-counter-value vk:wait-semaphores
+   vk:load-wait-semaphores vk:signal-semaphore
+   vk:load-signal-semaphore vk:get-buffer-device-address
+   vk:load-get-buffer-device-address
    vk:get-buffer-opaque-capture-address
+   vk:load-get-buffer-opaque-capture-address
    vk:get-device-memory-opaque-capture-address
-   vk:cmd-draw-indirect-count
-   vk:cmd-draw-indexed-indirect-count vk:create-render-pass2
-   vk:cmd-begin-render-pass2 vk:cmd-next-subpass2
-   vk:cmd-end-render-pass2
+   vk:load-get-device-memory-opaque-capture-address
+   vk:cmd-draw-indirect-count vk:load-cmd-draw-indirect-count
+   vk:cmd-draw-indexed-indirect-count
+   vk:load-cmd-draw-indexed-indirect-count
+   vk:create-render-pass2 vk:load-create-render-pass2
+   vk:cmd-begin-render-pass2 vk:load-cmd-begin-render-pass2
+   vk:cmd-next-subpass2 vk:load-cmd-next-subpass2
+   vk:cmd-end-render-pass2 vk:load-cmd-end-render-pass2
    vk:get-physical-device-tool-properties
-   vk:create-private-data-slot vk:destroy-private-data-slot
-   vk:set-private-data vk:get-private-data
-   vk:cmd-pipeline-barrier2 vk:cmd-write-timestamp2
-   vk:queue-submit2 vk:cmd-copy-buffer2 vk:cmd-copy-image2
-   vk:cmd-copy-buffer-to-image2 vk:cmd-copy-image-to-buffer2
+   vk:load-get-physical-device-tool-properties
+   vk:create-private-data-slot vk:load-create-private-data-slot
+   vk:destroy-private-data-slot
+   vk:load-destroy-private-data-slot vk:set-private-data
+   vk:load-set-private-data vk:get-private-data
+   vk:load-get-private-data vk:cmd-pipeline-barrier2
+   vk:load-cmd-pipeline-barrier2 vk:cmd-write-timestamp2
+   vk:load-cmd-write-timestamp2 vk:queue-submit2
+   vk:load-queue-submit2 vk:cmd-copy-buffer2
+   vk:load-cmd-copy-buffer2 vk:cmd-copy-image2
+   vk:load-cmd-copy-image2 vk:cmd-copy-buffer-to-image2
+   vk:load-cmd-copy-buffer-to-image2
+   vk:cmd-copy-image-to-buffer2
+   vk:load-cmd-copy-image-to-buffer2
    vk:get-device-buffer-memory-requirements
+   vk:load-get-device-buffer-memory-requirements
    vk:get-device-image-memory-requirements
+   vk:load-get-device-image-memory-requirements
    vk:get-device-image-sparse-memory-requirements
-   vk:cmd-set-event2 vk:cmd-reset-event2 vk:cmd-wait-events2
-   vk:cmd-blit-image2 vk:cmd-resolve-image2
-   vk:cmd-begin-rendering vk:cmd-end-rendering
-   vk:cmd-set-cull-mode vk:cmd-set-front-face
-   vk:cmd-set-primitive-topology vk:cmd-set-viewport-with-count
-   vk:cmd-set-scissor-with-count vk:cmd-bind-vertex-buffers2
-   vk:cmd-set-depth-test-enable vk:cmd-set-depth-write-enable
-   vk:cmd-set-depth-compare-op
+   vk:load-get-device-image-sparse-memory-requirements
+   vk:cmd-set-event2 vk:load-cmd-set-event2 vk:cmd-reset-event2
+   vk:load-cmd-reset-event2 vk:cmd-wait-events2
+   vk:load-cmd-wait-events2 vk:cmd-blit-image2
+   vk:load-cmd-blit-image2 vk:cmd-resolve-image2
+   vk:load-cmd-resolve-image2 vk:cmd-begin-rendering
+   vk:load-cmd-begin-rendering vk:cmd-end-rendering
+   vk:load-cmd-end-rendering vk:cmd-set-cull-mode
+   vk:load-cmd-set-cull-mode vk:cmd-set-front-face
+   vk:load-cmd-set-front-face vk:cmd-set-primitive-topology
+   vk:load-cmd-set-primitive-topology
+   vk:cmd-set-viewport-with-count
+   vk:load-cmd-set-viewport-with-count
+   vk:cmd-set-scissor-with-count
+   vk:load-cmd-set-scissor-with-count
+   vk:cmd-bind-vertex-buffers2 vk:load-cmd-bind-vertex-buffers2
+   vk:cmd-set-depth-test-enable
+   vk:load-cmd-set-depth-test-enable
+   vk:cmd-set-depth-write-enable
+   vk:load-cmd-set-depth-write-enable
+   vk:cmd-set-depth-compare-op vk:load-cmd-set-depth-compare-op
    vk:cmd-set-depth-bounds-test-enable
-   vk:cmd-set-stencil-test-enable vk:cmd-set-stencil-op
+   vk:load-cmd-set-depth-bounds-test-enable
+   vk:cmd-set-stencil-test-enable
+   vk:load-cmd-set-stencil-test-enable vk:cmd-set-stencil-op
+   vk:load-cmd-set-stencil-op
    vk:cmd-set-rasterizer-discard-enable
+   vk:load-cmd-set-rasterizer-discard-enable
    vk:cmd-set-depth-bias-enable
-   vk:cmd-set-primitive-restart-enable vk:map-memory2
-   vk:unmap-memory2 vk:get-device-image-subresource-layout
-   vk:get-image-subresource-layout2 vk:copy-memory-to-image
-   vk:copy-image-to-memory vk:copy-image-to-image
-   vk:transition-image-layout vk:cmd-push-descriptor-set
+   vk:load-cmd-set-depth-bias-enable
+   vk:cmd-set-primitive-restart-enable
+   vk:load-cmd-set-primitive-restart-enable vk:map-memory2
+   vk:load-map-memory2 vk:unmap-memory2 vk:load-unmap-memory2
+   vk:get-device-image-subresource-layout
+   vk:load-get-device-image-subresource-layout
+   vk:get-image-subresource-layout2
+   vk:load-get-image-subresource-layout2
+   vk:copy-memory-to-image vk:load-copy-memory-to-image
+   vk:copy-image-to-memory vk:load-copy-image-to-memory
+   vk:copy-image-to-image vk:load-copy-image-to-image
+   vk:transition-image-layout vk:load-transition-image-layout
+   vk:cmd-push-descriptor-set vk:load-cmd-push-descriptor-set
    vk:cmd-push-descriptor-set-with-template
-   vk:cmd-bind-descriptor-sets2 vk:cmd-push-constants2
-   vk:cmd-push-descriptor-set2
+   vk:load-cmd-push-descriptor-set-with-template
+   vk:cmd-bind-descriptor-sets2
+   vk:load-cmd-bind-descriptor-sets2 vk:cmd-push-constants2
+   vk:load-cmd-push-constants2 vk:cmd-push-descriptor-set2
+   vk:load-cmd-push-descriptor-set2
    vk:cmd-push-descriptor-set-with-template2
-   vk:cmd-set-line-stipple vk:cmd-bind-index-buffer2
+   vk:load-cmd-push-descriptor-set-with-template2
+   vk:cmd-set-line-stipple vk:load-cmd-set-line-stipple
+   vk:cmd-bind-index-buffer2 vk:load-cmd-bind-index-buffer2
    vk:get-rendering-area-granularity
+   vk:load-get-rendering-area-granularity
    vk:cmd-set-rendering-attachment-locations
+   vk:load-cmd-set-rendering-attachment-locations
    vk:cmd-set-rendering-input-attachment-indices
-   vk:destroy-surface-khr
+   vk:load-cmd-set-rendering-input-attachment-indices
+   vk:destroy-surface-khr vk:load-destroy-surface-khr
    vk:get-physical-device-surface-support-khr
+   vk:load-get-physical-device-surface-support-khr
    vk:get-physical-device-surface-capabilities-khr
+   vk:load-get-physical-device-surface-capabilities-khr
    vk:get-physical-device-surface-formats-khr
+   vk:load-get-physical-device-surface-formats-khr
    vk:get-physical-device-surface-present-modes-khr
-   vk:create-swapchain-khr vk:destroy-swapchain-khr
-   vk:get-swapchain-images-khr vk:acquire-next-image-khr
-   vk:queue-present-khr
+   vk:load-get-physical-device-surface-present-modes-khr
+   vk:create-swapchain-khr vk:load-create-swapchain-khr
+   vk:destroy-swapchain-khr vk:load-destroy-swapchain-khr
+   vk:get-swapchain-images-khr vk:load-get-swapchain-images-khr
+   vk:acquire-next-image-khr vk:load-acquire-next-image-khr
+   vk:queue-present-khr vk:load-queue-present-khr
    vk:get-device-group-present-capabilities-khr
+   vk:load-get-device-group-present-capabilities-khr
    vk:get-device-group-surface-present-modes-khr
+   vk:load-get-device-group-surface-present-modes-khr
    vk:get-physical-device-present-rectangles-khr
-   vk:acquire-next-image2-khr
+   vk:load-get-physical-device-present-rectangles-khr
+   vk:acquire-next-image2-khr vk:load-acquire-next-image2-khr
    vk:get-physical-device-display-properties-khr
+   vk:load-get-physical-device-display-properties-khr
    vk:get-physical-device-display-plane-properties-khr
+   vk:load-get-physical-device-display-plane-properties-khr
    vk:get-display-plane-supported-displays-khr
+   vk:load-get-display-plane-supported-displays-khr
    vk:get-display-mode-properties-khr
-   vk:create-display-mode-khr
+   vk:load-get-display-mode-properties-khr
+   vk:create-display-mode-khr vk:load-create-display-mode-khr
    vk:get-display-plane-capabilities-khr
+   vk:load-get-display-plane-capabilities-khr
    vk:create-display-plane-surface-khr
+   vk:load-create-display-plane-surface-khr
    vk:create-shared-swapchains-khr
+   vk:load-create-shared-swapchains-khr
    vk:load-get-physical-device-video-capabilities-khr
    vk:load-get-physical-device-video-format-properties-khr
    vk:load-create-video-session-khr
@@ -6711,11 +6888,17 @@
    vk:load-acquire-profiling-lock-khr
    vk:load-release-profiling-lock-khr
    vk:get-physical-device-surface-capabilities2-khr
+   vk:load-get-physical-device-surface-capabilities2-khr
    vk:get-physical-device-surface-formats2-khr
+   vk:load-get-physical-device-surface-formats2-khr
    vk:get-physical-device-display-properties2-khr
+   vk:load-get-physical-device-display-properties2-khr
    vk:get-physical-device-display-plane-properties2-khr
+   vk:load-get-physical-device-display-plane-properties2-khr
    vk:get-display-mode-properties2-khr
+   vk:load-get-display-mode-properties2-khr
    vk:get-display-plane-capabilities2-khr
+   vk:load-get-display-plane-capabilities2-khr
    vk:load-get-image-memory-requirements2-khr
    vk:load-get-buffer-memory-requirements2-khr
    vk:load-get-image-sparse-memory-requirements2-khr
@@ -6934,6 +7117,7 @@
    vk:load-get-physical-device-cooperative-matrix-properties-nv
    vk:load-get-physical-device-supported-framebuffer-mixed-samples-combinations-nv
    vk:create-headless-surface-ext
+   vk:load-create-headless-surface-ext
    vk:load-cmd-set-line-stipple-ext
    vk:load-reset-query-pool-ext vk:load-cmd-set-cull-mode-ext
    vk:load-cmd-set-front-face-ext
@@ -28288,28 +28472,48 @@
     "vkCreateInstance"
     (uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-create-instance instance-proc-addr
+    "vkCreateInstance" (uptr uptr uptr) vk:result)
   (define-vk-procedure
     vk:destroy-instance
     "vkDestroyInstance"
     (vk:instance uptr)
+    void)
+  (define-vk-loader vk:load-destroy-instance
+    instance-proc-addr "vkDestroyInstance" (vk:instance uptr)
     void)
   (define-vk-procedure
     vk:enumerate-physical-devices
     "vkEnumeratePhysicalDevices"
     (vk:instance uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-enumerate-physical-devices instance-proc-addr
+    "vkEnumeratePhysicalDevices" (vk:instance uptr uptr)
+    vk:result)
   (define-vk-procedure
     vk:get-physical-device-features
     "vkGetPhysicalDeviceFeatures"
     (vk:physical-device uptr)
+    void)
+  (define-vk-loader vk:load-get-physical-device-features instance-proc-addr
+    "vkGetPhysicalDeviceFeatures" (vk:physical-device uptr)
     void)
   (define-vk-procedure
     vk:get-physical-device-format-properties
     "vkGetPhysicalDeviceFormatProperties"
     (vk:physical-device vk:format uptr)
     void)
+  (define-vk-loader vk:load-get-physical-device-format-properties
+    instance-proc-addr "vkGetPhysicalDeviceFormatProperties"
+    (vk:physical-device vk:format uptr) void)
   (define-vk-procedure
     vk:get-physical-device-image-format-properties
+    "vkGetPhysicalDeviceImageFormatProperties"
+    (vk:physical-device vk:format vk:image-type vk:image-tiling
+      vk:image-usage-flags vk:image-create-flags uptr)
+    vk:result)
+  (define-vk-loader vk:load-get-physical-device-image-format-properties
+    instance-proc-addr
     "vkGetPhysicalDeviceImageFormatProperties"
     (vk:physical-device vk:format vk:image-type vk:image-tiling
       vk:image-usage-flags vk:image-create-flags uptr)
@@ -28319,89 +28523,137 @@
     "vkGetPhysicalDeviceProperties"
     (vk:physical-device uptr)
     void)
+  (define-vk-loader vk:load-get-physical-device-properties instance-proc-addr
+    "vkGetPhysicalDeviceProperties" (vk:physical-device uptr)
+    void)
   (define-vk-procedure
     vk:get-physical-device-queue-family-properties
     "vkGetPhysicalDeviceQueueFamilyProperties"
     (vk:physical-device uptr uptr)
     void)
+  (define-vk-loader vk:load-get-physical-device-queue-family-properties
+    instance-proc-addr
+    "vkGetPhysicalDeviceQueueFamilyProperties"
+    (vk:physical-device uptr uptr) void)
   (define-vk-procedure
     vk:get-physical-device-memory-properties
     "vkGetPhysicalDeviceMemoryProperties"
     (vk:physical-device uptr)
     void)
+  (define-vk-loader vk:load-get-physical-device-memory-properties
+    instance-proc-addr "vkGetPhysicalDeviceMemoryProperties"
+    (vk:physical-device uptr) void)
   (define-vk-procedure
     vk:get-instance-proc-addr
     "vkGetInstanceProcAddr"
     (vk:instance uptr)
+    pfn-vk-void-function)
+  (define-vk-loader vk:load-get-instance-proc-addr instance-proc-addr
+    "vkGetInstanceProcAddr" (vk:instance uptr)
     pfn-vk-void-function)
   (define-vk-procedure
     vk:get-device-proc-addr
     "vkGetDeviceProcAddr"
     (vk:device uptr)
     pfn-vk-void-function)
+  (define-vk-loader vk:load-get-device-proc-addr device-proc-addr
+    "vkGetDeviceProcAddr" (vk:device uptr) pfn-vk-void-function)
   (define-vk-procedure
     vk:create-device
     "vkCreateDevice"
     (vk:physical-device uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-create-device instance-proc-addr "vkCreateDevice"
+    (vk:physical-device uptr uptr uptr) vk:result)
   (define-vk-procedure
     vk:destroy-device
     "vkDestroyDevice"
     (vk:device uptr)
     void)
+  (define-vk-loader vk:load-destroy-device device-proc-addr
+    "vkDestroyDevice" (vk:device uptr) void)
   (define-vk-procedure
     vk:enumerate-instance-extension-properties
     "vkEnumerateInstanceExtensionProperties"
     (uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-enumerate-instance-extension-properties
+    instance-proc-addr "vkEnumerateInstanceExtensionProperties"
+    (uptr uptr uptr) vk:result)
   (define-vk-procedure
     vk:enumerate-device-extension-properties
     "vkEnumerateDeviceExtensionProperties"
     (vk:physical-device uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-enumerate-device-extension-properties
+    instance-proc-addr "vkEnumerateDeviceExtensionProperties"
+    (vk:physical-device uptr uptr uptr) vk:result)
   (define-vk-procedure
     vk:enumerate-instance-layer-properties
     "vkEnumerateInstanceLayerProperties"
     (uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-enumerate-instance-layer-properties
+    instance-proc-addr "vkEnumerateInstanceLayerProperties"
+    (uptr uptr) vk:result)
   (define-vk-procedure
     vk:enumerate-device-layer-properties
     "vkEnumerateDeviceLayerProperties"
     (vk:physical-device uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-enumerate-device-layer-properties
+    instance-proc-addr "vkEnumerateDeviceLayerProperties"
+    (vk:physical-device uptr uptr) vk:result)
   (define-vk-procedure
     vk:get-device-queue
     "vkGetDeviceQueue"
     (vk:device unsigned-32 unsigned-32 uptr)
+    void)
+  (define-vk-loader vk:load-get-device-queue device-proc-addr
+    "vkGetDeviceQueue" (vk:device unsigned-32 unsigned-32 uptr)
     void)
   (define-vk-procedure
     vk:queue-submit
     "vkQueueSubmit"
     (vk:queue unsigned-32 uptr vk:fence)
     vk:result)
+  (define-vk-loader vk:load-queue-submit device-proc-addr "vkQueueSubmit"
+    (vk:queue unsigned-32 uptr vk:fence) vk:result)
   (define-vk-procedure
     vk:queue-wait-idle
     "vkQueueWaitIdle"
     (vk:queue)
     vk:result)
+  (define-vk-loader vk:load-queue-wait-idle device-proc-addr
+    "vkQueueWaitIdle" (vk:queue) vk:result)
   (define-vk-procedure
     vk:device-wait-idle
     "vkDeviceWaitIdle"
     (vk:device)
     vk:result)
+  (define-vk-loader vk:load-device-wait-idle device-proc-addr
+    "vkDeviceWaitIdle" (vk:device) vk:result)
   (define-vk-procedure
     vk:allocate-memory
     "vkAllocateMemory"
     (vk:device uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-allocate-memory device-proc-addr "vkAllocateMemory"
+    (vk:device uptr uptr uptr) vk:result)
   (define-vk-procedure
     vk:free-memory
     "vkFreeMemory"
     (vk:device vk:device-memory uptr)
     void)
+  (define-vk-loader vk:load-free-memory device-proc-addr
+    "vkFreeMemory" (vk:device vk:device-memory uptr) void)
   (define-vk-procedure
     vk:map-memory
     "vkMapMemory"
+    (vk:device vk:device-memory vk:device-size vk:device-size
+      vk:memory-map-flags uptr)
+    vk:result)
+  (define-vk-loader vk:load-map-memory device-proc-addr "vkMapMemory"
     (vk:device vk:device-memory vk:device-size vk:device-size
       vk:memory-map-flags uptr)
     vk:result)
@@ -28410,23 +28662,38 @@
     "vkUnmapMemory"
     (vk:device vk:device-memory)
     void)
+  (define-vk-loader vk:load-unmap-memory device-proc-addr
+    "vkUnmapMemory" (vk:device vk:device-memory) void)
   (define-vk-procedure
     vk:flush-mapped-memory-ranges
     "vkFlushMappedMemoryRanges"
     (vk:device unsigned-32 uptr)
+    vk:result)
+  (define-vk-loader vk:load-flush-mapped-memory-ranges device-proc-addr
+    "vkFlushMappedMemoryRanges" (vk:device unsigned-32 uptr)
     vk:result)
   (define-vk-procedure
     vk:invalidate-mapped-memory-ranges
     "vkInvalidateMappedMemoryRanges"
     (vk:device unsigned-32 uptr)
     vk:result)
+  (define-vk-loader vk:load-invalidate-mapped-memory-ranges device-proc-addr
+    "vkInvalidateMappedMemoryRanges"
+    (vk:device unsigned-32 uptr) vk:result)
   (define-vk-procedure
     vk:get-device-memory-commitment
     "vkGetDeviceMemoryCommitment"
     (vk:device vk:device-memory uptr)
     void)
+  (define-vk-loader vk:load-get-device-memory-commitment device-proc-addr
+    "vkGetDeviceMemoryCommitment"
+    (vk:device vk:device-memory uptr) void)
   (define-vk-procedure
     vk:bind-buffer-memory
+    "vkBindBufferMemory"
+    (vk:device vk:buffer vk:device-memory vk:device-size)
+    vk:result)
+  (define-vk-loader vk:load-bind-buffer-memory device-proc-addr
     "vkBindBufferMemory"
     (vk:device vk:buffer vk:device-memory vk:device-size)
     vk:result)
@@ -28435,23 +28702,42 @@
     "vkBindImageMemory"
     (vk:device vk:image vk:device-memory vk:device-size)
     vk:result)
+  (define-vk-loader vk:load-bind-image-memory device-proc-addr
+    "vkBindImageMemory"
+    (vk:device vk:image vk:device-memory vk:device-size)
+    vk:result)
   (define-vk-procedure
     vk:get-buffer-memory-requirements
     "vkGetBufferMemoryRequirements"
     (vk:device vk:buffer uptr)
+    void)
+  (define-vk-loader vk:load-get-buffer-memory-requirements device-proc-addr
+    "vkGetBufferMemoryRequirements" (vk:device vk:buffer uptr)
     void)
   (define-vk-procedure
     vk:get-image-memory-requirements
     "vkGetImageMemoryRequirements"
     (vk:device vk:image uptr)
     void)
+  (define-vk-loader vk:load-get-image-memory-requirements device-proc-addr
+    "vkGetImageMemoryRequirements" (vk:device vk:image uptr)
+    void)
   (define-vk-procedure
     vk:get-image-sparse-memory-requirements
     "vkGetImageSparseMemoryRequirements"
     (vk:device vk:image uptr uptr)
     void)
+  (define-vk-loader vk:load-get-image-sparse-memory-requirements
+    device-proc-addr "vkGetImageSparseMemoryRequirements"
+    (vk:device vk:image uptr uptr) void)
   (define-vk-procedure
     vk:get-physical-device-sparse-image-format-properties
+    "vkGetPhysicalDeviceSparseImageFormatProperties"
+    (vk:physical-device vk:format vk:image-type vk:sample-count-flag-bits
+      vk:image-usage-flags vk:image-tiling uptr uptr)
+    void)
+  (define-vk-loader vk:load-get-physical-device-sparse-image-format-properties
+    instance-proc-addr
     "vkGetPhysicalDeviceSparseImageFormatProperties"
     (vk:physical-device vk:format vk:image-type vk:sample-count-flag-bits
       vk:image-usage-flags vk:image-tiling uptr uptr)
@@ -28461,29 +28747,43 @@
     "vkQueueBindSparse"
     (vk:queue unsigned-32 uptr vk:fence)
     vk:result)
+  (define-vk-loader vk:load-queue-bind-sparse device-proc-addr
+    "vkQueueBindSparse" (vk:queue unsigned-32 uptr vk:fence)
+    vk:result)
   (define-vk-procedure
     vk:create-fence
     "vkCreateFence"
     (vk:device uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-create-fence device-proc-addr
+    "vkCreateFence" (vk:device uptr uptr uptr) vk:result)
   (define-vk-procedure
     vk:destroy-fence
     "vkDestroyFence"
     (vk:device vk:fence uptr)
     void)
+  (define-vk-loader vk:load-destroy-fence device-proc-addr
+    "vkDestroyFence" (vk:device vk:fence uptr) void)
   (define-vk-procedure
     vk:reset-fences
     "vkResetFences"
     (vk:device unsigned-32 uptr)
     vk:result)
+  (define-vk-loader vk:load-reset-fences device-proc-addr "vkResetFences"
+    (vk:device unsigned-32 uptr) vk:result)
   (define-vk-procedure
     vk:get-fence-status
     "vkGetFenceStatus"
     (vk:device vk:fence)
     vk:result)
+  (define-vk-loader vk:load-get-fence-status device-proc-addr
+    "vkGetFenceStatus" (vk:device vk:fence) vk:result)
   (define-vk-procedure
     vk:wait-for-fences
     "vkWaitForFences"
+    (vk:device unsigned-32 uptr vk:bool32 unsigned-64)
+    vk:result)
+  (define-vk-loader vk:load-wait-for-fences device-proc-addr "vkWaitForFences"
     (vk:device unsigned-32 uptr vk:bool32 unsigned-64)
     vk:result)
   (define-vk-procedure
@@ -28491,23 +28791,36 @@
     "vkCreateSemaphore"
     (vk:device uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-create-semaphore device-proc-addr
+    "vkCreateSemaphore" (vk:device uptr uptr uptr) vk:result)
   (define-vk-procedure
     vk:destroy-semaphore
     "vkDestroySemaphore"
     (vk:device vk:semaphore uptr)
     void)
+  (define-vk-loader vk:load-destroy-semaphore device-proc-addr
+    "vkDestroySemaphore" (vk:device vk:semaphore uptr) void)
   (define-vk-procedure
     vk:create-query-pool
     "vkCreateQueryPool"
     (vk:device uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-create-query-pool device-proc-addr
+    "vkCreateQueryPool" (vk:device uptr uptr uptr) vk:result)
   (define-vk-procedure
     vk:destroy-query-pool
     "vkDestroyQueryPool"
     (vk:device vk:query-pool uptr)
     void)
+  (define-vk-loader vk:load-destroy-query-pool device-proc-addr
+    "vkDestroyQueryPool" (vk:device vk:query-pool uptr) void)
   (define-vk-procedure
     vk:get-query-pool-results
+    "vkGetQueryPoolResults"
+    (vk:device vk:query-pool unsigned-32 unsigned-32 unsigned-64
+      uptr vk:device-size vk:query-result-flags)
+    vk:result)
+  (define-vk-loader vk:load-get-query-pool-results device-proc-addr
     "vkGetQueryPoolResults"
     (vk:device vk:query-pool unsigned-32 unsigned-32 unsigned-64
       uptr vk:device-size vk:query-result-flags)
@@ -28517,48 +28830,72 @@
     "vkCreateBuffer"
     (vk:device uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-create-buffer device-proc-addr "vkCreateBuffer"
+    (vk:device uptr uptr uptr) vk:result)
   (define-vk-procedure
     vk:destroy-buffer
     "vkDestroyBuffer"
     (vk:device vk:buffer uptr)
     void)
+  (define-vk-loader vk:load-destroy-buffer device-proc-addr
+    "vkDestroyBuffer" (vk:device vk:buffer uptr) void)
   (define-vk-procedure
     vk:create-image
     "vkCreateImage"
     (vk:device uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-create-image device-proc-addr
+    "vkCreateImage" (vk:device uptr uptr uptr) vk:result)
   (define-vk-procedure
     vk:destroy-image
     "vkDestroyImage"
     (vk:device vk:image uptr)
     void)
+  (define-vk-loader vk:load-destroy-image device-proc-addr
+    "vkDestroyImage" (vk:device vk:image uptr) void)
   (define-vk-procedure
     vk:get-image-subresource-layout
     "vkGetImageSubresourceLayout"
     (vk:device vk:image uptr uptr)
+    void)
+  (define-vk-loader vk:load-get-image-subresource-layout device-proc-addr
+    "vkGetImageSubresourceLayout" (vk:device vk:image uptr uptr)
     void)
   (define-vk-procedure
     vk:create-image-view
     "vkCreateImageView"
     (vk:device uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-create-image-view device-proc-addr
+    "vkCreateImageView" (vk:device uptr uptr uptr) vk:result)
   (define-vk-procedure
     vk:destroy-image-view
     "vkDestroyImageView"
     (vk:device vk:image-view uptr)
     void)
+  (define-vk-loader vk:load-destroy-image-view device-proc-addr
+    "vkDestroyImageView" (vk:device vk:image-view uptr) void)
   (define-vk-procedure
     vk:create-command-pool
     "vkCreateCommandPool"
     (vk:device uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-create-command-pool device-proc-addr
+    "vkCreateCommandPool" (vk:device uptr uptr uptr) vk:result)
   (define-vk-procedure
     vk:destroy-command-pool
     "vkDestroyCommandPool"
     (vk:device vk:command-pool uptr)
     void)
+  (define-vk-loader vk:load-destroy-command-pool device-proc-addr
+    "vkDestroyCommandPool" (vk:device vk:command-pool uptr)
+    void)
   (define-vk-procedure
     vk:reset-command-pool
+    "vkResetCommandPool"
+    (vk:device vk:command-pool vk:command-pool-reset-flags)
+    vk:result)
+  (define-vk-loader vk:load-reset-command-pool device-proc-addr
     "vkResetCommandPool"
     (vk:device vk:command-pool vk:command-pool-reset-flags)
     vk:result)
@@ -28567,29 +28904,44 @@
     "vkAllocateCommandBuffers"
     (vk:device uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-allocate-command-buffers device-proc-addr
+    "vkAllocateCommandBuffers" (vk:device uptr uptr) vk:result)
   (define-vk-procedure
     vk:free-command-buffers
     "vkFreeCommandBuffers"
     (vk:device vk:command-pool unsigned-32 uptr)
     void)
+  (define-vk-loader vk:load-free-command-buffers device-proc-addr
+    "vkFreeCommandBuffers"
+    (vk:device vk:command-pool unsigned-32 uptr) void)
   (define-vk-procedure
     vk:begin-command-buffer
     "vkBeginCommandBuffer"
     (vk:command-buffer uptr)
     vk:result)
+  (define-vk-loader vk:load-begin-command-buffer device-proc-addr
+    "vkBeginCommandBuffer" (vk:command-buffer uptr) vk:result)
   (define-vk-procedure
     vk:end-command-buffer
     "vkEndCommandBuffer"
     (vk:command-buffer)
     vk:result)
+  (define-vk-loader vk:load-end-command-buffer device-proc-addr
+    "vkEndCommandBuffer" (vk:command-buffer) vk:result)
   (define-vk-procedure
     vk:reset-command-buffer
     "vkResetCommandBuffer"
     (vk:command-buffer vk:command-buffer-reset-flags)
     vk:result)
+  (define-vk-loader vk:load-reset-command-buffer device-proc-addr
+    "vkResetCommandBuffer"
+    (vk:command-buffer vk:command-buffer-reset-flags) vk:result)
   (define-vk-procedure
     vk:cmd-copy-buffer
     "vkCmdCopyBuffer"
+    (vk:command-buffer vk:buffer vk:buffer unsigned-32 uptr)
+    void)
+  (define-vk-loader vk:load-cmd-copy-buffer device-proc-addr "vkCmdCopyBuffer"
     (vk:command-buffer vk:buffer vk:buffer unsigned-32 uptr)
     void)
   (define-vk-procedure
@@ -28598,8 +28950,17 @@
     (vk:command-buffer vk:image vk:image-layout vk:image
       vk:image-layout unsigned-32 uptr)
     void)
+  (define-vk-loader vk:load-cmd-copy-image device-proc-addr "vkCmdCopyImage"
+    (vk:command-buffer vk:image vk:image-layout vk:image
+      vk:image-layout unsigned-32 uptr)
+    void)
   (define-vk-procedure
     vk:cmd-copy-buffer-to-image
+    "vkCmdCopyBufferToImage"
+    (vk:command-buffer vk:buffer vk:image vk:image-layout
+      unsigned-32 uptr)
+    void)
+  (define-vk-loader vk:load-cmd-copy-buffer-to-image device-proc-addr
     "vkCmdCopyBufferToImage"
     (vk:command-buffer vk:buffer vk:image vk:image-layout
       unsigned-32 uptr)
@@ -28610,8 +28971,21 @@
     (vk:command-buffer vk:image vk:image-layout vk:buffer
       unsigned-32 uptr)
     void)
+  (define-vk-loader vk:load-cmd-copy-image-to-buffer device-proc-addr
+    "vkCmdCopyImageToBuffer"
+    (vk:command-buffer vk:image vk:image-layout vk:buffer
+      unsigned-32 uptr)
+    void)
   (define-vk-procedure
     vk:cmd-update-buffer
+    "vkCmdUpdateBuffer"
+    (vk:command-buffer
+      vk:buffer
+      vk:device-size
+      vk:device-size
+      uptr)
+    void)
+  (define-vk-loader vk:load-cmd-update-buffer device-proc-addr
     "vkCmdUpdateBuffer"
     (vk:command-buffer
       vk:buffer
@@ -28628,8 +29002,21 @@
       vk:device-size
       unsigned-32)
     void)
+  (define-vk-loader vk:load-cmd-fill-buffer device-proc-addr "vkCmdFillBuffer"
+    (vk:command-buffer
+      vk:buffer
+      vk:device-size
+      vk:device-size
+      unsigned-32)
+    void)
   (define-vk-procedure
     vk:cmd-pipeline-barrier
+    "vkCmdPipelineBarrier"
+    (vk:command-buffer vk:pipeline-stage-flags vk:pipeline-stage-flags
+      vk:dependency-flags unsigned-32 uptr unsigned-32 uptr
+      unsigned-32 uptr)
+    void)
+  (define-vk-loader vk:load-cmd-pipeline-barrier device-proc-addr
     "vkCmdPipelineBarrier"
     (vk:command-buffer vk:pipeline-stage-flags vk:pipeline-stage-flags
       vk:dependency-flags unsigned-32 uptr unsigned-32 uptr
@@ -28643,18 +29030,37 @@
       unsigned-32
       vk:query-control-flags)
     void)
+  (define-vk-loader vk:load-cmd-begin-query device-proc-addr "vkCmdBeginQuery"
+    (vk:command-buffer
+      vk:query-pool
+      unsigned-32
+      vk:query-control-flags)
+    void)
   (define-vk-procedure
     vk:cmd-end-query
     "vkCmdEndQuery"
     (vk:command-buffer vk:query-pool unsigned-32)
     void)
+  (define-vk-loader vk:load-cmd-end-query device-proc-addr "vkCmdEndQuery"
+    (vk:command-buffer vk:query-pool unsigned-32) void)
   (define-vk-procedure
     vk:cmd-reset-query-pool
     "vkCmdResetQueryPool"
     (vk:command-buffer vk:query-pool unsigned-32 unsigned-32)
     void)
+  (define-vk-loader vk:load-cmd-reset-query-pool device-proc-addr
+    "vkCmdResetQueryPool"
+    (vk:command-buffer vk:query-pool unsigned-32 unsigned-32)
+    void)
   (define-vk-procedure
     vk:cmd-write-timestamp
+    "vkCmdWriteTimestamp"
+    (vk:command-buffer
+      vk:pipeline-stage-flag-bits
+      vk:query-pool
+      unsigned-32)
+    void)
+  (define-vk-loader vk:load-cmd-write-timestamp device-proc-addr
     "vkCmdWriteTimestamp"
     (vk:command-buffer
       vk:pipeline-stage-flag-bits
@@ -28667,78 +29073,121 @@
     (vk:command-buffer vk:query-pool unsigned-32 unsigned-32 vk:buffer
       vk:device-size vk:device-size vk:query-result-flags)
     void)
+  (define-vk-loader vk:load-cmd-copy-query-pool-results device-proc-addr
+    "vkCmdCopyQueryPoolResults"
+    (vk:command-buffer vk:query-pool unsigned-32 unsigned-32 vk:buffer
+      vk:device-size vk:device-size vk:query-result-flags)
+    void)
   (define-vk-procedure
     vk:cmd-execute-commands
     "vkCmdExecuteCommands"
     (vk:command-buffer unsigned-32 uptr)
+    void)
+  (define-vk-loader vk:load-cmd-execute-commands device-proc-addr
+    "vkCmdExecuteCommands" (vk:command-buffer unsigned-32 uptr)
     void)
   (define-vk-procedure
     vk:create-event
     "vkCreateEvent"
     (vk:device uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-create-event device-proc-addr
+    "vkCreateEvent" (vk:device uptr uptr uptr) vk:result)
   (define-vk-procedure
     vk:destroy-event
     "vkDestroyEvent"
     (vk:device vk:event uptr)
     void)
+  (define-vk-loader vk:load-destroy-event device-proc-addr
+    "vkDestroyEvent" (vk:device vk:event uptr) void)
   (define-vk-procedure
     vk:get-event-status
     "vkGetEventStatus"
     (vk:device vk:event)
     vk:result)
+  (define-vk-loader vk:load-get-event-status device-proc-addr
+    "vkGetEventStatus" (vk:device vk:event) vk:result)
   (define-vk-procedure
     vk:set-event
     "vkSetEvent"
     (vk:device vk:event)
     vk:result)
+  (define-vk-loader vk:load-set-event device-proc-addr
+    "vkSetEvent" (vk:device vk:event) vk:result)
   (define-vk-procedure
     vk:reset-event
     "vkResetEvent"
     (vk:device vk:event)
     vk:result)
+  (define-vk-loader vk:load-reset-event device-proc-addr
+    "vkResetEvent" (vk:device vk:event) vk:result)
   (define-vk-procedure
     vk:create-buffer-view
     "vkCreateBufferView"
     (vk:device uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-create-buffer-view device-proc-addr
+    "vkCreateBufferView" (vk:device uptr uptr uptr) vk:result)
   (define-vk-procedure
     vk:destroy-buffer-view
     "vkDestroyBufferView"
     (vk:device vk:buffer-view uptr)
     void)
+  (define-vk-loader vk:load-destroy-buffer-view device-proc-addr
+    "vkDestroyBufferView" (vk:device vk:buffer-view uptr) void)
   (define-vk-procedure
     vk:create-shader-module
     "vkCreateShaderModule"
     (vk:device uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-create-shader-module device-proc-addr
+    "vkCreateShaderModule" (vk:device uptr uptr uptr) vk:result)
   (define-vk-procedure
     vk:destroy-shader-module
     "vkDestroyShaderModule"
     (vk:device vk:shader-module uptr)
+    void)
+  (define-vk-loader vk:load-destroy-shader-module device-proc-addr
+    "vkDestroyShaderModule" (vk:device vk:shader-module uptr)
     void)
   (define-vk-procedure
     vk:create-pipeline-cache
     "vkCreatePipelineCache"
     (vk:device uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-create-pipeline-cache device-proc-addr
+    "vkCreatePipelineCache" (vk:device uptr uptr uptr)
+    vk:result)
   (define-vk-procedure
     vk:destroy-pipeline-cache
     "vkDestroyPipelineCache"
     (vk:device vk:pipeline-cache uptr)
+    void)
+  (define-vk-loader vk:load-destroy-pipeline-cache device-proc-addr
+    "vkDestroyPipelineCache" (vk:device vk:pipeline-cache uptr)
     void)
   (define-vk-procedure
     vk:get-pipeline-cache-data
     "vkGetPipelineCacheData"
     (vk:device vk:pipeline-cache uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-get-pipeline-cache-data device-proc-addr
+    "vkGetPipelineCacheData"
+    (vk:device vk:pipeline-cache uptr uptr) vk:result)
   (define-vk-procedure
     vk:merge-pipeline-caches
     "vkMergePipelineCaches"
     (vk:device vk:pipeline-cache unsigned-32 uptr)
     vk:result)
+  (define-vk-loader vk:load-merge-pipeline-caches device-proc-addr
+    "vkMergePipelineCaches"
+    (vk:device vk:pipeline-cache unsigned-32 uptr) vk:result)
   (define-vk-procedure
     vk:create-compute-pipelines
+    "vkCreateComputePipelines"
+    (vk:device vk:pipeline-cache unsigned-32 uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-create-compute-pipelines device-proc-addr
     "vkCreateComputePipelines"
     (vk:device vk:pipeline-cache unsigned-32 uptr uptr uptr)
     vk:result)
@@ -28747,48 +29196,78 @@
     "vkDestroyPipeline"
     (vk:device vk:pipeline uptr)
     void)
+  (define-vk-loader vk:load-destroy-pipeline device-proc-addr
+    "vkDestroyPipeline" (vk:device vk:pipeline uptr) void)
   (define-vk-procedure
     vk:create-pipeline-layout
     "vkCreatePipelineLayout"
     (vk:device uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-create-pipeline-layout device-proc-addr
+    "vkCreatePipelineLayout" (vk:device uptr uptr uptr)
     vk:result)
   (define-vk-procedure
     vk:destroy-pipeline-layout
     "vkDestroyPipelineLayout"
     (vk:device vk:pipeline-layout uptr)
     void)
+  (define-vk-loader vk:load-destroy-pipeline-layout device-proc-addr
+    "vkDestroyPipelineLayout"
+    (vk:device vk:pipeline-layout uptr) void)
   (define-vk-procedure
     vk:create-sampler
     "vkCreateSampler"
     (vk:device uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-create-sampler device-proc-addr "vkCreateSampler"
+    (vk:device uptr uptr uptr) vk:result)
   (define-vk-procedure
     vk:destroy-sampler
     "vkDestroySampler"
     (vk:device vk:sampler uptr)
     void)
+  (define-vk-loader vk:load-destroy-sampler device-proc-addr "vkDestroySampler"
+    (vk:device vk:sampler uptr) void)
   (define-vk-procedure
     vk:create-descriptor-set-layout
     "vkCreateDescriptorSetLayout"
     (vk:device uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-create-descriptor-set-layout device-proc-addr
+    "vkCreateDescriptorSetLayout" (vk:device uptr uptr uptr)
     vk:result)
   (define-vk-procedure
     vk:destroy-descriptor-set-layout
     "vkDestroyDescriptorSetLayout"
     (vk:device vk:descriptor-set-layout uptr)
     void)
+  (define-vk-loader vk:load-destroy-descriptor-set-layout device-proc-addr
+    "vkDestroyDescriptorSetLayout"
+    (vk:device vk:descriptor-set-layout uptr) void)
   (define-vk-procedure
     vk:create-descriptor-pool
     "vkCreateDescriptorPool"
     (vk:device uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-create-descriptor-pool device-proc-addr
+    "vkCreateDescriptorPool" (vk:device uptr uptr uptr)
     vk:result)
   (define-vk-procedure
     vk:destroy-descriptor-pool
     "vkDestroyDescriptorPool"
     (vk:device vk:descriptor-pool uptr)
     void)
+  (define-vk-loader vk:load-destroy-descriptor-pool device-proc-addr
+    "vkDestroyDescriptorPool"
+    (vk:device vk:descriptor-pool uptr) void)
   (define-vk-procedure
     vk:reset-descriptor-pool
+    "vkResetDescriptorPool"
+    (vk:device
+      vk:descriptor-pool
+      vk:descriptor-pool-reset-flags)
+    vk:result)
+  (define-vk-loader vk:load-reset-descriptor-pool device-proc-addr
     "vkResetDescriptorPool"
     (vk:device
       vk:descriptor-pool
@@ -28799,23 +29278,39 @@
     "vkAllocateDescriptorSets"
     (vk:device uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-allocate-descriptor-sets device-proc-addr
+    "vkAllocateDescriptorSets" (vk:device uptr uptr) vk:result)
   (define-vk-procedure
     vk:free-descriptor-sets
     "vkFreeDescriptorSets"
     (vk:device vk:descriptor-pool unsigned-32 uptr)
     vk:result)
+  (define-vk-loader vk:load-free-descriptor-sets device-proc-addr
+    "vkFreeDescriptorSets"
+    (vk:device vk:descriptor-pool unsigned-32 uptr) vk:result)
   (define-vk-procedure
     vk:update-descriptor-sets
     "vkUpdateDescriptorSets"
     (vk:device unsigned-32 uptr unsigned-32 uptr)
     void)
+  (define-vk-loader vk:load-update-descriptor-sets device-proc-addr
+    "vkUpdateDescriptorSets"
+    (vk:device unsigned-32 uptr unsigned-32 uptr) void)
   (define-vk-procedure
     vk:cmd-bind-pipeline
     "vkCmdBindPipeline"
     (vk:command-buffer vk:pipeline-bind-point vk:pipeline)
     void)
+  (define-vk-loader vk:load-cmd-bind-pipeline device-proc-addr
+    "vkCmdBindPipeline"
+    (vk:command-buffer vk:pipeline-bind-point vk:pipeline) void)
   (define-vk-procedure
     vk:cmd-bind-descriptor-sets
+    "vkCmdBindDescriptorSets"
+    (vk:command-buffer vk:pipeline-bind-point vk:pipeline-layout
+      unsigned-32 unsigned-32 uptr unsigned-32 uptr)
+    void)
+  (define-vk-loader vk:load-cmd-bind-descriptor-sets device-proc-addr
     "vkCmdBindDescriptorSets"
     (vk:command-buffer vk:pipeline-bind-point vk:pipeline-layout
       unsigned-32 unsigned-32 uptr unsigned-32 uptr)
@@ -28826,9 +29321,17 @@
     (vk:command-buffer vk:image vk:image-layout uptr unsigned-32
       uptr)
     void)
+  (define-vk-loader vk:load-cmd-clear-color-image device-proc-addr
+    "vkCmdClearColorImage"
+    (vk:command-buffer vk:image vk:image-layout uptr unsigned-32
+      uptr)
+    void)
   (define-vk-procedure
     vk:cmd-dispatch
     "vkCmdDispatch"
+    (vk:command-buffer unsigned-32 unsigned-32 unsigned-32)
+    void)
+  (define-vk-loader vk:load-cmd-dispatch device-proc-addr "vkCmdDispatch"
     (vk:command-buffer unsigned-32 unsigned-32 unsigned-32)
     void)
   (define-vk-procedure
@@ -28836,19 +29339,31 @@
     "vkCmdDispatchIndirect"
     (vk:command-buffer vk:buffer vk:device-size)
     void)
+  (define-vk-loader vk:load-cmd-dispatch-indirect device-proc-addr
+    "vkCmdDispatchIndirect"
+    (vk:command-buffer vk:buffer vk:device-size) void)
   (define-vk-procedure
     vk:cmd-set-event
     "vkCmdSetEvent"
     (vk:command-buffer vk:event vk:pipeline-stage-flags)
     void)
+  (define-vk-loader vk:load-cmd-set-event device-proc-addr "vkCmdSetEvent"
+    (vk:command-buffer vk:event vk:pipeline-stage-flags) void)
   (define-vk-procedure
     vk:cmd-reset-event
     "vkCmdResetEvent"
     (vk:command-buffer vk:event vk:pipeline-stage-flags)
     void)
+  (define-vk-loader vk:load-cmd-reset-event device-proc-addr "vkCmdResetEvent"
+    (vk:command-buffer vk:event vk:pipeline-stage-flags) void)
   (define-vk-procedure
     vk:cmd-wait-events
     "vkCmdWaitEvents"
+    (vk:command-buffer unsigned-32 uptr vk:pipeline-stage-flags
+      vk:pipeline-stage-flags unsigned-32 uptr unsigned-32 uptr
+      unsigned-32 uptr)
+    void)
+  (define-vk-loader vk:load-cmd-wait-events device-proc-addr "vkCmdWaitEvents"
     (vk:command-buffer unsigned-32 uptr vk:pipeline-stage-flags
       vk:pipeline-stage-flags unsigned-32 uptr unsigned-32 uptr
       unsigned-32 uptr)
@@ -28859,8 +29374,17 @@
     (vk:command-buffer vk:pipeline-layout vk:shader-stage-flags
       unsigned-32 unsigned-32 uptr)
     void)
+  (define-vk-loader vk:load-cmd-push-constants device-proc-addr
+    "vkCmdPushConstants"
+    (vk:command-buffer vk:pipeline-layout vk:shader-stage-flags
+      unsigned-32 unsigned-32 uptr)
+    void)
   (define-vk-procedure
     vk:create-graphics-pipelines
+    "vkCreateGraphicsPipelines"
+    (vk:device vk:pipeline-cache unsigned-32 uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-create-graphics-pipelines device-proc-addr
     "vkCreateGraphicsPipelines"
     (vk:device vk:pipeline-cache unsigned-32 uptr uptr uptr)
     vk:result)
@@ -28869,73 +29393,111 @@
     "vkCreateFramebuffer"
     (vk:device uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-create-framebuffer device-proc-addr
+    "vkCreateFramebuffer" (vk:device uptr uptr uptr) vk:result)
   (define-vk-procedure
     vk:destroy-framebuffer
     "vkDestroyFramebuffer"
     (vk:device vk:framebuffer uptr)
     void)
+  (define-vk-loader vk:load-destroy-framebuffer device-proc-addr
+    "vkDestroyFramebuffer" (vk:device vk:framebuffer uptr) void)
   (define-vk-procedure
     vk:create-render-pass
     "vkCreateRenderPass"
     (vk:device uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-create-render-pass device-proc-addr
+    "vkCreateRenderPass" (vk:device uptr uptr uptr) vk:result)
   (define-vk-procedure
     vk:destroy-render-pass
     "vkDestroyRenderPass"
     (vk:device vk:render-pass uptr)
     void)
+  (define-vk-loader vk:load-destroy-render-pass device-proc-addr
+    "vkDestroyRenderPass" (vk:device vk:render-pass uptr) void)
   (define-vk-procedure
     vk:get-render-area-granularity
     "vkGetRenderAreaGranularity"
     (vk:device vk:render-pass uptr)
+    void)
+  (define-vk-loader vk:load-get-render-area-granularity device-proc-addr
+    "vkGetRenderAreaGranularity" (vk:device vk:render-pass uptr)
     void)
   (define-vk-procedure
     vk:cmd-set-viewport
     "vkCmdSetViewport"
     (vk:command-buffer unsigned-32 unsigned-32 uptr)
     void)
+  (define-vk-loader vk:load-cmd-set-viewport device-proc-addr
+    "vkCmdSetViewport"
+    (vk:command-buffer unsigned-32 unsigned-32 uptr) void)
   (define-vk-procedure
     vk:cmd-set-scissor
     "vkCmdSetScissor"
     (vk:command-buffer unsigned-32 unsigned-32 uptr)
     void)
+  (define-vk-loader vk:load-cmd-set-scissor device-proc-addr "vkCmdSetScissor"
+    (vk:command-buffer unsigned-32 unsigned-32 uptr) void)
   (define-vk-procedure
     vk:cmd-set-line-width
     "vkCmdSetLineWidth"
     (vk:command-buffer float)
     void)
+  (define-vk-loader vk:load-cmd-set-line-width device-proc-addr
+    "vkCmdSetLineWidth" (vk:command-buffer float) void)
   (define-vk-procedure
     vk:cmd-set-depth-bias
     "vkCmdSetDepthBias"
     (vk:command-buffer float float float)
+    void)
+  (define-vk-loader vk:load-cmd-set-depth-bias device-proc-addr
+    "vkCmdSetDepthBias" (vk:command-buffer float float float)
     void)
   (define-vk-procedure
     vk:cmd-set-blend-constants
     "vkCmdSetBlendConstants"
     (vk:command-buffer uptr)
     void)
+  (define-vk-loader vk:load-cmd-set-blend-constants device-proc-addr
+    "vkCmdSetBlendConstants" (vk:command-buffer uptr) void)
   (define-vk-procedure
     vk:cmd-set-depth-bounds
     "vkCmdSetDepthBounds"
     (vk:command-buffer float float)
     void)
+  (define-vk-loader vk:load-cmd-set-depth-bounds device-proc-addr
+    "vkCmdSetDepthBounds" (vk:command-buffer float float) void)
   (define-vk-procedure
     vk:cmd-set-stencil-compare-mask
     "vkCmdSetStencilCompareMask"
     (vk:command-buffer vk:stencil-face-flags unsigned-32)
     void)
+  (define-vk-loader vk:load-cmd-set-stencil-compare-mask device-proc-addr
+    "vkCmdSetStencilCompareMask"
+    (vk:command-buffer vk:stencil-face-flags unsigned-32) void)
   (define-vk-procedure
     vk:cmd-set-stencil-write-mask
     "vkCmdSetStencilWriteMask"
     (vk:command-buffer vk:stencil-face-flags unsigned-32)
     void)
+  (define-vk-loader vk:load-cmd-set-stencil-write-mask device-proc-addr
+    "vkCmdSetStencilWriteMask"
+    (vk:command-buffer vk:stencil-face-flags unsigned-32) void)
   (define-vk-procedure
     vk:cmd-set-stencil-reference
     "vkCmdSetStencilReference"
     (vk:command-buffer vk:stencil-face-flags unsigned-32)
     void)
+  (define-vk-loader vk:load-cmd-set-stencil-reference device-proc-addr
+    "vkCmdSetStencilReference"
+    (vk:command-buffer vk:stencil-face-flags unsigned-32) void)
   (define-vk-procedure
     vk:cmd-bind-index-buffer
+    "vkCmdBindIndexBuffer"
+    (vk:command-buffer vk:buffer vk:device-size vk:index-type)
+    void)
+  (define-vk-loader vk:load-cmd-bind-index-buffer device-proc-addr
     "vkCmdBindIndexBuffer"
     (vk:command-buffer vk:buffer vk:device-size vk:index-type)
     void)
@@ -28944,9 +29506,19 @@
     "vkCmdBindVertexBuffers"
     (vk:command-buffer unsigned-32 unsigned-32 uptr uptr)
     void)
+  (define-vk-loader vk:load-cmd-bind-vertex-buffers device-proc-addr
+    "vkCmdBindVertexBuffers"
+    (vk:command-buffer unsigned-32 unsigned-32 uptr uptr) void)
   (define-vk-procedure
     vk:cmd-draw
     "vkCmdDraw"
+    (vk:command-buffer
+      unsigned-32
+      unsigned-32
+      unsigned-32
+      unsigned-32)
+    void)
+  (define-vk-loader vk:load-cmd-draw device-proc-addr "vkCmdDraw"
     (vk:command-buffer
       unsigned-32
       unsigned-32
@@ -28959,8 +29531,21 @@
     (vk:command-buffer unsigned-32 unsigned-32 unsigned-32
       integer-32 unsigned-32)
     void)
+  (define-vk-loader vk:load-cmd-draw-indexed device-proc-addr
+    "vkCmdDrawIndexed"
+    (vk:command-buffer unsigned-32 unsigned-32 unsigned-32
+      integer-32 unsigned-32)
+    void)
   (define-vk-procedure
     vk:cmd-draw-indirect
+    "vkCmdDrawIndirect"
+    (vk:command-buffer
+      vk:buffer
+      vk:device-size
+      unsigned-32
+      unsigned-32)
+    void)
+  (define-vk-loader vk:load-cmd-draw-indirect device-proc-addr
     "vkCmdDrawIndirect"
     (vk:command-buffer
       vk:buffer
@@ -28977,9 +29562,21 @@
       unsigned-32
       unsigned-32)
     void)
+  (define-vk-loader vk:load-cmd-draw-indexed-indirect device-proc-addr
+    "vkCmdDrawIndexedIndirect"
+    (vk:command-buffer
+      vk:buffer
+      vk:device-size
+      unsigned-32
+      unsigned-32)
+    void)
   (define-vk-procedure
     vk:cmd-blit-image
     "vkCmdBlitImage"
+    (vk:command-buffer vk:image vk:image-layout vk:image
+      vk:image-layout unsigned-32 uptr vk:filter)
+    void)
+  (define-vk-loader vk:load-cmd-blit-image device-proc-addr "vkCmdBlitImage"
     (vk:command-buffer vk:image vk:image-layout vk:image
       vk:image-layout unsigned-32 uptr vk:filter)
     void)
@@ -28989,13 +29586,26 @@
     (vk:command-buffer vk:image vk:image-layout uptr unsigned-32
       uptr)
     void)
+  (define-vk-loader vk:load-cmd-clear-depth-stencil-image device-proc-addr
+    "vkCmdClearDepthStencilImage"
+    (vk:command-buffer vk:image vk:image-layout uptr unsigned-32
+      uptr)
+    void)
   (define-vk-procedure
     vk:cmd-clear-attachments
     "vkCmdClearAttachments"
     (vk:command-buffer unsigned-32 uptr unsigned-32 uptr)
     void)
+  (define-vk-loader vk:load-cmd-clear-attachments device-proc-addr
+    "vkCmdClearAttachments"
+    (vk:command-buffer unsigned-32 uptr unsigned-32 uptr) void)
   (define-vk-procedure
     vk:cmd-resolve-image
+    "vkCmdResolveImage"
+    (vk:command-buffer vk:image vk:image-layout vk:image
+      vk:image-layout unsigned-32 uptr)
+    void)
+  (define-vk-loader vk:load-cmd-resolve-image device-proc-addr
     "vkCmdResolveImage"
     (vk:command-buffer vk:image vk:image-layout vk:image
       vk:image-layout unsigned-32 uptr)
@@ -29005,123 +29615,200 @@
     "vkCmdBeginRenderPass"
     (vk:command-buffer uptr vk:subpass-contents)
     void)
+  (define-vk-loader vk:load-cmd-begin-render-pass device-proc-addr
+    "vkCmdBeginRenderPass"
+    (vk:command-buffer uptr vk:subpass-contents) void)
   (define-vk-procedure
     vk:cmd-next-subpass
     "vkCmdNextSubpass"
     (vk:command-buffer vk:subpass-contents)
+    void)
+  (define-vk-loader vk:load-cmd-next-subpass device-proc-addr
+    "vkCmdNextSubpass" (vk:command-buffer vk:subpass-contents)
     void)
   (define-vk-procedure
     vk:cmd-end-render-pass
     "vkCmdEndRenderPass"
     (vk:command-buffer)
     void)
+  (define-vk-loader vk:load-cmd-end-render-pass
+    device-proc-addr "vkCmdEndRenderPass" (vk:command-buffer)
+    void)
   (define-vk-procedure
     vk:enumerate-instance-version
     "vkEnumerateInstanceVersion"
     (uptr)
     vk:result)
+  (define-vk-loader vk:load-enumerate-instance-version instance-proc-addr
+    "vkEnumerateInstanceVersion" (uptr) vk:result)
   (define-vk-procedure
     vk:bind-buffer-memory2
     "vkBindBufferMemory2"
     (vk:device unsigned-32 uptr)
+    vk:result)
+  (define-vk-loader vk:load-bind-buffer-memory2 device-proc-addr
+    "vkBindBufferMemory2" (vk:device unsigned-32 uptr)
     vk:result)
   (define-vk-procedure
     vk:bind-image-memory2
     "vkBindImageMemory2"
     (vk:device unsigned-32 uptr)
     vk:result)
+  (define-vk-loader vk:load-bind-image-memory2 device-proc-addr
+    "vkBindImageMemory2" (vk:device unsigned-32 uptr) vk:result)
   (define-vk-procedure
     vk:get-device-group-peer-memory-features
     "vkGetDeviceGroupPeerMemoryFeatures"
     (vk:device unsigned-32 unsigned-32 unsigned-32 uptr)
     void)
+  (define-vk-loader vk:load-get-device-group-peer-memory-features
+    device-proc-addr "vkGetDeviceGroupPeerMemoryFeatures"
+    (vk:device unsigned-32 unsigned-32 unsigned-32 uptr) void)
   (define-vk-procedure
     vk:cmd-set-device-mask
     "vkCmdSetDeviceMask"
     (vk:command-buffer unsigned-32)
     void)
+  (define-vk-loader vk:load-cmd-set-device-mask device-proc-addr
+    "vkCmdSetDeviceMask" (vk:command-buffer unsigned-32) void)
   (define-vk-procedure
     vk:enumerate-physical-device-groups
     "vkEnumeratePhysicalDeviceGroups"
     (vk:instance uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-enumerate-physical-device-groups instance-proc-addr
+    "vkEnumeratePhysicalDeviceGroups" (vk:instance uptr uptr)
     vk:result)
   (define-vk-procedure
     vk:get-image-memory-requirements2
     "vkGetImageMemoryRequirements2"
     (vk:device uptr uptr)
     void)
+  (define-vk-loader vk:load-get-image-memory-requirements2 device-proc-addr
+    "vkGetImageMemoryRequirements2" (vk:device uptr uptr) void)
   (define-vk-procedure
     vk:get-buffer-memory-requirements2
     "vkGetBufferMemoryRequirements2"
     (vk:device uptr uptr)
     void)
+  (define-vk-loader vk:load-get-buffer-memory-requirements2 device-proc-addr
+    "vkGetBufferMemoryRequirements2" (vk:device uptr uptr) void)
   (define-vk-procedure
     vk:get-image-sparse-memory-requirements2
     "vkGetImageSparseMemoryRequirements2"
     (vk:device uptr uptr uptr)
     void)
+  (define-vk-loader vk:load-get-image-sparse-memory-requirements2
+    device-proc-addr "vkGetImageSparseMemoryRequirements2"
+    (vk:device uptr uptr uptr) void)
   (define-vk-procedure
     vk:get-physical-device-features2
     "vkGetPhysicalDeviceFeatures2"
     (vk:physical-device uptr)
+    void)
+  (define-vk-loader vk:load-get-physical-device-features2 instance-proc-addr
+    "vkGetPhysicalDeviceFeatures2" (vk:physical-device uptr)
     void)
   (define-vk-procedure
     vk:get-physical-device-properties2
     "vkGetPhysicalDeviceProperties2"
     (vk:physical-device uptr)
     void)
+  (define-vk-loader vk:load-get-physical-device-properties2 instance-proc-addr
+    "vkGetPhysicalDeviceProperties2" (vk:physical-device uptr)
+    void)
   (define-vk-procedure
     vk:get-physical-device-format-properties2
     "vkGetPhysicalDeviceFormatProperties2"
     (vk:physical-device vk:format uptr)
     void)
+  (define-vk-loader vk:load-get-physical-device-format-properties2
+    instance-proc-addr "vkGetPhysicalDeviceFormatProperties2"
+    (vk:physical-device vk:format uptr) void)
   (define-vk-procedure
     vk:get-physical-device-image-format-properties2
     "vkGetPhysicalDeviceImageFormatProperties2"
     (vk:physical-device uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-get-physical-device-image-format-properties2
+    instance-proc-addr
+    "vkGetPhysicalDeviceImageFormatProperties2"
+    (vk:physical-device uptr uptr) vk:result)
   (define-vk-procedure
     vk:get-physical-device-queue-family-properties2
     "vkGetPhysicalDeviceQueueFamilyProperties2"
     (vk:physical-device uptr uptr)
     void)
+  (define-vk-loader vk:load-get-physical-device-queue-family-properties2
+    instance-proc-addr
+    "vkGetPhysicalDeviceQueueFamilyProperties2"
+    (vk:physical-device uptr uptr) void)
   (define-vk-procedure
     vk:get-physical-device-memory-properties2
     "vkGetPhysicalDeviceMemoryProperties2"
     (vk:physical-device uptr)
     void)
+  (define-vk-loader vk:load-get-physical-device-memory-properties2
+    instance-proc-addr "vkGetPhysicalDeviceMemoryProperties2"
+    (vk:physical-device uptr) void)
   (define-vk-procedure
     vk:get-physical-device-sparse-image-format-properties2
     "vkGetPhysicalDeviceSparseImageFormatProperties2"
     (vk:physical-device uptr uptr uptr)
     void)
+  (define-vk-loader vk:load-get-physical-device-sparse-image-format-properties2
+    instance-proc-addr
+    "vkGetPhysicalDeviceSparseImageFormatProperties2"
+    (vk:physical-device uptr uptr uptr) void)
   (define-vk-procedure
     vk:trim-command-pool
     "vkTrimCommandPool"
     (vk:device vk:command-pool vk:command-pool-trim-flags)
     void)
+  (define-vk-loader vk:load-trim-command-pool device-proc-addr
+    "vkTrimCommandPool"
+    (vk:device vk:command-pool vk:command-pool-trim-flags) void)
   (define-vk-procedure
     vk:get-device-queue2
     "vkGetDeviceQueue2"
     (vk:device uptr uptr)
     void)
+  (define-vk-loader vk:load-get-device-queue2 device-proc-addr
+    "vkGetDeviceQueue2" (vk:device uptr uptr) void)
   (define-vk-procedure
     vk:get-physical-device-external-buffer-properties
     "vkGetPhysicalDeviceExternalBufferProperties"
     (vk:physical-device uptr uptr)
     void)
+  (define-vk-loader vk:load-get-physical-device-external-buffer-properties
+    instance-proc-addr
+    "vkGetPhysicalDeviceExternalBufferProperties"
+    (vk:physical-device uptr uptr) void)
   (define-vk-procedure
     vk:get-physical-device-external-fence-properties
     "vkGetPhysicalDeviceExternalFenceProperties"
     (vk:physical-device uptr uptr)
     void)
+  (define-vk-loader vk:load-get-physical-device-external-fence-properties
+    instance-proc-addr
+    "vkGetPhysicalDeviceExternalFenceProperties"
+    (vk:physical-device uptr uptr) void)
   (define-vk-procedure
     vk:get-physical-device-external-semaphore-properties
     "vkGetPhysicalDeviceExternalSemaphoreProperties"
     (vk:physical-device uptr uptr)
     void)
+  (define-vk-loader vk:load-get-physical-device-external-semaphore-properties
+    instance-proc-addr
+    "vkGetPhysicalDeviceExternalSemaphoreProperties"
+    (vk:physical-device uptr uptr) void)
   (define-vk-procedure
     vk:cmd-dispatch-base
+    "vkCmdDispatchBase"
+    (vk:command-buffer unsigned-32 unsigned-32 unsigned-32
+      unsigned-32 unsigned-32 unsigned-32)
+    void)
+  (define-vk-loader vk:load-cmd-dispatch-base device-proc-addr
     "vkCmdDispatchBase"
     (vk:command-buffer unsigned-32 unsigned-32 unsigned-32
       unsigned-32 unsigned-32 unsigned-32)
@@ -29131,14 +29818,27 @@
     "vkCreateDescriptorUpdateTemplate"
     (vk:device uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-create-descriptor-update-template device-proc-addr
+    "vkCreateDescriptorUpdateTemplate"
+    (vk:device uptr uptr uptr) vk:result)
   (define-vk-procedure
     vk:destroy-descriptor-update-template
     "vkDestroyDescriptorUpdateTemplate"
     (vk:device vk:descriptor-update-template uptr)
     void)
+  (define-vk-loader vk:load-destroy-descriptor-update-template device-proc-addr
+    "vkDestroyDescriptorUpdateTemplate"
+    (vk:device vk:descriptor-update-template uptr) void)
   (define-vk-procedure
     vk:update-descriptor-set-with-template
     "vkUpdateDescriptorSetWithTemplate"
+    (vk:device
+      vk:descriptor-set
+      vk:descriptor-update-template
+      uptr)
+    void)
+  (define-vk-loader vk:load-update-descriptor-set-with-template
+    device-proc-addr "vkUpdateDescriptorSetWithTemplate"
     (vk:device
       vk:descriptor-set
       vk:descriptor-update-template
@@ -29149,53 +29849,86 @@
     "vkGetDescriptorSetLayoutSupport"
     (vk:device uptr uptr)
     void)
+  (define-vk-loader vk:load-get-descriptor-set-layout-support device-proc-addr
+    "vkGetDescriptorSetLayoutSupport" (vk:device uptr uptr)
+    void)
   (define-vk-procedure
     vk:create-sampler-ycbcr-conversion
     "vkCreateSamplerYcbcrConversion"
     (vk:device uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-create-sampler-ycbcr-conversion device-proc-addr
+    "vkCreateSamplerYcbcrConversion" (vk:device uptr uptr uptr)
     vk:result)
   (define-vk-procedure
     vk:destroy-sampler-ycbcr-conversion
     "vkDestroySamplerYcbcrConversion"
     (vk:device vk:sampler-ycbcr-conversion uptr)
     void)
+  (define-vk-loader vk:load-destroy-sampler-ycbcr-conversion device-proc-addr
+    "vkDestroySamplerYcbcrConversion"
+    (vk:device vk:sampler-ycbcr-conversion uptr) void)
   (define-vk-procedure
     vk:reset-query-pool
     "vkResetQueryPool"
     (vk:device vk:query-pool unsigned-32 unsigned-32)
     void)
+  (define-vk-loader vk:load-reset-query-pool device-proc-addr
+    "vkResetQueryPool"
+    (vk:device vk:query-pool unsigned-32 unsigned-32) void)
   (define-vk-procedure
     vk:get-semaphore-counter-value
     "vkGetSemaphoreCounterValue"
     (vk:device vk:semaphore uptr)
+    vk:result)
+  (define-vk-loader vk:load-get-semaphore-counter-value device-proc-addr
+    "vkGetSemaphoreCounterValue" (vk:device vk:semaphore uptr)
     vk:result)
   (define-vk-procedure
     vk:wait-semaphores
     "vkWaitSemaphores"
     (vk:device uptr unsigned-64)
     vk:result)
+  (define-vk-loader vk:load-wait-semaphores device-proc-addr "vkWaitSemaphores"
+    (vk:device uptr unsigned-64) vk:result)
   (define-vk-procedure
     vk:signal-semaphore
     "vkSignalSemaphore"
     (vk:device uptr)
     vk:result)
+  (define-vk-loader vk:load-signal-semaphore device-proc-addr
+    "vkSignalSemaphore" (vk:device uptr) vk:result)
   (define-vk-procedure
     vk:get-buffer-device-address
     "vkGetBufferDeviceAddress"
     (vk:device uptr)
+    vk:device-address)
+  (define-vk-loader vk:load-get-buffer-device-address device-proc-addr
+    "vkGetBufferDeviceAddress" (vk:device uptr)
     vk:device-address)
   (define-vk-procedure
     vk:get-buffer-opaque-capture-address
     "vkGetBufferOpaqueCaptureAddress"
     (vk:device uptr)
     unsigned-64)
+  (define-vk-loader vk:load-get-buffer-opaque-capture-address device-proc-addr
+    "vkGetBufferOpaqueCaptureAddress" (vk:device uptr)
+    unsigned-64)
   (define-vk-procedure
     vk:get-device-memory-opaque-capture-address
     "vkGetDeviceMemoryOpaqueCaptureAddress"
     (vk:device uptr)
     unsigned-64)
+  (define-vk-loader vk:load-get-device-memory-opaque-capture-address
+    device-proc-addr "vkGetDeviceMemoryOpaqueCaptureAddress"
+    (vk:device uptr) unsigned-64)
   (define-vk-procedure
     vk:cmd-draw-indirect-count
+    "vkCmdDrawIndirectCount"
+    (vk:command-buffer vk:buffer vk:device-size vk:buffer
+      vk:device-size unsigned-32 unsigned-32)
+    void)
+  (define-vk-loader vk:load-cmd-draw-indirect-count device-proc-addr
     "vkCmdDrawIndirectCount"
     (vk:command-buffer vk:buffer vk:device-size vk:buffer
       vk:device-size unsigned-32 unsigned-32)
@@ -29206,43 +29939,73 @@
     (vk:command-buffer vk:buffer vk:device-size vk:buffer
       vk:device-size unsigned-32 unsigned-32)
     void)
+  (define-vk-loader vk:load-cmd-draw-indexed-indirect-count device-proc-addr
+    "vkCmdDrawIndexedIndirectCount"
+    (vk:command-buffer vk:buffer vk:device-size vk:buffer
+      vk:device-size unsigned-32 unsigned-32)
+    void)
   (define-vk-procedure
     vk:create-render-pass2
     "vkCreateRenderPass2"
     (vk:device uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-create-render-pass2 device-proc-addr
+    "vkCreateRenderPass2" (vk:device uptr uptr uptr) vk:result)
   (define-vk-procedure
     vk:cmd-begin-render-pass2
     "vkCmdBeginRenderPass2"
     (vk:command-buffer uptr uptr)
     void)
+  (define-vk-loader vk:load-cmd-begin-render-pass2 device-proc-addr
+    "vkCmdBeginRenderPass2" (vk:command-buffer uptr uptr) void)
   (define-vk-procedure
     vk:cmd-next-subpass2
     "vkCmdNextSubpass2"
     (vk:command-buffer uptr uptr)
     void)
+  (define-vk-loader vk:load-cmd-next-subpass2 device-proc-addr
+    "vkCmdNextSubpass2" (vk:command-buffer uptr uptr) void)
   (define-vk-procedure
     vk:cmd-end-render-pass2
     "vkCmdEndRenderPass2"
     (vk:command-buffer uptr)
     void)
+  (define-vk-loader vk:load-cmd-end-render-pass2 device-proc-addr
+    "vkCmdEndRenderPass2" (vk:command-buffer uptr) void)
   (define-vk-procedure
     vk:get-physical-device-tool-properties
     "vkGetPhysicalDeviceToolProperties"
     (vk:physical-device uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-get-physical-device-tool-properties
+    instance-proc-addr "vkGetPhysicalDeviceToolProperties"
+    (vk:physical-device uptr uptr) vk:result)
   (define-vk-procedure
     vk:create-private-data-slot
     "vkCreatePrivateDataSlot"
     (vk:device uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-create-private-data-slot device-proc-addr
+    "vkCreatePrivateDataSlot" (vk:device uptr uptr uptr)
     vk:result)
   (define-vk-procedure
     vk:destroy-private-data-slot
     "vkDestroyPrivateDataSlot"
     (vk:device vk:private-data-slot uptr)
     void)
+  (define-vk-loader vk:load-destroy-private-data-slot device-proc-addr
+    "vkDestroyPrivateDataSlot"
+    (vk:device vk:private-data-slot uptr) void)
   (define-vk-procedure
     vk:set-private-data
+    "vkSetPrivateData"
+    (vk:device
+      vk:object-type
+      unsigned-64
+      vk:private-data-slot
+      unsigned-64)
+    vk:result)
+  (define-vk-loader vk:load-set-private-data device-proc-addr
     "vkSetPrivateData"
     (vk:device
       vk:object-type
@@ -29259,13 +30022,30 @@
       vk:private-data-slot
       uptr)
     void)
+  (define-vk-loader vk:load-get-private-data device-proc-addr
+    "vkGetPrivateData"
+    (vk:device
+      vk:object-type
+      unsigned-64
+      vk:private-data-slot
+      uptr)
+    void)
   (define-vk-procedure
     vk:cmd-pipeline-barrier2
     "vkCmdPipelineBarrier2"
     (vk:command-buffer uptr)
     void)
+  (define-vk-loader vk:load-cmd-pipeline-barrier2 device-proc-addr
+    "vkCmdPipelineBarrier2" (vk:command-buffer uptr) void)
   (define-vk-procedure
     vk:cmd-write-timestamp2
+    "vkCmdWriteTimestamp2"
+    (vk:command-buffer
+      vk:pipeline-stage-flags2
+      vk:query-pool
+      unsigned-32)
+    void)
+  (define-vk-loader vk:load-cmd-write-timestamp2 device-proc-addr
     "vkCmdWriteTimestamp2"
     (vk:command-buffer
       vk:pipeline-stage-flags2
@@ -29277,103 +30057,157 @@
     "vkQueueSubmit2"
     (vk:queue unsigned-32 uptr vk:fence)
     vk:result)
+  (define-vk-loader vk:load-queue-submit2 device-proc-addr "vkQueueSubmit2"
+    (vk:queue unsigned-32 uptr vk:fence) vk:result)
   (define-vk-procedure
     vk:cmd-copy-buffer2
     "vkCmdCopyBuffer2"
     (vk:command-buffer uptr)
     void)
+  (define-vk-loader vk:load-cmd-copy-buffer2 device-proc-addr
+    "vkCmdCopyBuffer2" (vk:command-buffer uptr) void)
   (define-vk-procedure
     vk:cmd-copy-image2
     "vkCmdCopyImage2"
     (vk:command-buffer uptr)
     void)
+  (define-vk-loader vk:load-cmd-copy-image2 device-proc-addr
+    "vkCmdCopyImage2" (vk:command-buffer uptr) void)
   (define-vk-procedure
     vk:cmd-copy-buffer-to-image2
     "vkCmdCopyBufferToImage2"
     (vk:command-buffer uptr)
     void)
+  (define-vk-loader vk:load-cmd-copy-buffer-to-image2 device-proc-addr
+    "vkCmdCopyBufferToImage2" (vk:command-buffer uptr) void)
   (define-vk-procedure
     vk:cmd-copy-image-to-buffer2
     "vkCmdCopyImageToBuffer2"
     (vk:command-buffer uptr)
     void)
+  (define-vk-loader vk:load-cmd-copy-image-to-buffer2 device-proc-addr
+    "vkCmdCopyImageToBuffer2" (vk:command-buffer uptr) void)
   (define-vk-procedure
     vk:get-device-buffer-memory-requirements
     "vkGetDeviceBufferMemoryRequirements"
     (vk:device uptr uptr)
     void)
+  (define-vk-loader vk:load-get-device-buffer-memory-requirements
+    device-proc-addr "vkGetDeviceBufferMemoryRequirements"
+    (vk:device uptr uptr) void)
   (define-vk-procedure
     vk:get-device-image-memory-requirements
     "vkGetDeviceImageMemoryRequirements"
     (vk:device uptr uptr)
     void)
+  (define-vk-loader vk:load-get-device-image-memory-requirements
+    device-proc-addr "vkGetDeviceImageMemoryRequirements"
+    (vk:device uptr uptr) void)
   (define-vk-procedure
     vk:get-device-image-sparse-memory-requirements
     "vkGetDeviceImageSparseMemoryRequirements"
     (vk:device uptr uptr uptr)
     void)
+  (define-vk-loader vk:load-get-device-image-sparse-memory-requirements
+    device-proc-addr "vkGetDeviceImageSparseMemoryRequirements"
+    (vk:device uptr uptr uptr) void)
   (define-vk-procedure
     vk:cmd-set-event2
     "vkCmdSetEvent2"
     (vk:command-buffer vk:event uptr)
     void)
+  (define-vk-loader vk:load-cmd-set-event2 device-proc-addr "vkCmdSetEvent2"
+    (vk:command-buffer vk:event uptr) void)
   (define-vk-procedure
     vk:cmd-reset-event2
     "vkCmdResetEvent2"
     (vk:command-buffer vk:event vk:pipeline-stage-flags2)
     void)
+  (define-vk-loader vk:load-cmd-reset-event2 device-proc-addr
+    "vkCmdResetEvent2"
+    (vk:command-buffer vk:event vk:pipeline-stage-flags2) void)
   (define-vk-procedure
     vk:cmd-wait-events2
     "vkCmdWaitEvents2"
     (vk:command-buffer unsigned-32 uptr uptr)
+    void)
+  (define-vk-loader vk:load-cmd-wait-events2 device-proc-addr
+    "vkCmdWaitEvents2" (vk:command-buffer unsigned-32 uptr uptr)
     void)
   (define-vk-procedure
     vk:cmd-blit-image2
     "vkCmdBlitImage2"
     (vk:command-buffer uptr)
     void)
+  (define-vk-loader vk:load-cmd-blit-image2 device-proc-addr
+    "vkCmdBlitImage2" (vk:command-buffer uptr) void)
   (define-vk-procedure
     vk:cmd-resolve-image2
     "vkCmdResolveImage2"
     (vk:command-buffer uptr)
     void)
+  (define-vk-loader vk:load-cmd-resolve-image2 device-proc-addr
+    "vkCmdResolveImage2" (vk:command-buffer uptr) void)
   (define-vk-procedure
     vk:cmd-begin-rendering
     "vkCmdBeginRendering"
     (vk:command-buffer uptr)
     void)
+  (define-vk-loader vk:load-cmd-begin-rendering device-proc-addr
+    "vkCmdBeginRendering" (vk:command-buffer uptr) void)
   (define-vk-procedure
     vk:cmd-end-rendering
     "vkCmdEndRendering"
     (vk:command-buffer)
     void)
+  (define-vk-loader vk:load-cmd-end-rendering device-proc-addr
+    "vkCmdEndRendering" (vk:command-buffer) void)
   (define-vk-procedure
     vk:cmd-set-cull-mode
     "vkCmdSetCullMode"
     (vk:command-buffer vk:cull-mode-flags)
+    void)
+  (define-vk-loader vk:load-cmd-set-cull-mode device-proc-addr
+    "vkCmdSetCullMode" (vk:command-buffer vk:cull-mode-flags)
     void)
   (define-vk-procedure
     vk:cmd-set-front-face
     "vkCmdSetFrontFace"
     (vk:command-buffer vk:front-face)
     void)
+  (define-vk-loader vk:load-cmd-set-front-face device-proc-addr
+    "vkCmdSetFrontFace" (vk:command-buffer vk:front-face) void)
   (define-vk-procedure
     vk:cmd-set-primitive-topology
     "vkCmdSetPrimitiveTopology"
     (vk:command-buffer vk:primitive-topology)
     void)
+  (define-vk-loader vk:load-cmd-set-primitive-topology device-proc-addr
+    "vkCmdSetPrimitiveTopology"
+    (vk:command-buffer vk:primitive-topology) void)
   (define-vk-procedure
     vk:cmd-set-viewport-with-count
     "vkCmdSetViewportWithCount"
     (vk:command-buffer unsigned-32 uptr)
     void)
+  (define-vk-loader vk:load-cmd-set-viewport-with-count device-proc-addr
+    "vkCmdSetViewportWithCount"
+    (vk:command-buffer unsigned-32 uptr) void)
   (define-vk-procedure
     vk:cmd-set-scissor-with-count
     "vkCmdSetScissorWithCount"
     (vk:command-buffer unsigned-32 uptr)
     void)
+  (define-vk-loader vk:load-cmd-set-scissor-with-count device-proc-addr
+    "vkCmdSetScissorWithCount"
+    (vk:command-buffer unsigned-32 uptr) void)
   (define-vk-procedure
     vk:cmd-bind-vertex-buffers2
+    "vkCmdBindVertexBuffers2"
+    (vk:command-buffer unsigned-32 unsigned-32 uptr uptr uptr
+      uptr)
+    void)
+  (define-vk-loader vk:load-cmd-bind-vertex-buffers2 device-proc-addr
     "vkCmdBindVertexBuffers2"
     (vk:command-buffer unsigned-32 unsigned-32 uptr uptr uptr
       uptr)
@@ -29383,28 +30217,48 @@
     "vkCmdSetDepthTestEnable"
     (vk:command-buffer vk:bool32)
     void)
+  (define-vk-loader vk:load-cmd-set-depth-test-enable device-proc-addr
+    "vkCmdSetDepthTestEnable" (vk:command-buffer vk:bool32)
+    void)
   (define-vk-procedure
     vk:cmd-set-depth-write-enable
     "vkCmdSetDepthWriteEnable"
     (vk:command-buffer vk:bool32)
+    void)
+  (define-vk-loader vk:load-cmd-set-depth-write-enable device-proc-addr
+    "vkCmdSetDepthWriteEnable" (vk:command-buffer vk:bool32)
     void)
   (define-vk-procedure
     vk:cmd-set-depth-compare-op
     "vkCmdSetDepthCompareOp"
     (vk:command-buffer vk:compare-op)
     void)
+  (define-vk-loader vk:load-cmd-set-depth-compare-op device-proc-addr
+    "vkCmdSetDepthCompareOp" (vk:command-buffer vk:compare-op)
+    void)
   (define-vk-procedure
     vk:cmd-set-depth-bounds-test-enable
     "vkCmdSetDepthBoundsTestEnable"
     (vk:command-buffer vk:bool32)
     void)
+  (define-vk-loader vk:load-cmd-set-depth-bounds-test-enable device-proc-addr
+    "vkCmdSetDepthBoundsTestEnable"
+    (vk:command-buffer vk:bool32) void)
   (define-vk-procedure
     vk:cmd-set-stencil-test-enable
     "vkCmdSetStencilTestEnable"
     (vk:command-buffer vk:bool32)
     void)
+  (define-vk-loader vk:load-cmd-set-stencil-test-enable device-proc-addr
+    "vkCmdSetStencilTestEnable" (vk:command-buffer vk:bool32)
+    void)
   (define-vk-procedure
     vk:cmd-set-stencil-op
+    "vkCmdSetStencilOp"
+    (vk:command-buffer vk:stencil-face-flags vk:stencil-op
+      vk:stencil-op vk:stencil-op vk:compare-op)
+    void)
+  (define-vk-loader vk:load-cmd-set-stencil-op device-proc-addr
     "vkCmdSetStencilOp"
     (vk:command-buffer vk:stencil-face-flags vk:stencil-op
       vk:stencil-op vk:stencil-op vk:compare-op)
@@ -29414,58 +30268,91 @@
     "vkCmdSetRasterizerDiscardEnable"
     (vk:command-buffer vk:bool32)
     void)
+  (define-vk-loader vk:load-cmd-set-rasterizer-discard-enable device-proc-addr
+    "vkCmdSetRasterizerDiscardEnable"
+    (vk:command-buffer vk:bool32) void)
   (define-vk-procedure
     vk:cmd-set-depth-bias-enable
     "vkCmdSetDepthBiasEnable"
     (vk:command-buffer vk:bool32)
+    void)
+  (define-vk-loader vk:load-cmd-set-depth-bias-enable device-proc-addr
+    "vkCmdSetDepthBiasEnable" (vk:command-buffer vk:bool32)
     void)
   (define-vk-procedure
     vk:cmd-set-primitive-restart-enable
     "vkCmdSetPrimitiveRestartEnable"
     (vk:command-buffer vk:bool32)
     void)
+  (define-vk-loader vk:load-cmd-set-primitive-restart-enable device-proc-addr
+    "vkCmdSetPrimitiveRestartEnable"
+    (vk:command-buffer vk:bool32) void)
   (define-vk-procedure
     vk:map-memory2
     "vkMapMemory2"
     (vk:device uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-map-memory2 device-proc-addr
+    "vkMapMemory2" (vk:device uptr uptr) vk:result)
   (define-vk-procedure
     vk:unmap-memory2
     "vkUnmapMemory2"
     (vk:device uptr)
     vk:result)
+  (define-vk-loader vk:load-unmap-memory2 device-proc-addr
+    "vkUnmapMemory2" (vk:device uptr) vk:result)
   (define-vk-procedure
     vk:get-device-image-subresource-layout
     "vkGetDeviceImageSubresourceLayout"
     (vk:device uptr uptr)
     void)
+  (define-vk-loader vk:load-get-device-image-subresource-layout
+    device-proc-addr "vkGetDeviceImageSubresourceLayout"
+    (vk:device uptr uptr) void)
   (define-vk-procedure
     vk:get-image-subresource-layout2
     "vkGetImageSubresourceLayout2"
     (vk:device vk:image uptr uptr)
     void)
+  (define-vk-loader vk:load-get-image-subresource-layout2 device-proc-addr
+    "vkGetImageSubresourceLayout2"
+    (vk:device vk:image uptr uptr) void)
   (define-vk-procedure
     vk:copy-memory-to-image
     "vkCopyMemoryToImage"
     (vk:device uptr)
     vk:result)
+  (define-vk-loader vk:load-copy-memory-to-image device-proc-addr
+    "vkCopyMemoryToImage" (vk:device uptr) vk:result)
   (define-vk-procedure
     vk:copy-image-to-memory
     "vkCopyImageToMemory"
     (vk:device uptr)
     vk:result)
+  (define-vk-loader vk:load-copy-image-to-memory device-proc-addr
+    "vkCopyImageToMemory" (vk:device uptr) vk:result)
   (define-vk-procedure
     vk:copy-image-to-image
     "vkCopyImageToImage"
     (vk:device uptr)
     vk:result)
+  (define-vk-loader vk:load-copy-image-to-image device-proc-addr
+    "vkCopyImageToImage" (vk:device uptr) vk:result)
   (define-vk-procedure
     vk:transition-image-layout
     "vkTransitionImageLayout"
     (vk:device unsigned-32 uptr)
     vk:result)
+  (define-vk-loader vk:load-transition-image-layout device-proc-addr
+    "vkTransitionImageLayout" (vk:device unsigned-32 uptr)
+    vk:result)
   (define-vk-procedure
     vk:cmd-push-descriptor-set
+    "vkCmdPushDescriptorSet"
+    (vk:command-buffer vk:pipeline-bind-point vk:pipeline-layout
+      unsigned-32 unsigned-32 uptr)
+    void)
+  (define-vk-loader vk:load-cmd-push-descriptor-set device-proc-addr
     "vkCmdPushDescriptorSet"
     (vk:command-buffer vk:pipeline-bind-point vk:pipeline-layout
       unsigned-32 unsigned-32 uptr)
@@ -29479,33 +30366,61 @@
       unsigned-32
       uptr)
     void)
+  (define-vk-loader vk:load-cmd-push-descriptor-set-with-template
+    device-proc-addr "vkCmdPushDescriptorSetWithTemplate"
+    (vk:command-buffer
+      vk:descriptor-update-template
+      vk:pipeline-layout
+      unsigned-32
+      uptr)
+    void)
   (define-vk-procedure
     vk:cmd-bind-descriptor-sets2
     "vkCmdBindDescriptorSets2"
     (vk:command-buffer uptr)
     void)
+  (define-vk-loader vk:load-cmd-bind-descriptor-sets2 device-proc-addr
+    "vkCmdBindDescriptorSets2" (vk:command-buffer uptr) void)
   (define-vk-procedure
     vk:cmd-push-constants2
     "vkCmdPushConstants2"
     (vk:command-buffer uptr)
     void)
+  (define-vk-loader vk:load-cmd-push-constants2 device-proc-addr
+    "vkCmdPushConstants2" (vk:command-buffer uptr) void)
   (define-vk-procedure
     vk:cmd-push-descriptor-set2
     "vkCmdPushDescriptorSet2"
     (vk:command-buffer uptr)
     void)
+  (define-vk-loader vk:load-cmd-push-descriptor-set2 device-proc-addr
+    "vkCmdPushDescriptorSet2" (vk:command-buffer uptr) void)
   (define-vk-procedure
     vk:cmd-push-descriptor-set-with-template2
     "vkCmdPushDescriptorSetWithTemplate2"
     (vk:command-buffer uptr)
     void)
+  (define-vk-loader vk:load-cmd-push-descriptor-set-with-template2
+    device-proc-addr "vkCmdPushDescriptorSetWithTemplate2"
+    (vk:command-buffer uptr) void)
   (define-vk-procedure
     vk:cmd-set-line-stipple
     "vkCmdSetLineStipple"
     (vk:command-buffer unsigned-32 unsigned-16)
     void)
+  (define-vk-loader vk:load-cmd-set-line-stipple device-proc-addr
+    "vkCmdSetLineStipple"
+    (vk:command-buffer unsigned-32 unsigned-16) void)
   (define-vk-procedure
     vk:cmd-bind-index-buffer2
+    "vkCmdBindIndexBuffer2"
+    (vk:command-buffer
+      vk:buffer
+      vk:device-size
+      vk:device-size
+      vk:index-type)
+    void)
+  (define-vk-loader vk:load-cmd-bind-index-buffer2 device-proc-addr
     "vkCmdBindIndexBuffer2"
     (vk:command-buffer
       vk:buffer
@@ -29518,24 +30433,39 @@
     "vkGetRenderingAreaGranularity"
     (vk:device uptr uptr)
     void)
+  (define-vk-loader vk:load-get-rendering-area-granularity device-proc-addr
+    "vkGetRenderingAreaGranularity" (vk:device uptr uptr) void)
   (define-vk-procedure
     vk:cmd-set-rendering-attachment-locations
     "vkCmdSetRenderingAttachmentLocations"
     (vk:command-buffer uptr)
     void)
+  (define-vk-loader vk:load-cmd-set-rendering-attachment-locations
+    device-proc-addr "vkCmdSetRenderingAttachmentLocations"
+    (vk:command-buffer uptr) void)
   (define-vk-procedure
     vk:cmd-set-rendering-input-attachment-indices
     "vkCmdSetRenderingInputAttachmentIndices"
     (vk:command-buffer uptr)
     void)
+  (define-vk-loader vk:load-cmd-set-rendering-input-attachment-indices
+    device-proc-addr "vkCmdSetRenderingInputAttachmentIndices"
+    (vk:command-buffer uptr) void)
   (define-vk-procedure
     vk:destroy-surface-khr
     "vkDestroySurfaceKHR"
     (vk:instance vk:surface-khr uptr)
     void)
+  (define-vk-loader vk:load-destroy-surface-khr instance-proc-addr
+    "vkDestroySurfaceKHR" (vk:instance vk:surface-khr uptr)
+    void)
   (define-vk-procedure
     vk:get-physical-device-surface-support-khr
     "vkGetPhysicalDeviceSurfaceSupportKHR"
+    (vk:physical-device unsigned-32 vk:surface-khr uptr)
+    vk:result)
+  (define-vk-loader vk:load-get-physical-device-surface-support-khr
+    instance-proc-addr "vkGetPhysicalDeviceSurfaceSupportKHR"
     (vk:physical-device unsigned-32 vk:surface-khr uptr)
     vk:result)
   (define-vk-procedure
@@ -29543,33 +30473,57 @@
     "vkGetPhysicalDeviceSurfaceCapabilitiesKHR"
     (vk:physical-device vk:surface-khr uptr)
     vk:result)
+  (define-vk-loader vk:load-get-physical-device-surface-capabilities-khr
+    instance-proc-addr
+    "vkGetPhysicalDeviceSurfaceCapabilitiesKHR"
+    (vk:physical-device vk:surface-khr uptr) vk:result)
   (define-vk-procedure
     vk:get-physical-device-surface-formats-khr
     "vkGetPhysicalDeviceSurfaceFormatsKHR"
     (vk:physical-device vk:surface-khr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-get-physical-device-surface-formats-khr
+    instance-proc-addr "vkGetPhysicalDeviceSurfaceFormatsKHR"
+    (vk:physical-device vk:surface-khr uptr uptr) vk:result)
   (define-vk-procedure
     vk:get-physical-device-surface-present-modes-khr
     "vkGetPhysicalDeviceSurfacePresentModesKHR"
     (vk:physical-device vk:surface-khr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-get-physical-device-surface-present-modes-khr
+    instance-proc-addr
+    "vkGetPhysicalDeviceSurfacePresentModesKHR"
+    (vk:physical-device vk:surface-khr uptr uptr) vk:result)
   (define-vk-procedure
     vk:create-swapchain-khr
     "vkCreateSwapchainKHR"
     (vk:device uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-create-swapchain-khr device-proc-addr
+    "vkCreateSwapchainKHR" (vk:device uptr uptr uptr) vk:result)
   (define-vk-procedure
     vk:destroy-swapchain-khr
     "vkDestroySwapchainKHR"
     (vk:device vk:swapchain-khr uptr)
+    void)
+  (define-vk-loader vk:load-destroy-swapchain-khr device-proc-addr
+    "vkDestroySwapchainKHR" (vk:device vk:swapchain-khr uptr)
     void)
   (define-vk-procedure
     vk:get-swapchain-images-khr
     "vkGetSwapchainImagesKHR"
     (vk:device vk:swapchain-khr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-get-swapchain-images-khr device-proc-addr
+    "vkGetSwapchainImagesKHR"
+    (vk:device vk:swapchain-khr uptr uptr) vk:result)
   (define-vk-procedure
     vk:acquire-next-image-khr
+    "vkAcquireNextImageKHR"
+    (vk:device vk:swapchain-khr unsigned-64 vk:semaphore
+      vk:fence uptr)
+    vk:result)
+  (define-vk-loader vk:load-acquire-next-image-khr device-proc-addr
     "vkAcquireNextImageKHR"
     (vk:device vk:swapchain-khr unsigned-64 vk:semaphore
       vk:fence uptr)
@@ -29579,48 +30533,78 @@
     "vkQueuePresentKHR"
     (vk:queue uptr)
     vk:result)
+  (define-vk-loader vk:load-queue-present-khr device-proc-addr
+    "vkQueuePresentKHR" (vk:queue uptr) vk:result)
   (define-vk-procedure
     vk:get-device-group-present-capabilities-khr
     "vkGetDeviceGroupPresentCapabilitiesKHR"
     (vk:device uptr)
     vk:result)
+  (define-vk-loader vk:load-get-device-group-present-capabilities-khr
+    device-proc-addr "vkGetDeviceGroupPresentCapabilitiesKHR"
+    (vk:device uptr) vk:result)
   (define-vk-procedure
     vk:get-device-group-surface-present-modes-khr
     "vkGetDeviceGroupSurfacePresentModesKHR"
     (vk:device vk:surface-khr uptr)
     vk:result)
+  (define-vk-loader vk:load-get-device-group-surface-present-modes-khr
+    device-proc-addr "vkGetDeviceGroupSurfacePresentModesKHR"
+    (vk:device vk:surface-khr uptr) vk:result)
   (define-vk-procedure
     vk:get-physical-device-present-rectangles-khr
     "vkGetPhysicalDevicePresentRectanglesKHR"
     (vk:physical-device vk:surface-khr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-get-physical-device-present-rectangles-khr
+    instance-proc-addr "vkGetPhysicalDevicePresentRectanglesKHR"
+    (vk:physical-device vk:surface-khr uptr uptr) vk:result)
   (define-vk-procedure
     vk:acquire-next-image2-khr
     "vkAcquireNextImage2KHR"
     (vk:device uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-acquire-next-image2-khr device-proc-addr
+    "vkAcquireNextImage2KHR" (vk:device uptr uptr) vk:result)
   (define-vk-procedure
     vk:get-physical-device-display-properties-khr
     "vkGetPhysicalDeviceDisplayPropertiesKHR"
     (vk:physical-device uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-get-physical-device-display-properties-khr
+    instance-proc-addr "vkGetPhysicalDeviceDisplayPropertiesKHR"
+    (vk:physical-device uptr uptr) vk:result)
   (define-vk-procedure
     vk:get-physical-device-display-plane-properties-khr
     "vkGetPhysicalDeviceDisplayPlanePropertiesKHR"
     (vk:physical-device uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-get-physical-device-display-plane-properties-khr
+    instance-proc-addr
+    "vkGetPhysicalDeviceDisplayPlanePropertiesKHR"
+    (vk:physical-device uptr uptr) vk:result)
   (define-vk-procedure
     vk:get-display-plane-supported-displays-khr
     "vkGetDisplayPlaneSupportedDisplaysKHR"
     (vk:physical-device unsigned-32 uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-get-display-plane-supported-displays-khr
+    instance-proc-addr "vkGetDisplayPlaneSupportedDisplaysKHR"
+    (vk:physical-device unsigned-32 uptr uptr) vk:result)
   (define-vk-procedure
     vk:get-display-mode-properties-khr
     "vkGetDisplayModePropertiesKHR"
     (vk:physical-device vk:display-khr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-get-display-mode-properties-khr instance-proc-addr
+    "vkGetDisplayModePropertiesKHR"
+    (vk:physical-device vk:display-khr uptr uptr) vk:result)
   (define-vk-procedure
     vk:create-display-mode-khr
+    "vkCreateDisplayModeKHR"
+    (vk:physical-device vk:display-khr uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-create-display-mode-khr instance-proc-addr
     "vkCreateDisplayModeKHR"
     (vk:physical-device vk:display-khr uptr uptr uptr)
     vk:result)
@@ -29629,16 +30613,26 @@
     "vkGetDisplayPlaneCapabilitiesKHR"
     (vk:physical-device vk:display-mode-khr unsigned-32 uptr)
     vk:result)
+  (define-vk-loader vk:load-get-display-plane-capabilities-khr
+    instance-proc-addr "vkGetDisplayPlaneCapabilitiesKHR"
+    (vk:physical-device vk:display-mode-khr unsigned-32 uptr)
+    vk:result)
   (define-vk-procedure
     vk:create-display-plane-surface-khr
     "vkCreateDisplayPlaneSurfaceKHR"
     (vk:instance uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-create-display-plane-surface-khr instance-proc-addr
+    "vkCreateDisplayPlaneSurfaceKHR"
+    (vk:instance uptr uptr uptr) vk:result)
   (define-vk-procedure
     vk:create-shared-swapchains-khr
     "vkCreateSharedSwapchainsKHR"
     (vk:device unsigned-32 uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-create-shared-swapchains-khr device-proc-addr
+    "vkCreateSharedSwapchainsKHR"
+    (vk:device unsigned-32 uptr uptr uptr) vk:result)
   (define-vk-loader vk:load-get-physical-device-video-capabilities-khr
     instance-proc-addr "vkGetPhysicalDeviceVideoCapabilitiesKHR"
     (vk:physical-device uptr uptr) vk:result)
@@ -29809,31 +30803,52 @@
     "vkGetPhysicalDeviceSurfaceCapabilities2KHR"
     (vk:physical-device uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-get-physical-device-surface-capabilities2-khr
+    instance-proc-addr
+    "vkGetPhysicalDeviceSurfaceCapabilities2KHR"
+    (vk:physical-device uptr uptr) vk:result)
   (define-vk-procedure
     vk:get-physical-device-surface-formats2-khr
     "vkGetPhysicalDeviceSurfaceFormats2KHR"
     (vk:physical-device uptr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-get-physical-device-surface-formats2-khr
+    instance-proc-addr "vkGetPhysicalDeviceSurfaceFormats2KHR"
+    (vk:physical-device uptr uptr uptr) vk:result)
   (define-vk-procedure
     vk:get-physical-device-display-properties2-khr
     "vkGetPhysicalDeviceDisplayProperties2KHR"
     (vk:physical-device uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-get-physical-device-display-properties2-khr
+    instance-proc-addr
+    "vkGetPhysicalDeviceDisplayProperties2KHR"
+    (vk:physical-device uptr uptr) vk:result)
   (define-vk-procedure
     vk:get-physical-device-display-plane-properties2-khr
     "vkGetPhysicalDeviceDisplayPlaneProperties2KHR"
     (vk:physical-device uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-get-physical-device-display-plane-properties2-khr
+    instance-proc-addr
+    "vkGetPhysicalDeviceDisplayPlaneProperties2KHR"
+    (vk:physical-device uptr uptr) vk:result)
   (define-vk-procedure
     vk:get-display-mode-properties2-khr
     "vkGetDisplayModeProperties2KHR"
     (vk:physical-device vk:display-khr uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-get-display-mode-properties2-khr instance-proc-addr
+    "vkGetDisplayModeProperties2KHR"
+    (vk:physical-device vk:display-khr uptr uptr) vk:result)
   (define-vk-procedure
     vk:get-display-plane-capabilities2-khr
     "vkGetDisplayPlaneCapabilities2KHR"
     (vk:physical-device uptr uptr)
     vk:result)
+  (define-vk-loader vk:load-get-display-plane-capabilities2-khr
+    instance-proc-addr "vkGetDisplayPlaneCapabilities2KHR"
+    (vk:physical-device uptr uptr) vk:result)
   (define-vk-loader vk:load-get-image-memory-requirements2-khr device-proc-addr
     "vkGetImageMemoryRequirements2KHR" (vk:device uptr uptr)
     void)
@@ -30590,6 +31605,9 @@
     vk:create-headless-surface-ext
     "vkCreateHeadlessSurfaceEXT"
     (vk:instance uptr uptr uptr)
+    vk:result)
+  (define-vk-loader vk:load-create-headless-surface-ext instance-proc-addr
+    "vkCreateHeadlessSurfaceEXT" (vk:instance uptr uptr uptr)
     vk:result)
   (define-vk-loader vk:load-cmd-set-line-stipple-ext device-proc-addr
     "vkCmdSetLineStippleEXT"
