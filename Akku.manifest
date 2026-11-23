@@ -1,0 +1,10 @@
+#!r6rs ; -*- mode: scheme; coding: utf-8 -*-
+(import (akku format manifest))
+
+(akku-package ("chez-vulkan" "0.1.0")
+  (synopsis "Vulkan graphics API binding for Chez Scheme")
+  (authors "qothr")
+  (license "LicenseRef-Native-Information-License") ; see LICENSE
+  (depends)
+  ;; Only the examples use these (chezcube loads its texture with image-formats).
+  (depends/dev ("image-formats" "^0.1.0")))

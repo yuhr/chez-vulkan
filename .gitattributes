@@ -1,0 +1,11 @@
+# Generated files: collapsed in GitHub diffs and left out of language stats.
+vulkan.ss linguist-generated=true
+xlib.ss linguist-generated=true
+xcb.ss linguist-generated=true
+wayland.ss linguist-generated=true
+win32.ss linguist-generated=true
+res/vulkan.xml linguist-generated=true
+Akku.lock linguist-generated=true
+
+# Compiled shaders (rebuild with glslangValidator; see each example).
+*.spv binary
